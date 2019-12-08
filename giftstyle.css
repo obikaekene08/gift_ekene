@@ -1,0 +1,165 @@
+*{
+			font-family: 'Roboto', sans-serif;
+		}
+		div{
+			
+			
+		}
+
+		#menubar{
+
+		position: relative;
+
+		}
+
+		#logo{
+
+		position: absolute;
+		top:-10px;
+		left:10px;
+		height: 80px;
+		z-index: 2;
+		background-color: red;
+		}
+
+		#entrancehome{
+
+		position: relative;
+		padding-left:0px;
+		padding-right:0px
+		
+		}
+
+		
+		#entrancetools{
+
+		position: absolute;
+		top: 50%;
+		height:50%;
+		left:5.5%;
+		width:89%;
+		z-index: 1;
+		}
+
+		.carouseltext{
+			
+			position: absolute;
+			top:25%;
+			left:2%;
+			width:96%;
+			height:75%;
+			font-family: 'Roboto', sans-serif;
+			font-size:20px;
+			color: red;
+		}
+
+		
+		ul li a {
+			color:red;
+		}
+
+		h2, h4{
+			text-align: left;
+			width: 100%;
+			margin: auto;
+			padding: 5px 5px;
+			border-bottom-left-radius: 10px;
+			border-bottom-right-radius: 10px;
+		}
+
+		.boxes{
+			border: 1px solid black;
+			height: 100px;
+			width: 80%;
+			border-radius: 100%;
+			text-align: center;
+			margin:auto;
+			position: relative;
+
+		}
+
+		.boxshell{
+			border: 1px solid black;
+			height: 250px;
+			text-align: center;
+			box-sizing: border-box;
+
+			
+		}
+
+		.number{
+			text-align: center;
+			font-size:2rem;
+			position:absolute;
+			top:30%;
+			left:5%;
+			width:90%;
+
+
+			
+		}
+
+		.bline{
+			border: 1px solid black;
+		}
+
+		.boxhead{
+			padding-bottom: 0px;
+			margin-bottom: 3px;
+			margin-top: 10px
+		}
+		.hrline{
+			border-top: 2px black solid;
+			width: 100%;
+			position: absolute;
+			top:35%;
+		}
+
+		#videobtn{
+			
+		}
+
+		.mbline{
+
+			border-radius:10px;
+			
+
+		}
+
+		.footerline{
+			border-top: 2px black solid;
+			width: 90%;
+		}
+
+		#searchbox_view_merchant{
+
+		}
+
+		h2.bstyle, h4.bstyle{
+			text-align: left;
+			width: 100%;
+			margin: auto;
+			padding: 5px 5px;
+			border: 1px solid black;
+			border-bottom-left-radius: 10px;
+			border-bottom-right-radius: 10px;
+		}
+
+		h5.accordstyle{
+		}
+
+		h5.notif{
+			color: #403873;
+
+		}
+
+		h6.notif{
+			color: lightgrey;
+		}
+
+		div.notif{
+			border-left:none;
+			border-right: none;
+			border-top:none
+
+		}
