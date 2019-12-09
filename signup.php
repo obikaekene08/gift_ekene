@@ -111,18 +111,18 @@
 				  <div class="col-6">
 				    <div class="tab-content" id="nav-tabContent">
 				      <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-				      	<form name="sentMessage" id="contactForm" action='insertmember.php'>
+				      	<form method ="POST" id="contactForm" action='submitsignup.php'>
 				        <div class = "row">
 				          <div class="control-group form-group col-md-6 col-12">
 				            <div class="controls">
 				              <label>First Name:</label>
-				              <input type="text" class="form-control" id="name" name='fname'>
+				              <input type="text" class="form-control" id="name" name='fname'required>
 				            </div>
 				          </div>
 						  <div class="control-group form-group col-md-6 col-12">
 				            <div class="controls">
 				              <label>Last Name:</label>
-				              <input type="text" class="form-control" id="name" name='lname'>
+				              <input type="text" class="form-control" id="name" name='lname'required>
 				             
 				            </div>
 				          </div>
@@ -131,7 +131,7 @@
 				          <div class="control-group form-group">
 				            <div class="controls">
 				              <label>Phone Number:</label>
-				              <input type="tel" class="form-control" id="phone" required>
+				              <input type="tel" class="form-control" id="phone" name="phone" required>
 				            </div>
 				          </div>
 				          <div class="control-group form-group">
@@ -143,22 +143,22 @@
 				          <div class="control-group form-group">
 				            <div class="controls">
 				              <label>Password:</label>
-				              <input type="email" class="form-control" name='email' id="email" required>
+				              <input type="password" class="form-control" name='pwd' id="email" required>
 				            </div>
 				          </div>
 				          <div class="control-group form-group">
 				           <label><b>Reason: </b></label>
 				           <div class="custom-control custom-radio custom-control-inline">
-							  <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" checked>
-							  <label class="custom-control-label" for="customRadioInline1">Receive Gift</label>
+							  <input type="radio" id="customRadioInline1" name="reason" class="custom-control-input " checked>
+							  <label class=" ml-0 pl-0 custom-control-label " for="customRadioInline1">Receive Gifts</label>
 							</div>
 							<div class="custom-control custom-radio custom-control-inline">
-							  <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-							  <label class="custom-control-label" for="customRadioInline2">Give a Gift</label>
+							  <input type="radio" id="customRadioInline2" name="reason" class="custom-control-input">
+							  <label class="custom-control-label" for="customRadioInline2">Give Gift</label>
 							</div>
 							<div class="custom-control custom-radio custom-control-inline">
-							  <input type="radio" id="customRadioInline3" name="customRadioInline1" class="custom-control-input">
-							  <label class="custom-control-label" for="customRadioInline3">As a Vendor</label>
+							  <input type="radio" id="customRadioInline3" name="reason" class="custom-control-input">
+							  <label class="custom-control-label" for="customRadioInline3">Join as Vendor</label>
 							</div>
 							</div>
 							<div class="form-group form-check mt-3">
@@ -170,7 +170,7 @@
 				      </div>
 				      <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
 				      	
-				      	<form name="sentMessage" id="contactForm" action='insertmember.php'>
+				      	<form method="POST" id="contactForm" action='submitlogin.php'>
 				        <div class="control-group form-group">
 				            <div class="controls">
 				              <label>Email Address:</label>
@@ -180,7 +180,7 @@
 				          <div class="control-group form-group">
 				            <div class="controls">
 				              <label>Password:</label>
-				              <input type="email" class="form-control" name='email' id="email" required>
+				              <input type="password" class="form-control" name='pwd' id="email" required>
 				            </div>
 				          </div>
 				             

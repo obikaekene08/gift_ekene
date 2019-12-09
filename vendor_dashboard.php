@@ -1,98 +1,37 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<?php
 
-	<title>Home Page</title>
-	<link rel="stylesheet" href="css/bootstrap.css" type=text/css>
-	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-	<link href = "giftstyle.css" rel = "stylesheet" type = "text/css">
-	<link rel="stylesheet" href="fontawesome/css/all.css" type ="text/css">
-	
-	
-</head>
-<body>
-<div class = "containerfluid">
-	<div class = "row-12">
-		<div class = "col-md-2 offset-md-10 col-6 offset-7">
-			<form method = "POST" action = "index.html">
-			<button class="btn btn-danger mx-2" type="submit">Log Out</button>
-		</form>
+require("Vendor.php");
 
+$v = new Vendor;
+if(!isset($_SESSION['user'])){
+
+	header("location:signup.php");
+
+}
+
+require("header.php");
+$details = $v->getdetails($_SESSION['user']);
+
+
+
+
+?>
+
+	<div class = "row">
+		<div class = "col-10 offset-1">
+		    <div class="alert alert-primary" role="alert" col-8 offset-2>
+			  <h3>Hi <?php echo ucfirst($details['v_fname']).","?> <small>Welcome To Your Profile Page</small></h3>
+			</div>
 		</div>
 	</div>
-
-	<div class = "row-12" id = "menubar" style = "border:1px solid red; border-left:none; border-right:none">
-
-		<div class = "col-md-1 col-2" id = "logo">
-
-			<a href = "index.html"><img src = "images/logomn.jpg" style = "height: 80px"></a>
-			
-
-		</div>
-
-		<div class = "col-md-8 offset-md-4 col-12">
-			
-			<nav class="navbar navbar-expand-lg" style = "background-color: white">
-			  <a class="navbar-brand" href="#"></a>
-			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-			    <span class="navbar-toggler-icon"></span>
-			  </button>
-			  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-			    <ul class="navbar-nav">
-			      <li class="nav-item active">
-			        <a class="nav-link" href="#">CREATE A REGISTRY<span class="sr-only">(current)</span></a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="#">ABOUT</a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="#testimonial">TESTIMONIALS</a>
-			      </li>
-			      <li class="nav-item dropdown">
-			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			          VENDORS
-			        </a>
-			        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-			          <a class="dropdown-item" href="#merchantsection">See Our Vendors</a>
-			          <a class="dropdown-item" href="#">Become a Vendor</a>
-			          <a class="dropdown-item" href="#">Vendor Sign in</a>
-			        </div>
-			      </li>
-
-			      <li class="nav-item dropdown">
-			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			          FAQs
-			        </a>
-			        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-			          <a class="dropdown-item" href="#">FAQ for Givers</a>
-			          <a class="dropdown-item" href="#">FAQ for Receivers</a>
-			          <a class="dropdown-item" href="#">FAQ for Vendors</a>
-			        </div>
-			      </li>
-
-			      <li class="nav-item">
-			        <a class="nav-link" href="#">CONTACT</a>
-			      </li>
-
-			    </ul>
-			  </div>
-			</nav>
-
-		</div>
-
-	</div>
-
-
-	<div class = "row-12" id = "searchbox_view_merchant">
-		<div class = "offset-1 col-11 col-md-10 offset-md-1 my-3" style = "width:100%;">	
+	<div class = "row" id = "searchbox_view_merchant">
+		<div class = " offset-1 col-10 mb-2">	
 				<form class="form-inline ">
-			    <input class="form-control mr-2 col-6" type="search" placeholder="Search for products and couples" aria-label="Search">
+			    <input class="form-control mr-2 col-md-6 col-12" type="search" placeholder="Search for products and couples" aria-label="Search">
 			    <button class="btn btn-outline-danger" type="submit">Search</button>
 
 				
-				<button type="button" class="btn btn-danger mr-2 offset-2">Give a Gift</button>
+				<button type="button" class="btn btn-danger mr-2 offset-md-2">Give a Gift</button>
 				<button type="button" class="btn btn-outline-danger">Receive Gifts</button>
 
 			  	</form>
@@ -100,11 +39,10 @@
 
 	</div>
 
+	<div class = "row" id = "">
+		<div class = "col-10 offset-1 my-1 mbline">
 
-	<div class = "row-12" id = "">
-		<div class = "col-10 offset-1 my-1 card mbline">
-
-				<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+				<ul class="nav nav-pills m-2 offset-2 alert-danger" id="pills-tab" role="tablist">
 					  <li class="nav-item">
 					    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Home</a>
 					  </li>
@@ -112,7 +50,7 @@
 					    <a class="nav-link" id="pills-upload-tab" data-toggle="pill" href="#pills-upload" role="tab" aria-controls="pills-upload" aria-selected="false">Upload Item</a>
 					  </li>
 					  <li class="nav-item">
-					    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</a>
+					    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Edit Profile</a>
 					  </li>
 					  <li class="nav-item">
 					    <a class="nav-link" id="pills-analytics-tab" data-toggle="pill" href="#pills-analytics" role="tab" aria-controls="pills-analytics" aria-selected="false">Analytics</a>
@@ -128,11 +66,12 @@
 					  </li>
 					 
 					</ul>
+					 
 					<div class="tab-content" id="pills-tabContent">
 						<!-- HOME -->
 					  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 					  	
-					  	<div class = "row-12 mt-3">
+					  	<div class = "row mt-3">
 							<div class = "col-12 my-1 card mbline" id = "">
 								<div class="card-body mb-3" >
 								  <div class="row no-gutters">
@@ -146,13 +85,21 @@
 								        <p class=""><small class="text-muted"><b>Orders Completed: </b> 3</small></p>
 								      </div>
 								    </div>
+								    <form method = "" action = "" enctype = "multipart/form-data">
+								  	<div class="form-group">
+									    <div class="col-sm-10">
+									     <input type='file' name='mypix'>
+									     <button type = "submit" class="btn-sm btn btn-success mt-2">Upload Picture</button>
+									 </div>
+									</div>
+									</form>
 								  </div>
 								</div>
 								
 							</div>
 						</div>
 						
-						<div class = "row-12 mt-3">
+						<div class = "row mt-3">
 							<div class = "col-12 my-1 card card-body mbline" id = "">
 								<h4 class = "mb-3" style="">ORDERS</h4>
 								<div class = "row">
@@ -181,7 +128,7 @@
 								
 							</div>
 
-							<div class = "row-12 mt-3">
+							<div class = "row mt-3">
 							<div class = "col-12 my-1 card card-body mbline" id = "">
 								<h4 class = "mb-3" style="">UPLOADED ITEMS</h4>
 								<div class = "row">
@@ -210,7 +157,7 @@
 								
 							</div>
 
-					<div class = "row-12 mt-3">
+					<div class = "row mt-3">
 						<div class = "col-12 my-1 card card-body mbline" id = "">
 								<h4 class = "mb-3" style="">MANAGE ACTIVITY</h4>
 								<div class = "row">
@@ -251,7 +198,7 @@
 					  <!-- UPLOAD -->
 					  <div class="tab-pane fade" id="pills-upload" role="tabpanel" aria-labelledby="pills-upload-tab">
 					  	
-					  	<div class = "row-12 mt-3">
+					  	<div class = "row mt-3">
 							<div class = "col-12 my-1 card card-body mbline" id = "" style="height:50rem">
 								<div class = "row">
 									<div class = "col">
@@ -313,7 +260,7 @@
 					  <!-- PROFILE -->
 					  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 					  	
-					  	<div class = "row-12 mt-3">
+					  	<div class = "row mt-3">
 							<div class = "col-10 offset-1 my-1 card mbline" id = "testimonial">
 
 							<div class="accordion mb-3" id="accordionExample">
@@ -545,7 +492,7 @@
 					  <!-- ANALYTICS -->
 					  <div class="tab-pane fade" id="pills-analytics" role="tabpanel" aria-labelledby="pills-analytics-tab">
 					  	
-					  	<div class = "row-12 mt-3">
+					  	<div class = "row mt-3">
 							<div class = "col-12 card mbline py-3 notif" id = "">
 
 							
@@ -567,7 +514,7 @@
 					  <!-- NEEDHELP -->
 					  <div class="tab-pane fade" id="pills-needhelp" role="tabpanel" aria-labelledby="pills-needhelp-tab">
 					  	
-					  	<div class = "row-12 mt-3">
+					  	<div class = "row mt-3">
 							<div class = "col-10 offset-1 my-1 card card-body mbline" id = "testimonial">
 
 								
@@ -579,7 +526,7 @@
 					  <!-- NOTIFICATION -->
 					  <div class="tab-pane fade" id="pills-notification" role="tabpanel" aria-labelledby="pills-notification-tab">
 					  	
-					  	<div class = "row-12 mt-3">
+					  	<div class = "row mt-3">
 							<div class = "col-12 card mbline py-3 notif" id = "">
 
 							<!-- <div class = "row-12 mt-3">
@@ -604,7 +551,7 @@
 							</div>
 						</div>
 
-						<div class = "row-12 mt-3">
+						<div class = "row mt-3">
 							<div class = "col-12 card mbline py-3 notif" id = "">
 
 							<!-- <div class = "row-12 mt-3">
@@ -629,7 +576,7 @@
 							</div>
 						</div>
 
-						<div class = "row-12 mt-3">
+						<div class = "row mt-3">
 							<div class = "col-12 card mbline py-3 notif" id = "">
 
 							<!-- <div class = "row-12 mt-3">
@@ -659,7 +606,7 @@
 					  <!-- MORE -->
 					  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
 					  	
-					  	<div class = "row-12 mt-3">
+					  	<div class = "row mt-3">
 							<div class = "col-10 offset-1 my-1 card mbline" id = "testimonial">
 
 								
@@ -686,10 +633,10 @@
 
 	<!-- Send Message and Footer -->
 
-	<div class = "row-12 mt-3">
+	<div class = "row mt-3">
 		<div class = "col bline">
 
-	<div class = "row-12 mt-3">
+	<div class = "row mt-3">
 		<div class = "col-7 offset-2">
 			<h4 class = "text-center mt-0 pt-0">Send Us a Message</h4>
 			<form>
@@ -718,7 +665,7 @@
 	</div>
 
 	<hr class = "footerline mt-3">
-<div class = "row-12">
+<div class = "row">
 	<div class = "col">
 	<div class = "row">
 		<div class = "col-md-2 mx-2">

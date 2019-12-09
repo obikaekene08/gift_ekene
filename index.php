@@ -646,11 +646,11 @@
         <div class="alert alert-secondary modal-title col-12" role="alert">
   				<h5 style = "text-align:center;">Login</h5>
 		</div>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close ml--2 pl-0" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form name="sentMessage" id="contactForm" action='insertmember.php'>
+      <form name="POST" id="contactForm" action='submitlogin.php'>
       <div class="modal-body">
         
       	
