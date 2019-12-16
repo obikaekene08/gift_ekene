@@ -16,6 +16,7 @@ $details = $v->getdetails($_SESSION['user'], 'vendors');
 // print_r($details);
 // echo "</pre>";
 
+
 $fname = $details['v_fname'];
 $lname = $details['v_lname'];
 $bname = $details['v_companyname'];
@@ -77,7 +78,7 @@ $swift = $details3['swift'];
 
 
 				<div class="alert alert-info" role="alert">
-				  <h5>Hi <?php echo $fname ?>, Please Complete Your Registration Below</h5>
+				  <h5>Hi <span id = "updatedname"><?php echo $fname ?></span>, Please Complete Your Registration Below</h5>
 				</div>
 
 				<p>
@@ -121,48 +122,56 @@ $swift = $details3['swift'];
 				    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
 				      <div class="card-body mx-2 ml-4">
 				       
-						<form method = "POST" action = "vendorsubmitcontact.php">
-						<div>
-							<h5 class = "form-group row">Details of Authorized Contact Person</h5>
+						
+						<div class = "form-group row">
+							<h5 >Details of Authorized Contact Person </h5>							
 						</div>
+
 						<div class="form-group row">
 						    <label for="staticEmail" class="col-sm-2 col-form-label">First Name</label>
 						    <div class="col-sm-4">
-						      <input type="text" class="form-control" id="staticEmail" name = "fname" value="<?php echo $fname ?>">
+						      <input type="text" class="form-control" id="fname" name = "v_fname" value="<?php echo $fname ?>">
 						    </div>
 
 						    <label for="staticEmail" class="col-sm-2 col-form-label">Last Name</label>
 						    <div class="col-sm-4">
-						      <input type="text" class="form-control" id="staticEmail" name = "lname" value="<?php echo $lname ?>">
+						      <input type="text" class="form-control" id="lname" name = "v_lname" value="<?php echo $lname ?>">
 						    </div>
 						 </div>
 						  <div class="form-group row">
 						    <label for="staticEmail" class="col-sm-2 col-form-label">Brand Name</label>
 						    <div class="col-sm-10">
-						      <input type="text" class="form-control" id="staticEmail" name = "bname" value="<?php echo $bname ?>">
+						      <input type="text" class="form-control" id="bname" name = "v_companyname" value="<?php echo $bname ?>">
 						    </div>
 						  </div>
 						  
 						  <div class="form-group row">
 						    <label for="staticEmail" class="col-sm-2 col-form-label">Phone Number</label>
 						    <div class="col-sm-10">
-						      <input type="text" class="form-control" id="staticEmail" name = "phone" value="<?php echo $phone ?>">
+						      <input type="text" class="form-control" id="vphone" name = "v_phone" value="<?php echo $phone ?>">
 						    </div>
 						  </div>
 						   <div class="form-group row">
 						    <label for="staticEmail" class="col-sm-2 col-form-label">Email Address</label>
 						    <div class="col-sm-10">
-						      <input type="text" class="form-control" id="staticEmail" name = "email" value="<?php echo $email ?>">
+						      <input type="text" class="form-control" id="vemail" name = "v_email" value="<?php echo $email ?>">
 						    </div>
 						  </div>
 						  <div class="form-group row">
 						    <label for="staticEmail" class="col-sm-2 col-form-label">Office Address</label>
 						    <div class="col-sm-10">
-						      <input type="text" class="form-control" id="staticEmail" name = "address" value="<?php echo $address ?>">
+						      <input type="text" class="form-control" id="vaddress" name = "v_address" value="<?php echo $address ?>">
 						    </div>
-						  </div>						  	  
-						  <p align="right"><button type="submit" class="btn btn-success btn-lg">Save Details</button></p>
-						</form>
+						  </div>
+						  <div class="form-group row">
+						  <div class=" my-0 col-3 offset-7">
+						  	<div class=" my-0 " role="alert" id = "contactsaved"></div>
+						  </div>
+						  <div class = "col-2">					  	  
+						  <p align="right"><button type="button" class="btn btn-success btn-lg" id = "contactbtn">Save Details</button></p>
+						</div>
+						</div>
+						
 						
 				      </div>
 				    </div>
@@ -183,34 +192,33 @@ $swift = $details3['swift'];
 
 				    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 				      <div class="card-body mx-2 ml-4">
-				       
-						<form method = "POST" action = "vendorsubmitbizinfo.php">
+				       						
 						<div>
 							<h5 class = "form-group row">Company Details</h5>
 						</div>
 						<div class="form-group row">
 						    <label for="staticEmail" class="col-sm-2 col-form-label">Business Legal Name</label>
 						    <div class="col-sm-10">
-						      <input type="text" class="form-control" id="staticEmail" name = "company_name" value="<?php echo $cname ?>">
+						      <input type="text" class="form-control" id="company_name" name = "company_name" value="<?php echo $cname ?>">
 						    </div>
 						  </div>
 						
 						  <div class="form-group row">
 						    <label for="staticEmail" class="col-sm-2 col-form-label">Director's Name</label>
 						    <div class="col-sm-10">
-						      <input type="text" class="form-control" id="staticEmail"  name = "director_name" value="<?php echo $dname ?>">
+						      <input type="text" class="form-control" id="director_name"  name = "director_name" value="<?php echo $dname ?>">
 						    </div>
 						  </div>
 						  <div class="form-group row">
 						    <label for="staticEmail" class="col-sm-2 col-form-label">Business Email</label>
 						    <div class="col-sm-10">
-						      <input type="text" class="form-control" id="staticEmail"  name = "company_email" value="<?php echo $cemail ?>">
+						      <input type="text" class="form-control" id="company_email"  name = "company_email" value="<?php echo $cemail ?>">
 						    </div>
 						  </div>
 						  <div class="form-group row">
 						    <label for="inputPassword" class="col-sm-2 col-form-label">Business Type</label>
 						    <div class="col-sm-10">
-						      <select class="form-control" id=""  name = "company_type">
+						      <select class="form-control" id="company_type"  name = "company_type">
 						      	<option value="<?php echo $ctype ?>"><?php if(isset($_SESSION['user'])){ echo $ctype;}else {echo "Select Business Type";} ?></option>
 						      	<option value="BN">Business Name</option>
 						      	<option value="LLC">Limited Liability Company</option>
@@ -221,12 +229,18 @@ $swift = $details3['swift'];
 						  <div class="form-group row">
 						    <label for="staticEmail" class="col-sm-2 col-form-label">Business Reg. Number</label>
 						    <div class="col-sm-10">
-						      <input type="text" class="form-control" id="staticEmail"  name = "rc_number" value="<?php echo $rc ?>">
+						      <input type="text" class="form-control" id="rc_number"  name = "rc_number" value="<?php echo $rc ?>">
 						    </div>
 						  </div>
-						  <p align="right"><button type="submit" class="btn btn-success btn-lg">Save Details</button></p>
-						</form>
-
+						  <div class="form-group row">
+						  <div class=" my-0 col-3 offset-7">
+						  	<div class=" my-0 " role="alert" id = "bizinfosaved"></div>
+						  </div>
+						  <div class = "col-2">					  	  
+						  <p align="right"><button type="button" class="btn btn-success btn-lg" id = "bizinfobtn">Save Details</button></p>
+						</div>
+						</div>
+						
 				      </div>
 				    </div>
 				  </div>
@@ -248,18 +262,18 @@ $swift = $details3['swift'];
 				    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
 				      <div class="card-body mx-2 ml-4">
 				       
-						<form method = "POST" action = "vendorsubmitbankinfo.php" enctype="multipart/form-data">
+						
 						<div>
 							<h5 class = "form-group row">Business Bank Details</h5>
 						</div>
 						<div class="form-group row">
 						    <label for="inputPassword" class="col-sm-2 col-form-label">Bank Name<span style = "color:red">*</span></label>
 						    <div class="col-sm-10">
-						      <select class="form-control" name = "bank_name" id="">
+						      <select class="form-control" name = "bank_name" id="bank_name">
 						      	<option value="<?php echo $ctype ?>"><?php if(isset($_SESSION['user'])){ echo $bkname;}else {echo "Select Bank Name";} ?></option>
-						      	<option value="">Access Bank</option>
-						      	<option value="">First Bank</option>
-						      	<option value="">Fidelity Bank</option>
+						      	<option value="Access Bank">Access Bank</option>
+						      	<option value="First Bank">First Bank</option>
+						      	<option value="Fidelity Bank">Fidelity Bank</option>
 						      </select>
 						    </div>
 						  </div>
@@ -267,7 +281,7 @@ $swift = $details3['swift'];
 						<div class="form-group row">
 						    <label for="staticEmail" class="col-sm-2 col-form-label">Account Number<span style = "color:red">*</span></label>
 						    <div class="col-sm-10">
-						      <input type="text" class="form-control" id="staticEmail" name = "account_number" value="<?php echo $acname ?>">
+						      <input type="text" class="form-control" id="account_number" name = "account_number" value="<?php echo $acname ?>">
 						    </div>
 						</div>
 
@@ -275,42 +289,41 @@ $swift = $details3['swift'];
 						<div class="form-group row">
 						    <label for="staticEmail" class="col-sm-2 col-form-label">Account Name<span style = "color:red">*</span></label>
 						    <div class="col-sm-10">
-						      <input type="text" class="form-control" id="staticEmail" name = "account_name" value="<?php echo $acname ?>">
+						      <input type="text" class="form-control" id="account_name" name = "account_name" value="<?php echo $acname ?>">
 						    </div>
 						  </div>
 
 						<div class="form-group row">
 						    <label for="staticEmail" class="col-sm-2 col-form-label">BVN Number<span style = "color:red">*</span></label>
 						    <div class="col-sm-10">
-						      <input type="text" class="form-control" id="staticEmail" name = "bvn" value="<?php echo $bvn ?>">
+						      <input type="text" class="form-control" id="bvn" name = "bvn" value="<?php echo $bvn ?>">
 						    </div>
-						 </div>
-
-						 <div class="form-group row">
-						    <label for="exampleFormControlFile1" class="col-sm-2 col-form-label">Upload Bank Statement<span style = "color:red">*</span></label>
-						    <div class="col-sm-10">
-						    <input type="file" class="form-control-file" name = "statement" id="exampleFormControlFile1" value = "<?php echo $statement ?>">
-							</div>
 						 </div>
 
 						 <div class="form-group row">
 						    <label for="staticEmail" class="col-sm-2 col-form-label">IBAN</label>
 						    <div class="col-sm-10">
-						      <input type="text" class="form-control" id="staticEmail" name = "iban" value="<?php echo $iban ?>">
+						      <input type="text" class="form-control" id="iban" name = "iban" value="<?php echo $iban ?>" placeholder = "Optional">
 						    </div>
 						 </div>
 
 						 <div class="form-group row">
 						    <label for="staticEmail" class="col-sm-2 col-form-label">SWIFT</label>
 						    <div class="col-sm-10">
-						      <input type="text" class="form-control" id="staticEmail" name ="swift" value="<?php echo $swift ?>">
+						      <input type="text" class="form-control" id="swift" name ="swift" value="<?php echo $swift ?>" placeholder = "Optional">
 						    </div>
 						 </div>
 
+											 
+						  <div class="form-group row">
+						  <div class=" my-0 col-3 offset-7">
+						  	<div class=" my-0 " role="alert" id = "bankinfosaved"></div>
+						  </div>
+						  <div class = "col-2">					  	  
+						  <p align="right"><button type="button" class="btn btn-success btn-lg" id = "bankinfobtn">Save Details</button></p>
+						</div>
+						</div>
 						
-
-						  <p align="right"><button type="submit" class="btn btn-success btn-lg">Save Details</button></p>
-						</form>
 
 
 
@@ -321,10 +334,12 @@ $swift = $details3['swift'];
 				</div>
 
 				<p class = "text-center">
-				<button class="btn btn-success btn-lg" type="button" data-toggle="collapse" data-target="#collapseExample5" aria-expanded="false" aria-controls="collapseExample">
+				<a class="btn btn-success btn-lg" href="vendor_dashboard.php">
 				   Skip And Continue to My Dashboard
-				</button>
+				</a>
 				</p>
+
+
 
 	</div>
 
@@ -484,6 +499,132 @@ $swift = $details3['swift'];
 
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="giftjava.js"></script>
+<script>
+
+$(document).ready(function(){
+
+//for contact button
+$('#contactbtn').click(function(){
+
+	var fname = $('#fname').val();	
+	var lname = $('#lname').val();
+	var bname = $('#bname').val();
+	var vaddress = $('#vaddress').val();
+	var vphone = $('#vphone').val();
+	var vemail = $('#vemail').val();
+
+	$.ajax({
+
+		url: "vendorsubmitcontact.php",
+		type: "POST",
+		data: {"v_fname": fname, "v_lname": lname, "v_companyname": bname, "v_address":vaddress, "v_email":vemail, "v_phone":vphone},
+		// data: "item="+mydata+"&test=testvalue",
+		dataType: "text",
+		success(msg){
+
+		var rec = JSON.parse(msg);
+		
+		$('#updatedname').html(rec.v_fname);
+		$('#contactsaved').fadeIn('slow');
+		$('#contactsaved').addClass('alert alert-success');
+		$('#contactsaved').html('Successfully Saved');
+		$('#contactsaved').fadeOut('slow');
+		
+
+
+
+		
+			
+		},
+		error(errmsg){
+			console.log(errmsg);
+			
+		}
+	})
+
+
+})
+
+
+//for bizinfo button
+$('#bizinfobtn').click(function(){
+
+	
+	var director_name = $('#director_name').val();
+	var company_name = $('#company_name').val();
+	var company_type = $('#company_type').val();
+	var company_email = $('#company_email').val();
+	var rc_number = $('#rc_number').val();
+	
+	$.ajax({
+
+		url: "vendorsubmitbizinfo.php",
+		type: "POST",
+		data: {"company_name": company_name, "director_name": director_name, "company_type": company_type, "company_email":company_email, "rc_number":rc_number},
+		// data: "item="+mydata+"&test=testvalue",
+		dataType: "text",
+		success(msg){
+		
+				
+		$('#bizinfosaved').fadeIn('slow');
+		$('#bizinfosaved').addClass('alert alert-success');
+		$('#bizinfosaved').html('Successfully Saved');
+		$('#bizinfosaved').fadeOut('slow');
+		
+					
+		},
+		error(errmsg){
+			console.log(errmsg);
+
+		}
+	})
+
+
+})
+
+$('#bankinfobtn').click(function(){
+
+	
+	var bank_name = $('#bank_name').val();
+	var account_number = $('#account_number').val();
+	var account_name = $('#account_name').val();
+	var bvn = $('#bvn').val();
+	var iban = $('#iban').val();
+	var swift = $('#swift').val();
+
+	$.ajax({
+
+		url: "vendorsubmitbankinfo.php",
+		type: "POST",
+		data: {"bank_name": bank_name, "account_number": account_number, "account_name": account_name, "bvn":bvn, "iban":iban, "swift":swift},
+		// data: "item="+mydata+"&test=testvalue",
+		dataType: "text",
+		success(msg){
+
+			
+		$('#bankinfosaved').fadeIn('slow');
+		$('#bankinfosaved').addClass('alert alert-success');
+		$('#bankinfosaved').html('Successfully Saved');
+		$('#bankinfosaved').fadeOut('slow');
+		
+
+			
+		},
+		error(errmsg){
+			console.log(errmsg);
+
+		}
+	})
+
+
+})
+
+
+
+
+})
+
+</script>
 
 
 <script type="text/javascript" src="js/popper.min.js"></script>

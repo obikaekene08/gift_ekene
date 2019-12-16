@@ -8,7 +8,11 @@ $(document).ready(function(){
 		$('.moremerchant').fadeIn()
 
 
+
+
 	})
 
 
+
 })
+

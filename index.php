@@ -652,24 +652,25 @@
       </div>
       <form name="POST" id="contactForm" action='submitlogin.php'>
       <div class="modal-body">
-        
-      	
+      <div id = "checkerror">        
+      
+	</div>
         <div class="control-group form-group">
             <div class="controls">
               <label>Email Address:</label>
-              <input type="email" class="form-control" name='email' id="email" required>
+              <input type="email" class="form-control" name='email' id="modalemail" required>
             </div>
           </div>
           <div class="control-group form-group">
             <div class="controls">
               <label>Password:</label>
-              <input type="email" class="form-control" name='email' id="email" required>
+              <input type="password" class="form-control" name='pwd' id="modalpwd" required>
             </div>
           </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Login</button>
+        <button type="button" class="btn btn-primary" id = "loginbtn">Login</button>
       </div>
        </form>
     </div>
@@ -686,6 +687,17 @@
 <script type="text/javascript" src="giftjava.js"></script>
 <script type = "text/javascript">
 
+$(document).ready(function(){
+
+	$('#loginbtn').click(function(){
+		var msg = "modallogin";
+		var e = $('#modalemail').val();
+		var p = $('#modalpwd').val();
+		var data = {"email":e, "pwd":p, "m":msg};
+		$('#checkerror').load("submitloginmodal.php",data);
+		
+	})
+})
 
 </script>
 

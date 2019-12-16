@@ -2,7 +2,7 @@
 
 require("Vendor.php");
 
-$v = new Vendor;
+$obj = new Vendor;
 if(!isset($_SESSION['user'])){
 
 	header("location:signup.php");
@@ -10,7 +10,16 @@ if(!isset($_SESSION['user'])){
 }
 
 require("header.php");
-$details = $v->getdetails($_SESSION['user']);
+$details = $obj->getdetails($_SESSION['user'],'vendors');
+
+$cat_table = $obj->getseveral('category_table');
+
+$make_table = $obj->getseveral('category_table');
+
+// echo "<pre>";
+// print_r($cat_table);
+// echo "</pre>";
+
 
 
 
@@ -20,7 +29,7 @@ $details = $v->getdetails($_SESSION['user']);
 	<div class = "row">
 		<div class = "col-10 offset-1">
 		    <div class="alert alert-primary" role="alert" col-8 offset-2>
-			  <h3>Hi <?php echo ucfirst($details['v_fname']).","?> <small>Welcome To Your Profile Page</small></h3>
+			  <h3>Hi <?php echo ucfirst($details['v_fname']).","?> <small>Welcome To Your DashBoard</small></h3>
 			</div>
 		</div>
 	</div>
@@ -76,20 +85,40 @@ $details = $v->getdetails($_SESSION['user']);
 								<div class="card-body mb-3" >
 								  <div class="row no-gutters">
 								    <div class="col-md-4">
-								      <img src="images/jumia.png" class="card-img" alt="...">
+								      <img src="<?php if($details['v_pic_name'] != ""){ echo $details['v_pic_name']; }else{echo 'images/avatar.png';} ?>" class="card-img" alt="...">
+								      <!-- if($_details['v_pic_name'] != ""){ echo $_details['v_pic_name']; }else{echo 'images/avatar.jpg';} -->
 								    </div>
 								    <div class="col-md-8">
 								      <div class="card-body">
-								        <h5 class="card-title">Shop Name</h5>
+								        <h5 class="card-title"><?php echo $details['v_companyname'] ?></h5>
 								        <p class="card-text"><b>Stock Category: </b>Category 1, Category 2, Category 3, Category 4</p>
 								        <p class=""><small class="text-muted"><b>Orders Completed: </b> 3</small></p>
+								        <p class = "" id = "alertspan" ><?php if(isset($_SESSION['picupload']) && $_SESSION['picupload'] == 1){
+									     	echo "Upload Successful";
+
+									     	$_SESSION['picupload'] = 0;
+									     	
+									     }
+									     
+									     elseif (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
+									     	foreach($_SESSION['errors'] as $v){
+									     		echo $v."<br>";
+									     	}
+									     	$_SESSION['errors'] = array();
+									     }
+
+									     
+
+
+									     ?></p>
 								      </div>
 								    </div>
-								    <form method = "" action = "" enctype = "multipart/form-data">
+								    <form method = "POST" action = "vendor_image_upload.php" enctype = "multipart/form-data" id = "formupload">
 								  	<div class="form-group">
-									    <div class="col-sm-10">
-									     <input type='file' name='mypix'>
-									     <button type = "submit" class="btn-sm btn btn-success mt-2">Upload Picture</button>
+									    <div class="col-sm-10">									    	
+									     <input type='file' name='profile'>
+									     <button type = "submit" class="btn-sm btn btn-success mt-2" id = "btnupload">Upload Picture</button>
+									     
 									 </div>
 									</div>
 									</form>
@@ -206,13 +235,12 @@ $details = $v->getdetails($_SESSION['user']);
 											  <div class="input-group-prepend">
 											    <label class="input-group-text" for="inputGroupSelect01">Choose Category</label>
 											  </div>
-											  <select class="custom-select" id="inputGroupSelect01">
-											    <option selected class = "text-muted"> Select...</option>
-											    <option value="0">Others</option>
-											    <option value="1">Television</option>
-											    <option value="2">Laptop</option>
-											    <option value="3">Gas Cooker</option>
-											  </select>
+											  <input class="form-control" id="selectcategory" list='data1' name = "category" value = "" id = "input1">
+											    <datalist id ="data1">
+											    	<?php foreach($cat_table AS $k => $v){ ?>
+										      	<option value="<?php echo $v['category_name']?>" label= "<?php echo $v['category_synonyms']?>"/>
+										      		<?php }?>										      	
+										      </datalist>										
 											</div>
 									</div>
 									<div class = "col">
@@ -220,13 +248,12 @@ $details = $v->getdetails($_SESSION['user']);
 											  <div class="input-group-prepend">
 											    <label class="input-group-text" for="inputGroupSelect01">Choose Make</label>
 											  </div>
-											  <select class="custom-select" id="inputGroupSelect01">
-											    <option selected> Select...</option>
-											    <option value="0">Others</option>
-											    <option value="1">LG</option>
-											    <option value="2">Sony</option>
-											    <option value="3">Samsung</option>
-											  </select>
+											  <input class="form-control" id="inputGroupSelect01" list='data2' name = "category" id = "input2" value = "">
+											    <datalist id ="data2">
+											    	<?php foreach($make_table AS $k => $v){ ?>
+										      	<option value="<?php echo $v['v_item_name']?>" label= ""/>
+										      		<?php }?>										      	
+										      </datalist>									
 											</div>
 									</div>
 
@@ -739,10 +766,7 @@ $details = $v->getdetails($_SESSION['user']);
 
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="giftjava.js"></script>
-<script type = "text/javascript">
 
-
-</script>
 
 
 
@@ -1159,7 +1183,7 @@ $details = $v->getdetails($_SESSION['user']);
         </button>
       </div>
       <div class = "card card-body">
-<form method = "" action = "">
+<form method = "POST" action = "additem.php" enctype="multipart/form-data" id = "additemform">
       <div class="modal-body">
         <img src="images/jumia.png" class="card-img-top" alt="...">
       	
@@ -1206,7 +1230,7 @@ $details = $v->getdetails($_SESSION['user']);
 	      			</div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary">Save</button>
+	        <button type="button" class="btn btn-primary" name = "" id = "additembtn">Save</button>
 	      </div>
 	      </form>
   		</div>
@@ -1255,6 +1279,83 @@ $details = $v->getdetails($_SESSION['user']);
   </div>
 </div>
 
+<script>
+
+$(document).ready(function(){
+
+$('#selectcategory').change(function(){
+var valcat = $('#input1').val();
+var selected = $('#input2').val();
+$('#input2').load("loadmake.php?mcat="+valcat+"&selected="+selected);
+
+})
+
+$('#additembtn').click(function(){
+	// event.preventDefault();
+// var valcat = $('#input1').val();
+// var selected = $('#input2').val();
+// $('#additembtn').load('additem.php?valcat='+valcat);
+
+
+
+$.ajax({
+
+		url: "additem.php",
+		type: "POST",		
+		data: "valcat="+valcat,		
+		dataType: "text",
+		success(msg){
+
+		alert(msg);
+		
+
+
+
+		
+			
+		},
+		error(errmsg){
+			console.log(errmsg);
+			
+		}
+	})
+
+
+
+
+// var a = $('#itemname').val();
+// var b = $('#itemprice').val();
+// var c = $('#itemcolor').val();
+// var d = $('#itemqty').val();
+// var e = $('#itemqty').val();
+
+// $.ajax({
+
+// 	url: "additem.php",
+// 	type: "POST",
+// 	data: {"valcat":valcat,"selected":selected},
+// 	dataType: "text",
+// 	success(s){
+// 		alert(s);
+		
+// 	},
+// 	error(msg){
+
+// 	}
+// })
+
+
+})
+
+$('#formupload').submit(function(){
+
+	$('#alertspan').css("background-color", "yellow");
+})
+
+
+})
+
+</script>
 
 </body>
 </html>
