@@ -38,7 +38,7 @@ require("header.php");
 				  <div class="col-6">
 				    <div class="tab-content" id="nav-tabContent">
 				      <div class="tab-pane fade <?php if(!isset($_SESSION['loginstatus'])){ echo "show active";}?>" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-				      	<form method ="POST" id="form" action='submitsignup.php' onsubmit = "prevent(event)">
+				      	<form method ="POST" id="form" action='vendorsubmitsignup.php' onsubmit = "prevent(event)">
 				        <div class = "row">
 				          <div class="control-group form-group col-md-6 col-12">
 				            <div class="controls">
@@ -100,7 +100,7 @@ require("header.php");
 				      </div>
 				      <div class="tab-pane fade <?php if(isset($_SESSION['loginstatus'])){ echo "show active";}?>" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
 				      	
-				      	<form method="POST" id="contactForm" action='submitlogin.php'>
+				      	<form method="POST" id="contactForm" action='vendorsubmitlogin.php'>
 				      		<?php if(isset($_SESSION['loginstatus']) && $_SESSION['loginstatus'] == 'failed'){ ?>
 				      	<div class="control-group form-group">
 				            <div class="controls">

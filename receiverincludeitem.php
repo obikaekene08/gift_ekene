@@ -4,15 +4,17 @@
 
 require("Vendor.php");
 
-$obj = new Vendor;
-$v_id  = $_SESSION['user'];
-$v_cat_name = $_POST['valcat'];
-$v_item_name = $_POST['itemname'];
-$v_item_price = $_POST['itemprice'];
-$item_color = $_POST['itemcolor'];
-$item_qty = $_POST['itemqty'];
 
-$add_item = $obj->additem($v_id, $v_cat_name, $v_item_name,$v_item_price,$item_color,$item_qty);
+
+$obj = new Vendor;
+$eventtitle = $_POST['eventtitle'];
+$receiver_id  = $_SESSION['user'];
+$itprice = $_POST['itprice'];
+$itstk = $_POST['itstk'];
+$itname = $_POST['itname'];
+$itqty = $_POST['itqty'];
+
+$add_item = $obj->additem($eventtitle,$receiver_id, $itprice, $itstk,$itname,$itqty);
 
  if($add_item > 0){
 

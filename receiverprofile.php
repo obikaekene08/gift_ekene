@@ -1,7 +1,18 @@
 <?php
 
-require("header.php");
 
+require("Receiver.php");
+
+$obj = new Receiver;
+if(!isset($_SESSION['user'])){
+
+	header("location:receivegifts.php");
+
+}
+
+require("header2.php");
+
+$details = $obj->getdetails($_SESSION['user'],'receivers');
 
 
 
@@ -14,7 +25,7 @@ require("header.php");
 	 <div class = "row">
     	<div class = "col-12">
 		    <div class="alert alert-primary" role="alert" col-8 offset-2>
-			  <h3>Hi Name! <small>Welcome To Your Profile Page</small></h3>
+			  <h3>Hi <?php echo ucfirst($details['r_fname']).","?> <small>Welcome To Your Profile Page</small></h3>
 			</div>
 		</div>
 	</div>
@@ -211,8 +222,9 @@ require("header.php");
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <form action="receiverprofile_submit.php" method="POST" enctype="multipart/form-data">
       <div class="modal-body">
-        <form action="receiverprofile_submit" method="POST" enctype="multipart/form-data">
+        
         				<div class = "row">
 				    	<div class = "col-12">
 						    <div class="alert alert-primary" role="alert">
@@ -225,11 +237,12 @@ require("header.php");
         				<div class="form-group row">
 						    <label for="inputPassword" class="col-sm-3 col-form-label">Event Type</label>
 						    <div class="col-sm-9">
-						      <select class="form-control" id="">
+						      <select class="form-control" id="" name = "r_event_type">
 						      	<option value="">--Select Event Type--</option>
-						      	<option value="">Wedding</option>
-						      	<option value="">Child Dedication</option>
-						      	<option value="">Christmas</option>
+						      	<option value=1>Wedding</option>
+						      	<option value=2>Child Dedication</option>
+						      	<option value=3>Christmas</option>
+						      	<option value=4>Others</option>
 						      </select>
 						    </div>
 						  </div>
@@ -237,7 +250,7 @@ require("header.php");
 						  <div class="form-group row">
 						    <label for="staticEmail" class="col-sm-3 col-form-label">Event Title<span style = "color:red">*</span></label>
 						    <div class="col-sm-9">
-						      <input type="text" class="form-control" id="staticEmail" value="">
+						      <input type="text" class="form-control" id="staticEmail" value="" name = "r_event_title">
 						    </div>
 						  </div>
 
@@ -256,18 +269,19 @@ require("header.php");
 						  <div class="control-group form-group">
 				            <div class="controls">
 				              <label><b>Message For Your Gifters(Brief):</b></label>
-				              <textarea rows="4" cols="50" name='profile' class="form-control" id="profile"  maxlength="300" style="resize:none"></textarea>
+				              <textarea rows="4" cols="50" name = "r_message" class="form-control" id="profile"  maxlength="300" style="resize:none"></textarea>
 				            </div>
 				          </div>
 				         </div>		  
 
-      </form>
+         
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Start Collection</button>
+        <button type="submit" class="btn btn-primary">Start Collection</button>
       </div>
+      </form>
     </div>
   </div>
 </div>

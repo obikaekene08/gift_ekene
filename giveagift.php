@@ -112,7 +112,7 @@
 				  <div class="col-6">
 				    <div class="tab-content" id="nav-tabContent">
 				      <div class="tab-pane fade" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-				      	<form name="sentMessage" id="contactForm" action='insertmember.php'>
+				      	<form name="sentMessage" id="contactForm" action='gifterprofile.php'>
 				        <div class = "row">
 				          <div class="control-group form-group col-md-6 col-12">
 				            <div class="controls">
@@ -156,7 +156,7 @@
 				      </div>
 				      <div class="tab-pane fade show active" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
 				      	
-				      	<form name="sentMessage" id="contactForm" action='insertmember.php'>
+				      	<form name="sentMessage" id="contactForm" action='gifterprofile.php'>
 				        <div class="control-group form-group">
 				            <div class="controls">
 				              <label>Email Address:</label>
@@ -175,7 +175,7 @@
 
 				      </div>
 				      <div class="tab-pane fade pt-4" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
-				      	<form name="sentMessage" id="contactForm" action='insertmember.php' class= "mt-4">
+				      	<form name="sentMessage" id="contactForm" action='gifterprofile.php' class= "mt-4">
 				        <div class="control-group form-group">
 				            <div class="controls">
 				              <input type="email" class="form-control" name='email' id="email" placeholder= "Only Enter Your Emai Address To Continue" required>

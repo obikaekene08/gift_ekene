@@ -6,23 +6,25 @@ require("Vendor.php");
 $obj = new Vendor;
 
 
-$id = $_GET['mcat'];
+$v_cat_name = $_POST['valcat'];
 
-$itemid = $_GET['selected'];
+$cat_table = $obj->getseveralwhere('category_table','category_name',$v_cat_name);
 
-$_SESSION['cat_id'] = $id;
+$v_cat_id = $cat_table[0]['category_id'];
 
-$make_table = $obj->getseveralwhere('vendor_item','vat_cat_id',$id);
+$r = $obj->getseveralwhere('vendor_item','v_cat_id',$v_cat_id);
 
-  	foreach($make_table AS $k => $v){
+print_r(json_encode($r));
 
-  	echo "<option value='".$v['v_item_name']. " '/>";
+ 
+  // 	foreach($r AS $k => $v){
 
-  }
+  // 	echo "<option value='".$v['v_item_name']. " '/>";
 
-  $_SESSION['itid_id'] = $itemid;
-  $_SESSION['make_table'] = $make_table;
+  // }
 
   
+ 
+  
 
-?>		
+?>

@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
 
-	<title>Give A Gift</title>
+	<title>Receive Gifts</title>
 	<link rel="stylesheet" href="css/bootstrap.css" type=text/css>
 	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 	<link href = "giftstyle.css" rel = "stylesheet" type = "text/css">
@@ -112,18 +112,18 @@
 				  <div class="col-6">
 				    <div class="tab-content" id="nav-tabContent">
 				      <div class="tab-pane fade" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-				      	<form name="sentMessage" id="contactForm" action='insertmember.php'>
+				      	<form method="POST" id="contactForm" action='receiversubmitsignup.php'>
 				        <div class = "row">
 				          <div class="control-group form-group col-md-6 col-12">
 				            <div class="controls">
 				              <label>First Name:</label>
-				              <input type="text" class="form-control" id="name" name='fname'>
+				              <input type="text" class="form-control" id="name" name='fname' required>
 				            </div>
 				          </div>
 						  <div class="control-group form-group col-md-6 col-12">
 				            <div class="controls">
 				              <label>Last Name:</label>
-				              <input type="text" class="form-control" id="name" name='lname'>
+				              <input type="text" class="form-control" id="name" name='lname' required>
 				             
 				            </div>
 				          </div>
@@ -144,11 +144,11 @@
 				          <div class="control-group form-group">
 				            <div class="controls">
 				              <label>Password:</label>
-				              <input type="email" class="form-control" name='email' id="email" required>
+				              <input type="password" class="form-control" name='email' id="email" required>
 				            </div>
 				          </div>
 				          <div class="form-group form-check mt-3">
-						    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+						    <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
 						    <label class="form-check-label" for="exampleCheck1" style = "font-size:13px">By Starting Your Registration, you are agreeing to Gift Runner's <a href="">Terms of Use</a> and <a href="">Privacy Statement</a></label>
 						  </div>
 				          <button type="submit" class="btn btn-primary btn-block btn-lg" id="sendMessageButton">Sign Up</button>
@@ -156,7 +156,7 @@
 				      </div>
 				      <div class="tab-pane fade show active" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
 				      	
-				      	<form name="sentMessage" id="contactForm" action='insertmember.php'>
+				      	<form method="POST" id="contactForm" action='receiversubmitlogin.php'>
 				        <div class="control-group form-group">
 				            <div class="controls">
 				              <label>Email Address:</label>
@@ -166,7 +166,7 @@
 				          <div class="control-group form-group">
 				            <div class="controls">
 				              <label>Password:</label>
-				              <input type="email" class="form-control" name='email' id="email" required>
+				              <input type="password" class="form-control" name='email' id="email" required>
 				            </div>
 				          </div>
 				             
@@ -175,7 +175,7 @@
 
 				      </div>
 				      <div class="tab-pane fade pt-4" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
-				      	<form name="sentMessage" id="contactForm" action='insertmember.php' class= "mt-4">
+				      	<form name="sentMessage" id="contactForm" action='receiverprofile.php' class= "mt-4">
 				        <div class="control-group form-group">
 				            <div class="controls">
 				              <input type="email" class="form-control" name='email' id="email" placeholder= "Only Enter Your Emai Address To Continue" required>

@@ -2,13 +2,13 @@
 
 require("User.php");
 
-class Vendor extends User{
+class Receiver extends User{
 
 	function signup($fname,$lname,$phone,$email,$pwd){
 
 		$encrypted_pass = md5($pwd);
 
-		$sql = " INSERT INTO vendors SET v_fname = '$fname', v_lname = '$lname', v_phone = '$phone', v_email = '$email', v_password = '$encrypted_pass' ";
+		$sql = " INSERT INTO receivers SET r_fname = '$fname', r_lname = '$lname', r_phone = '$phone', r_email = '$email', r_password = '$encrypted_pass' ";
 
 		$this->conn->query($sql);
 
@@ -16,18 +16,18 @@ class Vendor extends User{
 
 		if($id > 0){
 			
-			$reg_id = "VEN/".date("Y.m.d")."/".$id;
+			$reg_id = "RECE/".date("Y.m.d")."/".$id;
 
-			$this->conn->query(" UPDATE vendors SET  v_user_id = '$reg_id' WHERE vendor_id = '$id' ");
+			$this->conn->query(" UPDATE receivers SET  r_user_id = '$reg_id' WHERE receiver_id = '$id' ");
 
 			$_SESSION['user'] = $id;
 
-			header("location: complete_registration.php");
+			header("location: receiverprofile.php");
 		}else{
 
 			$_SESSION['error'] = "failedsignup";
 
-			header("location: signup.php");
+			header("location: receivegifts.php");
 		}
 
 
@@ -37,7 +37,7 @@ class Vendor extends User{
 
 					$encrypted_pass = md5($pwd);
 
-		$sql = " SELECT * FROM vendors WHERE v_email = '$username' AND v_password = '$encrypted_pass' LIMIT 1";
+		$sql = " SELECT * FROM receivers WHERE r_email = '$username' AND r_password = '$encrypted_pass' LIMIT 1";
 
 		$result = $this->conn->query($sql);
 
@@ -47,7 +47,7 @@ class Vendor extends User{
 
 			$row = $result->fetch_assoc();
 
-			$_SESSION['user'] = $row['vendor_id'];
+			$_SESSION['user'] = $row['receiver_id'];
 
 			
 
@@ -58,7 +58,7 @@ class Vendor extends User{
 		}else{
 			$_SESSION['loginstatus'] = "success";
 
-		header("location: vendor_dashboard.php");
+		header("location: receiverprofile.php");
 
 			}
 
@@ -71,7 +71,7 @@ class Vendor extends User{
 		}else{
 			$_SESSION['loginstatus'] = "failed";
 
-		header("location:signup.php");
+		header("location:receivegifts.php");
 
 			}
 
@@ -82,7 +82,7 @@ class Vendor extends User{
 
 	function getdetails($id, $table){
 
-		$sql = " SELECT * FROM $table WHERE vendor_id = '$id' ";
+		$sql = " SELECT * FROM $table WHERE receiver_id = '$id' ";
 
 		$result = $this->conn->query($sql);
 
@@ -105,7 +105,7 @@ function update($collect, $K1,$v1,$table){
 			
 		}
 
-		$sql2 = " UPDATE $table SET $K1 = '$v1' $all WHERE vendor_id = $v1 ";
+		$sql2 = " UPDATE $table SET $K1 = '$v1' $all WHERE receiver_id = $v1 ";
 
 
 
@@ -129,7 +129,7 @@ function update($collect, $K1,$v1,$table){
 	function insert($table,$id){
 
 
-		$sql = " SELECT * FROM $table WHERE vendor_id = '$id' ";
+		$sql = " SELECT * FROM $table WHERE receiver_id = '$id' ";
 
 		$result = $this->conn->query($sql);
 
@@ -140,7 +140,7 @@ function update($collect, $K1,$v1,$table){
 			// return $row;
 		}else{
 
-		$sql = " INSERT INTO $table SET vendor_id = '$id' ";
+		$sql = " INSERT INTO $table SET receiver_id = '$id' ";
 
 		$this->conn->query($sql);}
 		echo $this->conn->error;
@@ -211,7 +211,7 @@ function update($collect, $K1,$v1,$table){
 
 	}
 
-	function additem($v_id, $v_cat_name, $v_item_name,$v_item_price,$item_color,$item_qty){
+	function additem($r_id, $r_cat_name, $r_item_name,$r_item_price,$item_color,$item_qty){
 
 		$r = $this->getseveralwhere('category_table','category_name',$v_cat_name);
 
@@ -219,7 +219,7 @@ function update($collect, $K1,$v1,$table){
 
 		$v_id = $_SESSION['user'];
 
-		$sql = " INSERT INTO vendor_item SET vendor_id = '$v_id', v_cat_id = '$v_cat_id', v_item_name = '$v_item_name', v_item_price = '$v_item_price', item_color = '$item_color', item_qty = '$item_qty' ";
+		$sql = " INSERT INTO receiver_item SET receiver_id = '$r_id', r_cat_id = '$r_cat_id', r_item_name = '$r_item_name', r_item_price = '$r_item_price', item_color = '$item_color', item_qty = '$item_qty' ";
 
 		$r = $this->conn->query($sql);
 
@@ -259,13 +259,13 @@ function update($collect, $K1,$v1,$table){
 		$dst = $imagefolder. "/".$newname;
 		$t = move_uploaded_file($filename, $dst);
 		$_SESSION['picupload'] = $t;
-		$this->updateupload('vendors','v_pic_name',$dst,'vendor_id',$_SESSION['user']);
-		$imagedetails = $this->getdetails($_SESSION['user'],'vendors');
-		$_SESSION['imagelocation'] = $imagedetails['v_pic_name'];
-		header("location: vendor_dashboard.php");
+		$this->updateupload('receivers','r_pic_name',$dst,'receiver_id',$_SESSION['user']);
+		$imagedetails = $this->getdetails($_SESSION['user'],'receivers');
+		$_SESSION['imagelocation'] = $imagedetails['r_pic_name'];
+		header("location: receiverprofile.php");
 	}else{
 		$_SESSION['errors'] = $error;
-		 header("location: vendor_dashboard.php");//if any, the errors can be retrieved from $_SESSION['errors'] on picture.php
+		 header("location: receiverprofile.php");//if any, the errors can be retrieved from $_SESSION['errors'] on picture.php
 	}
 	
 }
@@ -283,7 +283,107 @@ function update($collect, $K1,$v1,$table){
 		 return $result;
 	}
 
+
+
+	function addcollection($receiver_id, $r_event_type, $r_event_title,$r_message){
+
+		$sql = " INSERT INTO receiver_events SET receiver_id = '$receiver_id', r_event_type = '$r_event_type', r_event_title = '$r_event_title', r_message = '$r_message' ";
+
+		$r = $this->conn->query($sql);
+
+		echo $this->conn->error;
+
+		$id = $this->conn->insert_id;
+
+		if($id > 0){
+			
+			header("location: createcollection.php");
+		}else{
+
+			header("location: receiverprofile.php");
+		}
+
+	}
+
+	function searchitem($price,$selectcategory,$merchant,$brand){
+
+		$r = $this->getseveralwhere('price','price_id',$price);
+
+		$price_low = $r[0]['low'];
+		$price_high = $r[0]['high'];
+
+		
+		$y = $this->getseveralwhere('vendors','v_companyname',$merchant);
+
+		$id = $y[0]['vendor_id'];
+
+		$v_id = $_SESSION['user'];
+
+		$first = " SELECT * FROM vendor_item WHERE v_item_price >= $price_low AND v_item_price <= $price_high AND v_item_name LIKE '%$brand%' AND v_cat_id ";
+		if($selectcategory == 0){
+		$second = "!= 0 AND vendor_id";}else{
+		$second = "= $selectcategory AND vendor_id ";
+		}
+
+		if($merchant == 0){
+			$third = "!= 0" ;
+		}else{
+			$third = " = $merchant";
+		}
+		$sql = $first . $second. $third;
+		
+
+		$result = $this->conn->query($sql);
+		echo $this->conn->error;
+
+		$list = [];
+
+		// if($result->num_rows>0){
+			while($row = $result->fetch_assoc()){
+
+
+				$list[] = $row;
+
+			}
+
+			return $list;
+		// }
+
+	
+
+	}
+
+		function searchMain($searchval){
+
+		$sql = " SELECT * FROM vendor_item JOIN vendors ON vendor_item.vendor_id = vendors.vendor_id JOIN category_table ON category_table.category_id = vendor_item.v_cat_id WHERE v_item_name LIKE '%$searchval%' OR v_companyname LIKE '%$searchval%' OR category_id  LIKE '%$searchval%'  ";		
+
+		$result = $this->conn->query($sql);
+		echo $this->conn->error;
+
+		$list = [];
+
+		// if($result->num_rows>0){
+			while($row = $result->fetch_assoc()){
+
+
+				$list[] = $row;
+
+			}
+
+			return $list;
+		// }
+
+	
+
+	}
+
+
+
+
 }
+
+
+
 
 
 

@@ -16,31 +16,24 @@ require("header2.php");
 
 ?>
 
-
 	<button type="button" class="btn btn-outline-danger mr-2 my-2 offset-md-9">Give a Gift</button>
 	<button type="button" class="btn btn-danger my-2">Logout</button>
    
-	<div class="container-fluid">
-   
+	<div class="container">
 	 <div class = "row">
     	<div class = "col-12">
-		    <div class="alert alert-primary pb-0" role="alert" col-8 offset-2>
-			  <h5 class = "mb-0">Hi Name! <small>You are Logged In</small></h5>
-			  <nav aria-label="breadcrumb" class = "my-0 py-0">
-			  <ol class="breadcrumb alert-primary pl-0 py-2 my-1">
-			    <li class="breadcrumb-item"><a href="#">Main Page</a></li>
-			    <li class="breadcrumb-item active" aria-current="page">View Collections</li>
-			  </ol>
-			</nav>
+		    <div class="alert alert-primary" role="alert" col-8 offset-2>
+			  <h3>Hi Name! <small>Welcome To Your Profile Page</small></h3>
 			</div>
 		</div>
-
 	</div>
+   
+
     <!-- Content Row -->
     <div class="row">
       <!-- Sidebar Column -->
       
-      <div class="col-lg-2 mb-4">
+      <div class="col-lg-3 mb-4">
 	  <div>
 	  <img src='images/avatar.png' class='img-fluid col-12 mb-2'>
 	  <form method = "" action = "" enctype = "multipart/form-data">
@@ -65,71 +58,43 @@ require("header2.php");
         </div>
       </div>
       <!-- Content Column -->
-      <div class="col-lg-10 mb-4">
+      <div class="col-lg-9 mb-4">
        
-	   <div class = "row" id = "searchbox">
-				<div class = "offset-1 col-11 col-md-8 offset-md-2 mb-3" style = "width:100%; margin:auto;">	
-						<form class="form-inline">
-					    <input class="form-control mr-2 col-10" type="search" placeholder="Search for Merchants and Products" aria-label="Search">
-					    <button class="btn btn-outline-danger" type="submit">Search</button>
-					  	</form>
-				</div>
-		</div>
+	   <form class = "card card-body">
+	    <h4 class = "ml-0 pl-0">Contact Details</h4>
+	    	
+		  <div class="form-group row">
+		    <div class="col-sm-6">
+		    <label for="inputEmail3">Name: </label>
+		      <input type="text" class="form-control" id="inputEmail3" name='fname'>
+		    </div>
+		    <div class="col-sm-6">
+		    <label for="inputEmail3">Email:</label>
+		      <input type="text" class="form-control" id="inputEmail3" name='fname'>
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		    <div class="col-sm-6">
+		    <label for="inputEmail3">Phone Number 1: </label>
+		      <input type="text" class="form-control" id="inputEmail3" name='fname'>
+		    </div>
+		    <div class="col-sm-6">
+		    <label for="inputEmail3">Phone Number 2:</label>
+		      <input type="text" class="form-control" id="inputEmail3" name='fname'>
+		    </div>		  
+		  </div>
+		    <div class="control-group form-group">
+            <div class="controls">
+              <label>Delivery Address:</label>
+              <textarea rows="2" cols="50" name='profile' class="form-control" id="profile"  maxlength="300" style="resize:none"></textarea>
+            </div>
+          </div>		  
+		</form>
 
-		<div class = "row mx-1">
-			
-			<div class = "col-12 card card-body pt-1">
-				  <h4 class ="pb-2">My Collections: </h4>
-				  <div class = "row">
-				  	<div class = "col-2">
-					<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
-					  Select Collection
-					</button>
-					</div>
-					<div class = "col-2 text-center">
-					<button type="button" class="btn btn-primary" data-toggle="collapse" data-target = "#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-					  Select All
-					</button>
-					</div>
-					
-					<div class = "col-2">
-					<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
-					  View Reports
-					</button>
-					</div>					
-					<div class = "col-2">
-					<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
-					  Delete Collection
-					</button>
-					</div>
-									
-					
-				</div>
-			  
-			  </div>
-			</div>
-
-
-			<div class = "row mt-2 mx-1">
-				<div class = "col-12 card card-body pt-1">
-					<h4 class ="mb-3 mt-0">Collections: </h4>
-					<div class = "row">
-						<div class = "col-md-3 col-6">
-							<div class="card text-center">
-							  <div class="card-body">
-							  	<img src="images/jumia.png" class="card-img-top" alt="...">
-							    <h5 class="card-title mt-2">Event Title</h5>
-							    <p class="card-text"><b>Event Creation Date:</b> 23/02/2018</p>
-							    <p class="card-text"><b>Items Selected:</b> 10</p>
-							    <a href="#staticBackdropAddItem" class="btn btn-primary" data-toggle="modal">See Details</a>
-							  </div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			
+		<!-- Button trigger modal create collection -->
+		<div class="col-sm-12">
+		      <a href="createcollection.php" class="btn btn-primary btn-lg mt-3" data-toggle="modal" data-target="#modalcreatecollection">Create a Collection</a>
+		    </div>
 
 
       </div>
@@ -141,7 +106,7 @@ require("header2.php");
 	
 	<!-- Send Message and Footer -->
 
-	<div class = "row-12 mt-3">
+	<div class = "row mt-3">
 		<div class = "col bline">
 
 	<div class = "row-12 mt-3">

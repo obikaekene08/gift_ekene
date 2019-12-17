@@ -1,87 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<?php
 
-	<title>Reciever Profile</title>
-	<link rel="stylesheet" href="css/bootstrap.css" type=text/css>
-	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-	<link href = "giftstyle.css" rel = "stylesheet" type = "text/css">
-	<link rel="stylesheet" href="fontawesome/css/all.css" type ="text/css">
-	
-	
-</head>
-<body>
-<div class = "containerfluid">
-	<div class = "row-12">
-		<div class = "col-md-2 offset-md-10 col-6 offset-7">
 
-			
+require("Receiver.php");
 
-		</div>
-	</div>
+$obj = new Receiver;
+if(!isset($_SESSION['user'])){
 
-	<div class = "row-12 mt-2" id = "menubar" style = "border:1px solid red; border-left:none; border-right:none">
+	header("location:receivegifts.php");
 
-		<div class = "col-md-1 col-2" id = "logo">
+}
 
-			<a href = "index.html"><img src = "images/logomn.jpg" style = "height: 80px"></a>
-			
+require("header2.php");
 
-		</div>
+$details = $obj->getdetails($_SESSION['user'],'receivers');
 
-		<div class = "col-md-8 offset-md-4 col-12">
-			
-			<nav class="navbar navbar-expand-lg" style = "background-color: white">
-			  <a class="navbar-brand" href="#"></a>
-			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-			    <span class="navbar-toggler-icon"></span>
-			  </button>
-			  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-			    <ul class="navbar-nav">
-			      <li class="nav-item active">
-			        <a class="nav-link" href="#">CREATE A REGISTRY<span class="sr-only">(current)</span></a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="#">ABOUT</a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="#testimonial">TESTIMONIALS</a>
-			      </li>
-			      <li class="nav-item dropdown">
-			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			          VENDORS
-			        </a>
-			        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-			          <a class="dropdown-item" href="#merchantsection">See Our Vendors</a>
-			          <a class="dropdown-item" href="vendor_info_page.html">Become a Vendor</a>
-			          <a class="dropdown-item" href="#">Vendor Sign in</a>
-			        </div>
-			      </li>
+$event_table = $obj->getseveral('receiver_events');
 
-			      <li class="nav-item dropdown">
-			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			          FAQs
-			        </a>
-			        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-			          <a class="dropdown-item" href="#">FAQ for Givers</a>
-			          <a class="dropdown-item" href="#">FAQ for Receivers</a>
-			          <a class="dropdown-item" href="#">FAQ for Vendors</a>
-			        </div>
-			      </li>
+$cat_table = $obj->getseveral('category_table');
 
-			      <li class="nav-item">
-			        <a class="nav-link" href="#">CONTACT</a>
-			      </li>
+$merch_table = $obj->getseveral('vendors');
 
-			    </ul>
-			  </div>
-			</nav>
+$item_table = $obj->getseveral('vendor_item');
 
-		</div>
 
-	</div>
+?>
 
 	<button type="button" class="btn btn-outline-danger mr-2 my-2 offset-md-9">Give a Gift</button>
 	<button type="button" class="btn btn-danger my-2">Logout</button>
@@ -91,7 +33,7 @@
 	 <div class = "row">
     	<div class = "col-12">
 		    <div class="alert alert-primary" role="alert" col-8 offset-2>
-			  <h5>Hi Name! <small>You are Logged In</small></h5>
+			  <h5>Hi <?php echo ucfirst($details['r_fname']).","?><small>You are Logged In</small></h5>
 			</div>
 		</div>
 	</div>
@@ -129,8 +71,8 @@
 	   <div class = "row" id = "searchbox">
 				<div class = "offset-1 col-11 col-md-8 offset-md-2 mb-3" style = "width:100%; margin:auto;">	
 						<form class="form-inline">
-					    <input class="form-control mr-2 col-10" type="search" placeholder="Search for Merchants and Products" aria-label="Search">
-					    <button class="btn btn-outline-danger" type="submit">Search</button>
+					    <input class="form-control mr-2 col-10" type="search" placeholder="Search for Merchants and Products" aria-label="Search" id = "searchval">
+					    <button class="btn btn-outline-danger" type="button" id = "search">Search</button>
 					  	</form>
 				</div>
 		</div>
@@ -140,57 +82,66 @@
 				<div class="form-group row mb-2">
 					<label for="inputPassword" class=" col-form-label col-sm-2">Event Title: <span style = "color:red">*</span></label>
 				    <div class="col-sm-5">
-				      <select class="form-control" id="">
-				      	<option value="">--- Select The Event Title ---</option>
-				      	<option value="">Wedding</option>
-				      	<option value="">Child Dedication</option>
-				      	<option value="">Christmas</option>
-				      </select>
-				    </div>
+					    <select class = "form-control" id = "eventtitle">
+					    	<?php foreach($event_table AS $k => $v){ ?>
+				      	<option value="<?php echo $v['r_event_id']?>" ><?php echo $v['r_event_title'] ?> </option>
+				      		<?php }?>										      	
+				      </select>		
+				     </div>
 				    
 				  </div>
 				  <h5 class ="mb-0 mt-2">Sort By: </h5>
 				  <div class="form-group row">
 					<div class="col-sm-3">
-				    <label for="inputPassword" class=" col-form-label">Choose Price Range: </label>				    
-				      <select class="form-control" id="">
-				      	<option value="">--- All Prices ---</option>
-				      	<option value="">Wedding</option>
-				      	<option value="">Child Dedication</option>
-				      	<option value="">Christmas</option>
+				    <label for="price" class=" col-form-label">Choose Price Range: </label>				    
+				      <select class="form-control" id="price">
+				      	<option value=7>--- All Prices ---</option>
+				      	<option value=1><?php echo "Below  ". " - ". "&#8358;".number_format(25000,2)?></option>
+				      	<option value=2><?php echo "&#8358;".number_format(25000,2). " - ". "&#8358;".number_format(50000,2)?></option>
+				      	<option value=3><?php echo "&#8358;".number_format(50000,2). " - ". "&#8358;".number_format(100000,2)?></option>
+				      	<option value=4><?php echo "&#8358;".number_format(100000,2). " - ". "&#8358;".number_format(200000,2)?></option>
+				      	<option value=5><?php echo "&#8358;".number_format(200000,2). " - ". "&#8358;".number_format(500000,2)?></option>
+				      	<option value=6><?php echo "Above  ". " - ". "&#8358;".number_format(500000,2)?></option>
 				      </select>
 				    </div>
 				    <div class="col-sm-3">
-				    <label for="inputPassword" class=" col-form-label">Choose Item Category: </label>				    
-				      <select class="form-control" id="">
-				      	<option value="">--- All Categories ---</option>
-				      	<option value="">Wedding</option>
-				      	<option value="">Child Dedication</option>
-				      	<option value="">Christmas</option>
+				    <label for="selectcategory" class=" col-form-label">Choose Item Category: </label>				    
+				       <select class = "form-control" id = "selectcategory">
+				       	<option value=0>--- All Categories ---</option>
+					    	<?php foreach($cat_table AS $k => $v){ ?>
+				      	<option value="<?php echo $v['category_id'] ?>" ><?php echo $v['category_name'] ?> </option>
+				      		<?php }?>										      	
 				      </select>
 				    </div>
 				    <div class="col-sm-3">
-				    <label for="inputPassword" class=" col-form-label">Choose Merchant: </label>				    
-				      <select class="form-control" id="">
-				      	<option value="">--- All Merchants ---</option>
-				      	<option value="">Wedding</option>
-				      	<option value="">Child Dedication</option>
-				      	<option value="">Christmas</option>
+				    <label for="merchant" class=" col-form-label">Choose Merchant: </label>				    
+				      <select class = "form-control" id = "merchant">
+				       	<option value=0>--- All Merchants ---</option>
+					    	<?php foreach($merch_table AS $k => $v){ ?>
+				      	<option value="$v['vendor_id']" ><?php echo $v['v_companyname'] ?> </option>
+				      		<?php }?>										      	
 				      </select>
 				    </div>
 				    <div class="col-sm-3">
-				    <label for="inputPassword" class=" col-form-label">Choose Item Brand: </label>				    
-				      <select class="form-control" id="">
-				      	<option value="">--- All Brands ---</option>
-				      	<option value="">Wedding</option>
-				      	<option value="">Child Dedication</option>
-				      	<option value="">Christmas</option>
-				      </select>
+				    <label for="merchant" class=" col-form-label">Choose Item Brand: </label>				    
+					<input class="form-control" id="brand" list='data1' name = "category" value = "">
+				    <datalist id ="data1">
+				    	<?php foreach($item_table AS $k => $v){ ?>
+			      	<option value="<?php echo $v['v_item_name']?>" label= ""/>
+			      		<?php }?>										      	
+			      </datalist>	
 				    </div>
 				  </div>
 
-				   <div class="col-sm-3 px-0">
-				      <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modalcreatecollection">Search By Sort</button>
+				   <div class="col-sm-12 px-0">
+				   	<div class = "row">
+				      <button type="button" class="btn btn-primary ml-3" id = "searchbysort">Search By Sort</button>
+				      <div class = "offset-7">
+				      <label for="addtocart">Collection Qty</label>				      
+				      <input type = "number" class = "" value = 0 style = "width:20%" id = "colqty" readonly>
+				  </div>
+				  </div>
+
 				    </div>
 
 				  
@@ -201,16 +152,10 @@
 			<div class = "row mt-2 mx-1">
 				<div class = "col-12 card card-body pt-1">
 					<h4 class ="mb-3 mt-0">Items From Search: </h4>
-					<div class = "row">
-						<div class = "col-md-3 col-6">
-							<div class="card text-center">
-							  <div class="card-body">
-							  	<img src="images/jumia.png" class="card-img-top" alt="...">
-							    <h5 class="card-title mt-2">Item Name</h5>
-							    <p class="card-text"><b>Unit Price:</b> N500</p>
-							    <p class="card-text"><b>Quantity:</b> 10</p>
-							    <a href="#staticBackdropAddItem" class="btn btn-primary" data-toggle="modal">Add Item</a>
-							  </div>
+					<div class = "row" id = "bodyofitem">
+						<div class = "col-md-12 col-12">
+							<div class="card text-center alert-primary" style ="min-height: 100px">
+							  <h2 class = " text-center" > Search For Items To Include In Your Collection</h2>
 							</div>
 
 
@@ -233,7 +178,7 @@
 							  <div class="card-body">
 							  	<img src="images/jumia.png" class="card-img-top" alt="...">
 							    <h5 class="card-title mt-2">Item Name</h5>
-							    <p class="card-text"><b>Unit Price:</b> N500</p>
+							    <p class="card-text"><b>Unit Price:</b> &#8358;5000.00</p>
 							    <p class="card-text"><b>Quantity:</b> 10</p>
 							    <a href="#staticBackdropAddItem" class="btn btn-primary" data-toggle="modal">Add Item</a>
 							  </div>
@@ -446,7 +391,77 @@
 
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="giftjava.js"></script>
+
 <script type = "text/javascript">
+
+$(document).ready(function(){
+
+
+
+$('#searchbysort').click(function(){
+
+var price = $('#price').val();
+var selectcategory = $('#selectcategory').val();
+var merchant = $('#merchant').val();
+var brand = $('#brand').val();
+var data = {"price": price, "selectcategory":selectcategory, "merchant":merchant, "brand":brand};
+
+$('#bodyofitem').load("receiverselectitem.php", data);
+
+
+// $.ajax({
+
+// 		url: "receiverselectitem.php",
+// 		type: "POST",		
+// 		data: {"price": price, "selectcategory":selectcategory, "merchant":merchant, "brand":brand},		
+// 		dataType: "text",
+// 		success(msg){
+
+// 		alert(msg);
+
+					
+// 		},
+// 		error(errmsg){
+// 			// console.log(errmsg);
+// 		alert("failed");
+			
+// 		}
+// 	})
+
+
+// $('#bodyofitem').load("itemsadded.php");
+
+
+})
+
+$('#itbtn').click(function(){
+
+var eventtitle = $('#eventtitle').val();
+var itprice = $('#itprice').val();
+var itstk = $('#itstk').val();
+var itname = $('#itname').val();
+var itqty = $('#itqty').val();
+var data = {"eventtitle": eventtitle,"itprice": itprice, "itstk":itstk, "itname":itname, "itqty":itqty};
+
+$('#colqty').load("receiverincludeitem.php", data);
+
+
+})
+
+
+$('#search').click(function(){
+
+var searchval = $('#searchval').val();
+var data = {"searchval": searchval};
+
+$('#bodyofitem').load("receiverselectitemMainSearch.php", data);
+
+
+})
+
+
+
+})
 
 
 </script>
