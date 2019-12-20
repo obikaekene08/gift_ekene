@@ -2,13 +2,13 @@
 
 require("User.php");
 
-class Receiver extends User{
+class Gifter extends User{
 
 	function signup($fname,$lname,$phone,$email,$pwd){
 
 		$encrypted_pass = md5($pwd);
 
-		$sql = " INSERT INTO receivers SET r_fname = '$fname', r_lname = '$lname', r_phone = '$phone', r_email = '$email', r_password = '$encrypted_pass' ";
+		$sql = " INSERT INTO gifters SET g_fname = '$fname', g_lname = '$lname', g_phone = '$phone', g_email = '$email', g_password = '$encrypted_pass' ";
 
 		$this->conn->query($sql);
 
@@ -16,18 +16,18 @@ class Receiver extends User{
 
 		if($id > 0){
 			
-			$reg_id = "RECE/".date("Y.m.d")."/".$id;
+			$reg_id = "GIFTER/".date("Y.m.d")."/".$id;
 
-			$this->conn->query(" UPDATE receivers SET  r_user_id = '$reg_id' WHERE receiver_id = '$id' ");
+			$this->conn->query(" UPDATE gifters SET  g_user_id = '$reg_id' WHERE gifter_id = '$id' ");
 
 			$_SESSION['user'] = $id;
 
-			header("location: receiverprofile.php");
+			header("location: gifterprofile.php");
 		}else{
 
 			$_SESSION['error'] = "failedsignup";
 
-			header("location: receivegifts.php");
+			header("location: giveagift.php");
 		}
 
 
@@ -37,9 +37,10 @@ class Receiver extends User{
 
 					$encrypted_pass = md5($pwd);
 
-		$sql = " SELECT * FROM receivers WHERE r_email = '$username' AND r_password = '$encrypted_pass' LIMIT 1";
+		$sql = " SELECT * FROM gifters WHERE g_email = '$username' AND g_password = '$encrypted_pass' LIMIT 1";
 
 		$result = $this->conn->query($sql);
+		echo $this->conn->error;
 
 		$row = [];
 
@@ -47,18 +48,18 @@ class Receiver extends User{
 
 			$row = $result->fetch_assoc();
 
-			$_SESSION['user'] = $row['receiver_id'];
+			$_SESSION['user'] = $row['gifter_id'];
 
 			
 
 			if(isset($_SESSION['modallogin']) && $_SESSION['modallogin'] == 'modallogin'){
 				$_SESSION['loginstatus'] = "success";
-				// header("location: vendor_dashboard.php");
+				
 
 		}else{
 			$_SESSION['loginstatus'] = "success";
 
-		header("location: receiverprofile.php");
+		header("location: gifterprofile.php");
 
 			}
 
@@ -71,7 +72,7 @@ class Receiver extends User{
 		}else{
 			$_SESSION['loginstatus'] = "failed";
 
-		header("location:receivegifts.php");
+		header("location:giveagift.php");
 
 			}
 
@@ -81,6 +82,21 @@ class Receiver extends User{
 	}
 
 	function getdetails($id, $table){
+
+		$sql = " SELECT * FROM $table WHERE gifter_id = '$id' ";
+
+		$result = $this->conn->query($sql);
+
+		if($result->num_rows>0){
+
+			$row = $result->fetch_assoc();
+			
+			return $row;
+			
+		}
+	}
+
+	function getdetails2($id, $table){
 
 		$sql = " SELECT * FROM $table WHERE receiver_id = '$id' ";
 
@@ -202,8 +218,6 @@ function update($collect, $K1,$v1,$table){
 
 			}
 
-			$_SESSION['item_id'] = $result->num_rows;
-
 			return $list;
 		}
 
@@ -259,13 +273,13 @@ function update($collect, $K1,$v1,$table){
 		$dst = $imagefolder. "/".$newname;
 		$t = move_uploaded_file($filename, $dst);
 		$_SESSION['picupload'] = $t;
-		$this->updateupload('receivers','r_pic_name',$dst,'receiver_id',$_SESSION['user']);
-		$imagedetails = $this->getdetails($_SESSION['user'],'receivers');
+		$this->updateupload('gifters','g_pic_name',$dst,'gifter_id',$_SESSION['user']);
+		$imagedetails = $this->getdetails($_SESSION['user'],'gifters');
 		$_SESSION['imagelocation'] = $imagedetails['r_pic_name'];
-		header("location: receiverprofile.php");
+		header("location: gifterprofile.php");
 	}else{
 		$_SESSION['errors'] = $error;
-		 header("location: receiverprofile.php");//if any, the errors can be retrieved from $_SESSION['errors'] on picture.php
+		 header("location: gifterprofile.php");//if any, the errors can be retrieved from $_SESSION['errors'] on picture.php
 	}
 	
 }
@@ -354,9 +368,33 @@ function update($collect, $K1,$v1,$table){
 
 	}
 
-		function searchMain($searchval){
+		function searchRName($searchval){
 
-		$sql = " SELECT * FROM vendor_item JOIN vendors ON vendor_item.vendor_id = vendors.vendor_id JOIN category_table ON category_table.category_id = vendor_item.v_cat_id WHERE v_item_name LIKE '%$searchval%' OR v_companyname LIKE '%$searchval%' OR category_id  LIKE '%$searchval%'  ";		
+		$sql = " SELECT * FROM receivers JOIN receiver_item ON receivers.receiver_id = receiver_item.receiver_id JOIN receiver_events ON receivers.receiver_id = receiver_events.receiver_id WHERE r_fname LIKE '%$searchval%'OR r_event_title LIKE '%$searchval%' OR r_phone  LIKE '%$searchval%' ";		
+
+		$result = $this->conn->query($sql);
+		echo $this->conn->error;
+
+		$list = [];
+
+		// if($result->num_rows>0){
+			while($row = $result->fetch_assoc()){
+
+
+				$list[] = $row;
+
+			}
+
+			return $list;
+		// }
+
+	
+
+	}
+
+	function searchMerchant($searchval){
+
+		$sql = " SELECT * FROM vendor_item JOIN vendors ON vendor_item.vendor_id = vendors.vendor_id JOIN category_table ON category_table.category_id = vendor_item.v_cat_id WHERE v_item_name LIKE '%$searchval%' OR v_companyname LIKE '%$searchval%' OR category_id  LIKE '%$searchval%' ";		
 
 		$result = $this->conn->query($sql);
 		echo $this->conn->error;
@@ -379,22 +417,24 @@ function update($collect, $K1,$v1,$table){
 	}
 
 
-	function includeitem($r_event_id,$receiver_id, $itqty,$itid){
+	function cartitem($itqty,$itid){
 
 		// $r = $this->getseveralwhere('receiver_events','r_event_title',$eventtitle);
 
 
 		// echo $this->conn->error;
 
-		// $r_event_id = $r[0]['r_event_id']; //remember to collect back itemid and use it for includeitem		
+		// $r_event_id = $r[0]['r_event_id']; //remember to collect back itemid and use it for includeitem
 
-		$sql = " INSERT INTO receiver_item SET receiver_id = '$receiver_id', v_item_id = '$itid', r_event_id = '$r_event_id', r_item_qty = '$itqty' ";
+			$gifter = $_SESSION['user'];
+
+		$sql = " INSERT INTO purchase_item SET gifter_id = '$gifter', v_item_id = '$itid', g_item_qty = '$itqty' ";
 
 		$r = $this->conn->query($sql);
 
 		echo $this->conn->error;
 
-		$y = $this->getseveralwhere('receiver_item','r_event_id',$r_event_id);
+		$y = $this->getseveralwhere('purchase_item','gifter_id',$gifter);
 
 		
 		return $y;

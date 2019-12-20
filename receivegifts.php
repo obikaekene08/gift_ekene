@@ -1,89 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<?php
 
-	<title>Receive Gifts</title>
-	<link rel="stylesheet" href="css/bootstrap.css" type=text/css>
-	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-	<link href = "giftstyle.css" rel = "stylesheet" type = "text/css">
-	<link rel="stylesheet" href="fontawesome/css/all.css" type ="text/css">
-	
-	
-	
-</head>
-<body>
-<div class = "container-fluid">
-	
+require("header.php");
 
-	<div class = "row" id = "menubar" style = "border:1px solid red; border-left:none; border-right:none">
 
-		<div class = "col-md-1 col-2" id = "logo">
-
-			<a href = "index.html"><img src = "images/logomn.jpg" style = "height: 80px"></a>
-			
-
-		</div>
-
-		<div class = "col-md-8 offset-md-4 col-12">
-			
-			<nav class="navbar navbar-expand-lg" style = "background-color: white">
-			  <a class="navbar-brand" href="#"></a>
-			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-			    <span class="navbar-toggler-icon"></span>
-			  </button>
-			  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-			    <ul class="navbar-nav">
-			      <li class="nav-item active">
-			        <a class="nav-link" href="#">CREATE A REGISTRY<span class="sr-only">(current)</span></a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="#">ABOUT</a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="#testimonial">TESTIMONIALS</a>
-			      </li>
-			      <li class="nav-item dropdown">
-			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			          VENDORS
-			        </a>
-			        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-			          <a class="dropdown-item" href="#">See Our Vendors</a>
-			          <a class="dropdown-item" href="#">Become a Vendor</a>
-			          <a class="dropdown-item" href="#">Vendor Sign in</a>
-			        </div>
-			      </li>
-
-			      <li class="nav-item dropdown">
-			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			          FAQs
-			        </a>
-			        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-			          <a class="dropdown-item" href="#">FAQ for Givers</a>
-			          <a class="dropdown-item" href="#">FAQ for Receivers</a>
-			          <a class="dropdown-item" href="#">FAQ for Vendors</a>
-			        </div>
-			      </li>
-
-			      <li class="nav-item">
-			        <a class="nav-link" href="#">CONTACT</a>
-			      </li>
-
-			    </ul>
-			  </div>
-			</nav>
-
-		</div>
-
-	</div>
+?>
 
 	<div class = "row mt-3">
     	<div class = "col-12">
 			  <nav aria-label="breadcrumb" class = "">
 			  <ol class="breadcrumb alert-primary pl-2 py-2 my-1">
 			    <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-			    <li class="breadcrumb-item active" aria-current="page">Give A Gift</li>
+			    <li class="breadcrumb-item active" aria-current="page">Receive Gifts</li>
 			  </ol>
 			</nav>
 		</div>
@@ -112,7 +39,7 @@
 				  <div class="col-6">
 				    <div class="tab-content" id="nav-tabContent">
 				      <div class="tab-pane fade" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-				      	<form method="POST" id="contactForm" action='receiversubmitsignup.php'>
+				      	<form method="POST" id="formSignup" action='receiversubmitsignup.php'>
 				        <div class = "row">
 				          <div class="control-group form-group col-md-6 col-12">
 				            <div class="controls">
@@ -132,7 +59,7 @@
 				          <div class="control-group form-group">
 				            <div class="controls">
 				              <label>Phone Number:</label>
-				              <input type="tel" class="form-control" id="phone" required>
+				              <input type="tel" class="form-control" id="phone" name='phone' required>
 				            </div>
 				          </div>
 				          <div class="control-group form-group">
@@ -144,11 +71,11 @@
 				          <div class="control-group form-group">
 				            <div class="controls">
 				              <label>Password:</label>
-				              <input type="password" class="form-control" name='email' id="email" required>
+				              <input type="password" class="form-control" name='pwd' id="pwd" required>
 				            </div>
 				          </div>
 				          <div class="form-group form-check mt-3">
-						    <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
+						    <input type="checkbox" class="form-check-input" id="exampleCheck1"  name = "agreed" required>
 						    <label class="form-check-label" for="exampleCheck1" style = "font-size:13px">By Starting Your Registration, you are agreeing to Gift Runner's <a href="">Terms of Use</a> and <a href="">Privacy Statement</a></label>
 						  </div>
 				          <button type="submit" class="btn btn-primary btn-block btn-lg" id="sendMessageButton">Sign Up</button>
@@ -156,7 +83,7 @@
 				      </div>
 				      <div class="tab-pane fade show active" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
 				      	
-				      	<form method="POST" id="contactForm" action='receiversubmitlogin.php'>
+				      	<form method="POST" id="formLogin" action='receiversubmitlogin.php'>
 				        <div class="control-group form-group">
 				            <div class="controls">
 				              <label>Email Address:</label>
@@ -166,7 +93,7 @@
 				          <div class="control-group form-group">
 				            <div class="controls">
 				              <label>Password:</label>
-				              <input type="password" class="form-control" name='email' id="email" required>
+				              <input type="password" class="form-control" name='pwd' id="pwd" required>
 				            </div>
 				          </div>
 				             
@@ -175,10 +102,10 @@
 
 				      </div>
 				      <div class="tab-pane fade pt-4" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
-				      	<form name="sentMessage" id="contactForm" action='receiverprofile.php' class= "mt-4">
+				      	<form method="POST" id="formLogin" action='receiverprofile.php' class= "mt-4">
 				        <div class="control-group form-group">
 				            <div class="controls">
-				              <input type="email" class="form-control" name='email' id="email" placeholder= "Only Enter Your Emai Address To Continue" required>
+				              <input type="email" class="form-control" name='email' id="email" placeholder= "Only Enter Your Email Address To Continue" required>
 				            </div>
 				          </div>			             
 				          <button type="submit" class="btn btn-primary btn-block btn-lg" id="sendMessageButton">Continue</button>

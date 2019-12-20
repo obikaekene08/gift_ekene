@@ -154,14 +154,6 @@ function update($collect, $K1,$v1,$table){
 	}
 
 
-	function imageupload(){
-
-
-		move_uploaded_file($filename, $t);
-
-
-}
-
 
 	function getseveral($table){
 

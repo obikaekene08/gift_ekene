@@ -67,8 +67,10 @@ $details = $obj->getdetails($_SESSION['user'],'gifters');
 	 
 	  </div>
         <div class="list-group">
-          <a href="gifterprofile.php" class="list-group-item">Main Page</a>
-          <a href="editprofile.php" class="list-group-item">Edit Profile</a>          
+          <a href="receiverprofile.php" class="list-group-item">Main Page</a>
+          <a href="editprofile.php" class="list-group-item">Edit Profile</a>
+          <a href="#modalcreatecollection" data-toggle="modal" class="list-group-item">Create a Collection</a>
+          <a href="viewcollections.php" class="list-group-item">View My Collections</a>
           <a href="changepassword.php" class="list-group-item">Change Password</a>
           <a href="logout.php" class="list-group-item">Log Out</a>
          
@@ -202,17 +204,8 @@ $details = $obj->getdetails($_SESSION['user'],'gifters');
 					      <button type="button" class="btn btn-primary" id = "searchCategorybtn">Search By Sort</button>
 					    </div>
 
-
 					  
 					  </div>
-					</div>
-					<div class = "row">
-						   <div class="col-sm-12 px-0">					   	
-						      <div class = "offset-9">
-						      <label for="addtocart">Qty in Cart:</label>				      
-						      <div id = "colqty" style = "width:40%; font-weight: bold; border:2px solid red; display:inline; margin: 2px; padding:4px; " ></div>
-						  </div>
-					    </div>						
 					</div>
 
 					<div class = "row" id = "searchresult2">
@@ -220,7 +213,6 @@ $details = $obj->getdetails($_SESSION['user'],'gifters');
 									
 							</div>
 						</div>
-
 
 						
 
@@ -520,42 +512,7 @@ $('#searchresult2').load("gifterSearchMerchant.php", data);
 
 })
 
-
-$('#colqty').load('loadcartqty.php?');
-
-
 })
-
-function iteminclude(itbtn){
-	
-var itqty = $(itbtn).siblings('#itqty').val();
-var itid = $(itbtn).siblings('#itid').html();
-
-$.ajax({
-
-		url: "gifterbuyitem.php",
-		type: "POST",		
-		data: {"itqty":itqty,"itid":itid},		
-		dataType: "text",
-		success(msg){
-
-		$('#colqty').html(msg);
-					
-		},
-		error(errmsg){
-			// console.log(errmsg);
-		alert("failed");
-			
-		}
-	})
-
-$('#itqty').prop('readonly',true);
-
-$(itbtn).hide();
-$(itbtn).siblings('#itedit').show();
-$(itbtn).siblings('#itremove').show();
-
-}
 
 
 </script>

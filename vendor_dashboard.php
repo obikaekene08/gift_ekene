@@ -82,7 +82,6 @@ $cat_table = $obj->getseveral('category_table');
 								  <div class="row no-gutters">
 								    <div class="col-md-4">
 								      <img src="<?php if($details['v_pic_name'] != ""){ echo $details['v_pic_name']; }else{echo 'images/avatar.png';} ?>" class="card-img" alt="...">
-								      <!-- if($_details['v_pic_name'] != ""){ echo $_details['v_pic_name']; }else{echo 'images/avatar.jpg';} -->
 								    </div>
 								    <div class="col-md-8">
 								      <div class="card-body">
@@ -90,7 +89,7 @@ $cat_table = $obj->getseveral('category_table');
 								        <p class="card-text"><b>Stock Category: </b>Category 1, Category 2, Category 3, Category 4</p>
 								        <p class=""><small class="text-muted"><b>Orders Completed: </b> 3</small></p>
 								        <p class = "" id = "alertspan" ><?php if(isset($_SESSION['picupload']) && $_SESSION['picupload'] == 1){
-									     	echo "Upload Successful";
+									     	echo "<span style = 'color: yellow'>Upload Successful</span>";
 
 									     	$_SESSION['picupload'] = 0;
 									     	
@@ -1201,20 +1200,20 @@ $cat_table = $obj->getseveral('category_table');
 
 						  <div class="form-group row">
 						    <label for="inputPassword" class="col-sm-4 col-form-label">Quantity<span style = "color:red">*</span></label>
-						    <div class="col-sm-8">
-						      <input class="form-control" id="selectqty" list='data3' name = "selectqty" value = "<?php echo $i; ?>">
+						    <div class="col-sm-8">						      
 							<datalist id ="data3">
 							    <?php for ($i=1; $i < 6; $i++) { ?>
 						      	<option value="<?php echo $i; ?>" label= ""/>
 						      		<?php }?>										      	
 						      </datalist>
+						      <input class="form-control" id="itemqty" list='data3' name = "selectqty" value = 1>
 						    </div>
 						  </div>
 
 	      			</div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary" id = "additembtn">Save</button>
+	        <button type="button" class="btn btn-primary" id = "additembtn" data-dismiss="modal">Save</button>
 	      </div>
 	      </form>
   		</div>
@@ -1281,7 +1280,7 @@ $cat_table = $obj->getseveral('category_table');
 	      			</div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary" id = "edititembtn">Save</button>
+	        <button type="button" class="btn btn-primary" id = "edititembtn" data-dismiss="modal">Save</button>
 	      </div>
 	      </form>
   		</div>

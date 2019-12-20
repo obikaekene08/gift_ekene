@@ -16,7 +16,7 @@ if(!isset($_SESSION['user'])){
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
 
-	<title>Home Page</title>
+	<title>Gift Runner</title>
 	<link rel="stylesheet" href="css/bootstrap.css" type=text/css>
 	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 	<link href = "giftstyle.css" rel = "stylesheet" type = "text/css">

@@ -1,19 +1,22 @@
 <?php
 
-require("Receiver.php");
+require("Gifter.php");
 
-$obj = new Receiver;
+$obj = new Gifter;
 
 $searchval = $_POST['searchval'];
 
-$search_item = $obj->searchMain($searchval);
+$search_item = $obj->searchMerchant($searchval);
 ?>
+
+<?php if(!empty($search_item)) {?>
 
 <?php
 foreach($search_item as $key => $v) {
-	
+  
 ?>
-<div class = "col-md-3 col-6 mt-2">
+
+<div class = "col-md-4 col-6 mt-2">
 <div class="card text-center alert-success">
   <div class="card-body text-center">
     <form action = "" class = "text-center">
@@ -23,16 +26,16 @@ foreach($search_item as $key => $v) {
     <p class="card-text"><b>Stock: </b><span class="card-text" id = "itstk"> <?php echo $v['item_qty'];?></span></p>
     <b>Qty: </b><input type="number" class = "iitqty text-center" style = "width:20%" id = "itqty">
     <span style = "display: none" class="card-text" id = "itid"> <?php echo $v['v_item_id'];?></span>
-    <button type = "button" class="btn btn-primary col-8 offset-2 mt-2" id = "itbtn" onclick = "iteminclude(this);" style = "display: block">Include Item</button>
+    <button type = "button" class="btn btn-primary col-8 offset-2 mt-2" id = "itbtn" onclick = "iteminclude(this);" style = "display: block">Add to Cart</button>
     <button type = "button" class="btn btn-primary col-8 mt-2" id = "itedit" style = "display: none">Edit Item</button>
     <button type = "button" class="btn btn-primary col-8 mt-2" id = "itremove" style = "display: none">Remove Item</button>
   </form>
   </div>
 </div>
 </div>
-
 <?php
 
+}
 }
 
 ?>
@@ -43,7 +46,7 @@ $('.iitqty').val(1);
 <?php
 
 if(count($search_item) == 0){
-	echo "<h3 class = 'card-body alert-danger'>No Item Found</h3>";
+  echo "<h3 class = 'card-body alert-danger'>No Item Found</h3>";
 }
 
 ?>

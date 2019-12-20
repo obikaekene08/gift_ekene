@@ -1,60 +1,84 @@
 <?php
 
 
-require("Receiver.php");
+require("Gifter.php");
 
-$obj = new Receiver;
+$obj = new Gifter;
 if(!isset($_SESSION['user'])){
 
-	header("location:receivegifts.php");
+	header("location:giveagift.php");
 
 }
 
 require("header2.php");
-$details = $obj->getdetails($_SESSION['user'],'receivers');
+
+$details = $obj->getdetails($_SESSION['user'],'gifters');
+
+$details2 = $obj->getdetails2($_SESSION['$receiver_id'],'receivers');
 
 if(isset($_GET['eventid']) && isset($_GET['eventtitle'])){
 $_SESSION['$r_event_id'] = $_GET['eventid'];
 $_SESSION['$r_event_title'] = $_GET['eventtitle'];
 $_SESSION['$r_message'] = $_GET['r_message'];
+$_SESSION['$receiver_id'] = $_GET['receiver_id'];
 }
+
+
+
+
 ?>
 
-	<button type="button" class="btn btn-outline-danger mr-2 my-2 offset-md-9">Give a Gift</button>
-	<a href="logout.php" class="btn btn-danger my-2">Logout</a>
-   
-	<div class="container-fluid">
-   
-	 <div class = "row">
-    	<div class = "col-12">
-		    <div class="alert alert-primary pb-0" role="alert" col-8 offset-2>
-			  <h5 class = "mb-0">Hi <?php echo ucfirst($details['r_fname']).","?> <small> You are Logged In</small></h5>
-			  <nav aria-label="breadcrumb" class = "my-0 py-0">
-			  <ol class="breadcrumb alert-primary pl-0 py-2 my-1">
-			    <li class="breadcrumb-item"><a href="receiverprofile.php">Main Page</a></li>
-			    <li class="breadcrumb-item"><a href="viewcollections.php">View Collections</a></li>
-			    <li class="breadcrumb-item active" aria-current="page">See Collection Details</li>
-			  </ol>
-			</nav>
+	<a href="receiverprofile.php" class="btn btn-outline-danger mr-2 my-2 offset-md-9">Receive Gifts</a>
+	<a href="index.php" class="btn btn-danger my-2">Logout</a>
+    <div class = "row">
+    	<div class = "col-10 offset-1">
+		    <div class="alert alert-primary" role="alert" col-8 offset-2>
+			  <h3>Hi <?php echo ucfirst($details['g_fname']).","?> <small> Welcome To Your Profile Page</small></h3>
 			</div>
 		</div>
-
 	</div>
+	<div class="container">
+   
+
     <!-- Content Row -->
     <div class="row">
       <!-- Sidebar Column -->
       
-      <div class="col-lg-2 mb-4">
+      <div class="col-lg-3 mb-4">
 	  <div>
-	  <img src='images/avatar.png' class='img-fluid col-12 mb-2'>
-	  
+	  <img src="<?php if($details['g_pic_name'] != ""){ echo $details['g_pic_name']; }else{echo 'images/avatar.png';} ?>" class="card-img" alt="...">
+	  <form method = "POST" action = "gifter_image_upload.php" enctype = "multipart/form-data" id = "uploadform">
+	  	<div class="form-group">
+		    <div class="col-sm-10">
+		     <input type='file' name='profile'>
+		     <button type = "submit" class="btn-sm btn btn-info mt-2" id = "btnupload">Upload Picture</button>
+		     <p class = "" id = "alertspan" ><?php if(isset($_SESSION['picupload']) && $_SESSION['picupload'] == 1){
+	     	echo "<span class = 'alert-success' id = 'fader'>Upload Successful</span>";
+
+	     	$_SESSION['picupload'] = 0;
+	     	
+	     }
+	     
+	     elseif (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
+	     	foreach($_SESSION['errors'] as $v){
+	     		
+	     		echo "<span class = 'alert-danger' id = 'fader'>$v</span><br>";
+	     	}
+	     	$_SESSION['errors'] = array();
+	     }
+
+	     
+
+
+	     ?></p>
+		 </div>
+		</div>
+		</form>
 	 
 	  </div>
         <div class="list-group">
-          <a href="receiverprofile.php" class="list-group-item">Main Page</a>
-          <a href="editprofile.php" class="list-group-item">Edit Profile</a>
-          <a href="#modalcreatecollection" data-toggle="modal" class="list-group-item">Create a Collection</a>
-          <a href="viewcollections.php" class="list-group-item">View My Collections</a>
+          <a href="gifterprofile.php" class="list-group-item">Main Page</a>
+          <a href="editprofile.php" class="list-group-item">Edit Profile</a>          
           <a href="changepassword.php" class="list-group-item">Change Password</a>
           <a href="logout.php" class="list-group-item">Log Out</a>
          
@@ -62,82 +86,46 @@ $_SESSION['$r_message'] = $_GET['r_message'];
         </div>
       </div>
       <!-- Content Column -->
-      <div class="col-lg-10 mb-4">
+      <div class="col-lg-9 mb-4">
        
-	   <div class = "row" id = "searchbox">
-				<div class = "offset-1 col-11 col-md-8 offset-md-2 mb-3" style = "width:100%; margin:auto;">	
-						<form class="form-inline">
-					    <input class="form-control mr-2 col-10" type="search" placeholder="Search for Merchants and Products" aria-label="Search">
-					    <button class="btn btn-outline-danger" type="submit">Search</button>
-					  	</form>
-				</div>
-		</div>
+	  	<div class = "row-12 mt-3">
+			<div class = "col-12 my-1 card mbline" id = "">
 
-		<div class = "row mx-1">
-			<div class = "col-12 card card-body pt-1">
-				  
-				  <h4 class ="mb-3 mt-0"><?php echo ucwords($_SESSION['$r_event_title']);?> Collection Details:</h4>
-				  <div class = "row">
-				  	<div class = "col-2">
-					<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample" disabled>
-					  Select Items
-					</button>
-					</div>
-					<div class = "col-2">
-					<button type="button" class="btn btn-primary" data-toggle="collapse" data-target = "#collapseExample" aria-expanded="false" aria-controls="collapseExample" disabled>
-					  Select All
-					</button>
-					</div>
-					<div class = "col-3">
-					<a href="preview.php" class="btn btn-primary">See Your Gifters' Preview</a>
-					</div>
-					<div class = "col-2">
-					<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample" >
-					  See Table View
-					</button>
-					</div>
-					</div>
-					<div class = "row mt-2">
-					<div class = "col-2">
-					<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample" disabled>
-					  Mask Item(s)
-					</button>
-					</div>					
-					<div class = "col-2">
-					<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample" disabled>
-					  Unmask Item(s)
-					</button>
-					</div>
-					<div class = "col-2">
-					<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample"disabled>
-					   Merge Items(s)
-					</button>
-					</div>
-					<div class = "col-3 offset-1">
-					<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample" disabled>
-					   Unmerge Items(s)
-					</button>
-					</div>
-									
-					
+				<div class = "row mx-1">
+			<div class = "col-12 card card-body pt-1 pb-0 mb-0">
+				  <h2 class ="pb-0 text-center"><?php echo ucwords($_SESSION['$r_event_title']);?>: </h2>
+				  <h4 class ="mb-2 text-center">By <?php echo ucfirst($details2['r_fname'])." ".ucfirst($details2['r_lname']) ?></h4>
+				  <div class = "text-center">
+				  <img src="images/couple2.jpg" class="card-img-top img-fluid" style = "height: 300px" alt="...">
 				</div>
+				<div class = "mt-2" style = "display:flex; flex-wrap: nowrap;">
+					<h6 class = "text-center" style = " width: 50%"><b>Due Date:</b> October 22, 2020</h6>
+					<h6 class = "text-center" style = "width: 50%"><b>Event Date:</b> October 22, 2020</h6>
+				</div>
+				
+
+				<h5 class ="text-center">Beautiful Message From The Celebrant: </h5>
+				<p class = "card card-body alert-warning"><?php echo ucwords($_SESSION['$r_message']);?></p>				
 			  
 			  </div>
 			</div>
 
+		
+
 
 			<div class = "row mt-2 mx-1">
 				<div class = "col-12 card card-body pt-1">
-					<h4 class ="mb-3 mt-0">Items Selected in <?php echo ucwords($_SESSION['$r_event_title']);?>: </h4>
+					<h4 class ="mb-3 mt-0">See Gift Items Chosen By The Celebrant: </h4>
 					<div class = "row" id = "bodyofitem">
-
 						
-
 					</div>
 				</div>
 			</div>
 
-			
+
+	</div>
+
+</div>
 
 
       </div>
@@ -339,14 +327,101 @@ $_SESSION['$r_message'] = $_GET['r_message'];
 
 $(document).ready(function(){
 
+$('#btnupload').mouseout(function(){
 
-$('#bodyofitem').load("collectiondetailssubmit.php");
+	
+	$('#fader').fadeOut('slow');
+})
+
+$('#searchRname').focus(function(){
+
+	$('#or').fadeOut();
+	$('#searchboxlink').fadeOut();
+})
+
+$('#searchRnamebtn').click(function(){
+
+	$('#or').fadeIn();
+	$('#searchboxlink').fadeIn();
+})
+
+$('#searchRLink').focus(function(){
+
+	$('#or').fadeOut();
+	$('#searchboxname').fadeOut();
+})
+
+$('#searchRLinkbtn').click(function(){
+
+	$('#or').fadeIn();
+	$('#searchboxname').fadeIn();
+})
+
+$('#searchMerchant').focus(function(){
+
+	$('#or2').fadeOut();
+	$('#searchCategory').fadeOut();
+})
+
+$('#searchMerchantbtn').click(function(){
+
+	$('#or2').fadeIn();
+	$('#searchCategory').fadeIn();
+})
+$('#searchCategorybody').mouseenter(function(){
+
+	$('#or2').fadeOut();
+	$('#searchboxMerchant').fadeOut();
+})
+
+$('#searchCategorybody').mouseleave(function(){
+
+	$('#or2').fadeIn();
+	$('#searchboxMerchant').fadeIn();
+})
+
+$('#searchRnamebtn').click(function(){
+
+var searchval = $('#searchRname').val();
+var data = {"searchval": searchval};
+
+$('#searchresult').load("gifterSearchRname.php", data);
+
+
+})
+
+$('#searchRLinkbtn').click(function(){
+
+var searchval = $('#searchRLink').val();
+var data = {"searchval": searchval};
+
+$('#searchresult').load("gifterSearchRname.php", data);
+
+
+})
+
+$('#searchMerchantbtn').click(function(){
+
+var searchval = $('#searchMerchant').val();
+var data = {"searchval": searchval};
+
+$('#searchresult2').load("gifterSearchMerchant.php", data);
+
+
+})
+
+})
+
+$(document).ready(function(){
+
+
+$('#bodyofitem').load("previewsubmit.php");
+
 
 
 })
 
 </script>
-
 
 
 

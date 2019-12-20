@@ -22,18 +22,17 @@ $merch_table = $obj->getseveral('vendors');
 
 $item_table = $obj->getseveral('vendor_item');
 
-
 ?>
 
 	<button type="button" class="btn btn-outline-danger mr-2 my-2 offset-md-9">Give a Gift</button>
-	<button type="button" class="btn btn-danger my-2">Logout</button>
+	<a href="logout.php" class="btn btn-danger my-2">Logout</a>
    
 	<div class="container-fluid">
    
 	 <div class = "row">
     	<div class = "col-12">
 		    <div class="alert alert-primary" role="alert" col-8 offset-2>
-			  <h5>Hi <?php echo ucfirst($details['r_fname']).","?><small>You are Logged In</small></h5>
+			  <h5>Hi <?php echo ucfirst($details['r_fname']).","?><small> You are Logged In</small></h5>
 			</div>
 		</div>
 	</div>
@@ -84,8 +83,8 @@ $item_table = $obj->getseveral('vendor_item');
 				    <div class="col-sm-5">
 					    <select class = "form-control" id = "eventtitle">
 					    	<?php foreach($event_table AS $k => $v){ ?>
-				      	<option value="<?php echo $v['r_event_id']?>" ><?php echo $v['r_event_title'] ?> </option>
-				      		<?php }?>										      	
+				      	<option value="<?php echo $v['r_event_id']; ?>" ><?php echo $v['r_event_title'] ?> </option>
+				      		<?php } ?>										      	
 				      </select>		
 				     </div>
 				    
@@ -118,12 +117,12 @@ $item_table = $obj->getseveral('vendor_item');
 				      <select class = "form-control" id = "merchant">
 				       	<option value=0>--- All Merchants ---</option>
 					    	<?php foreach($merch_table AS $k => $v){ ?>
-				      	<option value="$v['vendor_id']" ><?php echo $v['v_companyname'] ?> </option>
+				      	<option value="<?php echo $v['vendor_id']?>" ><?php echo $v['v_companyname'] ?> </option>
 				      		<?php }?>										      	
 				      </select>
 				    </div>
 				    <div class="col-sm-3">
-				    <label for="merchant" class=" col-form-label">Choose Item Brand: </label>				    
+				    <label for="brand" class=" col-form-label">Choose Item Brand: </label>				    
 					<input class="form-control" id="brand" list='data1' name = "category" value = "">
 				    <datalist id ="data1">
 				    	<?php foreach($item_table AS $k => $v){ ?>
@@ -137,8 +136,8 @@ $item_table = $obj->getseveral('vendor_item');
 				   	<div class = "row">
 				      <button type="button" class="btn btn-primary ml-3" id = "searchbysort">Search By Sort</button>
 				      <div class = "offset-7">
-				      <label for="addtocart">Collection Qty</label>				      
-				      <input type = "number" class = "" value = 0 style = "width:20%" id = "colqty" readonly>
+				      <label for="addtocart">Qty in Collection:</label>				      
+				      <div id = "colqty" style = "width:40%; font-weight: bold; border:2px solid red; display:inline; margin: 2px; padding:4px; " > </div>
 				  </div>
 				  </div>
 
@@ -381,25 +380,66 @@ $item_table = $obj->getseveral('vendor_item');
 </div>
 	
 
-
-
-
-
-
-
-
-
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="giftjava.js"></script>
 
 <script type = "text/javascript">
 
+function iteminclude(itbtn){
+	
+var r_event_id = $('#eventtitle').val();
+var itqty = $(itbtn).siblings('#itqty').val();
+var itid = $(itbtn).siblings('#itid').html();
+
+$.ajax({
+
+		url: "receiverincludeitem.php",
+		type: "POST",		
+		data: {"r_event_id": r_event_id,"itqty":itqty,"itid":itid},		
+		dataType: "text",
+		success(msg){
+
+		$('#colqty').html(msg);
+					
+		},
+		error(errmsg){
+			// console.log(errmsg);
+		alert("failed");
+			
+		}
+	})
+
+$('#itqty').prop('readonly',true);
+
+$(itbtn).hide();
+$(itbtn).siblings('#itedit').show();
+$(itbtn).siblings('#itremove').show();
+
+}
+
+
+
 $(document).ready(function(){
+
+var colqty = $('#eventtitle').val();
+
+ $('#colqty').load('loadcollectionqty.php?colqty='+colqty);
+
+ $('#eventtitle').change(function(){
+
+ var colqty = $('#eventtitle').val();
+
+ $('#colqty').load('loadcollectionqty.php?colqty='+colqty);
+
+
+ })
+
+
+ // $('#colqty').val() =  
 
 
 
 $('#searchbysort').click(function(){
-
 var price = $('#price').val();
 var selectcategory = $('#selectcategory').val();
 var merchant = $('#merchant').val();
@@ -434,19 +474,12 @@ $('#bodyofitem').load("receiverselectitem.php", data);
 
 })
 
-$('#itbtn').click(function(){
-
-var eventtitle = $('#eventtitle').val();
-var itprice = $('#itprice').val();
-var itstk = $('#itstk').val();
-var itname = $('#itname').val();
-var itqty = $('#itqty').val();
-var data = {"eventtitle": eventtitle,"itprice": itprice, "itstk":itstk, "itname":itname, "itqty":itqty};
-
-$('#colqty').load("receiverincludeitem.php", data);
 
 
-})
+
+
+
+
 
 
 $('#search').click(function(){

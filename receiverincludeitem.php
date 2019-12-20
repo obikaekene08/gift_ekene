@@ -2,71 +2,30 @@
 
 
 
-require("Vendor.php");
+require("Receiver.php");
+
+ $obj = new Receiver;
 
 
-
-$obj = new Vendor;
-$eventtitle = $_POST['eventtitle'];
+$r_event_id = $_POST['r_event_id'];
 $receiver_id  = $_SESSION['user'];
-$itprice = $_POST['itprice'];
-$itstk = $_POST['itstk'];
-$itname = $_POST['itname'];
 $itqty = $_POST['itqty'];
+$itid = $_POST['itid'];
 
-$add_item = $obj->additem($eventtitle,$receiver_id, $itprice, $itstk,$itname,$itqty);
+$item_array = $obj->includeitem($r_event_id,$receiver_id, $itqty,$itid);
 
- if($add_item > 0){
 
-echo "success";
+$total = 0;
+foreach ($item_array as $key => $v) {
 
-}else{
-
-echo "failed";
+$total = $total + ($v['r_item_qty']);
 
 }
 
-// echo $all;
+$_SESSION['colqty'] = $total;
 
-//echo json_encode(['name'=>'Ekene','gender'=>'male']);
+echo $total;
 
-
-// $table = 'vendor_item'
-// $v_id = $_SESSION['user'];
-// $v_cat_id = $_SESSION['cat_id'];
-// $v_item_name = $all[0];
-// $v_item_price = $all[1];
-// $item_color = $all[2];
-// $item_qty = $all[3];
-// $item_pic = '';
-// $item_id = $_SESSION['item_id'];
-// $newitem_id = ($item_id + 1);
-// $inpval = $_SESSION['itid_id'];
-// $make_table = $_SESSION['make_table'];
-
-// if(!(in_array($inpval, $make_table))){
-
-//   	$itId = $_SESSION['item_id'];
-
-
-//   		$items_id	= $newitem_id;
-
-//   }
-
-
-// $select_item = $obj->selectitem('vendor_select_category',$items_id);
-// $add_item = $obj->additem($table,$v_id,$v_cat_id,$v_item_name,$v_item_price,$item_color,$item_qty,$item_pic);
-
-// if($add_item > 0){
-
-// return "success";
-
-// }else{
-
-// return "failed";
-
-// }
 
   	
-
 ?>

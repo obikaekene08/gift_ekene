@@ -11,7 +11,7 @@ if(!isset($_SESSION['user'])){
 }
 
 require("header2.php");
-
+$details = $obj->getdetails($_SESSION['user'],'receivers');
 
 
 ?>
@@ -25,7 +25,7 @@ require("header2.php");
 	 <div class = "row">
     	<div class = "col-12">
 		    <div class="alert alert-primary pb-0" role="alert" col-8 offset-2>
-			  <h5 class = "mb-0">Hi Name! <small>You are Logged In</small></h5>
+			  <h5 class = "mb-0">Hi <?php echo ucfirst($details['r_fname']).","?><small> You are Logged In</small></h5>
 			  <nav aria-label="breadcrumb" class = "my-0 py-0">
 			  <ol class="breadcrumb alert-primary pl-0 py-2 my-1">
 			    <li class="breadcrumb-item"><a href="#">Main Page</a></li>
@@ -43,14 +43,7 @@ require("header2.php");
       <div class="col-lg-2 mb-4">
 	  <div>
 	  <img src='images/avatar.png' class='img-fluid col-12 mb-2'>
-	  <form method = "" action = "" enctype = "multipart/form-data">
-	  	<div class="form-group">
-		    <div class="col-sm-10">
-		     <input type='file' name='mypix'>
-		     <button type = "submit" class="btn-sm btn btn-info mt-2">Upload Picture</button>
-		 </div>
-		</div>
-		</form>
+	  
 	 
 	  </div>
         <div class="list-group">
@@ -109,22 +102,12 @@ require("header2.php");
 			  </div>
 			</div>
 
-
 			<div class = "row mt-2 mx-1">
-				<div class = "col-12 card card-body pt-1">
+			<div class = "col-12 card card-body pt-1">
 					<h4 class ="mb-3 mt-0">Collections: </h4>
-					<div class = "row">
-						<div class = "col-md-3 col-6">
-							<div class="card text-center">
-							  <div class="card-body">
-							  	<img src="images/jumia.png" class="card-img-top" alt="...">
-							    <h5 class="card-title mt-2">Event Title</h5>
-							    <p class="card-text"><b>Event Creation Date:</b> 23/02/2018</p>
-							    <p class="card-text"><b>Items Selected:</b> 10</p>
-							    <a href="#staticBackdropAddItem" class="btn btn-primary" data-toggle="modal">See Details</a>
-							  </div>
-							</div>
-						</div>
+					<div class = "row" id = "bodyofitem">
+						
+						
 					</div>
 				</div>
 			</div>
@@ -329,6 +312,13 @@ require("header2.php");
 <script type="text/javascript" src="giftjava.js"></script>
 <script type = "text/javascript">
 
+$(document).ready(function(){
+
+
+$('#bodyofitem').load("receiverviewcollections.php");
+
+
+})
 
 </script>
 

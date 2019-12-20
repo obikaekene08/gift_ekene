@@ -1,103 +1,36 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<?php
 
-	<title>Reciever Profile</title>
-	<link rel="stylesheet" href="css/bootstrap.css" type=text/css>
-	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-	<link href = "giftstyle.css" rel = "stylesheet" type = "text/css">
-	<link rel="stylesheet" href="fontawesome/css/all.css" type ="text/css">
-	
-	
-</head>
-<body>
-<div class = "containerfluid">
-	<div class = "row-12">
-		<div class = "col-md-2 offset-md-10 col-6 offset-7">
 
-			
+require("Receiver.php");
 
-		</div>
-	</div>
+$obj = new Receiver;
+if(!isset($_SESSION['user'])){
 
-	<div class = "row-12 mt-2" id = "menubar" style = "border:1px solid red; border-left:none; border-right:none">
+	header("location:receivegifts.php");
 
-		<div class = "col-md-1 col-2" id = "logo">
+}
 
-			<a href = "index.html"><img src = "images/logomn.jpg" style = "height: 80px"></a>
-			
+require("header2.php");
+$details = $obj->getdetails($_SESSION['user'],'receivers');
 
-		</div>
 
-		<div class = "col-md-8 offset-md-4 col-12">
-			
-			<nav class="navbar navbar-expand-lg" style = "background-color: white">
-			  <a class="navbar-brand" href="#"></a>
-			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-			    <span class="navbar-toggler-icon"></span>
-			  </button>
-			  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-			    <ul class="navbar-nav">
-			      <li class="nav-item active">
-			        <a class="nav-link" href="#">CREATE A REGISTRY<span class="sr-only">(current)</span></a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="#">ABOUT</a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="#testimonial">TESTIMONIALS</a>
-			      </li>
-			      <li class="nav-item dropdown">
-			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			          VENDORS
-			        </a>
-			        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-			          <a class="dropdown-item" href="#merchantsection">See Our Vendors</a>
-			          <a class="dropdown-item" href="vendor_info_page.html">Become a Vendor</a>
-			          <a class="dropdown-item" href="#">Vendor Sign in</a>
-			        </div>
-			      </li>
-
-			      <li class="nav-item dropdown">
-			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			          FAQs
-			        </a>
-			        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-			          <a class="dropdown-item" href="#">FAQ for Givers</a>
-			          <a class="dropdown-item" href="#">FAQ for Receivers</a>
-			          <a class="dropdown-item" href="#">FAQ for Vendors</a>
-			        </div>
-			      </li>
-
-			      <li class="nav-item">
-			        <a class="nav-link" href="#">CONTACT</a>
-			      </li>
-
-			    </ul>
-			  </div>
-			</nav>
-
-		</div>
-
-	</div>
+?>
 
 	<button type="button" class="btn btn-outline-danger mr-2 my-2 offset-md-9">Give a Gift</button>
-	<button type="button" class="btn btn-danger my-2">Logout</button>
+	<a href="logout.php" class="btn btn-danger my-2">Logout</a>
    
 	<div class="container-fluid">
    
 	 <div class = "row">
     	<div class = "col-12">
 		    <div class="alert alert-primary pb-0" role="alert" col-8 offset-2>
-			  <h5 class = "mb-0">Hi Name! <small>You are Logged In</small></h5>
+			  <h5 class = "mb-0">Hi <?php echo ucfirst($details['r_fname']).","?><small> You are Logged In</small></h5>
 			  <nav aria-label="breadcrumb" class = "my-0 py-0">
 			  <ol class="breadcrumb alert-primary pl-0 py-2 my-1">
-			    <li class="breadcrumb-item"><a href="#">Main Page</a></li>
-			    <li class="breadcrumb-item"><a href="#">View Collections</a></li>
-			    <li class="breadcrumb-item"><a href="#">See Collection Details</a></li>
-			    <li class="breadcrumb-item active" aria-current="page">Preview</li>
+			    <li class="breadcrumb-item"><a href="receiverprofile.php">Main Page</a></li>
+			    <li class="breadcrumb-item"><a href="viewcollections.php">View Collections</a></li>
+			    <li class="breadcrumb-item"><a href="collectiondetails.php">See Collection Details</a></li>
+			    <li class="breadcrumb-item active" aria-current="page">Gifters' Preview</li>
 			  </ol>
 			</nav>
 			</div>
@@ -111,14 +44,7 @@
       <div class="col-lg-2 mb-4">
 	  <div>
 	  <img src='images/avatar.png' class='img-fluid col-12 mb-2'>
-	  <form method = "" action = "" enctype = "multipart/form-data">
-	  	<div class="form-group">
-		    <div class="col-sm-10">
-		     <input type='file' name='mypix'>
-		     <button type = "submit" class="btn-sm btn btn-info mt-2">Upload Picture</button>
-		 </div>
-		</div>
-		</form>
+	  
 	 
 	  </div>
         <div class="list-group">
@@ -138,19 +64,19 @@
 
 		<div class = "row mx-1">
 			<div class = "col-12 card card-body pt-1 pb-0 mb-0">
-				  <h2 class ="pb-0 text-center">Event Title/Name: </h2>
-				  <h4 class ="mb-2 text-center">By Event People's Name</h4>
+				  <h2 class ="pb-0 text-center"><?php echo ucwords($_SESSION['$r_event_title']);?>: </h2>
+				  <h4 class ="mb-2 text-center">By <?php echo ucfirst($details['r_fname'])." ".ucfirst($details['r_lname']) ?></h4>
 				  <div class = "text-center">
-				  <img src="images/jumia.png" class="card-img-top" style = "height: 300px" alt="...">
+				  <img src="images/couple2.jpg" class="card-img-top img-fluid" style = "height: 300px" alt="...">
 				</div>
 				<div class = "mt-2" style = "display:flex; flex-wrap: nowrap;">
-					<h6 class = "text-center" style = " width: 50%">Due Date: October 22, 2020</h6>
-					<h6 class = "text-center" style = "width: 50%">Event Date: October 22, 2020</h6>
+					<h6 class = "text-center" style = " width: 50%"><b>Due Date:</b> October 22, 2020</h6>
+					<h6 class = "text-center" style = "width: 50%"><b>Event Date:</b> October 22, 2020</h6>
 				</div>
 				
 
-				<h5 class ="text-center">Beautiful Message From Couple: </h5>
-				<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus. Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>				
+				<h5 class ="text-center">Beautiful Message From The Celebrant: </h5>
+				<p class = "card card-body alert-warning"><?php echo ucwords($_SESSION['$r_message']);?></p>				
 			  
 			  </div>
 			</div>
@@ -160,19 +86,9 @@
 
 			<div class = "row mt-2 mx-1">
 				<div class = "col-12 card card-body pt-1">
-					<h4 class ="mb-3 mt-0">See Items Chosen By The Couple: </h4>
-					<div class = "row">
-						<div class = "col-md-3 col-6">
-							<div class="card text-center">
-							  <div class="card-body">
-							  	<img src="images/jumia.png" class="card-img-top" alt="...">
-							    <h5 class="card-title mt-2">Item Name</h5>
-							    <p class="card-text"><b>Unit Price:</b> N500</p>
-							    <p class="card-text"><b>Quantity:</b> 10</p>
-							    <a href="#staticBackdropAddItem" class="btn btn-primary" data-toggle="modal">Buy Item</a>
-							  </div>
-							</div>
-						</div>
+					<h4 class ="mb-3 mt-0">See Gift Items Chosen By The Celebrant: </h4>
+					<div class = "row" id = "bodyofitem">
+						
 					</div>
 				</div>
 			</div>
@@ -377,6 +293,14 @@
 <script type="text/javascript" src="giftjava.js"></script>
 <script type = "text/javascript">
 
+$(document).ready(function(){
+
+
+$('#bodyofitem').load("previewsubmit.php");
+
+
+
+})
 
 </script>
 

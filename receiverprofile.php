@@ -19,13 +19,13 @@ $details = $obj->getdetails($_SESSION['user'],'receivers');
 ?>
 
 	<button type="button" class="btn btn-outline-danger mr-2 my-2 offset-md-9">Give a Gift</button>
-	<button type="button" class="btn btn-danger my-2">Logout</button>
+	<a href="logout.php" class="btn btn-danger my-2">Logout</a>
    
 	<div class="container">
 	 <div class = "row">
     	<div class = "col-12">
 		    <div class="alert alert-primary" role="alert" col-8 offset-2>
-			  <h3>Hi <?php echo ucfirst($details['r_fname']).","?> <small>Welcome To Your Profile Page</small></h3>
+			  <h3>Hi <?php echo ucfirst($details['r_fname']).","?> <small> Welcome To Your Profile Page</small></h3>
 			</div>
 		</div>
 	</div>
@@ -37,12 +37,31 @@ $details = $obj->getdetails($_SESSION['user'],'receivers');
       
       <div class="col-lg-3 mb-4">
 	  <div>
-	  <img src='images/avatar.png' class='img-fluid col-12 mb-2'>
-	  <form method = "" action = "" enctype = "multipart/form-data">
+	  <img src="<?php if($details['r_pic_name'] != ""){ echo $details['r_pic_name']; }else{echo 'images/avatar.png';} ?>" class='img-fluid col-12 mb-2'>
+	  <form method = "POST" action = "receiver_image_upload.php" enctype = "multipart/form-data" id = "uploadform">
 	  	<div class="form-group">
 		    <div class="col-sm-10">
-		     <input type='file' name='mypix'>
-		     <button type = "submit" class="btn-sm btn btn-info mt-2">Upload Picture</button>
+		     <input type='file' name='profile'>
+		     <button type = "submit" class="btn-sm btn btn-info mt-2" id = "btnupload">Upload Picture</button>
+		     <p class = "" id = "alertspan" ><?php if(isset($_SESSION['picupload']) && $_SESSION['picupload'] == 1){
+	     	echo "<span class = 'alert-success' id = 'fader'>Upload Successful</span>";
+
+	     	$_SESSION['picupload'] = 0;
+	     	
+	     }
+	     
+	     elseif (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
+	     	foreach($_SESSION['errors'] as $v){
+	     		
+	     		echo "<span class = 'alert-danger' id = 'fader'>$v</span><br>";
+	     	}
+	     	$_SESSION['errors'] = array();
+	     }
+
+	     
+
+
+	     ?></p>
 		 </div>
 		</div>
 		</form>
@@ -254,7 +273,7 @@ $details = $obj->getdetails($_SESSION['user'],'receivers');
 						    </div>
 						  </div>
 
-        				<img src="images/jumia.png" class="card-img-top" alt="...">
+        				<img src="images/coupleavatar2.jpg" class="card-img-top" alt="No image Available">
       	
       					<div class="form-group row mt-2">
 						    <label for="exampleFormControlFile1" class="col-sm-2 col-form-label" >Select Image<span style = "color:red">*</span></label>
@@ -298,7 +317,15 @@ $details = $obj->getdetails($_SESSION['user'],'receivers');
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="giftjava.js"></script>
 <script type = "text/javascript">
+$(document).ready(function(){
 
+$('#btnupload').mouseout(function(){
+
+	
+	$('#fader').fadeOut('slow');
+})
+
+})
 
 </script>
 
