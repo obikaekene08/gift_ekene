@@ -10,7 +10,10 @@ if(!isset($_SESSION['user'])){
 
 }
 
-require("header.php");
+require("header2.php");
+
+$details = $obj->getdetails($_SESSION['user'],'receivers');
+
 
 
 
@@ -22,7 +25,7 @@ require("header.php");
     <div class = "row">
     	<div class = "col-10 offset-1">
 		    <div class="alert alert-primary" role="alert" col-8 offset-2>
-			  <h3>Hi Name! <small>Welcome To Your Profile Page</small></h3>
+			  <h3>Hi <?php echo ucfirst($details['r_fname']).","?> <small>Welcome To Your Profile Page</small></h3>
 			</div>
 		</div>
 	</div>
@@ -35,15 +38,8 @@ require("header.php");
       
       <div class="col-lg-3 mb-4">
 	  <div>
-	  <img src='images/avatar.png' class='img-fluid col-12 mb-2'>
-	  <form method = "" action = "" enctype = "multipart/form-data">
-	  	<div class="form-group">
-		    <div class="col-sm-10">
-		     <input type='file' name='mypix'>
-		     <button type = "submit" class="btn-sm btn btn-secondary mt-2">Upload Picture</button>
-		 </div>
-		</div>
-		</form>
+	  <img src="<?php if($details['r_pic_name'] != ""){ echo $details['r_pic_name']; }else{echo 'images/avatar.png';} ?>" class='img-fluid col-12 mb-2'>
+	  
 	 
 	  </div>
         <div class="list-group">
@@ -211,13 +207,66 @@ require("header.php");
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <form action="receiverprofile_submit.php" method="POST" enctype="multipart/form-data">
       <div class="modal-body">
-        ...
+        
+        				<div class = "row">
+				    	<div class = "col-12">
+						    <div class="alert alert-primary" role="alert">
+							  <h6><small>Please note that the information with <span style = "color:red">*</span> will be displayed to your gifters<br><span style = "color:black">Please Check on "View Collections" tab to see Preview</span></small></h6>
+							</div>
+						</div>
+						</div>
+        				<div class = "card-body">
+        				
+        				<div class="form-group row">
+						    <label for="inputPassword" class="col-sm-3 col-form-label">Event Type</label>
+						    <div class="col-sm-9">
+						      <select class="form-control" id="" name = "r_event_type">
+						      	<option value="">--Select Event Type--</option>
+						      	<option value=1>Wedding</option>
+						      	<option value=2>Child Dedication</option>
+						      	<option value=3>Christmas</option>
+						      	<option value=4>Others</option>
+						      </select>
+						    </div>
+						  </div>
+
+						  <div class="form-group row">
+						    <label for="staticEmail" class="col-sm-3 col-form-label">Event Title<span style = "color:red">*</span></label>
+						    <div class="col-sm-9">
+						      <input type="text" class="form-control" id="staticEmail" value="" name = "r_event_title">
+						    </div>
+						  </div>
+
+        				<img src="images/coupleavatar2.jpg" class="card-img-top" alt="No image Available">
+      	
+      					<div class="form-group row mt-2">
+						    <label for="exampleFormControlFile1" class="col-sm-2 col-form-label" >Select Image<span style = "color:red">*</span></label>
+						    <div class="col-sm-10">
+						    <div class = "row">
+						    <input type="file" class="form-control-file col-7 mr-0 pr-0" id="exampleFormControlFile1">
+						    <button type = "submit" class="btn-sm btn btn-warning col-4" >Upload Pic</button>
+							</div>
+							</div>
+						 </div>
+						
+						  <div class="control-group form-group">
+				            <div class="controls">
+				              <label><b>Message For Your Gifters(Brief):</b></label>
+				              <textarea rows="4" cols="50" name = "r_message" class="form-control" id="profile"  maxlength="300" style="resize:none"></textarea>
+				            </div>
+				          </div>
+				         </div>		  
+
+         
+
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Start Collection</button>
       </div>
+      </form>
     </div>
   </div>
 </div>

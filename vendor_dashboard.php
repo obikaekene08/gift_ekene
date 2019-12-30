@@ -14,9 +14,7 @@ $details = $obj->getdetails($_SESSION['user'],'vendors');
 
 $cat_table = $obj->getseveral('category_table');
 
- 
-
-
+$fetch_catname = $obj->getseveralwhereNoGroup('vendor_item','category_table','vendor_item.v_cat_id','category_id','vendor_id',$_SESSION['user'],'ORDER BY', 'category_name ASC');
 
 
 
@@ -55,6 +53,9 @@ $cat_table = $obj->getseveral('category_table');
 					    <a class="nav-link" id="pills-upload-tab" data-toggle="pill" href="#pills-upload" role="tab" aria-controls="pills-upload" aria-selected="false">Upload Item</a>
 					  </li>
 					  <li class="nav-item">
+					    <a class="nav-link" id="pills-view-tab" data-toggle="pill" href="#pills-view" role="tab" aria-controls="pills-view" aria-selected="false" onclick = "$('#tableofitems').load('vendor_dashboard.php #tableofitems2');">View Items</a>
+					  </li>
+					  <li class="nav-item">
 					    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Edit Profile</a>
 					  </li>
 					  <li class="nav-item">
@@ -81,15 +82,17 @@ $cat_table = $obj->getseveral('category_table');
 								<div class="card-body mb-3" >
 								  <div class="row no-gutters">
 								    <div class="col-md-4">
-								      <img src="<?php if($details['v_pic_name'] != ""){ echo $details['v_pic_name']; }else{echo 'images/avatar.png';} ?>" class="card-img" alt="...">
+								      <img class = "responsive img-fluid" src="<?php if($details['v_pic_name'] != ""){ echo $details['v_pic_name']; }else{echo 'images/avatar.png';} ?>" class="card-img" alt="...">
 								    </div>
 								    <div class="col-md-8">
 								      <div class="card-body">
 								        <h5 class="card-title"><?php echo $details['v_companyname'] ?></h5>
-								        <p class="card-text"><b>Stock Category: </b>Category 1, Category 2, Category 3, Category 4</p>
+								        <p class="card-text"><b>Stock Category: </b>
+								        	<?php if(!empty($fetch_catname)){ foreach($fetch_catname as $v){echo $v['category_name'].", ";} }?>
+								        </p>
 								        <p class=""><small class="text-muted"><b>Orders Completed: </b> 3</small></p>
 								        <p class = "" id = "alertspan" ><?php if(isset($_SESSION['picupload']) && $_SESSION['picupload'] == 1){
-									     	echo "<span style = 'color: yellow'>Upload Successful</span>";
+									     	echo "<span class = 'alert-success' id = 'fader'>Upload Successful</span>";
 
 									     	$_SESSION['picupload'] = 0;
 									     	
@@ -97,7 +100,7 @@ $cat_table = $obj->getseveral('category_table');
 									     
 									     elseif (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
 									     	foreach($_SESSION['errors'] as $v){
-									     		echo $v."<br>";
+									     		echo "<span class = 'alert-danger' id = 'fader'>$v</span><br>";
 									     	}
 									     	$_SESSION['errors'] = array();
 									     }
@@ -267,6 +270,45 @@ $cat_table = $obj->getseveral('category_table');
 							</div>
 						</div>
 
+						 <!-- VIEW ITEMS -->
+					  <div class="tab-pane fade" id="pills-view" role="tabpanel" aria-labelledby="pills-view-tab">
+					  	
+					  	<div class = "row mt-3" id = "tableofitems">
+							<div class = "col-12 my-1 card card-body mbline" id = "tableofitems2" style="min-height:50rem">
+							<?php $fetch_catname = $obj->getseveralwhereNoGroup('vendor_item','category_table','vendor_item.v_cat_id','category_id','vendor_id',$_SESSION['user'],'ORDER BY', 'category_name ASC');?>
+							<table class="table table-striped">
+								  <thead>
+								    <tr>
+								      <th scope="col">S/N</th>
+								      <th scope="col">Item Name</th>
+								      <th scope="col">Category</th>
+								      <th scope="col">Unit Price</th>
+								      <th scope="col">Colour</th>
+								      <th scope="col">Stock</th>
+								      <th scope="col">Actions</th>
+								    </tr>
+								  </thead>
+								  <tbody>
+								  	<?php $i = 1; foreach($fetch_catname as $v){?>
+								    <tr>
+								      <th scope="row"><?php echo $i;?></th>
+								      <td id = "itemName"><?php echo $v['v_item_name'];?></td>
+								      <td id = "catName"><?php echo $v['category_name'];?></td>
+								      <td id = "itemPrice"><?php echo "&#8358;".number_format($v['v_item_price'],2);?></td>
+								      <td style = "display: none" id = "itemRawPrice"><?php echo $v['v_item_price'];?></td>
+								      <td id = "itemColor"><?php echo $v['item_color'];?></td>
+								      <td id = "itemQty"><?php echo $v['item_qty'];?></td>
+								      <td style = "display: none" id = "itemId"><?php echo $v['v_item_id'];?></td>      
+								      <td id = "btnparent"><button id ="<?php echo "editrecord".$v['v_item_id'];?>" type="button" data-target = "#staticBackdropEditItem" data-toggle="modal" class = "btn-link" style="border:none; background-color: inherit;" onclick = "editItem(this);">Edit</button> | <button id ="<?php echo "removerecord".$v['v_item_id'];?>" data-target = "#staticBackdropRemoveItem" class = "btn-link" data-toggle="modal" style="border:none; background-color: inherit;" onclick = "deleteItem(this);">Delete</button></td>
+								    </tr>
+								   <?php  $i++;}?>
+								  </tbody>
+								</table>								
+							</div>
+						</div>
+
+					  </div>
+
 					  <!-- PROFILE -->
 					  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 					  	
@@ -397,7 +439,7 @@ $cat_table = $obj->getseveral('category_table');
 									      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="">
 									    </div>
 									  </div>
-									  <p align="right"><button type="submit" class="btn btn-primary mr-2">Edit Details</button><button type="submit" class="btn btn-primary" disabled>Save Changes</button></p>
+									  <p align="right"><button type="submit" class="btn btn-primary mr-2">Edit Details</button><button type="button" type="submit" class="btn btn-primary" disabled>Save Changes</button></p>
 									</form>
 
 
@@ -1156,8 +1198,8 @@ $cat_table = $obj->getseveral('category_table');
 
 
 <!-- Modal Add Item-->
-<div class="modal fade" id="staticBackdropAddItem" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<div class="modal fade bd-example-modal-lg" id="staticBackdropAddItem" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Add Item</h5>
@@ -1168,52 +1210,55 @@ $cat_table = $obj->getseveral('category_table');
       <div class = "card card-body">
 <form method = "POST" action = "additem.php" enctype="multipart/form-data" id = "additemform">
       <div class="modal-body">
-        <img src="images/jumia.png" class="card-img-top" alt="...">
-      	
+      	<div class = "row">
+      		<div class = "col-5">
+        		<img src="images/noimage3.jpg" class="card-img-top" alt="...">      					
       					<div class="form-group row mt-2">
-						    <label for="exampleFormControlFile1" class="col-sm-4 col-form-label" >Select Image<span style = "color:red">*</span></label>
-						    <div class="col-sm-8">
+						    <label for="exampleFormControlFile1" class="col-sm-12 col-form-label">Select Image<span style = "color:red">*</span></label>
+						    <div class="col-sm-12">
 						    <input type="file" class="form-control-file" id = "selectimage">
 							</div>
-						 </div>
-						
-						<div class="form-group row">
-						    <label for="staticEmail" class="col-sm-4 col-form-label">Item Name<span style = "color:red">*</span></label>
-						    <div class="col-sm-8">
+						 </div>						 
+						</div>
+						<div class = "col-7">
+							<div class="form-group row">
+						    <label for="staticEmail" class="col-sm-3 col-form-label">Category<span style = "color:red">*</span></label>
+						    <div class="col-sm-9">
+						      <input type="text" class="form-control" id = "itemcategory" value="">
+						    </div>
+						  </div>
+						  <div class="form-group row">
+						    <label for="staticEmail" class="col-sm-3 col-form-label mr-0 pr-0">Item Name<span style = "color:red">*</span></label>
+						    <div class="col-sm-9">
 						      <input type="text" class="form-control" id = "itemname" value="">
 						    </div>
 						  </div>
-
 						  <div class="form-group row">
-						    <label for="staticEmail" class="col-sm-4 col-form-label">Unit Price<span style = "color:red">*</span></label>
-						    <div class="col-sm-8">
+						    <label for="staticEmail" class="col-sm-3 col-form-label">Unit Price<span style = "color:red">*</span></label>
+						    <div class="col-sm-9">
 						      <input type="text" class="form-control" id = "itemprice" value="">
 						    </div>
 						  </div>
 
 						  <div class="form-group row">
-						    <label for="staticEmail" class="col-sm-4 col-form-label">Colour<span style = "color:red">*</span></label>
-						    <div class="col-sm-8">
+						    <label for="staticEmail" class="col-sm-3 col-form-label">Colour<span style = "color:red">*</span></label>
+						    <div class="col-sm-9">
 						      <input type="text" class="form-control" id = "itemcolor" value="">
 						    </div>
 						  </div>
 
 						  <div class="form-group row">
-						    <label for="inputPassword" class="col-sm-4 col-form-label">Quantity<span style = "color:red">*</span></label>
-						    <div class="col-sm-8">						      
-							<datalist id ="data3">
-							    <?php for ($i=1; $i < 6; $i++) { ?>
-						      	<option value="<?php echo $i; ?>" label= ""/>
-						      		<?php }?>										      	
-						      </datalist>
-						      <input class="form-control" id="itemqty" list='data3' name = "selectqty" value = 1>
+						    <label for="inputPassword" class="col-sm-3 col-form-label">Quantity<span style = "color:red">*</span></label>
+						    <div class="col-sm-9">
+						      <input type="number" class="form-control" id = "itemqty" value="">
 						    </div>
 						  </div>
-
+						</div>
+						</div>
 	      			</div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary" id = "additembtn" data-dismiss="modal">Save</button>
+	        <button type="button" class="btn btn-primary" id = "additembtn" data-dismiss="modal" onclick = " $('#tableofitems').load('vendor_dashboard.php #tableofitems2'); $('#bodyofitem').load('itemsadded.php');">Save</button>
 	      </div>
 	      </form>
   		</div>
@@ -1223,67 +1268,36 @@ $cat_table = $obj->getseveral('category_table');
 
 
 <!-- Modal Edit Item-->
-<div class="modal fade" id="staticBackdropEditItem" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<div class="modal fade bd-example-modal-lg" id="staticBackdropEditItem" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Add Item</h5>
+        <h5 class="modal-title" id="staticBackdropLabel">Edit Item</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class = "card card-body">
-<form method = "POST" action = "additem.php" enctype="multipart/form-data" id = "additemform">
-      <div class="modal-body">
-        <img src="images/jumia.png" class="card-img-top" alt="...">
-      	
-      					<div class="form-group row mt-2">
-						    <label for="exampleFormControlFile1" class="col-sm-4 col-form-label" >Select Image<span style = "color:red">*</span></label>
-						    <div class="col-sm-8">
-						    <input type="file" class="form-control-file" id = "selectimage">
-							</div>
-						 </div>
-						
-						<div class="form-group row">
-						    <label for="staticEmail" class="col-sm-4 col-form-label">Item Name<span style = "color:red">*</span></label>
-						    <div class="col-sm-8">
-						      <input type="text" class="form-control" id = "itemname" value="">
-						    </div>
-						  </div>
+      <div class = "card card-body" id = "bodyOfEditItem">
 
-						  <div class="form-group row">
-						    <label for="staticEmail" class="col-sm-4 col-form-label">Unit Price<span style = "color:red">*</span></label>
-						    <div class="col-sm-8">
-						      <input type="text" class="form-control" id = "itemprice" value="">
-						    </div>
-						  </div>
-
-						  <div class="form-group row">
-						    <label for="staticEmail" class="col-sm-4 col-form-label">Colour<span style = "color:red">*</span></label>
-						    <div class="col-sm-8">
-						      <input type="text" class="form-control" id = "itemcolor" value="">
-						    </div>
-						  </div>
-
-						  <div class="form-group row">
-						    <label for="inputPassword" class="col-sm-4 col-form-label">Quantity<span style = "color:red">*</span></label>
-						    <div class="col-sm-8">
-						      <input class="form-control" id="selectqty" list='data3' name = "selectqty" value = "<?php echo $i; ?>">
-							<datalist id ="data3">
-							    <?php for ($i=1; $i < 6; $i++) { ?>
-						      	<option value="<?php echo $i; ?>" label= ""/>
-						      		<?php }?>										      	
-						      </datalist>
-						    </div>
-						  </div>
-
-	      			</div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary" id = "edititembtn" data-dismiss="modal">Save</button>
-	      </div>
-	      </form>
   		</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Remove Modal -->
+<div class="modal fade" id="staticBackdropRemoveItem" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="staticBackdropLabel">Remove Item</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class = "card card-body" id = "bodyOfDeleteItem">
+      
+      </div>
     </div>
   </div>
 </div>
@@ -1331,9 +1345,121 @@ $cat_table = $obj->getseveral('category_table');
 
 <script>
 
+function editItem(editbtn){
+
+	var itemName = $(editbtn).parent('#btnparent').siblings('#itemName').html();
+	var catName = $(editbtn).parent('#btnparent').siblings('#catName').html();
+	var itemPrice = $(editbtn).parent('#btnparent').siblings('#itemRawPrice').html();
+	var itemColor = $(editbtn).parent('#btnparent').siblings('#itemColor').html();
+	var itemQty = $(editbtn).parent('#btnparent').siblings('#itemQty').html();
+	var itemId = $(editbtn).parent('#btnparent').siblings('#itemId').html();
+
+	var data = {"itemName":itemName,"catName":catName,"itemPrice":itemPrice,"itemColor":itemColor,"itemQty":itemQty,"itemId":itemId};
+
+	$('#bodyOfEditItem').load("vendoredititem.php",data);
+	
+}
+
+function updateitem(savebtn){
+
+	
+	var itemName = $(savebtn).parent('#editbtndiv').siblings('#divsib').find('#itemname').val();
+	var catName = $(savebtn).parent('#editbtndiv').siblings('#divsib').find('#catname').val();
+	var itemPrice = $(savebtn).parent('#editbtndiv').siblings('#divsib').find('#itemprice').val();
+	var itemColor = $(savebtn).parent('#editbtndiv').siblings('#divsib').find('#itemcolor').val();
+	var itemQty = $(savebtn).parent('#editbtndiv').siblings('#divsib').find('#itemqty').val();
+	var itemId = $(savebtn).parent('#editbtndiv').siblings('#divsib').find('#itemid').html();	
+
+	$.ajax({
+
+		url: "vendorupdateitem.php",
+		type: "POST",
+		data: {"itemName": itemName, "catName": catName, "itemPrice": itemPrice, "itemId": itemId, "itemColor": itemColor, "itemQty": itemQty},
+		dataType: "text",
+		success(msg){
+
+		},
+		error(errmsg){
+
+		}
+
+	})
+
+$('#tableofitems').load("vendor_dashboard.php #tableofitems2");
+$('#bodyofitem').load("itemsadded.php");
+
+
+}
+
+function editItemCard(editcardbtn){
+
+	var itemid = $(editcardbtn).parents('#grandfather').siblings('#itemid').html();
+	var btnid = "editrecord"+itemid;
+
+	$('#'+btnid).trigger("click");
+
+	
+}
+
+function removeItemCard(removecardbtn){
+
+	var itemid = $(removecardbtn).parents('#grandfather').siblings('#itemid').html();
+	var btnid = "removerecord"+itemid;
+
+	$('#'+btnid).trigger("click");
+	
+	
+}
+
+
+// function editItemCard(editbtn){
+
+// 	var itemName = $(editbtn).parent('#btnparent').siblings('#itemName').html();
+// 	var catName = $(editbtn).parent('#btnparent').siblings('#catName').html();
+// 	var itemPrice = $(editbtn).parent('#btnparent').siblings('#itemRawPrice').html();
+// 	var itemColor = $(editbtn).parent('#btnparent').siblings('#itemColor').html();
+// 	var itemQty = $(editbtn).parent('#btnparent').siblings('#itemQty').html();
+// 	var itemId = $(editbtn).parent('#btnparent').siblings('#itemId').html();
+
+// 	var data = {"itemName":itemName,"catName":catName,"itemPrice":itemPrice,"itemColor":itemColor,"itemQty":itemQty,"itemId":itemId};
+
+// 	$('#bodyOfEditItem').load("vendoredititem.php",data);
+	
+// }
+
+function deleteItem(deletebtn){
+
+	var itemId = $(deletebtn).parent('#btnparent').siblings('#itemId').html();
+
+	var data = {"itemId":itemId};
+
+	$('#bodyOfDeleteItem').load("vendordeleteitem.php",data);
+	
+}
+
+function finalRemoveItem(removebtn){
+
+	var itemId = $(removebtn).siblings('#itemid').html();
+
+	var data = {"itemId":itemId};
+
+	$('#loaddiv').load("vendorremoveitem.php",data);
+	$('#tableofitems').load("vendor_dashboard.php #tableofitems2");
+	$('#bodyofitem').load("itemsadded.php");
+}
+
+
 $(document).ready(function(){
 
+
+
 $('#bodyofitem').load("itemsadded.php");
+
+$('#btnupload').mouseout(function(){
+
+	
+	$('#fader').fadeOut('slow');
+})
 
 
 
@@ -1374,14 +1500,16 @@ $.ajax({
 
 $('#input2').change(function(){
 
-var r = $('#input2').val();
-$('#itemname').val(r);
+var categoryName = $('#selectcategory').val();
+$('#itemcategory').val(categoryName);
+
+var selectItemName = $('#input2').val();
+$('#itemname').val(selectItemName);
 
 
 })
 
-$('#additembtn').click(function(event){
-	event.preventDefault();
+$('#additembtn').click(function(){
 var valcat = $('#selectcategory').val();
 var make = $('#input2').val();
 var a = $('#itemname').val();
@@ -1396,9 +1524,6 @@ $.ajax({
 		data: {"valcat":valcat, "make": make, "itemname":a, "itemprice":b, "itemcolor":c, "itemqty":d},		
 		dataType: "text",
 		success(msg){
-
-		alert(msg);
-
 					
 		},
 		error(errmsg){
@@ -1410,6 +1535,8 @@ $.ajax({
 
 
 $('#bodyofitem').load("itemsadded.php");
+$('#tableofitems').load("vendor_dashboard.php #bodyofitem");
+$('#tableofitems').load("vendor_dashboard.php #tableofitems2");
 
 
 })
@@ -1420,7 +1547,11 @@ $('#formupload').submit(function(){
 })
 
 
+
+
 })
+
+
 
 </script>
 

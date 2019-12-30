@@ -46,7 +46,7 @@ $_SESSION['$r_message'] = $_GET['r_message'];
       
       <div class="col-lg-2 mb-4">
 	  <div>
-	  <img src='images/avatar.png' class='img-fluid col-12 mb-2'>
+	  <img src="<?php if($details['r_pic_name'] != ""){ echo $details['r_pic_name']; }else{echo 'images/avatar.png';} ?>" class='img-fluid col-12 mb-2'>
 	  
 	 
 	  </div>
@@ -56,8 +56,7 @@ $_SESSION['$r_message'] = $_GET['r_message'];
           <a href="#modalcreatecollection" data-toggle="modal" class="list-group-item">Create a Collection</a>
           <a href="viewcollections.php" class="list-group-item">View My Collections</a>
           <a href="changepassword.php" class="list-group-item">Change Password</a>
-          <a href="logout.php" class="list-group-item">Log Out</a>
-         
+          <a href="logout.php" class="list-group-item">Log Out</a>         
           
         </div>
       </div>
@@ -76,11 +75,11 @@ $_SESSION['$r_message'] = $_GET['r_message'];
 		<div class = "row mx-1">
 			<div class = "col-12 card card-body pt-1">
 				  
-				  <h4 class ="mb-3 mt-0"><?php echo ucwords($_SESSION['$r_event_title']);?> Collection Details:</h4>
-				  <div class = "row">
+				  <h4 class ="mb-3 mt-0 actionbtns"><?php echo ucwords($_SESSION['$r_event_title']);?> Collection Details:</h4>
+				  <div class = "row actionbtns">
 				  	<div class = "col-2">
 					<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample" disabled>
-					  Select Items
+					  Select Item(s)
 					</button>
 					</div>
 					<div class = "col-2">
@@ -88,16 +87,21 @@ $_SESSION['$r_message'] = $_GET['r_message'];
 					  Select All
 					</button>
 					</div>
+					<div class = "col-2">
+					<a href="createcollection.php" class="btn btn-primary" id = "addmoreitembtn" >
+					  Add More Items
+					</a>
+					</div>
 					<div class = "col-3">
-					<a href="preview.php" class="btn btn-primary">See Your Gifters' Preview</a>
+					<a href="preview.php" class="btn btn-primary">Preview Your Gifters' View</a>
 					</div>
 					<div class = "col-2">
 					<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample" >
 					  See Table View
 					</button>
+					</div>					
 					</div>
-					</div>
-					<div class = "row mt-2">
+					<div class = "row mt-2 actionbtns">
 					<div class = "col-2">
 					<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample" disabled>
 					  Mask Item(s)
@@ -113,14 +117,12 @@ $_SESSION['$r_message'] = $_GET['r_message'];
 					   Merge Items(s)
 					</button>
 					</div>
-					<div class = "col-3 offset-1">
+					<div class = "col-3">
 					<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample" disabled>
 					   Unmerge Items(s)
 					</button>
-					</div>
-									
-					
-				</div>
+					</div>					
+				</div>				
 			  
 			  </div>
 			</div>
@@ -128,7 +130,7 @@ $_SESSION['$r_message'] = $_GET['r_message'];
 
 			<div class = "row mt-2 mx-1">
 				<div class = "col-12 card card-body pt-1">
-					<h4 class ="mb-3 mt-0">Items Selected in <?php echo ucwords($_SESSION['$r_event_title']);?>: </h4>
+					<h4 class ="mb-3 mt-0" id = "itemsSelectedBodyTitle">Items Selected in <?php echo ucwords($_SESSION['$r_event_title']);?>: </h4>
 					<div class = "row" id = "bodyofitem">
 
 						
@@ -339,8 +341,23 @@ $_SESSION['$r_message'] = $_GET['r_message'];
 
 $(document).ready(function(){
 
+// $('.addmoreitem').hide();
+// $('#addMoreBodyTitle').hide();
+
 
 $('#bodyofitem').load("collectiondetailssubmit.php");
+
+// $('#addmoreitembtn').click(function(){
+
+// $('.actionbtns').fadeOut();
+// $('.addmoreitem').fadeIn();
+// $('#addMoreBodyTitle').show();
+// $('#itemsSelectedBodyTitle').hide();
+// $('#bodyofitem').load("collectiondetailssubmit.php");
+
+// })
+
+
 
 
 })

@@ -33,6 +33,7 @@ require("header.php");
 				    <div class="list-group" id="list-tab" role="tablist">
 				      <a class="list-group-item list-group-item-action <?php if(!isset($_SESSION['loginstatus'])){ echo active;}?> btn btn-primary" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home"><h3>SIGN UP</h3></a>
 				      <a class="list-group-item list-group-item-action btn btn-primary <?php if(isset($_SESSION['loginstatus'])){ echo active;}?>" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile"><h3>LOGIN</h3></a>				      
+				      
 				    </div>
 				  </div>
 				  <div class="col-6">

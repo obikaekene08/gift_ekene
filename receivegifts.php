@@ -31,14 +31,14 @@ require("header.php");
 				<div class="row m-4 p-4">
 				  <div class="col-4 offset-1">
 				    <div class="list-group" id="list-tab" role="tablist">
-				      <a class="list-group-item list-group-item-action btn btn-primary" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home"><h3>SIGN UP</h3></a>
-				      <a class="list-group-item list-group-item-action active btn btn-primary" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile"><h3>LOGIN</h3></a>
+				      <a class="list-group-item list-group-item-action <?php if(!isset($_SESSION['loginstatus'])){ echo active;}?> btn btn-primary" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home"><h3>SIGN UP</h3></a>
+				      <a class="list-group-item list-group-item-action active btn btn-primary <?php if(isset($_SESSION['loginstatus'])){ echo active;}?>" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile"><h3>LOGIN</h3></a>
 				      <a class="list-group-item list-group-item-action btn btn-primary" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages"><h4 class = "pl-0">CONTINUE WITHOUT LOGIN</h4></a>
 				    </div>
 				  </div>
 				  <div class="col-6">
 				    <div class="tab-content" id="nav-tabContent">
-				      <div class="tab-pane fade" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+				      <div class="tab-pane fade <?php if(!isset($_SESSION['loginstatus'])){ echo "show active";}?>" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
 				      	<form method="POST" id="formSignup" action='receiversubmitsignup.php'>
 				        <div class = "row">
 				          <div class="control-group form-group col-md-6 col-12">
@@ -84,6 +84,18 @@ require("header.php");
 				      <div class="tab-pane fade show active" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
 				      	
 				      	<form method="POST" id="formLogin" action='receiversubmitlogin.php'>
+				      		<?php if(isset($_SESSION['loginstatus']) && $_SESSION['loginstatus'] == 'failed'){ ?>
+				      	<div class="control-group form-group">
+				            <div class="controls">
+				              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+								  <strong>Incorrect Username or password! </strong>Please try again.
+								  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								    <span aria-hidden="true">&times;</span>
+								  </button>
+								</div>
+				            </div>
+				          </div>
+				      <?php } ?>
 				        <div class="control-group form-group">
 				            <div class="controls">
 				              <label>Email Address:</label>

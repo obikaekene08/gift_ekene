@@ -42,16 +42,7 @@ $item_table = $obj->getseveral('vendor_item');
       
       <div class="col-lg-2 mb-4">
 	  <div>
-	  <img src='images/avatar.png' class='img-fluid col-12 mb-2'>
-	  <form method = "" action = "" enctype = "multipart/form-data">
-	  	<div class="form-group">
-		    <div class="col-sm-10">
-		     <input type='file' name='mypix'>
-		     <button type = "submit" class="btn-sm btn btn-info mt-2">Upload Picture</button>
-		 </div>
-		</div>
-		</form>
-	 
+	  <img src="<?php if($details['r_pic_name'] != ""){ echo $details['r_pic_name']; }else{echo 'images/avatar.png';} ?>" class='img-fluid col-12 mb-2'>	 
 	  </div>
         <div class="list-group">
           <a href="receiverprofile.php" class="list-group-item">Main Page</a>
@@ -66,30 +57,34 @@ $item_table = $obj->getseveral('vendor_item');
       </div>
       <!-- Content Column -->
       <div class="col-lg-10 mb-4">
-       
-	   <div class = "row" id = "searchbox">
+
+      	<div class="form-group row mb-2">
+		<label for="inputPassword" class=" col-form-label col-sm-2">Choose Event Title: <span style = "color:red">*</span></label>
+	    <div class="col-sm-5">
+		    <select class = "form-control" id = "eventtitle">		    	
+	      	<option value="<?php if(isset($_SESSION['$r_event_id']) && isset($_SESSION['$r_event_title'])){ echo $_SESSION['$r_event_id']; } else {echo "Select an event";}?>" ><?php if(isset($_SESSION['$r_event_id']) && isset($_SESSION['$r_event_title'])){ echo $_SESSION['$r_event_title']; } else {echo "Select an event";} ?> </option>
+	      		<?php foreach($event_table AS $k => $v){ ?>
+	      			<option value="<?php echo $v['r_event_id'];?>" ><?php echo $v['r_event_title']; ?> </option>
+	      		<?php } ?>										      	
+	      </select>		
+	     </div>	    
+	  </div>     
+	   
+
+		<div class = "row mx-1">
+			<div class = "col-12 card card-body mt-2">
+				<div class = "row" id = "searchbox">
 				<div class = "offset-1 col-11 col-md-8 offset-md-2 mb-3" style = "width:100%; margin:auto;">	
 						<form class="form-inline">
 					    <input class="form-control mr-2 col-10" type="search" placeholder="Search for Merchants and Products" aria-label="Search" id = "searchval">
-					    <button class="btn btn-outline-danger" type="button" id = "search">Search</button>
+					    <button class="btn btn-outline-danger" type="button" id = "search">Search</button>					    
 					  	</form>
+					</div>
 				</div>
-		</div>
+				<h5 class = "text-center mb-0 pb-0" id = "or">OR</h5>
+				<hr>
 
-		<div class = "row mx-1">
-			<div class = "col-12 card card-body">
-				<div class="form-group row mb-2">
-					<label for="inputPassword" class=" col-form-label col-sm-2">Event Title: <span style = "color:red">*</span></label>
-				    <div class="col-sm-5">
-					    <select class = "form-control" id = "eventtitle">
-					    	<?php foreach($event_table AS $k => $v){ ?>
-				      	<option value="<?php echo $v['r_event_id']; ?>" ><?php echo $v['r_event_title'] ?> </option>
-				      		<?php } ?>										      	
-				      </select>		
-				     </div>
-				    
-				  </div>
-				  <h5 class ="mb-0 mt-2">Sort By: </h5>
+				  <h5 class ="mb-0 mt-1 mb-2 text-center">Search By Sort: </h5>
 				  <div class="form-group row">
 					<div class="col-sm-3">
 				    <label for="price" class=" col-form-label">Choose Price Range: </label>				    
@@ -147,20 +142,16 @@ $item_table = $obj->getseveral('vendor_item');
 				  </div>
 				</div>
 
-
-			<div class = "row mt-2 mx-1">
+			<div class = "row mt-2 mx-1" id = "bodyofitemparent">
 				<div class = "col-12 card card-body pt-1">
-					<h4 class ="mb-3 mt-0">Items From Search: </h4>
+					<h4 class ="mb-3 mt-0">Items From Search: </h4>				
+
 					<div class = "row" id = "bodyofitem">
 						<div class = "col-md-12 col-12">
-							<div class="card text-center alert-primary" style ="min-height: 100px">
-							  <h2 class = " text-center" > Search For Items To Include In Your Collection</h2>
-							</div>
+							
 
 
 						</div>
-
-
 					</div>
 
 
@@ -175,7 +166,7 @@ $item_table = $obj->getseveral('vendor_item');
 						<div class = "col-md-3 col-6">
 							<div class="card text-center">
 							  <div class="card-body">
-							  	<img src="images/jumia.png" class="card-img-top" alt="...">
+							  	<img src="images/noimage3.jpg" class="card-img-top" alt="...">
 							    <h5 class="card-title mt-2">Item Name</h5>
 							    <p class="card-text"><b>Unit Price:</b> &#8358;5000.00</p>
 							    <p class="card-text"><b>Quantity:</b> 10</p>
@@ -385,6 +376,20 @@ $item_table = $obj->getseveral('vendor_item');
 
 <script type = "text/javascript">
 
+function fetchitems(){
+
+var r_event_id = $('#eventtitle').val();
+var price = $('#price').val();
+var selectcategory = $('#selectcategory').val();
+var merchant = $('#merchant').val();
+var brand = $('#brand').val();
+var data = {"price": price, "selectcategory":selectcategory, "merchant":merchant, "brand":brand, "r_event_id": r_event_id};
+
+$('#bodyofitem').load("receiverselectitem.php", data);
+
+
+}
+
 function iteminclude(itbtn){
 	
 var r_event_id = $('#eventtitle').val();
@@ -421,6 +426,7 @@ $(itbtn).siblings('#itremove').show();
 
 $(document).ready(function(){
 
+
 var colqty = $('#eventtitle').val();
 
  $('#colqty').load('loadcollectionqty.php?colqty='+colqty);
@@ -434,42 +440,19 @@ var colqty = $('#eventtitle').val();
 
  })
 
+fetchitems();
 
- // $('#colqty').val() =  
-
-
+ 
 
 $('#searchbysort').click(function(){
-var price = $('#price').val();
-var selectcategory = $('#selectcategory').val();
-var merchant = $('#merchant').val();
-var brand = $('#brand').val();
-var data = {"price": price, "selectcategory":selectcategory, "merchant":merchant, "brand":brand};
 
-$('#bodyofitem').load("receiverselectitem.php", data);
+fetchitems();
 
+})
 
-// $.ajax({
+$('#eventtitle').change(function(){
 
-// 		url: "receiverselectitem.php",
-// 		type: "POST",		
-// 		data: {"price": price, "selectcategory":selectcategory, "merchant":merchant, "brand":brand},		
-// 		dataType: "text",
-// 		success(msg){
-
-// 		alert(msg);
-
-					
-// 		},
-// 		error(errmsg){
-// 			// console.log(errmsg);
-// 		alert("failed");
-			
-// 		}
-// 	})
-
-
-// $('#bodyofitem').load("itemsadded.php");
+fetchitems();
 
 
 })
@@ -483,9 +466,9 @@ $('#bodyofitem').load("receiverselectitem.php", data);
 
 
 $('#search').click(function(){
-
+var r_event_id = $('#eventtitle').val();
 var searchval = $('#searchval').val();
-var data = {"searchval": searchval};
+var data = {"searchval": searchval, "r_event_id": r_event_id};
 
 $('#bodyofitem').load("receiverselectitemMainSearch.php", data);
 

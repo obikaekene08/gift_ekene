@@ -95,6 +95,21 @@ class Receiver extends User{
 		}
 	}
 
+	function getdetailswhere($id, $table,$colname){
+
+		$sql = " SELECT * FROM $table WHERE $colname = '$id' ";
+
+		$result = $this->conn->query($sql);
+
+		if($result->num_rows>0){
+
+			$row = $result->fetch_assoc();
+			
+			return $row;
+			
+		}
+	}
+
 function update($collect, $K1,$v1,$table){
 
 	$all = "";
@@ -296,6 +311,12 @@ function update($collect, $K1,$v1,$table){
 		$id = $this->conn->insert_id;
 
 		if($id > 0){
+
+			$details = $this->getdetailswhere($id,'receiver_events','r_event_id');
+			
+			
+			$_SESSION['$r_event_id'] = $details['r_event_id'];
+			$_SESSION['$r_event_title'] = $details['r_event_title'];
 			
 			header("location: createcollection.php");
 		}else{
@@ -426,9 +447,9 @@ function update($collect, $K1,$v1,$table){
 }
 
 
-function getseveralwheregroup($table,$table2,$colname,$colname2,$id = 0, $col1,$col2){
+function getseveralwheregroup($table,$table2,$colname,$colname2,$id = 0, $col1,$col2,$col3){
 
-		$sql = " SELECT *, COUNT($id) AS counter FROM $table JOIN $table2 ON $col1 = $col2 WHERE $colname2 = '$id' GROUP BY $colname ";
+		$sql = " SELECT *, SUM($col3) AS counter FROM $table JOIN $table2 ON $col1 = $col2 WHERE $colname2 = '$id' GROUP BY $colname ";
 		
 
 		$result = $this->conn->query($sql);

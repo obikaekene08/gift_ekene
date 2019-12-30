@@ -42,7 +42,7 @@ $details = $obj->getdetails($_SESSION['user'],'receivers');
       
       <div class="col-lg-2 mb-4">
 	  <div>
-	  <img src='images/avatar.png' class='img-fluid col-12 mb-2'>
+	  <img src="<?php if($details['r_pic_name'] != ""){ echo $details['r_pic_name']; }else{echo 'images/avatar.png';} ?>" class='img-fluid col-12 mb-2'>
 	  
 	 
 	  </div>
@@ -74,24 +74,24 @@ $details = $obj->getdetails($_SESSION['user'],'receivers');
 			<div class = "col-12 card card-body pt-1">
 				  <h4 class ="pb-2">My Collections: </h4>
 				  <div class = "row">
-				  	<div class = "col-2">
-					<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+				  	<div class = "col-3">
+					<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample" disabled>
 					  Select Collection
 					</button>
 					</div>
-					<div class = "col-2 text-center">
-					<button type="button" class="btn btn-primary" data-toggle="collapse" data-target = "#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+					<div class = "ml-0 pl-0 col-2">
+					<button type="button" class="btn btn-primary" data-toggle="collapse" data-target = "#collapseExample" aria-expanded="false" aria-controls="collapseExample" disabled>
 					  Select All
 					</button>
 					</div>
 					
-					<div class = "col-2">
-					<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+					<div class = "ml-0 pl-0 col-2">
+					<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample" disabled>
 					  View Reports
 					</button>
 					</div>					
-					<div class = "col-2">
-					<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+					<div class = "col-3">
+					<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample" disabled>
 					  Delete Collection
 					</button>
 					</div>

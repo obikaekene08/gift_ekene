@@ -47,7 +47,7 @@ class Vendor extends User{
 
 			$row = $result->fetch_assoc();
 
-			$_SESSION['user'] = $row['vendor_id'];
+			$_SESSION['user'] = $row['vendor_id'];			
 
 			
 
@@ -181,7 +181,7 @@ function update($collect, $K1,$v1,$table){
 
 	function getseveralwhere($table,$colname,$id = 0){
 
-		$sql = " SELECT * FROM $table WHERE $colname = '$id' ";
+		$sql = " SELECT * FROM $table WHERE $colname = '$id' AND approved = 1";
 
 		$result = $this->conn->query($sql);
 		echo $this->conn->error;
@@ -274,6 +274,68 @@ function update($collect, $K1,$v1,$table){
 
 		 return $result;
 	}
+
+
+	function getseveralwhereNoGroup($table,$table2,$colname,$colname2,$col,$id = 0,$extra,$extra2){
+
+		$sql = " SELECT * FROM $table JOIN $table2 ON $colname = $colname2 WHERE $col = '$id' AND $table.approved = 1 "." $extra ". " $extra2 ";
+		
+
+		$result = $this->conn->query($sql);
+		// echo $sql;
+		echo $this->conn->error;
+		$list = [];
+		if($result->num_rows>0){
+			while($row = $result->fetch_assoc()){
+
+
+				$list[] = $row;
+
+			}
+
+			$_SESSION['item_id'] = $result->num_rows;
+
+			return $list;
+		}
+
+
+
+	}
+
+	function updateitem($item_id, $v_cat_name, $v_item_name,$v_item_price,$item_color,$item_qty){
+
+		$r = $this->getseveralwhere('category_table','category_name',$v_cat_name);
+
+		$v_cat_id = $r[0]['category_id'];
+
+		$sql = " UPDATE vendor_item SET v_cat_id = '$v_cat_id', v_item_name = '$v_item_name', v_item_price = '$v_item_price', item_color = '$item_color', item_qty = '$item_qty' WHERE v_item_id = '$item_id' AND approved = 1";
+
+		$r = $this->conn->query($sql);
+
+		echo $this->conn->error;
+
+		$sid = $this->conn->affected_rows;
+
+		return $sid;
+
+	
+	}
+
+	function removeitem($table,$colname,$id = 0){
+
+		$sql = " UPDATE $table SET approved = 0 WHERE $colname = '$id' ";
+
+		$result = $this->conn->query($sql);
+		echo $this->conn->error;
+
+		$sid = $this->conn->affected_rows;
+
+		return $sid;
+
+		
+	}
+
+	
 
 }
 
