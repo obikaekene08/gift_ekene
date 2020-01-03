@@ -14,22 +14,20 @@ require("header2.php");
 
 $details = $obj->getdetails($_SESSION['user'],'gifters');
 
-
-if(isset($_GET['eventid']) && isset($_GET['eventtitle'])){
-$_SESSION['$r_event_id'] = $_GET['eventid'];
-$_SESSION['$receiver_id'] = $_GET['receiver_id'];
-}
-
 $details2 = $obj->getdetails2($_SESSION['$receiver_id'],'receivers');
 $details3 = $obj->getdetails3($_SESSION['$receiver_id'],$_SESSION['$r_event_id'],'receiver_events');
 
-// print_r($details3);
+$gift_for_checkout = $obj->getcheckoutitems($_SESSION['user'],$_SESSION['$r_event_id']);
+
+$_SESSION['checkout_items'] = $gift_for_checkout;
+
+// print_r($gift_for_checkout);
 
 
 ?>
 
 	<a href="receiverprofile.php" class="btn btn-outline-danger mr-2 my-2 offset-md-9">Receive Gifts</a>
-	<a href="index.php" class="btn btn-danger my-2">Logout</a>
+	<a href="logout.php" class="btn btn-danger my-2">Logout</a>
     <div class = "row">
     	<div class = "col-12">
 		    <div class="alert alert-primary" role="alert" col-8 offset-2>
@@ -91,26 +89,17 @@ $details3 = $obj->getdetails3($_SESSION['$receiver_id'],$_SESSION['$r_event_id']
 	  	<div class = "row mt-3">
 			<div class = "col-12 my-1 card mbline" id = "">
 
-				<div class = "row mx-1">
-			<div class = "col-12 card card-body pt-1 pb-0 mb-0">
-				  <h2 class ="pb-0 text-center"><?php echo ucwords($details3['r_event_title']);?>: </h2>
-				  <h4 class ="mb-2 text-center">By <?php echo ucfirst($details2['r_fname'])." ".ucfirst($details2['r_lname']) ?></h4>
-				  <div class = "text-center">
-				  <img src="<?php if($details3['r_event_pic'] != ""){ echo $details3['r_event_pic']; }else{echo 'images/noimage3.jpg';} ?>" class="card-img-top img-fluid" style = "height: 300px" alt="...">
-				</div>
-				<div class = "mt-2" style = "display:flex; flex-wrap: nowrap;">
-					<h6 class = "text-center" style = " width: 50%"><b>Due Date: </b><?php $d = strtotime($details3['r_event_duedate']); if($details3['r_event_duedate'] != ''){ echo date("F j, Y",$d);}else{echo "None";} ?></h6>
-					<h6 class = "text-center" style = "width: 50%"><b>Event Date: </b><?php $d = strtotime($details3['r_event_date']); if($details3['r_event_date'] != ''){echo date("F j, Y",$d);}else{echo "None";} ?></h6>
-				</div>
-				
 
-				<h5 class ="text-center">Beautiful Message From The Celebrant: </h5>
-				<p class = "card card-body alert-warning"><?php echo ucwords($details3['r_message']);?></p>				
-			  	<div class = "offset-8 mb-2">
-				      <label for="colqty">Qty in Collection:</label>				      
-				      <div id = "colqty" style = "width:40%; font-weight: bold; border:2px solid red; display:inline; margin: 2px; padding:4px; " > </div>
-				      <a href="giftercheckout.php" class = "btn btn-info col-4 offset-2">Check Out</a>
-				  </div>
+				<div class = "row mx-1">
+			<div class = "col-12 card-body pt-1 pb-0 mb-0">
+				  <h2 class ="pb-0 text-center"><?php echo $details3['r_event_title']?>: </h2>
+				 							
+			  	<!-- <div class = "offset-3 my-2 row">
+				      <label for="colqty" class = "col-3 mr-1 pr-0 text-right ">Qty in Collection:</label>				      
+				      <div id = "colqty" class = "col-1 ml-0" style = "width:40%; font-weight: bold; border:2px solid red; display:inline; padding:3px; " > </div>
+				      <a href="" class = "btn btn-primary col-3 offset-1">Proceed to Payment</a>
+				      <a href="gifterviewreceiver.php" class = "btn btn-primary offset-1 col-2 " style = "display:inline">Cancel</a>
+				  </div> -->
 
 			  </div>
 			</div>
@@ -120,12 +109,46 @@ $details3 = $obj->getdetails3($_SESSION['$receiver_id'],$_SESSION['$r_event_id']
 
 			<div class = "row mt-2 mx-1">
 				<div class = "col-12 card card-body pt-1">
-					<h4 class ="mb-3 mt-0">See Gift Items Chosen By The Celebrant: </h4>
-					<div class = "row" id = "bodyofitem">
-						
+					<h4 class ="mb-3 mt-0">See Gift Items You Selected: </h4>
+					<form method = "POST" action = "processpayment.php" id = "formtable">
+					<table class="table table-striped">
+					  <thead class="thead-dark">
+					    <tr>
+					      <th scope="col">S/N</th>
+					       <th scope="col">Item</th>
+					      <th scope="col">Amount</th>
+					      <th scope="col">Quantity</th>
+					      <th scope="col">SubTotal</th>
+					      <th scope="col">Action</th>          
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <?php $total = 0; $totalqty = 0;$i = 1; if(isset($gift_for_checkout)){foreach($gift_for_checkout as $k => $v) {  ?>
+					    <tr>
+					      <td><?php echo $i?></td>
+					       <td><?php echo $v['v_item_name']?></td>
+					       <td><?php echo "&#8358;".number_format($v['v_item_price'],2)?></td>
+					       <td><?php echo $v['g_item_qty']?></td>
+					       <td><?php echo "&#8358;".number_format(($v['v_item_price'])*($v['g_item_qty']))?></td>
+					       <td id = "itemid" style = "display: none"><?php echo $v['g_selection_id']?></td>
+					       <td id = "loaddiv" style = "display: none"></td>
+					       <td id = "parent"><button class = "btn btn-outline-danger btn-sm" type = "button" style = "border: none; " id = "deletebtn" onclick = "deleteItem(this);">Remove</button></td>      
+					    </tr>
+					  <?php $total = $total + (($v['v_item_price'])*($v['g_item_qty'])); $totalqty = $totalqty + $v['g_item_qty']; $i++; }}?>
+					    
+						<tr>   
+					      <th colspan='2' style='text-align:right'>TOTAL</th>
+					      <td></td>
+					      <th><b><?php echo $totalqty;?></th>
+					      <th><?php echo "&#8358;".number_format($total,2)?></th>
+					      <th></th>  
+					    </tr>
+					  </tbody>
+					</table>
+					<div style='text-align:right'><button class='btn btn-info mr-2' type  = "submit">Proceed to Make Payment</button>
+					<a href="gifterviewreceiver.php" class = "btn btn-danger " style = "display:inline">Cancel</a>
 					</div>
-					<div id = "loaddiv">
-					</div>
+					</form>
 				</div>
 			</div>
 
@@ -333,59 +356,19 @@ $details3 = $obj->getdetails3($_SESSION['$receiver_id'],$_SESSION['$r_event_id']
 <script type = "text/javascript">
 
 
-
-$(document).ready(function(){
-
-
-$('#bodyofitem').load("gifterpreviewsubmit.php");
-
- $('#colqty').load('gifterloadcartqty.php');
-
- 
-})
-
-function iteminclude(itbtn){
-
-var receiver_itid = $(itbtn).siblings('#receiver_itid').html();var itqty = $(itbtn).siblings('#itqty').html();
+function deleteItem(finalDeletebtn){
 
 
-
-$.ajax({
-
-		url: "gifterincludeitem.php",
-		type: "POST",		
-		data: {"itqty":itqty,"receiver_itid":receiver_itid},		
-		dataType: "text",
-		success(msg){
-
-		$('#colqty').html(msg);
-					
-		},
-		error(errmsg){
-			// console.log(errmsg);
-		alert("failed");
-			
-		}
-	})
-
-
-
-$(itbtn).hide();
-
-$(itbtn).siblings('#itremove').show();
-
-}
-
-function deleteItemCard(deletebtn){
-
-var itemid = $(deletebtn).siblings('#g_selection_id').html();
+	var itemid = $(finalDeletebtn).parent('#parent').siblings('#itemid').html();
 
 	var data = {"itemid":itemid};
 
 	$('#loaddiv').load("gifterremoveitem.php",data);
 
-	$('#bodyofitem').load("gifterpreviewsubmit.php");
+	$('#formtable').load("giftercheckout.php #formtable");
+		
 }
+
 
 
 </script>

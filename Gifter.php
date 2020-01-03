@@ -111,6 +111,21 @@ class Gifter extends User{
 		}
 	}
 
+	function getdetails3($id,$id2,$table){
+
+		$sql = " SELECT * FROM $table WHERE receiver_id = '$id' AND r_event_id = '$id2' ";
+
+		$result = $this->conn->query($sql);
+
+		if($result->num_rows>0){
+
+			$row = $result->fetch_assoc();
+			
+			return $row;
+			
+		}
+	}
+
 function update($collect, $K1,$v1,$table){
 
 	$all = "";
@@ -417,29 +432,23 @@ function update($collect, $K1,$v1,$table){
 	}
 
 
-	function cartitem($itqty,$itid){
+	function includeitem($table,$r_event_id,$gifter_id,$itqty,$receiver_itid){
 
-		// $r = $this->getseveralwhere('receiver_events','r_event_title',$eventtitle);
+		$deet = $this->getseveralwhereNoGroup('receiver_item','vendor_item','receiver_item.v_item_id','vendor_item.v_item_id','receiver_item.receiver_item_id',$receiver_itid);
 
+		$v_itid = $deet[0]['v_item_id'];
+		$receiver_id = $deet[0]['receiver_id'];
 
-		// echo $this->conn->error;
-
-		// $r_event_id = $r[0]['r_event_id']; //remember to collect back itemid and use it for includeitem
-
-			$gifter = $_SESSION['user'];
-
-		$sql = " INSERT INTO purchase_item SET gifter_id = '$gifter', v_item_id = '$itid', g_item_qty = '$itqty' ";
+		$sql = " INSERT INTO $table SET gifter_id = '$gifter_id', receiver_item_id = '$receiver_itid', g_item_qty = '$itqty', v_item_id = '$v_itid', receiver_id = '$receiver_id', r_event_id = '$r_event_id' ";
 
 		$r = $this->conn->query($sql);
 
 		echo $this->conn->error;
 
-		$y = $this->getseveralwhere('purchase_item','gifter_id',$gifter);
-
+		$y = $this->getseveralwheretwocolumns($table,'gifter_id',$gifter_id,'r_event_id',$r_event_id);
 		
 		return $y;
 	
-
 	}
 
 	function getseveralwheretwocolumns($table,$colname,$id = 0,$colname2,$id2 = 0){
@@ -457,11 +466,68 @@ function update($collect, $K1,$v1,$table){
 
 			}
 
-			$_SESSION['item_id'] = $result->num_rows;
+			return $list;
+		}
+
+
+}
+
+function getcheckoutitems($id = 0,$id2 = 0){
+
+		$sql = " SELECT * FROM gift_selection JOIN receiver_item ON gift_selection.receiver_item_id = receiver_item.receiver_item_id JOIN vendor_item ON receiver_item.v_item_id = vendor_item.v_item_id WHERE gift_selection.gifter_id = '$id' AND gift_selection.r_event_id = '$id2'";
+
+		$result = $this->conn->query($sql);
+		echo $this->conn->error;
+		$list = [];
+		if($result->num_rows>0){
+			while($row = $result->fetch_assoc()){
+
+
+				$list[] = $row;
+
+			}
 
 			return $list;
 		}
 
+
+}
+
+
+function insert_pay($itemsarray,$userid){
+
+	$gifter = $_SESSION['user'];
+
+
+$total = 0;
+if(is_array($itemsarray)){
+
+foreach($itemsarray as $value){
+
+	$itemid = $value['receiver_item_id'];
+	$itemdetails = $this->getseveralwhereNoGroup('receiver_item','vendor_item','receiver_item.v_item_id','vendor_item.v_item_id','receiver_item.receiver_item_id',$itemid);
+	
+	$item_amt = $itemdetails[0]['v_item_price'];
+	$transid = $_SESSION['transref'];
+
+	$sql = " INSERT INTO gifter_to_receiver_payment SET receiver_item_id = '$itemid', pay_amount = '$item_amt', pay_status = 'Pending', gifter_id = '$userid', pay_trxref = '$transid' ";
+
+	$this->conn->query($sql);
+
+	echo $this->conn->error;
+
+	$total = $total + (($item_amt)*($itemdetails[0]['r_item_qty']));
+
+
+}
+
+$_SESSION['total'] = $total;
+
+$getemail = $this->getdetails($userid,'gifters');
+
+$_SESSION['user_email'] = $getemail['g_email'];
+
+}
 
 }
 
@@ -508,13 +574,27 @@ function getseveralwheregroup($table,$table2,$colname,$colname2,$id = 0, $col1,$
 
 			}
 
-			$_SESSION['item_id'] = $result->num_rows;
-
 			return $list;
 		}
 
 
 
+	}
+
+
+	function removeitem($table,$colname,$id = 0){
+
+		$sql = " DELETE FROM $table WHERE $colname = '$id' ";
+		
+		$result = $this->conn->query($sql);
+		echo $this->conn->error;
+
+
+		$sid = $this->conn->affected_rows;
+
+		echo $sid;
+
+		
 	}
 
 	

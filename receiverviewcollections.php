@@ -18,7 +18,7 @@ $viewcollections = $obj->getseveralwheregroup('receiver_item','receiver_events',
 
 <?php
 
-foreach($viewcollections as $key => $v) { $revent_id = $v['r_event_id']; $r_event_title = $v['r_event_title'];$r_message = $v['r_message'];
+foreach($viewcollections as $key => $v) { $revent_id = $v['r_event_id']; $r_event_title = $v['r_event_title'];$r_message = $v['r_message']; $r_event_date = $v['r_event_date']; $r_event_duedate = $v['r_event_duedate']; $r_event_pic = $v['r_event_pic'];
 	
 ?>
 
@@ -29,9 +29,9 @@ foreach($viewcollections as $key => $v) { $revent_id = $v['r_event_id']; $r_even
 							  <div class="card-body">
 							  	<img src="images/couple2.jpg" class="card-img-top" alt="...">
 							    <h5 class="card-title mt-2"><?php echo $v['r_event_title'];?></h5>
-							    <p class="card-text"><b>Event Creation Date: </b> <?php $d = strtotime($v['r_item_selection_time']); echo date("Y-m-d",$d); ?></p>
+							    <p class="card-text"><b>Event Creation Date: </b><br><?php $d = strtotime($v['r_item_selection_time']); echo date("F,j,Y",$d); ?></p>
 							    <p class="card-text"><b>Items Selected: </b><?php echo $v['counter'];?> </p>
-							    <a href=' <?php echo "collectiondetails.php?eventid=".$revent_id."&eventtitle=".$r_event_title."&r_message=".$r_message." " ?> ' class="btn btn-primary">See Details</a>
+							    <a href=' <?php echo "collectiondetails.php?eventid=".$revent_id."&eventtitle=".$r_event_title."&r_message=".$r_message."&eventdate=".$r_event_date."&eventduedate=".$r_event_duedate."&eventpic=".$r_event_pic." " ?> ' class="btn btn-primary">See Details</a>
 							  </div>
 							</div>
 						</div>

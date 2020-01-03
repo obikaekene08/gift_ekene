@@ -32,7 +32,7 @@ require("header.php");
 				  <div class="col-4 offset-1">
 				    <div class="list-group" id="list-tab" role="tablist">
 				      <a class="list-group-item list-group-item-action <?php if(!isset($_SESSION['loginstatus'])){ echo active;}?> btn btn-primary" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home"><h3>SIGN UP</h3></a>
-				      <a class="list-group-item list-group-item-action active btn btn-primary <?php if(isset($_SESSION['loginstatus'])){ echo active;}?>" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile"><h3>LOGIN</h3></a>
+				      <a class="list-group-item list-group-item-action btn btn-primary <?php if(isset($_SESSION['loginstatus'])){ echo active;}?>" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile"><h3>LOGIN</h3></a>
 				      <a class="list-group-item list-group-item-action btn btn-primary" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages"><h4 class = "pl-0">CONTINUE WITHOUT LOGIN</h4></a>
 				    </div>
 				  </div>

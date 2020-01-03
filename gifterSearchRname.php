@@ -23,10 +23,10 @@ $search_item = $obj->searchRName($searchval);
                     <tbody>
                       <?php foreach($search_item as $v){ $revent_id = $v['r_event_id']; $receiver_id = $v['receiver_id'];$r_event_title = $v['r_event_title']; $r_message = $v['r_message'];?>
                       <tr>
-                        <th scope="row"><a href='<?php echo "gifterviewreceiver.php?eventid=".$revent_id."&receiver_id=".$receiver_id."&eventtitle=".$r_event_title."&r_message=".$r_message." " ?>'><?php echo $v['r_event_title'];?></a></th>                        
-                        <td><a href='<?php echo "gifterviewreceiver.php?eventid=".$revent_id."&receiver_id=".$receiver_id."&eventtitle=".$r_event_title."&r_message=".$r_message." " ?>'><?php echo $v['r_fname'];?></a></td>
-                        <td><a href='<?php echo "gifterviewreceiver.php?eventid=".$revent_id."&receiver_id=".$receiver_id."&eventtitle=".$r_event_title."&r_message=".$r_message." " ?>'><?php echo $v['r_lname'];?></a></td>
-                        <td><a href='<?php echo "gifterviewreceiver.php?eventid=".$revent_id."&receiver_id=".$receiver_id."&eventtitle=".$r_event_title."&r_message=".$r_message." " ?>'><?php echo $v['r_phone'];?></a></td>
+                        <th scope="row"><a href='<?php echo "gifterviewreceiver.php?eventid=".$revent_id."&receiver_id=".$receiver_id." " ?>'><?php echo $v['r_event_title'];?></a></th>                        
+                        <td><a href='<?php echo "gifterviewreceiver.php?eventid=".$revent_id."&receiver_id=".$receiver_id." " ?>'><?php echo $v['r_fname'];?></a></td>
+                        <td><a href='<?php echo "gifterviewreceiver.php?eventid=".$revent_id."&receiver_id=".$receiver_id." " ?>'><?php echo $v['r_lname'];?></a></td>
+                        <td><a href='<?php echo "gifterviewreceiver.php?eventid=".$revent_id."&receiver_id=".$receiver_id." " ?>'><?php echo $v['r_phone'];?></a></td>
                       </tr>
                     <?php };?>
                     </tbody>

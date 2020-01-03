@@ -43,7 +43,7 @@ $details = $obj->getdetails($_SESSION['user'],'receivers');
       
       <div class="col-lg-2 mb-4">
 	  <div>
-	  <img src='images/avatar.png' class='img-fluid col-12 mb-2'>
+	  <img src='<?php if($details['r_pic_name'] != ""){ echo $details['r_pic_name']; }else{echo 'images/avatar.png';} ?>' class='img-fluid col-12 mb-2'>
 	  
 	 
 	  </div>
@@ -67,11 +67,11 @@ $details = $obj->getdetails($_SESSION['user'],'receivers');
 				  <h2 class ="pb-0 text-center"><?php echo ucwords($_SESSION['$r_event_title']);?>: </h2>
 				  <h4 class ="mb-2 text-center">By <?php echo ucfirst($details['r_fname'])." ".ucfirst($details['r_lname']) ?></h4>
 				  <div class = "text-center">
-				  <img src="images/couple2.jpg" class="card-img-top img-fluid" style = "height: 300px" alt="...">
+				  <img src="<?php if($_SESSION['$r_event_pic'] != ""){ echo $_SESSION['$r_event_pic']; }else{echo 'images/noimage3.jpg';} ?>" class="card-img-top img-fluid" style = "height: 300px" alt="...">
 				</div>
 				<div class = "mt-2" style = "display:flex; flex-wrap: nowrap;">
-					<h6 class = "text-center" style = " width: 50%"><b>Due Date:</b> October 22, 2020</h6>
-					<h6 class = "text-center" style = "width: 50%"><b>Event Date:</b> October 22, 2020</h6>
+					<h6 class = "text-center" style = " width: 50%"><b>Due Date:</b><?php $d = strtotime($_SESSION['$r_event_duedate']); if($_SESSION['$r_event_duedate'] != ''){echo date("F,j,Y",$d);}else{echo "none";} ?></h6>
+					<h6 class = "text-center" style = "width: 50%"><b>Event Date:</b><?php $d = strtotime($_SESSION['$r_event_date']); if($_SESSION['$r_event_date'] != ''){echo date("F,j,Y",$d);}else{echo "None";} ?></h6>
 				</div>
 				
 

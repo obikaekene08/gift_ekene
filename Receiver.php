@@ -255,7 +255,7 @@ function update($collect, $K1,$v1,$table){
 	}
 
 
-	function doupload($filearray,$imagefolder){	
+function doupload($filearray,$imagefolder,$imagetable,$imagecol,$imagecoluserid,$imageuserid){	
 
 	$filename = $filearray['profile']['tmp_name'];
 	$original_name = $filearray['profile']['name'] ;			
@@ -274,16 +274,15 @@ function update($collect, $K1,$v1,$table){
 		$dst = $imagefolder. "/".$newname;
 		$t = move_uploaded_file($filename, $dst);
 		$_SESSION['picupload'] = $t;
-		$this->updateupload('receivers','r_pic_name',$dst,'receiver_id',$_SESSION['user']);
-		$imagedetails = $this->getdetails($_SESSION['user'],'receivers');
-		$_SESSION['imagelocation'] = $imagedetails['r_pic_name'];
-		header("location: receiverprofile.php");
+		$this->updateupload($imagetable,$imagecol,$dst,$imagecoluserid,$imageuserid);
+		
 	}else{
 		$_SESSION['errors'] = $error;
-		 header("location: receiverprofile.php");//if any, the errors can be retrieved from $_SESSION['errors'] on picture.php
+		 
 	}
 	
 }
+
 
 	function updateupload($table, $col1,$v1,$id,$v2){
 
@@ -300,9 +299,9 @@ function update($collect, $K1,$v1,$table){
 
 
 
-	function addcollection($receiver_id, $r_event_type, $r_event_title,$r_message){
+	function addcollection($receiver_id, $r_event_type, $r_event_title,$r_message,$r_event_date,$r_event_duedate){
 
-		$sql = " INSERT INTO receiver_events SET receiver_id = '$receiver_id', r_event_type = '$r_event_type', r_event_title = '$r_event_title', r_message = '$r_message' ";
+		$sql = " INSERT INTO receiver_events SET receiver_id = '$receiver_id', r_event_type = '$r_event_type', r_event_title = '$r_event_title', r_message = '$r_message', r_event_date = '$r_event_date' , r_event_duedate = '$r_event_date' ";
 
 		$r = $this->conn->query($sql);
 
@@ -317,8 +316,9 @@ function update($collect, $K1,$v1,$table){
 			
 			$_SESSION['$r_event_id'] = $details['r_event_id'];
 			$_SESSION['$r_event_title'] = $details['r_event_title'];
-			
-			header("location: createcollection.php");
+
+			return $id;
+		
 		}else{
 
 			header("location: receiverprofile.php");
@@ -496,6 +496,37 @@ function getseveralwheregroup($table,$table2,$colname,$colname2,$id = 0, $col1,$
 
 
 
+	}
+
+	function updateitem($item_id, $item_qty){
+
+		
+		$sql = " UPDATE receiver_item SET r_item_qty = '$item_qty' WHERE receiver_item_id = '$item_id' AND approved = 1";
+
+		$r = $this->conn->query($sql);
+
+		echo $this->conn->error;
+
+		$sid = $this->conn->affected_rows;
+
+		return $sid;
+
+	
+	}
+
+
+	function removeitem($table,$colname,$id = 0){
+
+		$sql = " DELETE FROM $table WHERE $colname = '$id' ";
+		
+		$result = $this->conn->query($sql);
+		echo $this->conn->error;
+
+		$sid = $this->conn->affected_rows;
+
+		echo $sid;
+
+		
 	}
 
 	

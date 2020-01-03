@@ -17,6 +17,10 @@ if(isset($_GET['eventid']) && isset($_GET['eventtitle'])){
 $_SESSION['$r_event_id'] = $_GET['eventid'];
 $_SESSION['$r_event_title'] = $_GET['eventtitle'];
 $_SESSION['$r_message'] = $_GET['r_message'];
+$_SESSION['$r_event_date'] = $_GET['eventdate'];
+$_SESSION['$r_event_duedate'] = $_GET['eventduedate'];
+$_SESSION['$r_event_pic'] = $_GET['eventpic'];
+
 }
 ?>
 
@@ -95,11 +99,16 @@ $_SESSION['$r_message'] = $_GET['r_message'];
 					<div class = "col-3">
 					<a href="preview.php" class="btn btn-primary">Preview Your Gifters' View</a>
 					</div>
-					<div class = "col-2">
-					<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample" >
+					<div class = "col-2" id = "seetablediv" >
+					<button type="button" class="btn btn-primary" id = "seetablebtn" >
 					  See Table View
 					</button>
-					</div>					
+					</div>
+					<div class = "col-3" style="display:none" id = "backtocardviewdiv">
+					<button type="button" class="btn btn-primary" id = "backtocardviewbtn" >
+					  Back to Card View
+					</button>
+					</div>							
 					</div>
 					<div class = "row mt-2 actionbtns">
 					<div class = "col-2">
@@ -147,6 +156,8 @@ $_SESSION['$r_message'] = $_GET['r_message'];
    
 
   </div>
+
+
   
 	
 	<!-- Send Message and Footer -->
@@ -256,8 +267,8 @@ $_SESSION['$r_message'] = $_GET['r_message'];
 
 
 <!-- Modal Create Collection -->
-<div class="modal fade" id="modalcreatecollection" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<div class="modal fade bd-example-modal-lg" id="modalcreatecollection" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
@@ -265,71 +276,115 @@ $_SESSION['$r_message'] = $_GET['r_message'];
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <form action="receiverprofile_submit.php" method="POST" enctype="multipart/form-data">
       <div class="modal-body">
-        <form action="receiverprofile_submit" method="POST" enctype="multipart/form-data">
+        
         				<div class = "row">
 				    	<div class = "col-12">
 						    <div class="alert alert-primary" role="alert">
-							  <h6><small>Please note that the information with <span style = "color:red">*</span> will be displayed to your gifters<br><span style = "color:black">Please Check on "View Collections" tab to see Preview</span></small></h6>
+							  <h6><small>Please note that the information with <span style = "color:red">*</span> will be displayed to your gifters. <span style = "color:black">Please Check on "View Collections" tab to see Preview</span></small></h6>
 							</div>
 						</div>
 						</div>
         				<div class = "card-body">
+
+        				<div class = "row">
+
+        				<div class = "col">
+
+        				<img src="images/coupleavatar2.jpg" class="card-img-top" alt="No image Available" style = "height: 250px">
+      	
+      					<div class="form-group row mt-2">
+						    <label for="exampleFormControlFile1" class="col-sm-4 col-form-label mr-0 pr-0" ><b>Select Background Image: </b><span style = "color:red">*</span></label>
+						    <div class="col-sm-8">
+						    <div class = "row">
+						    <input type="file" class="form-control-file col-6 mr-0 pr-0" id="exampleFormControlFile1" name = "profile">
+						    <button type = "submit" class="btn-sm btn btn-success col-4" >Upload Pic</button>
+							</div>
+							</div>
+						 </div>
         				
+        				</div>
+        			</div>
+
+        			<div class = "row">
+
+        				<div class = "col-7">
         				<div class="form-group row">
-						    <label for="inputPassword" class="col-sm-3 col-form-label">Event Type</label>
+						    <label for="inputPassword" class="col-sm-3 col-form-label mr-0 pr-0">Event Type</label>
 						    <div class="col-sm-9">
-						      <select class="form-control" id="">
-						      	<option value="">--Select Event Type--</option>
-						      	<option value="">Wedding</option>
-						      	<option value="">Child Dedication</option>
-						      	<option value="">Christmas</option>
+						      <select class="form-control" id="r_event_type" name = "r_event_type">
+						      	<option value=0>--Select Event Type--</option>
+						      	<option value=1>Wedding</option>
+						      	<option value=2>Child Dedication</option>
+						      	<option value=3>Christmas</option>
+						      	<option value=4>Others</option>
 						      </select>
 						    </div>
 						  </div>
 
 						  <div class="form-group row">
-						    <label for="staticEmail" class="col-sm-3 col-form-label">Event Title<span style = "color:red">*</span></label>
+						    <label for="staticEmail" class="col-sm-3 col-form-label mr-0 pr-0">Event Title<span style = "color:red">*</span></label>
 						    <div class="col-sm-9">
-						      <input type="text" class="form-control" id="staticEmail" value="">
+						      <input type="text" class="form-control" id="r_event_title" value="" name = "r_event_title">
+						    </div>
+						  </div>
+						 </div>
+
+						 <div class = "col-5">
+						  <div class="form-group row">
+						    <label for="staticEmail" class="col-sm-4 col-form-label mr-0 pr-0">Event Date<span style = "color:red">*</span></label>
+						    <div class="col-sm-8">
+						      <input type="date" class="form-control ml-0 " id="r_event_date" value="" name = "r_event_date">
 						    </div>
 						  </div>
 
-        				<img src="images/jumia.png" class="card-img-top" alt="...">
-      	
-      					<div class="form-group row mt-2">
-						    <label for="exampleFormControlFile1" class="col-sm-2 col-form-label" >Select Image<span style = "color:red">*</span></label>
-						    <div class="col-sm-10">
-						    <div class = "row">
-						    <input type="file" class="form-control-file col-7 mr-0 pr-0" id="exampleFormControlFile1">
-						    <button type = "submit" class="btn-sm btn btn-warning col-4" >Upload Pic</button>
-							</div>
+						  <div class="form-group row">
+						    <label for="staticEmail" class="col-sm-4 col-form-label mr-0 pr-0">Due Date<span style = "color:red">*</span></label>
+						    <div class="col-sm-8">
+						      <input type="date" class="form-control ml-0 " id="r_event_duedate" value="" name = "r_event_duedate">
+						    </div>
+						  </div>
 							</div>
 						 </div>
+        				
 						
-						  <div class="control-group form-group">
+						  <div class="control-group form-group row">
 				            <div class="controls">
 				              <label><b>Message For Your Gifters(Brief):</b></label>
-				              <textarea rows="4" cols="50" name='profile' class="form-control" id="profile"  maxlength="300" style="resize:none"></textarea>
+				              <textarea rows="5" cols="100" name = "r_message" class="form-control" id="r_message"  maxlength="300" style="resize:none"></textarea>
 				            </div>
 				          </div>
 				         </div>		  
 
-      </form>
+         
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Start Collection</button>
+        <button type="submit" class="btn btn-primary">Start Collection</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Remove Modal -->
+<div class="modal fade" id="staticBackdropDeleteItem" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="staticBackdropLabel">Remove Item</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class = "card card-body" id = "bodyOfDeleteItem">
+      
       </div>
     </div>
   </div>
 </div>
-	
-
-
-
-
 
 
 
@@ -339,23 +394,154 @@ $_SESSION['$r_message'] = $_GET['r_message'];
 <script type="text/javascript" src="giftjava.js"></script>
 <script type = "text/javascript">
 
-$(document).ready(function(){
+function editItemCard(editbtn){
 
-// $('.addmoreitem').hide();
-// $('#addMoreBodyTitle').hide();
+var itemid = $(editbtn).parents('#grandparent').siblings('#itid').html();
+var editbtnid = "editrecord"+itemid;
+var updatebtnid = "updaterecord"+itemid;
+
+
+$('#'+editbtnid).hide();
+$('#'+updatebtnid).show();
+
+$(editbtn).parents('#grandparent').siblings('#itqty').attr('readonly',false);
+
+}
+
+
+function updateItemCard(updatebtn){
+
+var itemid = $(updatebtn).parents('#grandparent').siblings('#itid').html();
+var editbtnid = "editrecord"+itemid;
+var updatebtnid = "updaterecord"+itemid;
+
+$('#'+updatebtnid).hide();
+$('#'+editbtnid).show();
+
+
+$(updatebtn).parents('#grandparent').siblings('#itqty').attr('readonly',true);
+var itemqty = $(updatebtn).parents('#grandparent').siblings('#itqty').val();
+
+updatedata(itemid,itemqty);
+
+}
+
+function deleteItemCard(deletebtn){
+
+var itemid = $(deletebtn).parents('#grandparent').siblings('#itid').html();
+
+deletedata(itemid);
+
+}
+
+function editItem(editbtn){
+
+var itemid = $(editbtn).parent('#btnparent').siblings('#itemId').html();
+var editbtnid = "editrecord"+itemid;
+var updatebtnid = "updaterecord"+itemid;
+
+
+$('#'+editbtnid).hide();
+$('#'+updatebtnid).show();
+
+$(editbtn).parent('#btnparent').siblings('#itqty').find('#itqtyinput').attr('readonly',false);
+$(editbtn).parent('#btnparent').siblings('#itqty').find('#itqtyinput').removeClass('form-control-plaintext');
+
+
+}
+
+function updateItem(updatebtn){
+
+var itemid = $(updatebtn).parent('#btnparent').siblings('#itemId').html();
+var editbtnid = "editrecord"+itemid;
+var updatebtnid = "updaterecord"+itemid;
+
+
+$('#'+updatebtnid).hide();
+$('#'+editbtnid).show();
+
+
+$(updatebtn).parent('#btnparent').siblings('#itqty').find('#itqtyinput').attr('readonly',true);
+$(updatebtn).parent('#btnparent').siblings('#itqty').find('#itqtyinput').addClass('form-control-plaintext');
+
+
+var itemqty = $(updatebtn).parent('#btnparent').siblings('#itqty').find('#itqtyinput').val();
+
+updatedata(itemid,itemqty);
+
+}
+
+function updatedata(itemid,itemqty){
+
+	$.ajax({
+
+	url: "receiverupdateitem.php",
+	data:{"itemid": itemid, "itemqty": itemqty},
+	type: "POST",
+	dataType: "text",
+	success(msg){
+
+	},
+	error(errmsg){
+
+	}
+})
+}
+
+function deleteItem(deletebtn){
+
+	var itemid = $(deletebtn).parent('#btnparent').siblings('#itemId').html();
+
+	deletedata(itemid);
+	
+}
+
+function deletedata(itemid){
+
+	var data = {"itemid":itemid};
+
+	$('#bodyOfDeleteItem').load("receiverdeleteitem.php",data);
+	
+}
+
+function finalDeleteItem(finalDeletebtn){
+
+	var itemid = $(finalDeletebtn).siblings('#itemid').html();
+
+	var data = {"itemid":itemid};
+
+	$('#loaddiv').load("receiverremoveitem.php",data);
+
+	var check = $('#backtocardviewdiv').css('display');
+
+	if(check != 'none'){
+		$('#bodyofitem').load("receiverseetableview.php");
+	}else{
+		$('#bodyofitem').load("collectiondetailssubmit.php");
+	}
+	
+	
+}
+
+$(document).ready(function(){
 
 
 $('#bodyofitem').load("collectiondetailssubmit.php");
 
-// $('#addmoreitembtn').click(function(){
+$('#seetablebtn').click(function(){
 
-// $('.actionbtns').fadeOut();
-// $('.addmoreitem').fadeIn();
-// $('#addMoreBodyTitle').show();
-// $('#itemsSelectedBodyTitle').hide();
-// $('#bodyofitem').load("collectiondetailssubmit.php");
+$('#bodyofitem').load("receiverseetableview.php");
 
-// })
+$('#seetablediv').hide();
+$('#backtocardviewdiv').show();
+
+})
+
+$('#backtocardviewbtn').click(function(){
+
+$('body').load("collectiondetails.php");
+
+})
 
 
 

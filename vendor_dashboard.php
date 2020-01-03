@@ -298,7 +298,8 @@ $fetch_catname = $obj->getseveralwhereNoGroup('vendor_item','category_table','ve
 								      <td style = "display: none" id = "itemRawPrice"><?php echo $v['v_item_price'];?></td>
 								      <td id = "itemColor"><?php echo $v['item_color'];?></td>
 								      <td id = "itemQty"><?php echo $v['item_qty'];?></td>
-								      <td style = "display: none" id = "itemId"><?php echo $v['v_item_id'];?></td>      
+								      <td style = "display: none" id = "itemId"><?php echo $v['v_item_id'];?></td>
+								      <td style = "display: none" id = "itemPic"><?php echo $v['item_pic'];?></td>      
 								      <td id = "btnparent"><button id ="<?php echo "editrecord".$v['v_item_id'];?>" type="button" data-target = "#staticBackdropEditItem" data-toggle="modal" class = "btn-link" style="border:none; background-color: inherit;" onclick = "editItem(this);">Edit</button> | <button id ="<?php echo "removerecord".$v['v_item_id'];?>" data-target = "#staticBackdropRemoveItem" class = "btn-link" data-toggle="modal" style="border:none; background-color: inherit;" onclick = "deleteItem(this);">Delete</button></td>
 								    </tr>
 								   <?php  $i++;}?>
@@ -1216,7 +1217,7 @@ $fetch_catname = $obj->getseveralwhereNoGroup('vendor_item','category_table','ve
       					<div class="form-group row mt-2">
 						    <label for="exampleFormControlFile1" class="col-sm-12 col-form-label">Select Image<span style = "color:red">*</span></label>
 						    <div class="col-sm-12">
-						    <input type="file" class="form-control-file" id = "selectimage">
+						    <input id="uploadImage" type="file" accept="image/*" name="profile" class="form-control-file">
 							</div>
 						 </div>						 
 						</div>
@@ -1224,33 +1225,33 @@ $fetch_catname = $obj->getseveralwhereNoGroup('vendor_item','category_table','ve
 							<div class="form-group row">
 						    <label for="staticEmail" class="col-sm-3 col-form-label">Category<span style = "color:red">*</span></label>
 						    <div class="col-sm-9">
-						      <input type="text" class="form-control" id = "itemcategory" value="">
+						      <input type="text" class="form-control" id = "itemcategory" name = "valcat" value="">
 						    </div>
 						  </div>
 						  <div class="form-group row">
 						    <label for="staticEmail" class="col-sm-3 col-form-label mr-0 pr-0">Item Name<span style = "color:red">*</span></label>
 						    <div class="col-sm-9">
-						      <input type="text" class="form-control" id = "itemname" value="">
+						      <input type="text" class="form-control" id = "itemname" name = "itemname" value="">
 						    </div>
 						  </div>
 						  <div class="form-group row">
 						    <label for="staticEmail" class="col-sm-3 col-form-label">Unit Price<span style = "color:red">*</span></label>
 						    <div class="col-sm-9">
-						      <input type="text" class="form-control" id = "itemprice" value="">
+						      <input type="text" class="form-control" id = "itemprice" name = "itemprice" value="">
 						    </div>
 						  </div>
 
 						  <div class="form-group row">
 						    <label for="staticEmail" class="col-sm-3 col-form-label">Colour<span style = "color:red">*</span></label>
 						    <div class="col-sm-9">
-						      <input type="text" class="form-control" id = "itemcolor" value="">
+						      <input type="text" class="form-control" id = "itemcolor" name = "itemcolor" value="">
 						    </div>
 						  </div>
 
 						  <div class="form-group row">
 						    <label for="inputPassword" class="col-sm-3 col-form-label">Quantity<span style = "color:red">*</span></label>
 						    <div class="col-sm-9">
-						      <input type="number" class="form-control" id = "itemqty" value="">
+						      <input type="number" class="form-control" id = "itemqty" name = "itemqty" value="">
 						    </div>
 						  </div>
 						</div>
@@ -1258,7 +1259,7 @@ $fetch_catname = $obj->getseveralwhereNoGroup('vendor_item','category_table','ve
 	      			</div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary" id = "additembtn" data-dismiss="modal" onclick = " $('#tableofitems').load('vendor_dashboard.php #tableofitems2'); $('#bodyofitem').load('itemsadded.php');">Save</button>
+	        <button type="submit" class="btn btn-primary" id = "additembtn" onclick = " $('#tableofitems').load('vendor_dashboard.php #tableofitems2'); $('#bodyofitem').load('itemsadded.php');">Save</button>
 	      </div>
 	      </form>
   		</div>
@@ -1345,6 +1346,9 @@ $fetch_catname = $obj->getseveralwhereNoGroup('vendor_item','category_table','ve
 
 <script>
 
+
+
+
 function editItem(editbtn){
 
 	var itemName = $(editbtn).parent('#btnparent').siblings('#itemName').html();
@@ -1353,43 +1357,38 @@ function editItem(editbtn){
 	var itemColor = $(editbtn).parent('#btnparent').siblings('#itemColor').html();
 	var itemQty = $(editbtn).parent('#btnparent').siblings('#itemQty').html();
 	var itemId = $(editbtn).parent('#btnparent').siblings('#itemId').html();
+	var itemPic = $(editbtn).parent('#btnparent').siblings('#itemPic').html();
 
-	var data = {"itemName":itemName,"catName":catName,"itemPrice":itemPrice,"itemColor":itemColor,"itemQty":itemQty,"itemId":itemId};
+	var data = {"itemName":itemName,"catName":catName,"itemPrice":itemPrice,"itemColor":itemColor,"itemQty":itemQty,"itemId":itemId, "itemPic":itemPic};
 
 	$('#bodyOfEditItem').load("vendoredititem.php",data);
 	
 }
 
-function updateitem(savebtn){
 
 	
-	var itemName = $(savebtn).parent('#editbtndiv').siblings('#divsib').find('#itemname').val();
-	var catName = $(savebtn).parent('#editbtndiv').siblings('#divsib').find('#catname').val();
-	var itemPrice = $(savebtn).parent('#editbtndiv').siblings('#divsib').find('#itemprice').val();
-	var itemColor = $(savebtn).parent('#editbtndiv').siblings('#divsib').find('#itemcolor').val();
-	var itemQty = $(savebtn).parent('#editbtndiv').siblings('#divsib').find('#itemqty').val();
-	var itemId = $(savebtn).parent('#editbtndiv').siblings('#divsib').find('#itemid').html();	
+	// var itemName = $(savebtn).parent('#editbtndiv').siblings('#divsib').find('#itemname').val();
+	// var catName = $(savebtn).parent('#editbtndiv').siblings('#divsib').find('#catname').val();
+	// var itemPrice = $(savebtn).parent('#editbtndiv').siblings('#divsib').find('#itemprice').val();
+	// var itemColor = $(savebtn).parent('#editbtndiv').siblings('#divsib').find('#itemcolor').val();
+	// var itemQty = $(savebtn).parent('#editbtndiv').siblings('#divsib').find('#itemqty').val();
+	// var itemId = $(savebtn).parent('#editbtndiv').siblings('#divsib').find('#itemid').html();	
 
-	$.ajax({
+	// $.ajax({
 
-		url: "vendorupdateitem.php",
-		type: "POST",
-		data: {"itemName": itemName, "catName": catName, "itemPrice": itemPrice, "itemId": itemId, "itemColor": itemColor, "itemQty": itemQty},
-		dataType: "text",
-		success(msg){
+	// 	url: "vendorupdateitem.php",
+	// 	type: "POST",
+	// 	data: {"itemName": itemName, "catName": catName, "itemPrice": itemPrice, "itemId": itemId, "itemColor": itemColor, "itemQty": itemQty},
+	// 	dataType: "text",
+	// 	success(msg){
 
-		},
-		error(errmsg){
+	// 	},
+	// 	error(errmsg){
 
-		}
+	// 	}
 
-	})
+	// })
 
-$('#tableofitems').load("vendor_dashboard.php #tableofitems2");
-$('#bodyofitem').load("itemsadded.php");
-
-
-}
 
 function editItemCard(editcardbtn){
 
@@ -1411,21 +1410,6 @@ function removeItemCard(removecardbtn){
 	
 }
 
-
-// function editItemCard(editbtn){
-
-// 	var itemName = $(editbtn).parent('#btnparent').siblings('#itemName').html();
-// 	var catName = $(editbtn).parent('#btnparent').siblings('#catName').html();
-// 	var itemPrice = $(editbtn).parent('#btnparent').siblings('#itemRawPrice').html();
-// 	var itemColor = $(editbtn).parent('#btnparent').siblings('#itemColor').html();
-// 	var itemQty = $(editbtn).parent('#btnparent').siblings('#itemQty').html();
-// 	var itemId = $(editbtn).parent('#btnparent').siblings('#itemId').html();
-
-// 	var data = {"itemName":itemName,"catName":catName,"itemPrice":itemPrice,"itemColor":itemColor,"itemQty":itemQty,"itemId":itemId};
-
-// 	$('#bodyOfEditItem').load("vendoredititem.php",data);
-	
-// }
 
 function deleteItem(deletebtn){
 
@@ -1509,37 +1493,91 @@ $('#itemname').val(selectItemName);
 
 })
 
-$('#additembtn').click(function(){
-var valcat = $('#selectcategory').val();
-var make = $('#input2').val();
-var a = $('#itemname').val();
-var b = $('#itemprice').val();
-var c = $('#itemcolor').val();
-var d = $('#itemqty').val();
+// $('#additembtn').click(function(){
 
-$.ajax({
 
-		url: "additem.php",
-		type: "POST",		
-		data: {"valcat":valcat, "make": make, "itemname":a, "itemprice":b, "itemcolor":c, "itemqty":d},		
-		dataType: "text",
-		success(msg){
-					
-		},
-		error(errmsg){
-			// console.log(errmsg);
-		alert("failed");
-			
-		}
-	})
-
+ $("#additemform").on('submit',(function(e) {
+  e.preventDefault();
+  $.ajax({
+    url: "additem.php",
+   type: "POST",
+   data:  new FormData(this),
+   contentType: false,
+         cache: false,
+   processData:false,
+   success: function(data)
+      {
+      alert(data);
+      },
+     error: function(e) 
+      {
+   alert(e);
+      }          
+    });
 
 $('#bodyofitem').load("itemsadded.php");
 $('#tableofitems').load("vendor_dashboard.php #bodyofitem");
 $('#tableofitems').load("vendor_dashboard.php #tableofitems2");
 
+ }));
 
-})
+
+ $("#edititemform").on('submit',(function(e) {
+ 
+    e.preventDefault();
+    
+  $.ajax({
+    url: "vendorupdateitem.php",
+   type: "POST",
+   data:  new FormData(this),
+   contentType: false,
+         cache: false,
+   processData:false,
+   success: function(data)
+      {
+      alert(data);
+      },
+     error: function(e) 
+      {
+   alert(e);
+      }          
+    });
+
+$('#bodyofitem').load("itemsadded.php");
+$('#tableofitems').load("vendor_dashboard.php #bodyofitem");
+$('#tableofitems').load("vendor_dashboard.php #tableofitems2");
+
+ }));
+
+ 
+
+ 
+// var valcat = $('#selectcategory').val();
+// var make = $('#input2').val();
+// var a = $('#itemname').val();
+// var b = $('#itemprice').val();
+// var c = $('#itemcolor').val();
+// var d = $('#itemqty').val();
+
+// $.ajax({
+
+// 		url: "additem.php",
+// 		type: "POST",		
+// 		data: {"valcat":valcat, "make": make, "itemname":a, "itemprice":b, "itemcolor":c, "itemqty":d},		
+// 		dataType: "text",
+// 		success(msg){
+					
+// 		},
+// 		error(errmsg){
+// 			// console.log(errmsg);
+// 		alert("failed");
+			
+// 		}
+// 	})
+
+
+
+// })
 
 $('#formupload').submit(function(){
 

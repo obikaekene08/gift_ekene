@@ -7,12 +7,9 @@ $obj = new Receiver;
 $receiver_id = $_SESSION['user'];
 $r_event_id = $_SESSION['$r_event_id'];
 
-
 $seecollectiondetails = $obj->getseveralwhereNoGroup('receiver_item','vendor_item','receiver_item.v_item_id','vendor_item.v_item_id','receiver_item.r_event_id',$r_event_id);
 
 // print_r($seecollectiondetails);
-?>
-
 
 
 <?php
@@ -32,9 +29,9 @@ foreach($seecollectiondetails as $key => $v) {
 						    <p class="card-text"><b>Unit Price: </b><span id = "itprice"> <?php echo "&#8358;".number_format($v['v_item_price'],2);?></span></p>
 						    <p class="card-text"><b>Stock: </b><span class="card-text" id = "itstk"> <?php echo $v['item_qty'];?></span></p>
 						    <b>Qty: </b><span class = "text-center" style = "width:20%;" id = "itqty"><?php echo $v['r_item_qty'];?></span>
-						    <span style = "display: none" class="card-text" id = "itid"> <?php echo $v['v_item_id'];?></span><br>
+						    <span style = "display: none" class="card-text" id = "receiver_itid"> <?php echo $v['receiver_item_id'];?></span><br>	    
 						    <button type = "button" class="btn btn-primary col-8 mt-2" id = "itbtn" onclick = "iteminclude(this);" style = "">Shop Item</button>						    
-						    <button type = "button" class="btn btn-primary col-8 mt-2" id = "itremove" style = "display: none">Remove Item</button>
+						    <button type = "button" class="btn btn-danger col-8 mt-2" id = "itremove" style = "display: none">Remove Item</button>
 							</form>
 						  </div>
 						</div>
@@ -57,3 +54,7 @@ if(empty($seecollectiondetails)){
 
 
 ?>
+
+
+
+
