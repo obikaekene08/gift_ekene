@@ -34,15 +34,15 @@ if(!isset($_SESSION['user'])){
 			<?php if (!(isset($_SESSION['user']))) { ?>
 			<a type="button" href = "vendor_dashboard.html" class="btn btn-outline-danger" style = "border:1px solid red; color:red">Log in</a>
 
-			<button class="btn btn-danger mx-2" type="submit" style = "background-color:red; color:white; border: none">Sign Up</button>
-		<?php }else { ?> <?php } ?>
+			<a class="btn btn-danger mx-2" href="signup.php" style = "background-color:red; color:white; border: none">Sign Up</a>
+		<?php }else { ?> <a class="btn btn-danger mx-2" href="logout.php" style = "background-color:red; color:white; border: none">Logout</a> <?php } ?>
 		</div>
 	</div>
 	
 
 	<div class = "row" id = "menubar" style = "border:1px solid red; border-left:none; border-right:none">
 
-		<div class = "col-md-1 col-2" id = "logo">
+		<div class = "col-md-1 col-2" id = "logo"> 
 
 			<a href = "index.php"><img src = "images/logomn.jpg" style = "height: 80px"></a>
 			
@@ -72,9 +72,9 @@ if(!isset($_SESSION['user'])){
 			          VENDORS
 			        </a>
 			        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-			          <a class="dropdown-item" href="#">See Our Vendors</a>
-			          <a class="dropdown-item" href="#">Become a Vendor</a>
-			          <a class="dropdown-item" href="#">Vendor Sign in</a>
+			          <a class="dropdown-item" href="#merchantsection">See Our Vendors</a>
+			          <a class="dropdown-item" href="becomeavendor.php">Become a Vendor</a>
+			          <a class="dropdown-item" href="becomeavendor.php?m=signin">Vendor Sign in</a>
 			        </div>
 			      </li>
 

@@ -2,7 +2,6 @@
 
 require("header.php");
 
-
 ?>
 
 	<div class = "row mt-3">
@@ -10,7 +9,7 @@ require("header.php");
 			  <nav aria-label="breadcrumb" class = "">
 			  <ol class="breadcrumb alert-primary pl-2 py-2 my-1">
 			    <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-			    <li class="breadcrumb-item active" aria-current="page">Receive Gifts</li>
+			    <li class="breadcrumb-item active" aria-current="page">Sign Up</li>
 			  </ol>
 			</nav>
 		</div>
@@ -25,32 +24,32 @@ require("header.php");
 
 				
 				<div class="alert alert-secondary col-10 offset-1" role="alert">
-  				<h2 style = "text-align:center;">Receive Gifts</h2>
+  				<h2 style = "text-align:center;" id = "subtitle"><?php if(isset($_GET['m'])){ echo "Vendor Sign In";}else{echo "Become A Vendor";} ?></h2>
 				</div>
 
 				<div class="row m-4 p-4">
 				  <div class="col-4 offset-1">
 				    <div class="list-group" id="list-tab" role="tablist">
-				      <a class="list-group-item list-group-item-action <?php if(!isset($_SESSION['loginstatus'])){ echo active;}?> btn btn-primary" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home"><h3>SIGN UP</h3></a>
-				      <a class="list-group-item list-group-item-action btn btn-primary <?php if(isset($_SESSION['loginstatus'])){ echo active;}?>" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile"><h3>LOGIN</h3></a>
-				      <a class="list-group-item list-group-item-action btn btn-primary" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages"><h4 class = "pl-0">CONTINUE WITHOUT LOGIN</h4></a>
+				      <a class="list-group-item list-group-item-action <?php if(!isset($_SESSION['loginstatus']) && !isset($_GET['m'])){ echo active;}?> btn btn-primary" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home"><h3>SIGN UP</h3></a>
+				      <a class="list-group-item list-group-item-action btn btn-primary <?php if(isset($_SESSION['loginstatus']) || isset($_GET['m'])){ echo active;}?>" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile"><h3>LOGIN</h3></a>				      
+				      
 				    </div>
 				  </div>
 				  <div class="col-6">
 				    <div class="tab-content" id="nav-tabContent">
-				      <div class="tab-pane fade <?php if(!isset($_SESSION['loginstatus'])){ echo "show active";}?>" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-				      	<form method="POST" id="formSignup" action='receiversubmitsignup.php'>
+				      <div class="tab-pane fade <?php if(!isset($_SESSION['loginstatus']) && !isset($_GET['m'])){ echo "show active";}?>" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+				      	<form method ="POST" id="form" action='vendorsubmitsignup.php' onsubmit = "prevent(event)">
 				        <div class = "row">
 				          <div class="control-group form-group col-md-6 col-12">
 				            <div class="controls">
 				              <label>First Name:</label>
-				              <input type="text" class="form-control" id="name" name='fname' required>
+				              <input type="text" class="form-control checkfield" id="checkfield1" name='fname' required>
 				            </div>
 				          </div>
 						  <div class="control-group form-group col-md-6 col-12">
 				            <div class="controls">
 				              <label>Last Name:</label>
-				              <input type="text" class="form-control" id="name" name='lname' required>
+				              <input type="text" class="form-control checkfield" id="checkfield2" name='lname'required>
 				             
 				            </div>
 				          </div>
@@ -59,13 +58,13 @@ require("header.php");
 				          <div class="control-group form-group">
 				            <div class="controls">
 				              <label>Phone Number:</label>
-				              <input type="tel" class="form-control" id="phone" name='phone' required>
+				              <input type="tel" class="form-control checkfield" id="checkfield3" name="phone" required>
 				            </div>
 				          </div>
 				          <div class="control-group form-group">
 				            <div class="controls">
 				              <label>Email Address:</label>
-				              <input type="email" class="form-control" name='email' id="email" required>
+				              <input type="email" class="form-control checkfield" name='email' id="checkfield4" required>
 				            </div>
 				          </div>
 				          <div class="control-group form-group">
@@ -76,17 +75,17 @@ require("header.php");
 				              <button type = "button" class = "col-1 pl-2" id = "seepassword"><i class = "fa fa-eye"></i></button>
 				              </div>
 				            </div>
-				          </div>
-				          <div class="form-group form-check mt-3">
-						    <input type="checkbox" class="form-check-input" id="exampleCheck1"  name = "agreed" required>
-						    <label class="form-check-label" for="exampleCheck1" style = "font-size:13px">By Starting Your Registration, you are agreeing to Gift Runner's <a href="">Terms of Use</a> and <a href="">Privacy Statement</a></label>
+				          </div>				          
+							<div class="form-group form-check mt-3 checkfield" id = "mrcheck">
+						    <input type="checkbox" class="form-check-input" id="checkfield6" required>
+						    <label class="form-check-label" for="checkfield6" style = "font-size:13px">By Starting Your Registration, you are agreeing to Gift Runner's <a href="">Terms of Use</a> and <a href="">Privacy Statement</a></label>
 						  </div>
-				          <button type="submit" class="btn btn-primary btn-block btn-lg" id="sendMessageButton">Sign Up</button>
+				          <button type="submit" class="btn btn-primary btn-block btn-lg" id="signupbtn">Sign Up</button>
 				        </form>
 				      </div>
-				      <div class="tab-pane fade <?php if(isset($_SESSION['loginstatus'])){ echo "show active";}?>" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+				      <div class="tab-pane fade <?php if(isset($_SESSION['loginstatus']) || isset($_GET['m'])){ echo "show active";}?>" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
 				      	
-				      	<form method="POST" id="formLogin" action='receiversubmitlogin.php'>
+				      	<form method="POST" id="contactForm" action='vendorsubmitlogin.php'>
 				      		<?php if(isset($_SESSION['loginstatus']) && $_SESSION['loginstatus'] == 'failed'){ ?>
 				      	<div class="control-group form-group">
 				            <div class="controls">
@@ -102,29 +101,19 @@ require("header.php");
 				        <div class="control-group form-group">
 				            <div class="controls">
 				              <label>Email Address:</label>
-				              <input type="email" class="form-control" name='email' id="email" required>
+				              <input type="email" class="form-control" name='email' id="checkfield8" required>
 				            </div>
 				          </div>
 				          <div class="control-group form-group">
 				            <div class="controls">
 				              <label>Password:</label>
-				              <input type="password" class="form-control" name='pwd' id="pwd" required>
+				              <input type="password" class="form-control" name='pwd' id="checkfield9" required>
 				            </div>
 				          </div>
 				             
 				          <button type="submit" class="btn btn-primary btn-block btn-lg" id="sendMessageButton">Login</button>
 				        </form>
 
-				      </div>
-				      <div class="tab-pane fade pt-4" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
-				      	<form method="POST" id="formLogin" action='receiverprofile.php' class= "mt-4">
-				        <div class="control-group form-group">
-				            <div class="controls">
-				              <input type="email" class="form-control" name='email' id="email" placeholder= "Only Enter Your Email Address To Continue" required>
-				            </div>
-				          </div>			             
-				          <button type="submit" class="btn btn-primary btn-block btn-lg" id="sendMessageButton">Continue</button>
-				        </form>
 				      </div>
 				      
 				    </div>
@@ -176,7 +165,7 @@ require("header.php");
 			    <input type="checkbox" class="form-check-input" id="exampleCheck1">
 			    <label class="form-check-label" for="exampleCheck1"><small id="emailHelp" class="form-text text-muted">Get updated on Interesting Offers and NewsLetter.</small></label>
 			  </div>
-			  <p class = "text-center"><button type="submit" class="btn btn-primary btn-lg">Submit</button></p>
+			  <p class = "text-center"><button type="submit" class="btn btn-primary btn-lg" >Submit</button></p>
 			</form>
 
 
@@ -267,11 +256,10 @@ require("header.php");
 
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="giftjava.js"></script>
+
 <script type ="text/javascript">
 	
 
-	// checkfield();
-	// function checkfield(){
 		$('#signupbtn').click(function prevent(event){
 			
 			var fname  = $('#checkfield1').val().trim();
@@ -280,8 +268,6 @@ require("header.php");
 			var email  = $('#checkfield4').val().trim();
 			var password  = $('#checkfield5').val();
 			var term  = $('#checkfield6').prop('checked');
-
-				//term is not working
 
 			if(fname == '' || lname == '' || phone == '' || email == '' || password == '' || reason == '' || term == false){
 
@@ -340,7 +326,20 @@ require("header.php");
 
 		})
 
+	
+	$('#list-home-list').click(function(){
+
+		$('#subtitle').html('Become A Vendor');
+	});
+
+	$('#list-profile-list').click(function(){
+
+		$('#subtitle').html('Vendor Sign In');
+	})
+
 </script>
+
+
 
 <script type="text/javascript" src="js/popper.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>

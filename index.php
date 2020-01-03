@@ -1,89 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<?php
 
-	<title>Home Page</title>
-	<link rel="stylesheet" href="css/bootstrap.css" type=text/css>
-	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-	<link href = "giftstyle.css" rel = "stylesheet" type = "text/css">
-	<link rel="stylesheet" href="fontawesome/css/all.css" type ="text/css">
-	
-	
-</head>
-<body>
-<div class = "containerfluid">
-	<div class = "row-12">
-		<div class = "col-md-2 offset-md-10 col-6 offset-7">
+require("header.php");
 
-			<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#staticBackdroplogin">Log in</button>
 
-			<a href="signup.php" class="btn btn-danger mx-2" type="submit">Sign Up</a>
-
-		</div>
-	</div>
-
-	<div class = "row-12" id = "menubar" style = "border:1px solid red; border-left:none; border-right:none">
-
-		<div class = "col-md-1 col-2" id = "logo">
-
-			<a href = "index.html"><img src = "images/logomn.jpg" style = "height: 80px"></a>
-			
-
-		</div>
-
-		<div class = "col-md-8 offset-md-4 col-12">
-			
-			<nav class="navbar navbar-expand-lg" style = "background-color: white">
-			  <a class="navbar-brand" href="#"></a>
-			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-			    <span class="navbar-toggler-icon"></span>
-			  </button>
-			  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-			    <ul class="navbar-nav">
-			      <li class="nav-item active">
-			        <a class="nav-link" href="#">CREATE A REGISTRY<span class="sr-only">(current)</span></a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="#">ABOUT</a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="#testimonial">TESTIMONIALS</a>
-			      </li>
-			      <li class="nav-item dropdown">
-			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			          VENDORS
-			        </a>
-			        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-			          <a class="dropdown-item" href="#merchantsection">See Our Vendors</a>
-			          <a class="dropdown-item" href="vendor_info_page.html">Become a Vendor</a>
-			          <a class="dropdown-item" href="#">Vendor Sign in</a>
-			        </div>
-			      </li>
-
-			      <li class="nav-item dropdown">
-			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			          FAQs
-			        </a>
-			        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-			          <a class="dropdown-item" href="#">FAQ for Givers</a>
-			          <a class="dropdown-item" href="#">FAQ for Receivers</a>
-			          <a class="dropdown-item" href="#">FAQ for Vendors</a>
-			        </div>
-			      </li>
-
-			      <li class="nav-item">
-			        <a class="nav-link" href="#">CONTACT</a>
-			      </li>
-
-			    </ul>
-			  </div>
-			</nav>
-
-		</div>
-
-	</div>
+?>
 
 
 	<div class = "row-12" id = "searchbox">
@@ -148,8 +68,8 @@
 
 			<div class = "col" id = "entrancetools">
 
-			<a href="giveagift.php" class="btn btn-danger btn-lg mr-4 mb-2">Give a Gift</a>
-			<a href="receivegifts.php" class="btn btn-outline-danger btn-lg mb-2">Receive Gifts</a>
+			<a href="giveagift.php" class="btn btn-danger btn-lg mr-4 mb-2 btn-in">Give a Gift</a>
+			<a href="receivegifts.php" class="btn btn-outline-danger btn-lg mb-2 btn-in">Receive Gifts</a>
 			
 		</div>
 
@@ -160,13 +80,12 @@
 
 	</div>
 
-	<!-- <div style = "border-left: 2px yellow solid; width: 20%; line-height: : 5px"></div> -->	
+	<div class = "row-12 mt-3" id = "howtoparent">
+		<div id = "howto">
+			<div class = "col-10 offset-1 my-1 card mbline" >
 
-	<div class = "row-12 mt-3">
-			<div class = "col-10 offset-1 my-1 card mbline" id = "howto">
-
-				<h4 class = "bstyle">How To Use Gift Runner</h4>
-				<div class = "card mb-2">
+				<h4 class = "bstyle" style="background-color: grey; color: white; border-color:grey">How To Use Gift Runner</h4>
+				<div class = "card mb-2" id = "howtosubdiv">
 				<div class="row mt-3">
 				  <div class="col-md-2 offset-md-1">
 				    <div class="card" style = "border: none">
@@ -243,17 +162,22 @@
 			</div>
 		</div>
 
-				<div class = "row pb-2" >
-					<div class = "col text-center" id = "videobtn">
-						<button class="btn btn-primary btn-lg" type="button">WATCH DEMO</button>
+				
+				<div class = "row">
+					<div class = "col embed-responsive embed-responsive-21by9 m-5 p-5 mb-0 pb-0" id = "watchdemodiv" style = "display: none">
+						
+						  <iframe id="player" class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>	
+ 
 					</div>
 				</div>
-				<div class = "row">
-					<div class = "col" id = "video">
-
+				<div class = "row pb-2" >
+					<div class = "col text-center" id = "videobtn">
+						<button class="btn btn-primary btn-lg" type="button" id = "demobtn">WATCH DEMO</button>
+						<button class="btn btn-primary btn-lg mt-0" type="button" id = "donebtn" style = "display: none">I'm Done</button>
 					</div>
 				</div>
 		</div>
+	</div>
 	</div>
 
 		
@@ -261,7 +185,7 @@
 	<div class = "row-12 mt-3">
 			<div class = "col-10 offset-1 my-1 card mbline" id = "testimonial">
 
-				<h4 class = "bstyle">See Our Testimonials</h4>
+				<h4 class = "bstyle" style="background-color: #bb3f3f; color: white; border-color:#bb3f3f">See Our Testimonials</h4>
 
 				<div class="row my-3">
 				  <div class="col-sm-4">
@@ -316,7 +240,7 @@
 		<div class = "row-12 mt-3">
 			<div class = "col-10 offset-1 my-1 card mbline" id = "merchantsection">
 
-				<h4 class = "bstyle">Meet Our Vendors</h4>
+				<h4 class = "bstyle" style="background-color: grey; color: white; border-color:grey">Meet Our Vendors</h4>
 
 				<div class="card-group">
 				  <div class="card mx-2 mt-2">
@@ -363,7 +287,7 @@
 
 			<div class = "row py-2 " >
 					<div class = "col text-center">
-						<a href = "view_merchants.html" class="btn btn-primary btn-lg">See More Merchants <i class = "fa fa-angle-right"></i></a>
+						<a href = "view_merchants.php" class="btn btn-primary btn-lg">See More Merchants <i class = "fa fa-angle-right"></i></a>
 					</div>
 			</div>
 
@@ -373,23 +297,37 @@
 
 
 		<div class = "row-12 mt-3">
-			<div class = "col-10 offset-1 my-1 card mbline" id = "">
+			<div class = "col-10 offset-1 my-1 card mbline" id = "fAQsparent">
 
-				<h4 class = "bstyle">Some Frequently Asked Questions - FAQs</h4>
+				<h4 class = "bstyle" style="background-color: #bb3f3f; color: white; border-color:#bb3f3f">Some Frequently Asked Questions - FAQs</h4>
 
-				<div class="accordion" id="accordionExample">
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+				  <li class="nav-item col-4">
+				    <a class="nav-link active nav-link-chgcolor" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">FAQs For Vendors</a>
+				  </li>
+				  <li class="nav-item col-4">
+				    <a class="nav-link nav-link-chgcolor" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">FAQs For Giving Gifts</a>
+				  </li>
+				  <li class="nav-item col-4">
+				    <a class="nav-link nav-link-chgcolor" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">FAQs For Receiving Gifts</a>
+				  </li>
+				</ul>
+				<div class="tab-content" id="myTabContent">
+				  <div class="tab-pane fade show active col-12" id="home" role="tabpanel" aria-labelledby="home-tab">
+				  	
+				  <div class="accordion" id="accordionExample">
 				  <div class="card">
 				    <div class="card-header" id="headingOne">
 				      <h2 class="mb-0">
 				        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-				           FAQs For Vendors
+				           How Do I Register As A Vendor?
 				        </button>
 				      </h2>
 				    </div>
 
 				    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
 				      <div class="card-body">
-				        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+				        You just needs to register on our platform. Simple steps to get registered. Click <a href = "becomeavendor.php">here</a> to register.
 				      </div>
 				    </div>
 				  </div>
@@ -397,13 +335,13 @@
 				    <div class="card-header" id="headingTwo">
 				      <h2 class="mb-0">
 				        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-				          FAQs For Giving Gifts
+				          What Benefits Do I Stand to Gain?
 				        </button>
 				      </h2>
 				    </div>
 				    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 				      <div class="card-body">
-				        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+				        Your business get to showcase its goods to the multitude of customers that use of platform. Customers who like your goods and services can buy them through our platform. Our charges are low and competitive. Our services are best-in-class.
 				      </div>
 				    </div>
 				  </div>
@@ -411,20 +349,123 @@
 				    <div class="card-header" id="headingThree">
 				      <h2 class="mb-0">
 				        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-				          FAQs For Receiving Gifts
+				          Do I get to Enlist My Goods?
 				        </button>
 				      </h2>
 				    </div>
 				    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
 				      <div class="card-body">
-				        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+				        Yes, once you are registered with us, a profile is created for you to upload your goods for sale.
 				      </div>
 				    </div>
 				  </div>
 				</div>
 
+				  </div>
+				  <div class="tab-pane fade col-12" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+				  	
+				  	 <div class="accordion" id="accordionExample">
+				  <div class="card">
+				    <div class="card-header" id="headingOne">
+				      <h2 class="mb-0">
+				        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+				           How Do I Register As A Gifter?
+				        </button>
+				      </h2>
+				    </div>
 
-				<div class = "row py-2" >
+				    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+				      <div class="card-body">
+				        You just need to sign up to register on our platform. Click <a href = "giveagift.php">here</a> to register.
+				      </div>
+				    </div>
+				  </div>
+				  <div class="card">
+				    <div class="card-header" id="headingTwo">
+				      <h2 class="mb-0">
+				        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+				          What Benefits Do I Stand to Gain?
+				        </button>
+				      </h2>
+				    </div>
+				    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+				      <div class="card-body">
+				        You get to easily give a gift to anyone anywhere with no stress. We will take care of all the logistics timely. Our services are best-in-class.
+				      </div>
+				    </div>
+				  </div>
+				  <div class="card">
+				    <div class="card-header" id="headingThree">
+				      <h2 class="mb-0">
+				        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+				          How Do I Give a Gift
+				        </button>
+				      </h2>
+				    </div>
+				    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+				      <div class="card-body">
+				        Yes, once you sign up , you can select your desired gift for giving. It's easy, we will guide you.
+				      </div>
+				    </div>
+				  </div>
+				</div>
+
+				  </div>
+				  <div class="tab-pane fade col-12" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+				  	
+				  	 <div class="accordion" id="accordionExample">
+				  <div class="card">
+				    <div class="card-header" id="headingOne">
+				      <h2 class="mb-0">
+				        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+				           How Do I Register As A Receiver?
+				        </button>
+				      </h2>
+				    </div>
+
+				    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+				      <div class="card-body">
+				        You just needs to register on our platform to receive gifts. Click <a href = "receivegifts.php">here</a> to register.
+				      </div>
+				    </div>
+				  </div>
+				  <div class="card">
+				    <div class="card-header" id="headingTwo">
+				      <h2 class="mb-0">
+				        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+				          What Benefits Do I Stand to Gain?
+				        </button>
+				      </h2>
+				    </div>
+				    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+				      <div class="card-body">
+				        We make collection of gifts for your events easy and swift. Our charges are affordable and competitive. Our services are best-in-class.
+				      </div>
+				    </div>
+				  </div>
+				  <div class="card">
+				    <div class="card-header" id="headingThree">
+				      <h2 class="mb-0">
+				        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+				          How Do I Receive Gifts?
+				        </button>
+				      </h2>
+				    </div>
+				    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+				      <div class="card-body">
+				        Once you sign up with us, a profile is created for you to select your preferred gift items.
+				      </div>
+				    </div>
+				  </div>
+				</div>
+
+				  </div>
+				</div>
+
+
+
+				
+				<!-- <div class = "row py-2" >
 					<div class = "col text-center" id = "videobtn">
 						<button class="btn btn-success btn-lg" type="submit">See More FAQs<br><i class = "fa fa-angle-down"></i></button>
 					</div>
@@ -434,7 +475,7 @@
 
 					</div>
 				</div>
-
+ -->
 
 			</div>
 
@@ -445,7 +486,7 @@
 				<div class = "row-12 mt-3">
 			<div class = "col-10 offset-1 my-1 card mbline" id = "">
 
-				<h4 class = "bstyle">Some Really Helpful Blogs on Gifts</h4>
+				<h4 class = "bstyle" style="background-color: grey; color: white; border-color:grey">Some Really Helpful Blogs on Gifts</h4>
 
 				
 				<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -535,11 +576,11 @@
 	<!-- Send Message and Footer -->
 
 	<div class = "row-12 mt-3">
-		<div class = "col bline">
+		<div class = "col" style = "background-color:#787878;">
 
 	<div class = "row-12 mt-3">
-		<div class = "col-7 offset-2">
-			<h4 class = "text-center mt-0 pt-0">Send Us a Message</h4>
+		<div class = "col-8 offset-2">
+			<h4 class = "text-center mt-2 pt-3 mb-2 -pb-2 footertextcolor">Send Us a Message</h4>
 			<form>
 			<div class = "row">
 			  <div class="form-group col-md-6 col-12">
@@ -554,11 +595,11 @@
 			    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder = "Write Your Message Here"></textarea>
 			  </div>
 
-			  <div class="form-group form-check">
+			  <div class="form-group form-check ">
 			    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-			    <label class="form-check-label" for="exampleCheck1"><small id="emailHelp" class="form-text text-muted">Get updated on Interesting Offers and NewsLetter.</small></label>
+			    <label class="form-check-label" for="exampleCheck1"><small id="emailHelp" class="form-text footertextcolor">Get updated on Interesting Offers and NewsLetter.</small></label>
 			  </div>
-			  <p class = "text-center"><button type="submit" class="btn btn-primary btn-lg">Submit</button></p>
+			  <p class = "text-center"><button type="submit" class="btn btn-primary btn-lg" id = "submitbtn">Submit</button></p>
 			</form>
 
 
@@ -569,50 +610,44 @@
 <div class = "row-12">
 	<div class = "col">
 	<div class = "row">
-		<div class = "col-md-2 mx-2">
+		<div class = "col-md-2 mx-2 footertextcolor">
 			<ul class="list-group list-group-flush">
-			  <li class="list-group-item">Cras justo odio</li>
-			  <li class="list-group-item">Dapibus ac facilisis in</li>
-			  <li class="list-group-item">Morbi leo risus</li>
-			  <li class="list-group-item">Porta ac consectetur ac</li>
-			  <li class="list-group-item">Vestibulum at eros</li>
+			  <li class="list-group-item footerbgcolor" style="color:blue"><b>Useful Links</b></li>
+			  <li class="list-group-item footerbgcolor" ><a href = "" class = "footerbgcolor">FAQs</a></li>
+			  <li class="list-group-item footerbgcolor" ><a href = "index.php #searchbox" class = "footerbgcolor">Find a Couple</a></li>
+			  <li class="list-group-item footerbgcolor" ><a href = "#" class = "footerbgcolor">Order Status</a></li>
+			  <li class="list-group-item footerbgcolor" ><a href = "#" class = "footerbgcolor">Return Policy</a></li>			  
 			</ul>
-
-
 		</div>
 
-		<div class = "col-md-2 mr-2">
-			<ul class="list-group list-group-flush">
-			  <li class="list-group-item">Cras justo odio</li>
-			  <li class="list-group-item">Dapibus ac facilisis in</li>
-			  <li class="list-group-item">Morbi leo risus</li>
-			  <li class="list-group-item">Porta ac consectetur ac</li>
-			  <li class="list-group-item">Vestibulum at eros</li>
+		<div class = "col-md-2 mr-5 footertextcolor">
+			<ul class="list-group list-group-flush" >
+			  <li class="list-group-item footerbgcolor" style="color:purple"><b>Other Links</b></li>
+			  <li class="list-group-item footerbgcolor" ><a href = "" class = "footerbgcolor">How it Works</a></li>
+			  <li class="list-group-item footerbgcolor" ><a href = "becomeavendor.php" class = "footerbgcolor">Testimonials</a></li>
+			  <li class="list-group-item footerbgcolor" ><a href = "index.php #merchantsection" class = "footerbgcolor">See Our Merchants</a></li>
+			  <li class="list-group-item footerbgcolor" ><a href = "#" class = "footerbgcolor">Terms and Conditions</a></li>			  
 			</ul>
-
-
 		</div>
 
-		<div class = "col-md-2 mr-2">
-			
+		<div class = "col-md-2 mr-2 footertextcolor">			
 			<ul class="list-group list-group-flush">
-			  <li class="list-group-item">Cras justo odio</li>
-			  <li class="list-group-item">Dapibus ac facilisis in</li>
-			  <li class="list-group-item">Morbi leo risus</li>
-			  <li class="list-group-item">Porta ac consectetur ac</li>
-			  <li class="list-group-item">Vestibulum at eros</li>
+				<li class="list-group-item footerbgcolor" style="color:blue"><b>Menu</b></li>
+			  <li class="list-group-item footerbgcolor" ><a href = "receivegifts.php" class = "footerbgcolor">Create A Registry</a></li>
+			  <li class="list-group-item footerbgcolor" ><a href = "receivegifts.php" class = "footerbgcolor">Receive Gifts</a></li>
+			  <li class="list-group-item footerbgcolor" ><a href = "giveagift.php" class = "footerbgcolor">Give a Gift</a></li>
+			  <li class="list-group-item footerbgcolor" ><a href = "becomeavendor.php" class = "footerbgcolor">Become a Vendor</a></li>	  
 			</ul>
 
 		</div>
 
-		<div class = "col-md-2 offset-1">
-			
+		<div class = "col-md-2 offset-1 footertextcolor">			
 			<ul class="list-group list-group-flush">
-			  <li class="list-group-item">Cras justo odio</li>
-			  <li class="list-group-item">Dapibus ac facilisis in</li>
-			  <li class="list-group-item">Morbi leo risus</li>
-			  <li class="list-group-item">Porta ac consectetur ac</li>
-			  <li class="list-group-item">Vestibulum at eros</li>
+			  <li class="list-group-item footerbgcolor" style="color:purple"><b>Follow Us</b></li>
+			  <li class="list-group-item footerbgcolor" ><a href = "https://web.facebook.com/people/Ekene-Obika/100009253601860?_rdc=1&_rdr" class = "footerbgcolor">Facebook</a></li>
+			  <li class="list-group-item footerbgcolor" ><a href = "https://twitter.com/realmistertech" class = "footerbgcolor">Twitter</a></li>
+			  <li class="list-group-item footerbgcolor" ><a href = "#" class = "footerbgcolor">Instagram</a></li>
+			  <li class="list-group-item footerbgcolor" ><a href = "contactgiftrunner.php" class = "footerbgcolor">Contact Us</a></li>
 			</ul>
 
 		</div>
@@ -623,7 +658,7 @@
 <hr class = "footerline mt-3" style = "width: 80%">
 
 <div class = "row">
-		<div class = "col">
+		<div class = "col footertextcolor">
 			<p style = "text-align: center">Copyright &copy; 2019 M Technology Ltd. All Rights Reserved.</p>
 
 
@@ -689,6 +724,8 @@
 
 $(document).ready(function(){
 
+	$('#home-tab').css('color','red');
+
 	$('#loginbtn').click(function(){
 		var msg = "modallogin";
 		var e = $('#modalemail').val();
@@ -697,7 +734,54 @@ $(document).ready(function(){
 		$('#checkerror').load("submitloginmodal.php",data);
 		
 	})
+
+	$('#submitbtn').click(function(){
+
+
+
+
+	})
+
+	
+
 })
+
+$('#demobtn').click(function(){
+		
+		$('#howtosubdiv').hide();
+		$(this).hide();
+		$('#watchdemodiv').show();
+		$('#donebtn').show();
+		
+	})
+
+	$('#donebtn').click(function(){
+		
+		$('#howtosubdiv').show();
+		$(this).hide();
+		$('#watchdemodiv').hide();
+		$('#demobtn').show();
+		
+		destroyVideo();
+	})
+
+	function destroyVideo(){
+    var url = $('#player').attr('src');
+    $('#player').attr('src', '');
+    $('#player').attr('src', url);
+}
+
+
+$('.nav-link-chgcolor').focus(function(){
+
+		$(this).css('color','red');
+	})
+
+$('.nav-link-chgcolor').blur(function(){
+
+		$(this).css('color','#495057');
+	})
+
 
 </script>
 

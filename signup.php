@@ -3,6 +3,7 @@
 require("header.php");
 
 
+
 ?>
 
 	<div class = "row mt-3">
@@ -25,7 +26,7 @@ require("header.php");
 
 				
 				<div class="alert alert-secondary col-10 offset-1" role="alert">
-  				<h2 style = "text-align:center;">Sign Up Form</h2>
+  				<h2 style = "text-align:center;" id = "subtitle">Sign Up Form</h2>
 				</div>
 
 				<div class="row m-4 p-4">
@@ -73,7 +74,7 @@ require("header.php");
 				              <label>Password:</label>
 				              <div class= "row">
 				              <input type="password" class="form-control checkfield col-10 ml-3" name='pwd' id="checkfield5" required>
-				              <button type = "button" class = "col-1" id = "seepassword"><i class = "fa fa-angle-down"></i></button>
+				              <button type = "button" class = "col-1 pl-2" id = "seepassword"><i class = "fa fa-eye"></i></button>
 				              </div>
 				            </div>
 				          </div>
@@ -347,12 +348,15 @@ require("header.php");
 		})
 
 	
-	
+	$('#list-home-list').click(function(){
 
-	// if(){}
+		$('#subtitle').html('Sign Up Form');
+	});
 
+	$('#list-profile-list').click(function(){
 
-// }
+		$('#subtitle').html('Log In');
+	})
 
 </script>
 
