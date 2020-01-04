@@ -124,108 +124,11 @@ $details = $obj->getdetails($_SESSION['user'],'receivers');
 	
 	<!-- Send Message and Footer -->
 
-	<div class = "row-12 mt-3">
-		<div class = "col bline">
+	<?php
 
-	<div class = "row-12 mt-3">
-		<div class = "col-7 offset-2">
-			<h4 class = "text-center mt-0 pt-0">Send Us a Message</h4>
-			<form>
-			<div class = "row">
-			  <div class="form-group col-md-6 col-12">
-			    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your Name">
-			    </div>
-			  <div class="form-group col-md-6 col-12">
-			    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Your Email">
-			  </div>
-			</div>
+require('footer.php');
 
-			  <div class="form-group">
-			    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder = "Write Your Message Here"></textarea>
-			  </div>
-
-			  <div class="form-group form-check">
-			    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-			    <label class="form-check-label" for="exampleCheck1"><small id="emailHelp" class="form-text text-muted">Get updated on Interesting Offers and NewsLetter.</small></label>
-			  </div>
-			  <p class = "text-center"><button type="submit" class="btn btn-primary btn-lg">Submit</button></p>
-			</form>
-
-
-		</div>
-	</div>
-
-	<hr class = "footerline mt-3">
-<div class = "row-12">
-	<div class = "col">
-	<div class = "row">
-		<div class = "col-md-2 mx-2">
-			<ul class="list-group list-group-flush">
-			  <li class="list-group-item">Cras justo odio</li>
-			  <li class="list-group-item">Dapibus ac facilisis in</li>
-			  <li class="list-group-item">Morbi leo risus</li>
-			  <li class="list-group-item">Porta ac consectetur ac</li>
-			  <li class="list-group-item">Vestibulum at eros</li>
-			</ul>
-
-
-		</div>
-
-		<div class = "col-md-2 mr-2">
-			<ul class="list-group list-group-flush">
-			  <li class="list-group-item">Cras justo odio</li>
-			  <li class="list-group-item">Dapibus ac facilisis in</li>
-			  <li class="list-group-item">Morbi leo risus</li>
-			  <li class="list-group-item">Porta ac consectetur ac</li>
-			  <li class="list-group-item">Vestibulum at eros</li>
-			</ul>
-
-
-		</div>
-
-		<div class = "col-md-2 mr-2">
-			
-			<ul class="list-group list-group-flush">
-			  <li class="list-group-item">Cras justo odio</li>
-			  <li class="list-group-item">Dapibus ac facilisis in</li>
-			  <li class="list-group-item">Morbi leo risus</li>
-			  <li class="list-group-item">Porta ac consectetur ac</li>
-			  <li class="list-group-item">Vestibulum at eros</li>
-			</ul>
-
-		</div>
-
-		<div class = "col-md-2 offset-1">
-			
-			<ul class="list-group list-group-flush">
-			  <li class="list-group-item">Cras justo odio</li>
-			  <li class="list-group-item">Dapibus ac facilisis in</li>
-			  <li class="list-group-item">Morbi leo risus</li>
-			  <li class="list-group-item">Porta ac consectetur ac</li>
-			  <li class="list-group-item">Vestibulum at eros</li>
-			</ul>
-
-		</div>
-		</div>
-	</div>
-</div>
-
-<hr class = "footerline mt-3" style = "width: 80%">
-
-<div class = "row">
-		<div class = "col">
-			<p style = "text-align: center">Copyright &copy; 2019 M Technology Ltd. All Rights Reserved.</p>
-
-
-		</div>
-	</div>
-
-
-	</div>
-</div>
-
-</div>
-	
+?>	
 
 
 <!-- Modal Create Collection -->

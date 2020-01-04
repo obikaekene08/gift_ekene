@@ -32,14 +32,14 @@ require("header.php");
 				<div class="row m-4 p-4">
 				  <div class="col-4 offset-1">
 				    <div class="list-group" id="list-tab" role="tablist">
-				      <a class="list-group-item list-group-item-action <?php if(!isset($_SESSION['loginstatus'])){ echo active;}?> btn btn-primary" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home"><h3>SIGN UP</h3></a>
-				      <a class="list-group-item list-group-item-action btn btn-primary <?php if(isset($_SESSION['loginstatus'])){ echo active;}?>" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile"><h3>LOGIN</h3></a>				      
+				      <a class="list-group-item list-group-item-action <?php if(!isset($_SESSION['loginstatus']) && !isset($_GET['login'])){ echo active;}?> btn btn-primary" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home"><h3>SIGN UP</h3></a>
+				      <a class="list-group-item list-group-item-action btn btn-primary <?php if(isset($_SESSION['loginstatus']) || isset($_GET['login'])){ echo active;}?>" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile"><h3>LOGIN</h3></a>				      
 				      
 				    </div>
 				  </div>
 				  <div class="col-6">
 				    <div class="tab-content" id="nav-tabContent">
-				      <div class="tab-pane fade <?php if(!isset($_SESSION['loginstatus'])){ echo "show active";}?>" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+				      <div class="tab-pane fade <?php if(!isset($_SESSION['loginstatus']) && !isset($_GET['login'])){ echo "show active";}?>" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
 				      	<form method ="POST" id="form" action='vendorsubmitsignup.php' onsubmit = "prevent(event)">
 				        <div class = "row">
 				          <div class="control-group form-group col-md-6 col-12">
@@ -100,7 +100,7 @@ require("header.php");
 				          <button type="submit" class="btn btn-primary btn-block btn-lg" id="signupbtn">Sign Up</button>
 				        </form>
 				      </div>
-				      <div class="tab-pane fade <?php if(isset($_SESSION['loginstatus'])){ echo "show active";}?>" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+				      <div class="tab-pane fade <?php if(isset($_SESSION['loginstatus']) || isset($_GET['login'])){ echo "show active";}?>" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
 				      	
 				      	<form method="POST" id="contactForm" action='vendorsubmitlogin.php'>
 				      		<?php if(isset($_SESSION['loginstatus']) && $_SESSION['loginstatus'] == 'failed'){ ?>
@@ -158,116 +158,11 @@ require("header.php");
 
 	<!-- Send Message and Footer -->
 
-	<div class = "row-12 mt-3">
-		<div class = "col bline">
+	<?php
 
-	<div class = "row-12 mt-3">
-		<div class = "col-7 offset-2">
-			<h4 class = "text-center">Send Us a Message</h4>
-			<form>
-			<div class = "row">
-			  <div class="form-group col">
-			    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your Name">
-			    </div>
-			  <div class="form-group col">
-			    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Your Email">
-			  </div>
-			</div>
+require('footer.php');
 
-			  <div class="form-group">
-			    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder = "Write Your Message Here"></textarea>
-			  </div>
-
-			  <div class="form-group form-check">
-			    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-			    <label class="form-check-label" for="exampleCheck1"><small id="emailHelp" class="form-text text-muted">Get updated on Interesting Offers and NewsLetter.</small></label>
-			  </div>
-			  <p class = "text-center"><button type="submit" class="btn btn-primary btn-lg" >Submit</button></p>
-			</form>
-
-
-		</div>
-	</div>
-
-	<hr class = "footerline mt-3">
-<div class = "row-12">
-	<div class = "col">
-	<div class = "row">
-		<div class = "col-md-2 mx-2">
-			<ul class="list-group list-group-flush">
-			  <li class="list-group-item">Cras justo odio</li>
-			  <li class="list-group-item">Dapibus ac facilisis in</li>
-			  <li class="list-group-item">Morbi leo risus</li>
-			  <li class="list-group-item">Porta ac consectetur ac</li>
-			  <li class="list-group-item">Vestibulum at eros</li>
-			</ul>
-
-
-		</div>
-
-		<div class = "col-md-2 mr-2">
-			<ul class="list-group list-group-flush">
-			  <li class="list-group-item">Cras justo odio</li>
-			  <li class="list-group-item">Dapibus ac facilisis in</li>
-			  <li class="list-group-item">Morbi leo risus</li>
-			  <li class="list-group-item">Porta ac consectetur ac</li>
-			  <li class="list-group-item">Vestibulum at eros</li>
-			</ul>
-
-
-		</div>
-
-		<div class = "col-md-2 mr-2">
-			
-			<ul class="list-group list-group-flush">
-			  <li class="list-group-item">Cras justo odio</li>
-			  <li class="list-group-item">Dapibus ac facilisis in</li>
-			  <li class="list-group-item">Morbi leo risus</li>
-			  <li class="list-group-item">Porta ac consectetur ac</li>
-			  <li class="list-group-item">Vestibulum at eros</li>
-			</ul>
-
-		</div>
-
-		<div class = "col-md-2 offset-1">
-			
-			<ul class="list-group list-group-flush">
-			  <li class="list-group-item">Cras justo odio</li>
-			  <li class="list-group-item">Dapibus ac facilisis in</li>
-			  <li class="list-group-item">Morbi leo risus</li>
-			  <li class="list-group-item">Porta ac consectetur ac</li>
-			  <li class="list-group-item">Vestibulum at eros</li>
-			</ul>
-
-		</div>
-		</div>
-	</div>
-</div>
-
-<hr class = "footerline mt-3" style = "width: 80%">
-
-<div class = "row">
-		<div class = "col">
-			<p style = "text-align: center">Copyright &copy; 2019 M Technology Ltd. All Rights Reserved.</p>
-
-
-		</div>
-	</div>
-
-
-	</div>
-
-
-
-	
-
-		</div>
-
-	</div>
-
-
-	
-</div>
+?>
 
 
 

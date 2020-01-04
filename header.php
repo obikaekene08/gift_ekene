@@ -34,7 +34,8 @@ color:grey;
 }
 
 #fAQsparent .nav-link{ color:#495057;}
-#fAQsparent .nav-link:hover{
+
+.nav-link-chgcolor b:hover{
 color:#745E87;
 }
 
@@ -61,7 +62,7 @@ color:#745E87;
 		<div class = "col-md-2 offset-md-10 col-6 offset-7">
 
 			<?php if (!(isset($_SESSION['user']))) { ?>
-			<a type="button" href = "vendor_dashboard.html" class="btn btn-outline-danger btn-in">Log in</a>
+			<a type="button" href = "signup.php?login=login" class="btn btn-outline-danger btn-in">Log in</a>
 
 			<a class="btn btn-danger mx-2 btn-in" href="signup.php">Sign Up</a>
 		<?php }else { ?> <a class="btn btn-danger mx-2 btn-in" href="logout.php" style = "background-color:red; color:white; border: none">Logout</a> <?php } ?>

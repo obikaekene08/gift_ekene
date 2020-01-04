@@ -16,15 +16,6 @@ $r = $obj->getseveralwhere('vendor_item','v_cat_id',$v_cat_id);
 
 print_r(json_encode($r));
 
- 
-  // 	foreach($r AS $k => $v){
-
-  // 	echo "<option value='".$v['v_item_name']. " '/>";
-
-  // }
-
-  
- 
   
 
 ?>

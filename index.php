@@ -192,10 +192,10 @@ require("header.php");
 				    <div class="card">
 				      <div class="card-body">
 				      <div style = "height : 250px; margin: auto; ">
-				      	<img src = "images/first.png" style = "height:100%; width:100%">
+				      	<img src = "images/coupleone1.jpeg" style = "height:100%; width:100%">
 				      </div>
-				        <h5 class="card-title text-center">CAROLYN & NAT</h5>
-				        <p class="card-text text-center">"LOVED having our gifts and cash funds on one page. Our moms were legit jealous of our gifts, too."</p>
+				        <h5 class="card-title text-center">ONOTIE & BABATUNDE</h5>
+				        <p class="card-text text-center">"We enjoyed having our gifts and cash funds received easy. The gifts were amazing."</p>
 				      </div>
 				    </div>
 				  </div>
@@ -205,10 +205,10 @@ require("header.php");
 				    <div class="card">
 				      <div class="card-body">
 				      <div style = "height : 250px; margin: auto; ">
-				      	<img src = "images/second.png" style = "height:100%; width:100%">
+				      	<img src = "images/coupletwo2.jpg" style = "height:100%; width:100%">
 				      </div>
-				        <h5 class="card-title text-center">MAUREEN & OSA</h5>
-				        <p class="card-text text-center">"The best customer service on the planet. Price-matched my nephew’s plates on the spot."</p>
+				        <h5 class="card-title text-center">SEUN & KUNLE</h5>
+				        <p class="card-text text-center">"Wonderful customer service from GiftRunner. We are so happy with their services."</p>
 				      </div>
 				    </div>
 				  </div>
@@ -218,10 +218,10 @@ require("header.php");
 				    <div class="card">
 				      <div class="card-body">
 				      <div style = "height : 250px; margin: auto; ">
-				      	<img src = "images/third.png" style = "height:100%; width:100%">
+				      	<img src = "images/couplethree3.jpg" style = "height:100%; width:100%">
 				      </div>
-				        <h5 class="card-title text-center">MISSY & KENYETTA</h5>
-				        <p class="card-text text-center">"Lives up to the hype! And can’t recommend the app enough–super easy and super fun."</p>
+				        <h5 class="card-title text-center">MRS. OKEGU & DAVID</h5>
+				        <p class="card-text text-center">"Great Service from Gift Runner. Would definitely use it again when I need it"</p>
 				      </div>
 				    </div>
 				  </div>
@@ -301,15 +301,15 @@ require("header.php");
 
 				<h4 class = "bstyle" style="background-color: #bb3f3f; color: white; border-color:#bb3f3f">Some Frequently Asked Questions - FAQs</h4>
 
-				<ul class="nav nav-tabs" id="myTab" role="tablist">
-				  <li class="nav-item col-4">
-				    <a class="nav-link active nav-link-chgcolor" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">FAQs For Vendors</a>
+				<ul class="nav nav-tabs col-12 " id="myTab" role="tablist">
+				  <li class="nav-item col-4 ">
+				    <a class="nav-link active nav-link-chgcolor nav-link-sibling" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><b>FAQs For Vendors</b></a>
 				  </li>
 				  <li class="nav-item col-4">
-				    <a class="nav-link nav-link-chgcolor" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">FAQs For Giving Gifts</a>
+				    <a class="nav-link nav-link-chgcolor" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><b>FAQs For Giving Gifts</b></a>
 				  </li>
 				  <li class="nav-item col-4">
-				    <a class="nav-link nav-link-chgcolor" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">FAQs For Receiving Gifts</a>
+				    <a class="nav-link nav-link-chgcolor" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false"><b>FAQs For Receiving Gifts</b></a>
 				  </li>
 				</ul>
 				<div class="tab-content" id="myTabContent">
@@ -384,7 +384,7 @@ require("header.php");
 				    <div class="card-header" id="headingTwo">
 				      <h2 class="mb-0">
 				        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-				          What Benefits Do I Stand to Gain?
+				          Why Should I use Gift Runner?
 				        </button>
 				      </h2>
 				    </div>
@@ -433,7 +433,7 @@ require("header.php");
 				    <div class="card-header" id="headingTwo">
 				      <h2 class="mb-0">
 				        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-				          What Benefits Do I Stand to Gain?
+				          How Does Using Gift Runner Help My Event?
 				        </button>
 				      </h2>
 				    </div>
@@ -462,21 +462,6 @@ require("header.php");
 				  </div>
 				</div>
 
-
-
-				
-				<!-- <div class = "row py-2" >
-					<div class = "col text-center" id = "videobtn">
-						<button class="btn btn-success btn-lg" type="submit">See More FAQs<br><i class = "fa fa-angle-down"></i></button>
-					</div>
-				</div>
-				<div class = "row">
-					<div class = "col" id = "video">
-
-					</div>
-				</div>
- -->
-
 			</div>
 
 		</div>
@@ -498,26 +483,26 @@ require("header.php");
 
 				    	<div class="card-group">
 						  <div class="card mx-2 mt-2">
-						    <img src="images/baby.jpg" class="card-img-top" alt="...">
+						    <img src="images/weddingone.jpeg" class="card-img-top" alt="...">
 						    <div class="card-body">
 						      <h5 class="card-title">Wedding - Featured</h5>
-						      <p class="card-text">Best Wedding Gift Collections</p>
+						      <p class="card-text"><a href = "#">Best Wedding Gift Collections</a></p>
 						      <p class="card-text"><small class="text-muted">Last updated 20 mins ago</small></p>
 						    </div>
 						  </div>
 						  <div class="card mx-2 mt-2">
-						    <img src="images/baby.jpg" class="card-img-top" alt="...">
+						    <img src="images/weddingtwo.jpeg" class="card-img-top" alt="...">
 						    <div class="card-body">
 						      <h5 class="card-title">Wedding - Featured</h5>
-						      <p class="card-text">How to Best Plan Your Wedding</p>
+						      <p class="card-text"><a href = "#">How to Best Plan Your Wedding</a></p>
 						      <p class="card-text"><small class="text-muted">Last updated 2 days ago</small></p>
 						    </div>
 						  </div>
 						  <div class="card mx-2 mt-2">
-						    <img src="images/baby.jpg" class="card-img-top" alt="...">
+						    <img src="images/babyshowertwo.jpeg" class="card-img-top" alt="...">
 						    <div class="card-body">
 						      <h5 class="card-title">Child Dedication</h5>
-						      <p class="card-text">Celebrating Your Child Dedication without Stress</p>
+						      <p class="card-text"><a href = "#">Celebrating Your Child Dedication without Stress</a></p>
 						      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
 						    </div>
 						  </div>
@@ -530,26 +515,26 @@ require("header.php");
 
 				    	<div class="card-group">
 						  <div class="card mx-2 mt-2">
-						    <img src="images/baby.jpg" class="card-img-top" alt="...">
+						    <img src="images/weddingthree.jpeg" class="card-img-top" alt="...">
 						    <div class="card-body">
 						      <h5 class="card-title">Wedding - Articles</h5>
-						      <p class="card-text">Top Ten Gift Ideas for a Loved One's Wedding.</p>
+						      <p class="card-text"><a href = "#">Top Ten Gift Ideas for a Loved One's Wedding.</a></p>
 						      <p class="card-text"><small class="text-muted">Last updated 5 mins ago</small></p>
 						    </div>
 						  </div>
 						  <div class="card mx-2 mt-2">
-						    <img src="images/baby.jpg" class="card-img-top" alt="...">
+						    <img src="images/babyshower.jpeg" class="card-img-top" alt="...">
 						    <div class="card-body">
 						      <h5 class="card-title">Naming Ceremony - Featured</h5>
-						      <p class="card-text">50 Best Names Ideas for Your Children.</p>
+						      <p class="card-text"><a href = "#">50 Best Names Ideas for Your Children.</a></p>
 						      <p class="card-text"><small class="text-muted">Last updated 2 weeks ago</small></p>
 						    </div>
 						  </div>
 						  <div class="card mx-2 mt-2">
-						    <img src="images/baby.jpg" class="card-img-top" alt="...">
+						    <img src="images/babyshowerthree.jpeg" class="card-img-top" alt="...">
 						    <div class="card-body">
 						      <h5 class="card-title">Baby Shower - Featured</h5>
-						      <p class="card-text">3 Easy Steps to Doing Your Baby Shower</p>
+						      <p class="card-text"><a href = "#">3 Easy Steps to Doing Your Baby Shower</a></p>
 						      <p class="card-text"><small class="text-muted">Last updated 5 months ago</small></p>
 						    </div>
 						  </div>
@@ -575,101 +560,11 @@ require("header.php");
 
 	<!-- Send Message and Footer -->
 
-	<div class = "row-12 mt-3">
-		<div class = "col" style = "background-color:#787878;">
+<?php
 
-	<div class = "row-12 mt-3">
-		<div class = "col-8 offset-2">
-			<h4 class = "text-center mt-2 pt-3 mb-2 -pb-2 footertextcolor">Send Us a Message</h4>
-			<form>
-			<div class = "row">
-			  <div class="form-group col-md-6 col-12">
-			    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your Name">
-			    </div>
-			  <div class="form-group col-md-6 col-12">
-			    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Your Email">
-			  </div>
-			</div>
+require('footer.php');
 
-			  <div class="form-group">
-			    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder = "Write Your Message Here"></textarea>
-			  </div>
-
-			  <div class="form-group form-check ">
-			    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-			    <label class="form-check-label" for="exampleCheck1"><small id="emailHelp" class="form-text footertextcolor">Get updated on Interesting Offers and NewsLetter.</small></label>
-			  </div>
-			  <p class = "text-center"><button type="submit" class="btn btn-primary btn-lg" id = "submitbtn">Submit</button></p>
-			</form>
-
-
-		</div>
-	</div>
-
-	<hr class = "footerline mt-3">
-<div class = "row-12">
-	<div class = "col">
-	<div class = "row">
-		<div class = "col-md-2 mx-2 footertextcolor">
-			<ul class="list-group list-group-flush">
-			  <li class="list-group-item footerbgcolor" style="color:blue"><b>Useful Links</b></li>
-			  <li class="list-group-item footerbgcolor" ><a href = "" class = "footerbgcolor">FAQs</a></li>
-			  <li class="list-group-item footerbgcolor" ><a href = "index.php #searchbox" class = "footerbgcolor">Find a Couple</a></li>
-			  <li class="list-group-item footerbgcolor" ><a href = "#" class = "footerbgcolor">Order Status</a></li>
-			  <li class="list-group-item footerbgcolor" ><a href = "#" class = "footerbgcolor">Return Policy</a></li>			  
-			</ul>
-		</div>
-
-		<div class = "col-md-2 mr-5 footertextcolor">
-			<ul class="list-group list-group-flush" >
-			  <li class="list-group-item footerbgcolor" style="color:purple"><b>Other Links</b></li>
-			  <li class="list-group-item footerbgcolor" ><a href = "" class = "footerbgcolor">How it Works</a></li>
-			  <li class="list-group-item footerbgcolor" ><a href = "becomeavendor.php" class = "footerbgcolor">Testimonials</a></li>
-			  <li class="list-group-item footerbgcolor" ><a href = "index.php #merchantsection" class = "footerbgcolor">See Our Merchants</a></li>
-			  <li class="list-group-item footerbgcolor" ><a href = "#" class = "footerbgcolor">Terms and Conditions</a></li>			  
-			</ul>
-		</div>
-
-		<div class = "col-md-2 mr-2 footertextcolor">			
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item footerbgcolor" style="color:blue"><b>Menu</b></li>
-			  <li class="list-group-item footerbgcolor" ><a href = "receivegifts.php" class = "footerbgcolor">Create A Registry</a></li>
-			  <li class="list-group-item footerbgcolor" ><a href = "receivegifts.php" class = "footerbgcolor">Receive Gifts</a></li>
-			  <li class="list-group-item footerbgcolor" ><a href = "giveagift.php" class = "footerbgcolor">Give a Gift</a></li>
-			  <li class="list-group-item footerbgcolor" ><a href = "becomeavendor.php" class = "footerbgcolor">Become a Vendor</a></li>	  
-			</ul>
-
-		</div>
-
-		<div class = "col-md-2 offset-1 footertextcolor">			
-			<ul class="list-group list-group-flush">
-			  <li class="list-group-item footerbgcolor" style="color:purple"><b>Follow Us</b></li>
-			  <li class="list-group-item footerbgcolor" ><a href = "https://web.facebook.com/people/Ekene-Obika/100009253601860?_rdc=1&_rdr" class = "footerbgcolor">Facebook</a></li>
-			  <li class="list-group-item footerbgcolor" ><a href = "https://twitter.com/realmistertech" class = "footerbgcolor">Twitter</a></li>
-			  <li class="list-group-item footerbgcolor" ><a href = "#" class = "footerbgcolor">Instagram</a></li>
-			  <li class="list-group-item footerbgcolor" ><a href = "contactgiftrunner.php" class = "footerbgcolor">Contact Us</a></li>
-			</ul>
-
-		</div>
-		</div>
-	</div>
-</div>
-
-<hr class = "footerline mt-3" style = "width: 80%">
-
-<div class = "row">
-		<div class = "col footertextcolor">
-			<p style = "text-align: center">Copyright &copy; 2019 M Technology Ltd. All Rights Reserved.</p>
-
-
-		</div>
-	</div>
-
-
-	</div>
-</div>
-
-</div>
+?>
 	
 
 <!-- Modal Login-->
@@ -735,10 +630,42 @@ $(document).ready(function(){
 		
 	})
 
-	$('#submitbtn').click(function(){
+	$('#submitform').submit(function(e){
+		e.preventDefault();
+	var sendmsgname = $('#sendmsgname').val();
+	var sendmsgemail = $('#sendmsgemail').val();
+	var sendmsgmsg = $('#sendmsgmsg').val();
 
+	if($('#sendmsgcheck').prop('checked') == true){
 
+		var sendmsgcheck = 1;
+	}else{
+		var sendmsgcheck = 0
+	}
 
+	var data = {"sendmsgname":sendmsgname, "sendmsgemail" : sendmsgemail, "sendmsgmsg" : sendmsgmsg, "sendmsgcheck": sendmsgcheck };
+
+	$.ajax({
+
+		url: "sendmsgsubmit.php",
+		data: data,
+		dataType: "text",
+		type: "POST",
+		success(msg){
+		$('#sendmsgresponse').show();
+		$('#sendmsgresponse').html(msg);
+		$('#sendmsgresponse').fadeOut(3000);
+		$('#sendmsgname').val('');
+		$('#sendmsgemail').val('');
+	 	$('#sendmsgmsg').val('');
+		$('#sendmsgcheck').prop('checked',false);
+
+		},
+		error(errmsg){
+		alert(errmsg);
+		}
+
+	})
 
 	})
 
@@ -772,15 +699,17 @@ $('#demobtn').click(function(){
 }
 
 
+
 $('.nav-link-chgcolor').focus(function(){
 
+		$('#home-tab').css('color','#495057');
+		$('#profile-tab').css('color','#495057');
+		$('#contact-tab').css('color','#495057');
+		$(this).siblings('.nav-link-sibling').css('color','#495057');
 		$(this).css('color','red');
 	})
 
-$('.nav-link-chgcolor').blur(function(){
 
-		$(this).css('color','#495057');
-	})
 
 
 </script>
