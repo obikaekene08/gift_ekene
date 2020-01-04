@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 03, 2020 at 03:06 AM
+-- Generation Time: Jan 04, 2020 at 03:50 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -563,6 +563,46 @@ INSERT INTO `receiver_item` (`receiver_item_id`, `receiver_id`, `r_event_id`, `r
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `send_us_message`
+--
+
+CREATE TABLE `send_us_message` (
+  `message_id` int(11) NOT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `message` varchar(300) DEFAULT NULL,
+  `subscribe` int(11) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `send_us_message`
+--
+
+INSERT INTO `send_us_message` (`message_id`, `name`, `email`, `message`, `subscribe`) VALUES
+(1, 'Ekene', 'obika.ekene@gmail.com', '', 1),
+(2, 'Ekene', 'obika.ekene@gmail.com', '', 1),
+(3, 'Ekene', 'obika.ekene@gmail.com', '', 1),
+(4, 'Ekene', 'obika.ekene@gmail.com', '', 1),
+(5, 'Ekene', 'obika.ekene@gmail.com', '', 1),
+(6, 'Ekene', 'obika.ekene@gmail.com', '', 1),
+(7, 'Ekene', 'obika.ekene@gmail.com', '', 1),
+(8, 'KalisaClothings', 'obika.ekene@gmail.com', 'Hey Hey', 1),
+(9, 'KalisaClothings', 'obika.ekene@gmail.com', 'Hey Man', 0),
+(10, 'KalisaClothings', 'obika.ekene@gmail.com', 'Hey Lady', 1),
+(11, 'Ekene', 'obika.ekene@gmail.com', 'Hello Son', 0),
+(12, 'Ekene', 'obika.ekene@gmail.com', 'Hey Daughter', 1),
+(13, 'KalisaClothings', 'obika.ekene@gmail.com', 'Hey Boy', 1),
+(14, '', '', '', 0),
+(15, '', '', '', 0),
+(16, 'KalisaClothings', 'obika.ekene@gmail.com', 'Hey All', 1),
+(17, 'Ekene', 'obika.ekene@gmail.com', 'Hey People', 0),
+(18, 'Joy', 'joy@gmail.com', 'Hey Niggas', 1),
+(19, 'Onotie', 'onotie@gmail.com', 'Hello Brothers', 1),
+(20, 'KalisaClothings', 'onotie@gmail.com', 'Hey Sister', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `vendors`
 --
 
@@ -834,6 +874,12 @@ ALTER TABLE `receiver_item`
   ADD KEY `fk91_idx` (`v_item_id`);
 
 --
+-- Indexes for table `send_us_message`
+--
+ALTER TABLE `send_us_message`
+  ADD PRIMARY KEY (`message_id`);
+
+--
 -- Indexes for table `vendors`
 --
 ALTER TABLE `vendors`
@@ -891,7 +937,7 @@ ALTER TABLE `gifter_to_receiver_payment`
 -- AUTO_INCREMENT for table `gift_selection`
 --
 ALTER TABLE `gift_selection`
-  MODIFY `g_selection_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `g_selection_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `others_category_table`
@@ -951,7 +997,13 @@ ALTER TABLE `receiver_events`
 -- AUTO_INCREMENT for table `receiver_item`
 --
 ALTER TABLE `receiver_item`
-  MODIFY `receiver_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=173;
+  MODIFY `receiver_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=172;
+
+--
+-- AUTO_INCREMENT for table `send_us_message`
+--
+ALTER TABLE `send_us_message`
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `vendors`
