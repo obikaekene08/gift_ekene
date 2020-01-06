@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 04, 2020 at 03:50 AM
+-- Generation Time: Jan 06, 2020 at 09:52 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -628,7 +628,8 @@ INSERT INTO `vendors` (`vendor_id`, `v_fname`, `v_lname`, `v_companyname`, `v_ad
 (40, 'Ekene', 'Obika', 'M Technology', '15 Akin street', 'obika.ekene@gmail.com', '07065692733', '202cb962ac59075b964b07152d234b70', 'VEN/2019.12.17/40', 'vendor_images/1577819888.jpg', NULL),
 (41, 'KalisaClothings', 'Dan', 'M Tech', '4. Jones Street Apapa Road', 'dan@gmail.com', '07068447186', '81dc9bdb52d04dc20036dbd8313ed055', 'VEN/2019.12.17/41', 'vendor_images/1576576314.jpg', NULL),
 (42, 'Chinyere', 'Okafor', 'ChyChy Supermarket Ltd', 'No 3 Ajao Estate, Lagos', 'chychyokafor@gmail.com', '08030801113', '64f46fb2807f4befa916ed0547ef1827', 'VEN/2019.12.18/42', 'vendor_images/1576685433.png', NULL),
-(43, 'Kenny', 'Biks', 'Kenny Limited', '16 Opebi Lagos', 'KennyBiks@gmail.com', '07076778829', '4a7d1ed414474e4033ac29ccb8653d9b', 'VEN/2019.12.20/43', 'vendor_images/1576837059.png', NULL);
+(43, 'Kenny', 'Biks', 'Kenny Limited', '16 Opebi Lagos', 'KennyBiks@gmail.com', '07076778829', '4a7d1ed414474e4033ac29ccb8653d9b', 'VEN/2019.12.20/43', 'vendor_images/1576837059.png', NULL),
+(44, 'Solomon', 'Grundy', 'KingSolomon Ltd', '4. Jones Street Apapa Road', 'solomongrundy@gmail.com', '07068447186', '81dc9bdb52d04dc20036dbd8313ed055', 'VEN/2020.01.05/44', 'vendor_images/1578258516.jpeg', NULL);
 
 -- --------------------------------------------------------
 
@@ -655,7 +656,8 @@ INSERT INTO `vendor_bank_info` (`vendor_id`, `bank_name`, `account_number`, `acc
 (40, 'Access Bank', '0023235154', 'M Technology', '973783898390', NULL, '33333', '5555'),
 (41, 'Access Bank', '0700707', 'ng', '12345', NULL, '33333', '5555'),
 (42, 'Access Bank', '0700707', 'Chinyere Okafor', '00000000', NULL, '0000', '0000'),
-(43, 'Access Bank', '0803663663', 'Kenny Limited', '63737737388', NULL, '4566', '47747');
+(43, 'Access Bank', '0803663663', 'Kenny Limited', '63737737388', NULL, '4566', '47747'),
+(44, 'Access Bank', '0707377389', 'KingSolomon Ltd', '22378849902', NULL, '', '');
 
 -- --------------------------------------------------------
 
@@ -680,7 +682,8 @@ INSERT INTO `vendor_business_info` (`vendor_id`, `company_name`, `director_name`
 (40, 'M Technology', 'J Cole', 'jcole@gmail.com', 'BN', '12345'),
 (41, 'M T', 'J C', 'Jc@gmail.com', 'BN', '1235'),
 (42, 'ChyChy Supermarket Limited', 'Chinyere Okafor', 'chychyokafor@gmail.com', 'LLC', '12345'),
-(43, 'Kenny Limited', 'Keleman Cole', 'kennylimited@gmail.com', 'LLC', '12345');
+(43, 'Kenny Limited', 'Keleman Cole', 'kennylimited@gmail.com', 'LLC', '12345'),
+(44, 'KingSolomon Ltd', 'Solomon Grundy', 'Solomongrundy@gmail.com', 'LLC', '456778');
 
 -- --------------------------------------------------------
 
@@ -746,7 +749,23 @@ INSERT INTO `vendor_item` (`v_item_id`, `vendor_id`, `v_cat_id`, `v_item_name`, 
 (50, 40, 5, 'Astral ', 70000, 'silver', 10, 'vendor_item_image/1577820498.jpg', '2019-12-31 19:28:18', 1),
 (51, 40, 2, 'Thermocool ', 500000, 'gold', 116, NULL, '2019-12-31 19:35:47', 1),
 (52, 40, 1, 'Samsung ', 500000, 'golden', 116, 'vendor_item_image/1577821031.jpg', '2019-12-31 19:37:11', 1),
-(53, 40, 2, 'Cold Diamond ', 900000, 'silver', 30, NULL, '2020-01-01 12:54:54', 1);
+(53, 40, 2, 'Cold Diamond ', 900000, 'silver', 30, NULL, '2020-01-01 12:54:54', 1),
+(54, 44, 1, 'Samsung ', 50000, 'black', 2000, 'vendor_item_image/1578343539.jpeg', '2020-01-05 21:35:59', 1),
+(55, 44, 2, 'Thermocool ', 70000, 'blue', 30, 'vendor_item_image/1578343519.jpg', '2020-01-05 21:37:01', 1),
+(56, 44, 5, 'Astral ', 100000, 'silver', 40, 'vendor_item_image/1578260547.jpg', '2020-01-05 21:42:27', 0),
+(57, 44, 4, 'Oxxx ', 120000, 'white', 50, 'vendor_item_image/1578261251.png', '2020-01-05 21:54:11', 0),
+(58, 44, 8, 'Red Velvet', 21000, 'Red', 30, 'vendor_item_image/1578261538.jpg', '2020-01-05 21:57:54', 0),
+(59, 44, 1, 'Samsung ', 100000, 'Navy Blue', 31, 'vendor_item_image/1578326676.jpg', '2020-01-06 16:04:36', 1),
+(60, 44, 3, 'Panasonic ', 900000, 'whitey', 357, 'vendor_item_image/1578328240.jpg', '2020-01-06 16:14:56', 1),
+(61, 44, 3, 'Nexus ', 50000000, 'ash', 154, 'vendor_item_image/1578342985.jpeg', '2020-01-06 16:19:07', 1),
+(62, 44, 3, 'Nexus ', 50000000, 'ash', 15400, 'vendor_item_image/1578343566.jpeg', '2020-01-06 16:19:30', 1),
+(63, 44, 3, 'Nexus ', 50000000, 'ash', 154, 'vendor_item_image/1578343596.jpg', '2020-01-06 16:19:37', 1),
+(64, 44, 3, 'Nexus ', 50000000, 'ash', 154, 'vendor_item_image/1578339244.jpg', '2020-01-06 16:19:43', 1),
+(65, 44, 3, 'Nexus ', 50000000, 'ash', 154, 'vendor_item_image/1578338653.jpg', '2020-01-06 16:19:44', 1),
+(66, 44, 7, 'Rose ', 900000, 'red', 159, 'vendor_item_image/1578327809.jpg', '2020-01-06 16:23:29', 1),
+(67, 44, 4, 'Binatone', 155000, 'whitey', 3050, 'vendor_item_image/1578328194.jpg', '2020-01-06 16:29:54', 1),
+(68, 44, 1, 'MPMAN 42 Inches ', 70000, 'silver', 5000, 'vendor_item_image/1578342135.jpg', '2020-01-06 20:22:15', 1),
+(69, 44, 2, 'Cold Diamond ', 100000, 'silver', 14, 'vendor_item_image/1578343764.jpg', '2020-01-06 20:49:02', 0);
 
 -- --------------------------------------------------------
 
@@ -1009,13 +1028,13 @@ ALTER TABLE `send_us_message`
 -- AUTO_INCREMENT for table `vendors`
 --
 ALTER TABLE `vendors`
-  MODIFY `vendor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `vendor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `vendor_item`
 --
 ALTER TABLE `vendor_item`
-  MODIFY `v_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `v_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- Constraints for dumped tables

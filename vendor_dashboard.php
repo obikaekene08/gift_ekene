@@ -34,8 +34,8 @@ $fetch_catname = $obj->getseveralwhereNoGroup('vendor_item','category_table','ve
 			    <button class="btn btn-outline-danger" type="submit">Search</button>
 
 				
-				<button type="button" class="btn btn-danger mr-2 offset-md-2">Give a Gift</button>
-				<button type="button" class="btn btn-outline-danger">Receive Gifts</button>
+				<a href="giveagift.php" class="btn btn-danger mr-2 offset-md-2">Give a Gift</a>
+				<a href="receivegifts.php" class="btn btn-outline-danger">Receive Gifts</a>
 
 			  	</form>
 		</div>
@@ -111,7 +111,7 @@ $fetch_catname = $obj->getseveralwhereNoGroup('vendor_item','category_table','ve
 									     ?></p>
 								      </div>
 								    </div>
-								    <form method = "POST" action = "vendor_image_upload.php" enctype = "multipart/form-data" id = "formupload">
+								    <form method = "POST" action = "vendor_image_upload.php" enctype = "multipart/form-data" id = "profileformpic">
 								  	<div class="form-group">
 									    <div class="col-sm-10">									    	
 									     <input type='file' name='profile'>
@@ -1162,8 +1162,8 @@ require('footer.php');
 						</div>
 	      			</div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="submit" class="btn btn-primary" id = "additembtn" onclick = " $('#tableofitems').load('vendor_dashboard.php #tableofitems2'); $('#bodyofitem').load('itemsadded.php');">Save</button>
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal" id  = "addItemClosebtn">Close</button>
+	        <button type="submit" class="btn btn-primary" id = "additembtn" >Save</button>
 	      </div>
 	      </form>
   		</div>
@@ -1269,6 +1269,14 @@ function editItem(editbtn){
 	
 }
 
+ function editform(savebtn){
+ // var btnid = $(savebtn).parent('#editbtndiv').siblings('#divsib').find('#itemId').val();
+ // var edititembtn = "edititembtn"+btnid;
+
+  
+ 
+ }
+
 
 	
 	// var itemName = $(savebtn).parent('#editbtndiv').siblings('#divsib').find('#itemname').val();
@@ -1343,10 +1351,10 @@ $(document).ready(function(){
 
 $('#bodyofitem').load("itemsadded.php");
 
-$('#btnupload').mouseout(function(){
+$('#btnupload').click(function(){
 
 	
-	$('#fader').fadeOut('slow');
+	$('#fader').fadeOut(5000);
 })
 
 
@@ -1411,7 +1419,7 @@ $('#itemname').val(selectItemName);
    processData:false,
    success: function(data)
       {
-      alert(data);
+      // alert(data);
       },
      error: function(e) 
       {
@@ -1422,40 +1430,14 @@ $('#itemname').val(selectItemName);
 $('#bodyofitem').load("itemsadded.php");
 $('#tableofitems').load("vendor_dashboard.php #bodyofitem");
 $('#tableofitems').load("vendor_dashboard.php #tableofitems2");
+$('#addItemClosebtn').trigger("click");
 
  }));
 
 
- $("#edititemform").on('submit',(function(e) {
- 
-    e.preventDefault();
-    
-  $.ajax({
-    url: "vendorupdateitem.php",
-   type: "POST",
-   data:  new FormData(this),
-   contentType: false,
-         cache: false,
-   processData:false,
-   success: function(data)
-      {
-      alert(data);
-      },
-     error: function(e) 
-      {
-   alert(e);
-      }          
-    });
-
-$('#bodyofitem').load("itemsadded.php");
-$('#tableofitems').load("vendor_dashboard.php #bodyofitem");
-$('#tableofitems').load("vendor_dashboard.php #tableofitems2");
-
- }));
-
  
 
- 
+
 // var valcat = $('#selectcategory').val();
 // var make = $('#input2').val();
 // var a = $('#itemname').val();
@@ -1483,10 +1465,10 @@ $('#tableofitems').load("vendor_dashboard.php #tableofitems2");
 
 // })
 
-$('#formupload').submit(function(){
+// $('#formupload').submit(function(){
 
-	$('#alertspan').css("background-color", "yellow");
-})
+// 	$('#alertspan').css("background-color", "yellow");
+// })
 
 
 

@@ -257,7 +257,7 @@ function update($collect, $K1,$v1,$table){
 		// header("location: vendor_dashboard.php");
 	}else{
 		$_SESSION['errors'] = $error;
-		 // header("location: vendor_dashboard.php");//if any, the errors can be retrieved from $_SESSION['errors'] on picture.php
+		 // header("location: vendor_dashboard.php");//if any, the errors can be retrieved from $_SESSION['errors'] on picture.php		
 	}
 	
 }

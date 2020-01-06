@@ -17,6 +17,7 @@ $vendor_id  = $_SESSION['user'];
 
 
 ?>
+
 <form method = "POST" action = "vendorupdateitem.php" enctype="multipart/form-data" id = "edititemform">
       <div class="modal-body" id = "divsib">
       	<div class = "row">
@@ -66,11 +67,45 @@ $vendor_id  = $_SESSION['user'];
 						</div>
 	      			</div>
 	      <div class="modal-footer" id = "editbtndiv">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-	        <button type="submit" class="btn btn-primary" id = "edititembtn" onclick = "$('#tableofitems').load('vendor_dashboard.php #tableofitems2'); $('#bodyofitem').load('itemsadded.php');">Save Changes</button>
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal" id = "editItemClosebtnf">Cancel</button>
+	        <button type="submit" class="btn btn-primary" id = "">Save Changes</button>
 	      </div>
 	      </form>
 
 <?php
   	
 ?>
+
+<script>
+
+$("#edititemform").on('submit', (function(e) {
+
+ 	 e.preventDefault();
+     
+   $.ajax({
+    url: "vendorupdateitem.php",
+   type: "POST",
+   data:  new FormData(this),
+   contentType: false,
+         cache: false,
+   processData:false,
+   success: function(data)
+      {
+      // alert(data);
+      },
+     error: function(e) 
+      {
+   alert(e);
+      }
+
+    });
+
+$('#bodyofitem').load("itemsadded.php");
+$('#tableofitems').load("vendor_dashboard.php #bodyofitem");
+$('#tableofitems').load("vendor_dashboard.php #tableofitems2");
+$('#editItemClosebtnf').trigger("click");
+
+ }));
+ 
+
+</script>
