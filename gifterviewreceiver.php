@@ -15,13 +15,16 @@ require("header2.php");
 $details = $obj->getdetails($_SESSION['user'],'gifters');
 
 
-if(isset($_GET['eventid']) && isset($_GET['eventtitle'])){
+if(isset($_GET['eventid'])){
 $_SESSION['$r_event_id'] = $_GET['eventid'];
 $_SESSION['$receiver_id'] = $_GET['receiver_id'];
+
 }
 
 $details2 = $obj->getdetails2($_SESSION['$receiver_id'],'receivers');
 $details3 = $obj->getdetails3($_SESSION['$receiver_id'],$_SESSION['$r_event_id'],'receiver_events');
+
+
 
 // print_r($details3);
 
@@ -78,8 +81,8 @@ $details3 = $obj->getdetails3($_SESSION['$receiver_id'],$_SESSION['$r_event_id']
 	  </div>
         <div class="list-group">
           <a href="gifterprofile.php" class="list-group-item">Main Page</a>
-          <a href="editprofile.php" class="list-group-item">Edit Profile</a>          
-          <a href="changepassword.php" class="list-group-item">Change Password</a>
+          <a href="giftereditprofile.php" class="list-group-item">Edit Profile</a>          
+          <a href="gifterchangepassword.php" class="list-group-item">Change Password</a>
           <a href="logout.php" class="list-group-item">Log Out</a>
          
           

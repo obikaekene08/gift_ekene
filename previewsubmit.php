@@ -11,6 +11,7 @@ $seecollectiondetails = $obj->getseveralwhereNoGroup('receiver_item','vendor_ite
 
 // print_r($seecollectiondetails);
 
+?>
 
 <?php
 if(!empty($seecollectiondetails)) {

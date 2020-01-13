@@ -21,7 +21,38 @@ if(!isset($_SESSION['user'])){
 	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 	<link href = "giftstyle.css" rel = "stylesheet" type = "text/css">
 	<link rel="stylesheet" href="fontawesome/css/all.css" type ="text/css">
-	
+
+<style type="text/css">
+#navbarparent .nav-link{ color:white;}
+#navbarparent .nav-link:hover{
+color:grey;
+
+}
+.btn-in:hover{
+	background-color:grey;
+	border: 1px solid grey;
+}
+
+#fAQsparent .nav-link{ color:#495057;}
+
+.nav-link-chgcolor b:hover{
+color:#745E87;
+}
+
+.footerbgcolor{
+	background-color:#787878;
+}
+
+.footertextcolor,.footertextcolor ul li a{
+
+	color:white;
+}
+
+.footertextcolor ul li a:hover{
+
+	color:red;
+}
+</style>
 	
 	
 </head>
@@ -32,15 +63,15 @@ if(!isset($_SESSION['user'])){
 		<div class = "col-md-2 offset-md-10 col-6 offset-7">
 
 			<?php if (!(isset($_SESSION['user']))) { ?>
-			<a type="button" href = "vendor_dashboard.html" class="btn btn-outline-danger" style = "border:1px solid red; color:red">Log in</a>
+			<a type="button" href = "vendor_dashboard.html" class="btn btn-outline-danger btn-in" style = "border:1px solid red; color:red">Log in</a>
 
-			<button class="btn btn-danger mx-2" type="submit" style = "background-color:red; color:white; border: none">Sign Up</button>
+			<button class="btn btn-danger mx-2 btn-in" type="submit" style = "background-color:red; color:white; border: none">Sign Up</button>
 		<?php }else { ?> <?php } ?>
 		</div>
 	</div>
 	
 
-	<div class = "row" id = "menubar" style = "border:1px solid red; border-left:none; border-right:none">
+	<div class = "row" id = "menubar" style = "background-color:#bb3f3f">
 
 		<div class = "col-md-1 col-2" id = "logo">
 
@@ -49,9 +80,9 @@ if(!isset($_SESSION['user'])){
 
 		</div>
 
-		<div class = "col-md-8 offset-md-4 col-12">
+		<div class = "col-md-8 offset-md-4 col-12" style='background-color:#bb3f3f'>
 			
-			<nav class="navbar navbar-expand-lg" style = "background-color: white">
+			<nav class="navbar navbar-expand-lg" style='background-color:#bb3f3f' id = "navbarparent">
 			  <a class="navbar-brand" href="#"></a>
 			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 			    <span class="navbar-toggler-icon"></span>

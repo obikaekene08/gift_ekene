@@ -179,6 +179,7 @@ function update($collect, $K1,$v1,$table){
 		// $sid = $this->conn->insert_id;
 
 		// return $sid;
+		
 			
 			
 
@@ -385,7 +386,7 @@ function update($collect, $K1,$v1,$table){
 
 		function searchRName($searchval){
 
-		$sql = " SELECT * FROM receivers JOIN receiver_item ON receivers.receiver_id = receiver_item.receiver_id JOIN receiver_events ON receivers.receiver_id = receiver_events.receiver_id WHERE r_fname LIKE '%$searchval%'OR r_event_title LIKE '%$searchval%' OR r_phone  LIKE '%$searchval%' ";		
+		$sql = " SELECT * FROM receivers JOIN receiver_item ON receivers.receiver_id = receiver_item.receiver_id JOIN receiver_events ON receivers.receiver_id = receiver_events.receiver_id WHERE r_fname LIKE '%$searchval%'OR r_event_title LIKE '%$searchval%' OR r_phone  LIKE '%$searchval%' GROUP BY receiver_events.r_event_id ";		
 
 		$result = $this->conn->query($sql);
 		echo $this->conn->error;

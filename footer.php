@@ -102,8 +102,9 @@ $('#submitform').submit(function(e){
 	var sendmsgname = $('#sendmsgname').val();
 	var sendmsgemail = $('#sendmsgemail').val();
 	var sendmsgmsg = $('#sendmsgmsg').val();
+	var msgcheck = $('#sendmsgcheck').prop('checked');
 
-	if($('#sendmsgcheck').prop('checked') == true){
+	if( msgcheck == true){
 
 		var sendmsgcheck = 1;
 	}else{
