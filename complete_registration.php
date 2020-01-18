@@ -13,6 +13,7 @@ require("header.php");
 $details = $v->getdetails($_SESSION['user'], 'vendors');
 
 
+
 $fname = $details['v_fname'];
 $lname = $details['v_lname'];
 $bname = $details['v_companyname'];

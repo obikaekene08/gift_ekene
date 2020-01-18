@@ -103,7 +103,7 @@ color:#745E87;
 			          VENDORS
 			        </a>
 			        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-			          <a class="dropdown-item" href="#merchantsection">See Our Vendors</a>
+			          <a class="dropdown-item" href="index.php #merchantsection">See Our Vendors</a>
 			          <a class="dropdown-item" href="becomeavendor.php">Become a Vendor</a>
 			          <a class="dropdown-item" href="becomeavendor.php?m=signin">Vendor Sign in</a>
 			        </div>
@@ -114,14 +114,14 @@ color:#745E87;
 			          FAQs
 			        </a>
 			        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-			          <a class="dropdown-item" href="#">FAQ for Givers</a>
-			          <a class="dropdown-item" href="#">FAQ for Receivers</a>
-			          <a class="dropdown-item" href="#">FAQ for Vendors</a>
+			          <a class="dropdown-item" href="index.php #fAQsparent">FAQ for Givers</a>
+			          <a class="dropdown-item" href="index.php #fAQsparent">FAQ for Receivers</a>
+			          <a class="dropdown-item" href="index.php #fAQsparent">FAQ for Vendors</a>
 			        </div>
 			      </li>
 
 			      <li class="nav-item">
-			        <a class="nav-link" href="#">CONTACT</a>
+			        <a class="nav-link" href="contactgiftrunner.php">CONTACT</a>
 			      </li>
 
 			    </ul>

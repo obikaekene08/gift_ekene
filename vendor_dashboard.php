@@ -16,6 +16,32 @@ $cat_table = $obj->getseveral('category_table');
 
 $fetch_catname = $obj->getseveralwhereNoGroup('vendor_item','category_table','vendor_item.v_cat_id','category_id','vendor_id',$_SESSION['user'],'ORDER BY', 'category_name ASC');
 
+$fname = $details['v_fname'];
+$lname = $details['v_lname'];
+$bname = $details['v_companyname'];
+$address = $details ['v_address'];
+$email = $details['v_email'];
+$phone = $details['v_phone'];
+
+
+$details2  = $obj->getdetails($_SESSION['user'], 'vendor_business_info');
+
+$cname = $details2['company_name'];
+$dname = $details2['director_name'];
+$cemail = $details2['company_email'];
+$ctype = $details2['company_type'];
+$rc = $details2['rc_number'];
+
+
+$details3  = $obj->getdetails($_SESSION['user'], 'vendor_bank_info');
+
+$bkname = $details3['bank_name'];
+$acnum = $details3['account_number'];
+$acname = $details3['account_name'];
+$bvn = $details3['bvn'];
+$iban = $details3['iban'];
+$swift = $details3['swift'];
+
 
 
 ?>
@@ -339,43 +365,41 @@ $fetch_catname = $obj->getseveralwhereNoGroup('vendor_item','category_table','ve
 									<div class="form-group row">
 									    <label for="staticEmail" class="col-sm-2 col-form-label">First Name</label>
 									    <div class="col-sm-4">
-									      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="">
+									      <input type="text" class="form-control" id="fname" name = "v_fname" value="<?php echo $fname ?>">
 									    </div>
 
 									    <label for="staticEmail" class="col-sm-2 col-form-label">Last Name</label>
 									    <div class="col-sm-4">
-									      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="">
+									      <input type="text" class="form-control" id="lname" name = "v_lname" value="<?php echo $lname ?>">
 									    </div>
 									 </div>
-									  <div class="form-group row">
+									   <div class="form-group row">
 									    <label for="staticEmail" class="col-sm-2 col-form-label">Brand Name</label>
 									    <div class="col-sm-10">
-									      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="">
+									      <input type="text" class="form-control" id="bname" name = "v_companyname" value="<?php echo $bname ?>">
 									    </div>
 									  </div>
 									  
 									  <div class="form-group row">
 									    <label for="staticEmail" class="col-sm-2 col-form-label">Phone Number</label>
 									    <div class="col-sm-10">
-									      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="">
+									      <input type="text" class="form-control" id="vphone" name = "v_phone" value="<?php echo $phone ?>">
 									    </div>
 									  </div>
 									   <div class="form-group row">
 									    <label for="staticEmail" class="col-sm-2 col-form-label">Email Address</label>
 									    <div class="col-sm-10">
-									      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="">
+									      <input type="text" class="form-control" id="vemail" name = "v_email" value="<?php echo $email ?>">
 									    </div>
 									  </div>
-									  
-									  					  
 									  <div class="form-group row">
-									    <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+									    <label for="staticEmail" class="col-sm-2 col-form-label">Office Address</label>
 									    <div class="col-sm-10">
-									      <input type="password" readonly class="form-control-plaintext" id="inputPassword">
+									      <input type="text" class="form-control" id="vaddress" name = "v_address" value="<?php echo $address ?>">
 									    </div>
-									  </div>
+									  </div>									  
 									  
-									  <p align="right"><button type="submit" class="btn btn-primary mr-2">Edit Details</button><button type="submit" class="btn btn-primary" disabled>Save Changes</button></p>
+									  <p align="right"><button type="submit" class="btn btn-primary">Save Changes</button></p>
 									</form>
 
 
@@ -407,40 +431,40 @@ $fetch_catname = $obj->getseveralwhereNoGroup('vendor_item','category_table','ve
 									<div class="form-group row">
 									    <label for="staticEmail" class="col-sm-2 col-form-label">Business Legal Name</label>
 									    <div class="col-sm-10">
-									      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="">
+									      <input type="text" class="form-control" id="company_name" name = "company_name" value="<?php echo $cname ?>">
 									    </div>
 									  </div>
 									
 									  <div class="form-group row">
 									    <label for="staticEmail" class="col-sm-2 col-form-label">Director's Name</label>
 									    <div class="col-sm-10">
-									      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="">
+									      <input type="text" class="form-control" id="director_name"  name = "director_name" value="<?php echo $dname ?>">
 									    </div>
 									  </div>
 									  <div class="form-group row">
 									    <label for="staticEmail" class="col-sm-2 col-form-label">Business Email</label>
 									    <div class="col-sm-10">
-									      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="">
+									      <input type="text" class="form-control" id="company_email"  name = "company_email" value="<?php echo $cemail ?>">
 									    </div>
 									  </div>
 									  <div class="form-group row">
 									    <label for="inputPassword" class="col-sm-2 col-form-label">Business Type</label>
 									    <div class="col-sm-10">
-									      <select readonly class="form-control-plaintext" id="">
-									      	<option value="">Select Business Type</option>
-									      	<option value="">Business Name</option>
-									      	<option value="">Limited Liability Company</option>
-									      	<option value="">Public Liability Company</option>
+									      <select class="form-control" id="company_type"  name = "company_type">
+									      	<option value="<?php echo $ctype ?>"><?php if(isset($_SESSION['user'])){ echo $ctype;}else {echo "Select Business Type";} ?></option>
+									      	<option value="BN">Business Name</option>
+									      	<option value="LLC">Limited Liability Company</option>
+									      	<option value="PLC">Public Liability Company</option>
 									      </select>
 									    </div>
 									  </div>
 									  <div class="form-group row">
 									    <label for="staticEmail" class="col-sm-2 col-form-label">Business Reg. Number</label>
 									    <div class="col-sm-10">
-									      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="">
+									      <input type="text" class="form-control" id="rc_number"  name = "rc_number" value="<?php echo $rc ?>">
 									    </div>
 									  </div>
-									  <p align="right"><button type="submit" class="btn btn-primary mr-2">Edit Details</button><button type="button" type="submit" class="btn btn-primary" disabled>Save Changes</button></p>
+									  <p align="right"><button type="button" type="submit" class="btn btn-primary">Save Changes</button></p>
 									</form>
 
 
@@ -473,59 +497,53 @@ $fetch_catname = $obj->getseveralwhereNoGroup('vendor_item','category_table','ve
 									<div class="form-group row">
 									    <label for="inputPassword" class="col-sm-2 col-form-label">Bank Name<span style = "color:red">*</span></label>
 									    <div class="col-sm-10">
-									      <select readonly class="form-control-plaintext" id="">
-									      	<option value="">Select Bank Name</option>
-									      	<option value="">Access Bank</option>
-									      	<option value="">First Bank</option>
-									      	<option value="">Fidelity Bank</option>
+									      <select class="form-control" name = "bank_name" id="bank_name">
+									      	<option value="<?php echo $ctype ?>"><?php if(isset($_SESSION['user'])){ echo $bkname;}else {echo "Select Bank Name";} ?></option>
+									      	<option value="Access Bank">Access Bank</option>
+									      	<option value="First Bank">First Bank</option>
+									      	<option value="Fidelity Bank">Fidelity Bank</option>
 									      </select>
 									    </div>
 									  </div>
+									  
 									<div class="form-group row">
 									    <label for="staticEmail" class="col-sm-2 col-form-label">Account Number<span style = "color:red">*</span></label>
 									    <div class="col-sm-10">
-									      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="">
+									      <input type="text" class="form-control" id="account_number" name = "account_number" value="<?php echo $acname ?>">
 									    </div>
 									</div>
+
 
 									<div class="form-group row">
 									    <label for="staticEmail" class="col-sm-2 col-form-label">Account Name<span style = "color:red">*</span></label>
 									    <div class="col-sm-10">
-									      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="">
+									      <input type="text" class="form-control" id="account_name" name = "account_name" value="<?php echo $acname ?>">
 									    </div>
 									  </div>
 
 									<div class="form-group row">
 									    <label for="staticEmail" class="col-sm-2 col-form-label">BVN Number<span style = "color:red">*</span></label>
 									    <div class="col-sm-10">
-									      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="">
+									      <input type="text" class="form-control" id="bvn" name = "bvn" value="<?php echo $bvn ?>">
 									    </div>
-									 </div>
-
-									 <div class="form-group row">
-									    <label for="exampleFormControlFile1" class="col-sm-2 col-form-label">Upload Bank Statement<span style = "color:red">*</span></label>
-									    <div class="col-sm-10">
-									    <input type="file" class="form-control-file form-control-plaintext" id="exampleFormControlFile1">
-										</div>
 									 </div>
 
 									 <div class="form-group row">
 									    <label for="staticEmail" class="col-sm-2 col-form-label">IBAN</label>
 									    <div class="col-sm-10">
-									      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="">
+									      <input type="text" class="form-control" id="iban" name = "iban" value="<?php echo $iban ?>" placeholder = "Optional">
 									    </div>
 									 </div>
 
 									 <div class="form-group row">
 									    <label for="staticEmail" class="col-sm-2 col-form-label">SWIFT</label>
 									    <div class="col-sm-10">
-									      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="">
+									      <input type="text"  class="form-control" id="swift" name ="swift" value="<?php echo $swift ?>" placeholder = "Optional">
 									    </div>
 									 </div>
+								
 
-									
-
-									  <p align="right"><button type="submit" class="btn btn-primary mr-2">Edit Details</button><button type="submit" class="btn btn-primary" disabled>Save Changes</button></p>
+									  <p align="right"><button type="submit" class="btn btn-primary" >Save Changes</button></p>
 									</form>
 
 

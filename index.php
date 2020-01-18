@@ -303,17 +303,17 @@ require("header.php");
 
 				<ul class="nav nav-tabs col-12 " id="myTab" role="tablist">
 				  <li class="nav-item col-4 ">
-				    <a class="nav-link active nav-link-chgcolor nav-link-sibling" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><b>FAQs For Vendors</b></a>
+				    <a class="nav-link active nav-link-chgcolor nav-link-sibling" id="home-tab" data-toggle="tab" href="#faqReceivers" role="tab" aria-controls="home" aria-selected="true"><b>FAQs For Vendors</b></a>
 				  </li>
 				  <li class="nav-item col-4">
-				    <a class="nav-link nav-link-chgcolor" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><b>FAQs For Giving Gifts</b></a>
+				    <a class="nav-link nav-link-chgcolor" id="profile-tab" data-toggle="tab" href="#faqGifters" role="tab" aria-controls="profile" aria-selected="false"><b>FAQs For Giving Gifts</b></a>
 				  </li>
 				  <li class="nav-item col-4">
-				    <a class="nav-link nav-link-chgcolor" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false"><b>FAQs For Receiving Gifts</b></a>
+				    <a class="nav-link nav-link-chgcolor" id="contact-tab" data-toggle="tab" href="#faqVendors" role="tab" aria-controls="contact" aria-selected="false"><b>FAQs For Receiving Gifts</b></a>
 				  </li>
 				</ul>
 				<div class="tab-content" id="myTabContent">
-				  <div class="tab-pane fade show active col-12" id="home" role="tabpanel" aria-labelledby="home-tab">
+				  <div class="tab-pane fade show active col-12" id="faqReceivers" role="tabpanel" aria-labelledby="home-tab">
 				  	
 				  <div class="accordion" id="accordionExample">
 				  <div class="card">
@@ -362,7 +362,7 @@ require("header.php");
 				</div>
 
 				  </div>
-				  <div class="tab-pane fade col-12" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+				  <div class="tab-pane fade col-12" id="faqGifters" role="tabpanel" aria-labelledby="profile-tab">
 				  	
 				  	 <div class="accordion" id="accordionExample">
 				  <div class="card">
@@ -411,7 +411,7 @@ require("header.php");
 				</div>
 
 				  </div>
-				  <div class="tab-pane fade col-12" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+				  <div class="tab-pane fade col-12" id="faqVendors" role="tabpanel" aria-labelledby="contact-tab">
 				  	
 				  	 <div class="accordion" id="accordionExample">
 				  <div class="card">

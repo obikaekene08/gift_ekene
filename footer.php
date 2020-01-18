@@ -1,4 +1,4 @@
-<div class = "row-12 mt-3">
+<div class = "row-12 mt-3" id = "sendamessage">
 		<div class = "col" style = "background-color:#787878;">
 
 	<div class = "row-12 mt-3">
