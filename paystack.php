@@ -51,6 +51,7 @@ if ($request) {
 // print_r($result);
 // echo "</pre>";
 
+if(isset($result['status']) && isset($result['message'])){
 if($result['status']){
 	$authurl = $result['data']['authorization_url'];
 
@@ -61,6 +62,8 @@ header("location: $authurl");
 
 	echo $result['message'];
 	
+}
+
 }
 
 

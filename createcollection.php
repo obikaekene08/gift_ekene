@@ -14,13 +14,16 @@ require("header2.php");
 
 $details = $obj->getdetails($_SESSION['user'],'receivers');
 
-$event_table = $obj->getseveral('receiver_events');
+$event_table = $obj->getseveralwhere('receiver_events','receiver_id',$_SESSION['user']);
 
 $cat_table = $obj->getseveral('category_table');
 
 $merch_table = $obj->getseveral('vendors');
 
 $item_table = $obj->getseveral('vendor_item');
+
+$event_id = $_SESSION['$r_event_id'];
+
 
 ?>
 
@@ -62,7 +65,7 @@ $item_table = $obj->getseveral('vendor_item');
 		<label for="inputPassword" class=" col-form-label col-sm-2">Choose Event Title: <span style = "color:red">*</span></label>
 	    <div class="col-sm-5">
 		    <select class = "form-control" id = "eventtitle">		    	
-	      	<option value="<?php if(isset($_SESSION['$r_event_id']) && isset($_SESSION['$r_event_title'])){ echo $_SESSION['$r_event_id']; } else {echo "Select an event";}?>" ><?php if(isset($_SESSION['$r_event_id']) && isset($_SESSION['$r_event_title'])){ echo $_SESSION['$r_event_title']; } else {echo "Select an event";} ?> </option>
+	      	<option value="<?php if(isset($_SESSION['$r_event_id']) && isset($_SESSION['$r_event_title'])){ echo $event_id; } else {echo "Select an event";}?>" ><?php if(isset($_SESSION['$r_event_id']) && isset($_SESSION['$r_event_title'])){ echo $_SESSION['$r_event_title']; } else {echo "Select an event";} ?> </option>
 	      		<?php foreach($event_table AS $k => $v){ ?>
 	      			<option value="<?php echo $v['r_event_id'];?>" ><?php echo $v['r_event_title']; ?> </option>
 	      		<?php } ?>										      	

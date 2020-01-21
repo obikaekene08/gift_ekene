@@ -31,13 +31,16 @@ require('header.php');
 				 
 
 				  <div class="col-md-12 mb-3">
-				  	<p><b>Gift Runner</b> is an Online Platform that enables you give gifts easily to anyone. We have a large collection of possible gifts items from great stores from which you can choose, we make great suggestions for you too!
+				  	<h5 style = "color:#0BB2F0">I want to give a gift:</h5>
+				  	<p style = "color: #434343"><b>Gift Runner</b> is an Online Platform that enables you give gifts easily to anyone. We have a large collection of possible gifts items from great stores from which you can choose, we make great suggestions for you too!
 				  	We deliver your gifts fantastically packaged and timely so the receiver is really happy with you.</p>
 
-				  	<p><b>Gift Runner</b> is also allows persons who have events to collect gifts easily from their gifters without stress. We save your gifters the stress of thinking of a gift you would want, instead we let you pre-select wanted gift items and your gifters pay for them.
+				  	<h5 style = "color:#0BB2F0">I want to accept gifts:</h5>
+				  	<p style = "color: #434343"><b>Gift Runner</b> also allows persons who have events to collect gifts easily from their gifters without stress. We save your gifters the stress of thinking of a gift you would want, instead we let you pre-select wanted gift items and your gifters pay for them.
 				  	We make the process seamless from your selection of gifts to receiving the gifts given to you by your gifters</p>
 
-				  	<p><b>Gift Runner</b> is also provides other services like enrolling of vendors (with great collections), use of coupons, and gift cards, and charity collections etc</p>
+				  	<h5 style = "color:#0BB2F0">I want to do other things:</h5>
+				  	<p style = "color: #434343"><b>Gift Runner</b> is also provides other services like enrolling of vendors (with great collections), use of coupons, and gift cards, and charity collections etc</p>
 				    
 				  </div>
 

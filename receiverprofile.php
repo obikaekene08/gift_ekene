@@ -15,7 +15,6 @@ require("header2.php");
 $details = $obj->getdetails($_SESSION['user'],'receivers');
 
 
-
 ?>
 
 	<button type="button" class="btn btn-outline-danger mr-2 my-2 offset-md-9">Give a Gift</button>
@@ -86,28 +85,28 @@ $details = $obj->getdetails($_SESSION['user'],'receivers');
 	    	
 		  <div class="form-group row">
 		    <div class="col-sm-6">
-		    <label for="inputEmail3">Name: </label>
-		      <input type="text" class="form-control" id="inputEmail3" name='fname'>
+		    <label for="fname">First Name: </label>
+		      <input type="text" class="form-control" id="fname" name='fname' value = "<?php echo $details['r_fname']?>" readonly>
 		    </div>
 		    <div class="col-sm-6">
-		    <label for="inputEmail3">Email:</label>
-		      <input type="text" class="form-control" id="inputEmail3" name='fname'>
+		    <label for="lname">Last Name:</label>
+		      <input type="text" class="form-control" id="lname" name='lname' value = "<?php echo $details['r_lname']?>" readonly>
 		    </div>
 		  </div>
 		  <div class="form-group row">
 		    <div class="col-sm-6">
-		    <label for="inputEmail3">Phone Number 1: </label>
-		      <input type="text" class="form-control" id="inputEmail3" name='fname'>
+		    <label for="email">Email: </label>
+		      <input type="email" class="form-control" id="email" name='phone' value = "<?php echo $details['r_email']?>" readonly>
 		    </div>
 		    <div class="col-sm-6">
-		    <label for="inputEmail3">Phone Number 2:</label>
-		      <input type="text" class="form-control" id="inputEmail3" name='fname'>
+		    <label for="phone">Phone Number:</label>
+		      <input type="text" class="form-control" id="phone" name='phone' value = "<?php echo $details['r_phone']?>" readonly>
 		    </div>		  
 		  </div>
 		    <div class="control-group form-group">
             <div class="controls">
               <label>Delivery Address:</label>
-              <textarea rows="2" cols="50" name='profile' class="form-control" id="profile"  maxlength="300" style="resize:none"></textarea>
+              <textarea rows="2" cols="50" name='address' class="form-control" id="address"  maxlength="300" style="resize:none"  readonly><?php echo $details['r_delivery_address']?></textarea>
             </div>
           </div>		  
 		</form>

@@ -593,8 +593,6 @@ function getseveralwheregroup($table,$table2,$colname,$colname2,$id = 0, $col1,$
 
 		$sid = $this->conn->affected_rows;
 
-		echo $sid;
-
 		
 	}
 

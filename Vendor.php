@@ -252,9 +252,7 @@ function update($collect, $K1,$v1,$table){
 		$t = move_uploaded_file($filename, $dst);
 		$_SESSION['picupload'] = $t;
 		$this->updateupload($imagetable,$imagecol,$dst,$imagecoluserid,$imageuserid);
-		// $imagedetails = $this->getdetails($_SESSION['user'],'vendors');
-		// $_SESSION['imagelocation'] = $imagedetails['v_pic_name'];
-		// header("location: vendor_dashboard.php");
+		
 	}else{
 		$_SESSION['errors'] = $error;
 		 // header("location: vendor_dashboard.php");//if any, the errors can be retrieved from $_SESSION['errors'] on picture.php		

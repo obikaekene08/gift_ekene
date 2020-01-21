@@ -91,7 +91,8 @@ $("#edititemform").on('submit', (function(e) {
    processData:false,
    success: function(data)
       {
-      // alert(data);
+      	$('#bodyofitem').load("itemsadded.php");
+		$('#tableofitems').load("vendor_dashboard.php #tableofitems2");
       },
      error: function(e) 
       {
@@ -100,9 +101,7 @@ $("#edititemform").on('submit', (function(e) {
 
     });
 
-$('#bodyofitem').load("itemsadded.php");
-$('#tableofitems').load("vendor_dashboard.php #bodyofitem");
-$('#tableofitems').load("vendor_dashboard.php #tableofitems2");
+
 $('#editItemClosebtnf').trigger("click");
 
  }));

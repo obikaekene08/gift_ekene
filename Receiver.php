@@ -301,7 +301,7 @@ function doupload($filearray,$imagefolder,$imagetable,$imagecol,$imagecoluserid,
 
 	function addcollection($receiver_id, $r_event_type, $r_event_title,$r_message,$r_event_date,$r_event_duedate){
 
-		$sql = " INSERT INTO receiver_events SET receiver_id = '$receiver_id', r_event_type = '$r_event_type', r_event_title = '$r_event_title', r_message = '$r_message', r_event_date = '$r_event_date' , r_event_duedate = '$r_event_date' ";
+		$sql = " INSERT INTO receiver_events SET receiver_id = '$receiver_id', r_event_type = '$r_event_type', r_event_title = '$r_event_title', r_message = '$r_message', r_event_date = '$r_event_date' , r_event_duedate = '$r_event_duedate' ";
 
 		$r = $this->conn->query($sql);
 
@@ -447,11 +447,10 @@ function doupload($filearray,$imagefolder,$imagetable,$imagecol,$imagecoluserid,
 }
 
 
-function getseveralwheregroup($table,$table2,$colname,$colname2,$id = 0, $col1,$col2,$col3){
+function getseveralwheregroup($table,$table2,$col1,$col2,$colname2,$id = 0,$col3,$colname){
 
-		$sql = " SELECT *, SUM($col3) AS counter FROM $table JOIN $table2 ON $col1 = $col2 WHERE $colname2 = '$id' GROUP BY $colname ";
+		$sql = " SELECT *, SUM($col3) AS counter FROM $table LEFT JOIN $table2 ON $col1 = $col2 WHERE $colname2 = '$id' GROUP BY $colname ";
 		
-
 		$result = $this->conn->query($sql);
 		echo $this->conn->error;
 		$list = [];

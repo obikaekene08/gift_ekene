@@ -70,7 +70,7 @@ $details = $obj->getdetails($_SESSION['user'],'receivers');
 				  <img src="<?php if($_SESSION['$r_event_pic'] != ""){ echo $_SESSION['$r_event_pic']; }else{echo 'images/noimage3.jpg';} ?>" class="card-img-top img-fluid" style = "height: 300px" alt="...">
 				</div>
 				<div class = "mt-2" style = "display:flex; flex-wrap: nowrap;">
-					<h6 class = "text-center" style = " width: 50%"><b>Due Date:</b><?php $d = strtotime($_SESSION['$r_event_duedate']); if($_SESSION['$r_event_duedate'] != ''){echo date("F j, Y",$d);}else{echo "none";} ?></h6>
+					<h6 class = "text-center" style = " width: 50%"><b>Due Date:</b><?php $d = strtotime($_SESSION['$r_event_duedate']); if($_SESSION['$r_event_duedate'] != ''){echo date("F j, Y",$d);}else{echo "None";} ?></h6>
 					<h6 class = "text-center" style = "width: 50%"><b>Event Date:</b><?php $d = strtotime($_SESSION['$r_event_date']); if($_SESSION['$r_event_date'] != ''){echo date("F j, Y",$d);}else{echo "None";} ?></h6>
 				</div>
 				

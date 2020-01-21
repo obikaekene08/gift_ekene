@@ -68,7 +68,7 @@ $item_table = $obj->getseveral('vendor_item');
 	     ?></p>
 		 </div>
 		</div>
-		</form>
+		</form>		
 	 
 	  </div>
         <div class="list-group">

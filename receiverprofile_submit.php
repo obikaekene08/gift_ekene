@@ -4,9 +4,9 @@ if($_POST){
 
 require("Receiver.php");
 
-// echo "<pre>";
-// print_r($_POST);
-// echo "</pre>";
+echo "<pre>";
+print_r($_POST);
+echo "</pre>";
 $obj = new Receiver;
 
 $receiver_id  = $_SESSION['user'];
@@ -23,9 +23,9 @@ if($_FILES){
 
 $obj->doupload($_FILES,'receiver_event_image','receiver_events','r_event_pic','r_event_id',$add_event);
 
-header("location: createcollection.php");
-
 }
+
+header("location: createcollection.php");
 
 }else{
 

@@ -32,16 +32,16 @@ require('header.php');
 
 				  <div class="col-md-6 mb-4 py-4">
 
-				  	<p><b>Contact:</b> 07065692733</p>
-				  	<p><b>Email Address:</b> obika.ekene@gmail.com</p>
-				  	<p><b>Office Address:</b> No 15 Akinwunmi Street, Mende Maryland, Lagos </p>
+				  	<p style = "color:#434343"><b>Contact:</b> 07065692733</p>
+				  	<p style = "color:#434343"><b>Email Address:</b> obika.ekene@gmail.com</p>
+				  	<p style = "color:#434343"><b>Office Address:</b> No 15 Akinwunmi Street, Mende Maryland, Lagos </p>
 
 
 
 				  </div>
 
 				  <div class = "col-md-6 py-2">
-                    <h5 style="color:#000000"><b>Locate Us on the Map:</b></h5>
+                    <h5 style = "color:#434343"><b>Locate Us on the Map:</b></h5>
                     <div class = "embed-responsive embed-responsive-16by9">
                           
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.606115988108!2d3.3750413140181657!3d6.571293995247432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b927e666d1bc1%3A0x9ca1728d8f09e110!2s15%20Akinwunmi%20Street%2C%20Mende%2C%20Lagos!5e0!3m2!1sen!2sng!4v1572230642684!5m2!1sen!2sng" class = "embed-responsive-item rounded" frameborder="0" style="border:0;" allowfullscreen=""></iframe>

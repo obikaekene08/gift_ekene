@@ -326,8 +326,8 @@ require("header.php");
 				    </div>
 
 				    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-				      <div class="card-body">
-				        You just needs to register on our platform. Simple steps to get registered. Click <a href = "becomeavendor.php">here</a> to register.
+				      <div class="card-body pl-5">
+				        You just need to register on our platform. Simple steps to get registered. Click <a href = "becomeavendor.php">here</a> to register.
 				      </div>
 				    </div>
 				  </div>
@@ -340,7 +340,7 @@ require("header.php");
 				      </h2>
 				    </div>
 				    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-				      <div class="card-body">
+				      <div class="card-body pl-5">
 				        Your business get to showcase its goods to the multitude of customers that use of platform. Customers who like your goods and services can buy them through our platform. Our charges are low and competitive. Our services are best-in-class.
 				      </div>
 				    </div>
@@ -354,7 +354,7 @@ require("header.php");
 				      </h2>
 				    </div>
 				    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-				      <div class="card-body">
+				      <div class="card-body pl-5">
 				        Yes, once you are registered with us, a profile is created for you to upload your goods for sale.
 				      </div>
 				    </div>
@@ -375,7 +375,7 @@ require("header.php");
 				    </div>
 
 				    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-				      <div class="card-body">
+				      <div class="card-body pl-5">
 				        You just need to sign up to register on our platform. Click <a href = "giveagift.php">here</a> to register.
 				      </div>
 				    </div>
@@ -389,7 +389,7 @@ require("header.php");
 				      </h2>
 				    </div>
 				    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-				      <div class="card-body">
+				      <div class="card-body pl-5">
 				        You get to easily give a gift to anyone anywhere with no stress. We will take care of all the logistics timely. Our services are best-in-class.
 				      </div>
 				    </div>
@@ -403,7 +403,7 @@ require("header.php");
 				      </h2>
 				    </div>
 				    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-				      <div class="card-body">
+				      <div class="card-body pl-5">
 				        Yes, once you sign up , you can select your desired gift for giving. It's easy, we will guide you.
 				      </div>
 				    </div>
@@ -424,8 +424,8 @@ require("header.php");
 				    </div>
 
 				    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-				      <div class="card-body">
-				        You just needs to register on our platform to receive gifts. Click <a href = "receivegifts.php">here</a> to register.
+				      <div class="card-body pl-5">
+				       You just need to register on our platform to receive gifts. Click <a href = "receivegifts.php">here</a> to register.
 				      </div>
 				    </div>
 				  </div>
@@ -438,7 +438,7 @@ require("header.php");
 				      </h2>
 				    </div>
 				    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-				      <div class="card-body">
+				      <div class="card-body pl-5">
 				        We make collection of gifts for your events easy and swift. Our charges are affordable and competitive. Our services are best-in-class.
 				      </div>
 				    </div>
@@ -452,7 +452,7 @@ require("header.php");
 				      </h2>
 				    </div>
 				    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-				      <div class="card-body">
+				      <div class="card-body pl-5">
 				        Once you sign up with us, a profile is created for you to select your preferred gift items.
 				      </div>
 				    </div>
@@ -567,48 +567,6 @@ require('footer.php');
 ?>
 	
 
-<!-- Modal Login-->
-<div class="modal fade" id="staticBackdroplogin" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <!-- <h5 class="modal-title" id="staticBackdropLabel"></h5> -->
-        <div class="alert alert-secondary modal-title col-12" role="alert">
-  				<h5 style = "text-align:center;">Login</h5>
-		</div>
-        <button type="button" class="close ml--2 pl-0" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form name="POST" id="contactForm" action='submitlogin.php'>
-      <div class="modal-body">
-      <div id = "checkerror">        
-      
-	</div>
-        <div class="control-group form-group">
-            <div class="controls">
-              <label>Email Address:</label>
-              <input type="email" class="form-control" name='email' id="modalemail" required>
-            </div>
-          </div>
-          <div class="control-group form-group">
-            <div class="controls">
-              <label>Password:</label>
-              <input type="password" class="form-control" name='pwd' id="modalpwd" required>
-            </div>
-          </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary" id = "loginbtn">Login</button>
-      </div>
-       </form>
-    </div>
-  </div>
-</div>
-	
-
-
 
 
 
@@ -617,61 +575,7 @@ require('footer.php');
 <script type="text/javascript" src="giftjava.js"></script>
 <script type = "text/javascript">
 
-$(document).ready(function(){
 
-	$('#home-tab').css('color','red');
-
-	$('#loginbtn').click(function(){
-		var msg = "modallogin";
-		var e = $('#modalemail').val();
-		var p = $('#modalpwd').val();
-		var data = {"email":e, "pwd":p, "m":msg};
-		$('#checkerror').load("submitloginmodal.php",data);
-		
-	})
-
-	$('#submitform').submit(function(e){
-		e.preventDefault();
-	var sendmsgname = $('#sendmsgname').val();
-	var sendmsgemail = $('#sendmsgemail').val();
-	var sendmsgmsg = $('#sendmsgmsg').val();
-
-	if($('#sendmsgcheck').prop('checked') == true){
-
-		var sendmsgcheck = 1;
-	}else{
-		var sendmsgcheck = 0
-	}
-
-	var data = {"sendmsgname":sendmsgname, "sendmsgemail" : sendmsgemail, "sendmsgmsg" : sendmsgmsg, "sendmsgcheck": sendmsgcheck };
-
-	$.ajax({
-
-		url: "sendmsgsubmit.php",
-		data: data,
-		dataType: "text",
-		type: "POST",
-		success(msg){
-		$('#sendmsgresponse').show();
-		$('#sendmsgresponse').html(msg);
-		$('#sendmsgresponse').fadeOut(3000);
-		$('#sendmsgname').val('');
-		$('#sendmsgemail').val('');
-	 	$('#sendmsgmsg').val('');
-		$('#sendmsgcheck').prop('checked',false);
-
-		},
-		error(errmsg){
-		alert(errmsg);
-		}
-
-	})
-
-	})
-
-	
-
-})
 
 $('#demobtn').click(function(){
 		

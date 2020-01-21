@@ -45,39 +45,13 @@ $_SESSION['checkout_items'] = $gift_for_checkout;
       <div class="col-lg-2 mb-4">
 	  <div>
 	  <img src="<?php if($details['g_pic_name'] != ""){ echo $details['g_pic_name']; }else{echo 'images/avatar.png';} ?>" class="card-img" alt="...">
-	  <form method = "POST" action = "gifter_image_upload.php" enctype = "multipart/form-data" id = "uploadform">
-	  	<div class="form-group">
-		    <div class="col-sm-10">
-		     <input type='file' name='profile'>
-		     <button type = "submit" class="btn-sm btn btn-info mt-2" id = "btnupload">Upload Picture</button>
-		     <p class = "" id = "alertspan" ><?php if(isset($_SESSION['picupload']) && $_SESSION['picupload'] == 1){
-	     	echo "<span class = 'alert-success' id = 'fader'>Upload Successful</span>";
-
-	     	$_SESSION['picupload'] = 0;
-	     	
-	     }
-	     
-	     elseif (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
-	     	foreach($_SESSION['errors'] as $v){
-	     		
-	     		echo "<span class = 'alert-danger' id = 'fader'>$v</span><br>";
-	     	}
-	     	$_SESSION['errors'] = array();
-	     }
-
-	     
-
-
-	     ?></p>
-		 </div>
-		</div>
-		</form>
+	  
 	 
 	  </div>
         <div class="list-group">
           <a href="gifterprofile.php" class="list-group-item">Main Page</a>
-          <a href="editprofile.php" class="list-group-item">Edit Profile</a>          
-          <a href="changepassword.php" class="list-group-item">Change Password</a>
+          <a href="giftereditprofile.php" class="list-group-item">Edit Profile</a>          
+          <a href="gifterchangepassword.php" class="list-group-item">Change Password</a>
           <a href="logout.php" class="list-group-item">Log Out</a>
          
           

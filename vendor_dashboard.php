@@ -139,7 +139,7 @@ $swift = $details3['swift'];
 								    </div>
 								    <form method = "POST" action = "vendor_image_upload.php" enctype = "multipart/form-data" id = "profileformpic">
 								  	<div class="form-group">
-									    <div class="col-sm-10">									    	
+									    <div class="col-sm-10">								    	
 									     <input type='file' name='profile'>
 									     <button type = "submit" class="btn-sm btn btn-success mt-2" id = "btnupload">Upload Picture</button>
 									     
@@ -282,7 +282,7 @@ $swift = $details3['swift'];
 
 								</div>
 								<div class = "row" id = "bodyofitem">
-
+									
 									
 
 
@@ -315,7 +315,7 @@ $swift = $details3['swift'];
 								    </tr>
 								  </thead>
 								  <tbody>
-								  	<?php $i = 1; foreach($fetch_catname as $v){?>
+								  	<?php if(!empty($fetch_catname)){$i = 1; foreach($fetch_catname as $v){?>
 								    <tr>
 								      <th scope="row"><?php echo $i;?></th>
 								      <td id = "itemName"><?php echo $v['v_item_name'];?></td>
@@ -328,7 +328,7 @@ $swift = $details3['swift'];
 								      <td style = "display: none" id = "itemPic"><?php echo $v['item_pic'];?></td>      
 								      <td id = "btnparent"><button id ="<?php echo "editrecord".$v['v_item_id'];?>" type="button" data-target = "#staticBackdropEditItem" data-toggle="modal" class = "btn-link" style="border:none; background-color: inherit;" onclick = "editItem(this);">Edit</button> | <button id ="<?php echo "removerecord".$v['v_item_id'];?>" data-target = "#staticBackdropRemoveItem" class = "btn-link" data-toggle="modal" style="border:none; background-color: inherit;" onclick = "deleteItem(this);">Delete</button></td>
 								    </tr>
-								   <?php  $i++;}?>
+								   <?php  $i++;}}?>
 								  </tbody>
 								</table>								
 							</div>
@@ -1437,7 +1437,9 @@ $('#itemname').val(selectItemName);
    processData:false,
    success: function(data)
       {
-      // alert(data);
+      
+  		$('#bodyofitem').load("itemsadded.php");		
+		$('#tableofitems').load("vendor_dashboard.php #tableofitems2");
       },
      error: function(e) 
       {
@@ -1445,9 +1447,8 @@ $('#itemname').val(selectItemName);
       }          
     });
 
-$('#bodyofitem').load("itemsadded.php");
-$('#tableofitems').load("vendor_dashboard.php #bodyofitem");
-$('#tableofitems').load("vendor_dashboard.php #tableofitems2");
+
+
 $('#addItemClosebtn').trigger("click");
 
  }));

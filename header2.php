@@ -63,9 +63,9 @@ color:#745E87;
 		<div class = "col-md-2 offset-md-10 col-6 offset-7">
 
 			<?php if (!(isset($_SESSION['user']))) { ?>
-			<a type="button" href = "vendor_dashboard.html" class="btn btn-outline-danger btn-in" style = "border:1px solid red; color:red">Log in</a>
+			<a type="button" href = "vendor_dashboard.php" class="btn btn-outline-danger btn-in" >Log in</a>
 
-			<button class="btn btn-danger mx-2 btn-in" type="submit" style = "background-color:red; color:white; border: none">Sign Up</button>
+			<a class="btn btn-danger mx-2 btn-in" href="signup.php">Sign Up</a>
 		<?php }else { ?> <?php } ?>
 		</div>
 	</div>
@@ -103,9 +103,9 @@ color:#745E87;
 			          VENDORS
 			        </a>
 			        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-			          <a class="dropdown-item" href="#">See Our Vendors</a>
-			          <a class="dropdown-item" href="#">Become a Vendor</a>
-			          <a class="dropdown-item" href="#">Vendor Sign in</a>
+			          <a class="dropdown-item" href="index.php #merchantsection">See Our Vendors</a>
+			          <a class="dropdown-item" href="becomeavendor.php">Become a Vendor</a>
+			          <a class="dropdown-item" href="becomeavendor.php?m=signin">Vendor Sign in</a>
 			        </div>
 			      </li>
 
@@ -114,14 +114,14 @@ color:#745E87;
 			          FAQs
 			        </a>
 			        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-			          <a class="dropdown-item" href="#">FAQ for Givers</a>
-			          <a class="dropdown-item" href="#">FAQ for Receivers</a>
-			          <a class="dropdown-item" href="#">FAQ for Vendors</a>
+			          <a class="dropdown-item" href="index.php #fAQsparent">FAQ for Givers</a>
+			          <a class="dropdown-item" href="index.php #fAQsparent">FAQ for Receivers</a>
+			          <a class="dropdown-item" href="index.php #fAQsparent">FAQ for Vendors</a>
 			        </div>
 			      </li>
 
 			      <li class="nav-item">
-			        <a class="nav-link" href="#">CONTACT</a>
+			        <a class="nav-link" href="contactgiftrunner.php">CONTACT</a>
 			      </li>
 
 			    </ul>

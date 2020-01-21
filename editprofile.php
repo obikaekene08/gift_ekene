@@ -12,18 +12,24 @@ if(!isset($_SESSION['user'])){
 
 require("header2.php");
 
+$details = $obj->getdetails($_SESSION['user'],'receivers');
+
+// echo "<pre>";
+// print_r($details);
+// echo "</pre>";
 
 
 ?>
 
 	<button type="button" class="btn btn-outline-danger mr-2 my-2 offset-md-9">Give a Gift</button>
-	<button type="button" class="btn btn-danger my-2">Logout</button>
+	<a href="logout.php" class="btn btn-danger my-2">Logout</a>
    
 	<div class="container">
 	 <div class = "row">
     	<div class = "col-12">
 		    <div class="alert alert-primary" role="alert" col-8 offset-2>
-			  <h3>Hi Name! <small>Welcome To Your Profile Page</small></h3>
+			  <h3>Hi <span id = "updatedname"><?php echo ucfirst($details['r_fname']).","; ?></span> <small>Welcome To Your Profile Page</small></h3>
+			  
 			</div>
 		</div>
 	</div>
@@ -35,16 +41,8 @@ require("header2.php");
       
       <div class="col-lg-3 mb-4">
 	  <div>
-	  <img src='images/avatar.png' class='img-fluid col-12 mb-2'>
-	  <form method = "" action = "" enctype = "multipart/form-data">
-	  	<div class="form-group">
-		    <div class="col-sm-10">
-		     <input type='file' name='mypix'>
-		     <button type = "submit" class="btn-sm btn btn-info mt-2">Upload Picture</button>
-		 </div>
-		</div>
-		</form>
-	 
+	  <img src='<?php if($details['r_pic_name'] != ""){ echo $details['r_pic_name']; }else{echo 'images/avatar.png';} ?>' class='img-fluid col-12 mb-2'>
+	  
 	  </div>
         <div class="list-group">
           <a href="receiverprofile.php" class="list-group-item">Main Page</a>
@@ -65,37 +63,35 @@ require("header2.php");
 	    	
 		  <div class="form-group row">
 		    <div class="col-sm-6">
-		    <label for="inputEmail3">Name: </label>
-		      <input type="text" class="form-control" id="inputEmail3" name='fname'>
+		    <label for="fname">First Name: </label>
+		      <input type="text" class="form-control" id="fname" name='fname' value = "<?php echo $details['r_fname']?>">
 		    </div>
 		    <div class="col-sm-6">
-		    <label for="inputEmail3">Email:</label>
-		      <input type="text" class="form-control" id="inputEmail3" name='fname'>
+		    <label for="lname">Last Name:</label>
+		      <input type="text" class="form-control" id="lname" name='lname' value = "<?php echo $details['r_lname']?>">
 		    </div>
 		  </div>
 		  <div class="form-group row">
 		    <div class="col-sm-6">
-		    <label for="inputEmail3">Phone Number 1: </label>
-		      <input type="text" class="form-control" id="inputEmail3" name='fname'>
+		    <label for="email">Email: </label>
+		      <input type="email" class="form-control" id="email" name='email' value = "<?php echo $details['r_email']?>">
 		    </div>
 		    <div class="col-sm-6">
-		    <label for="inputEmail3">Phone Number 2:</label>
-		      <input type="text" class="form-control" id="inputEmail3" name='fname'>
+		    <label for="phone">Phone Number:</label>
+		      <input type="text" class="form-control" id="phone" name='phone' value = "<?php echo $details['r_phone']?>">
 		    </div>		  
 		  </div>
 		    <div class="control-group form-group">
             <div class="controls">
               <label>Delivery Address:</label>
-              <textarea rows="2" cols="50" name='profile' class="form-control" id="profile"  maxlength="300" style="resize:none"></textarea>
+              <textarea rows="2" cols="50" name='address' class="form-control" id="address"  maxlength="300" style="resize:none" ><?php echo $details['r_delivery_address']?></textarea>
             </div>
+          </div>
+          <div class="control-group form-group">
+			<div class=" my-0 " role="alert" id = "contactsaved"></div>
+            <button type = "button" class = "btn btn-primary offset-md-10" id = "savechangesbtn">Save Changes</button>
           </div>		  
 		</form>
-
-		<!-- Button trigger modal create collection -->
-		<div class="col-sm-12">
-		      <a href="createcollection.php" class="btn btn-primary btn-lg mt-3" data-toggle="modal" data-target="#modalcreatecollection">Create a Collection</a>
-		    </div>
-
 
       </div>
     </div>
@@ -220,15 +216,52 @@ require('footer.php');
 
 
 
-
-
-
-
-
-
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="giftjava.js"></script>
 <script type = "text/javascript">
+
+$(document).ready(function(){
+
+	$('#savechangesbtn').click(function(){
+
+	var fname = $('#fname').val();	
+	var lname = $('#lname').val();
+	var address = $('#address').val();
+	var phone = $('#phone').val();
+	var email = $('#email').val();
+
+	$.ajax({
+
+		url: "receiverupdateprofile.php",
+		type: "POST",
+		data: {"r_fname": fname, "r_lname": lname, "r_delivery_address":address, "r_email":email, "r_phone":phone},
+		// data: "item="+mydata+"&test=testvalue",
+		dataType: "text",
+		success(msg){
+
+		var rec = JSON.parse(msg);
+		
+		$('#updatedname').html(rec.fname);
+		$('#contactsaved').fadeIn('slow');
+		$('#contactsaved').addClass('alert alert-success');
+		$('#contactsaved').html('Successfully Saved');
+		$('#contactsaved').fadeOut('slow');
+		
+
+
+
+		
+			
+		},
+		error(errmsg){
+			console.log(errmsg);
+			
+		}
+	})
+
+
+})
+})
 
 
 </script>

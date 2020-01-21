@@ -40,7 +40,7 @@ require("header.php");
 				  <div class="col-6">
 				    <div class="tab-content" id="nav-tabContent">
 				      <div class="tab-pane fade <?php if(!isset($_SESSION['loginstatus']) && !isset($_GET['login'])){ echo "show active";}?>" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-				      	<form method ="POST" id="form" action='vendorsubmitsignup.php' onsubmit = "prevent(event)">
+				      	<form method ="POST" id="form" action='centralsignupsubmit.php' onsubmit = "prevent(event)">
 				        <div class = "row">
 				          <div class="control-group form-group col-md-6 col-12">
 				            <div class="controls">
@@ -51,7 +51,7 @@ require("header.php");
 						  <div class="control-group form-group col-md-6 col-12">
 				            <div class="controls">
 				              <label>Last Name:</label>
-				              <input type="text" class="form-control checkfield" id="checkfield2" name='lname'required>
+				              <input type="text" class="form-control checkfield" id="checkfield2" name='lname' required>
 				             
 				            </div>
 				          </div>
@@ -81,16 +81,16 @@ require("header.php");
 				          <div class="control-group form-group">
 				           <label><b>Reason: </b></label>
 				           <div class="custom-control custom-radio custom-control-inline">
-							  <input type="radio" id="reason1" name="reason" class="custom-control-input " checked>
-							  <label class=" ml-0 pl-0 custom-control-label " for="reason1">Receive Gifts</label>
+							  <input type="radio" id="reasonReceiveGifts" name="reason" class="custom-control-input" value = "receivegifts" checked>
+							  <label class=" ml-0 pl-0 custom-control-label " for="reasonReceiveGifts">Receive Gifts</label>
 							</div>
 							<div class="custom-control custom-radio custom-control-inline">
-							  <input type="radio" id="reason2" name="reason" class="custom-control-input">
-							  <label class="custom-control-label" for="reason2">Give Gift</label>
+							  <input type="radio" id="reasonGiveGift" name="reason" class="custom-control-input" value = "givegift" >
+							  <label class="custom-control-label" for="reasonGiveGift">Give Gift</label>
 							</div>
 							<div class="custom-control custom-radio custom-control-inline">
-							  <input type="radio" id="reason3" name="reason" class="custom-control-input">
-							  <label class="custom-control-label" for="reason3">Join as Vendor</label>
+							  <input type="radio" id="reasonJoinAsVendor" name="reason" class="custom-control-input" value = "joinasvendor">
+							  <label class="custom-control-label" for="reasonJoinAsVendor">Join as Vendor</label>
 							</div>
 							</div>
 							<div class="form-group form-check mt-3 checkfield" id = "mrcheck">
@@ -148,12 +148,6 @@ require("header.php");
 
 
 
-	
-
-
-		
-
-
 		
 
 	<!-- Send Message and Footer -->
@@ -173,8 +167,7 @@ require('footer.php');
 	
 
 	// checkfield();
-	// function checkfield(){
-		$('#signupbtn').click(function prevent(event){
+	$('#signupbtn').click(function prevent(event){
 			
 			var fname  = $('#checkfield1').val().trim();
 			var lname  = $('#checkfield2').val().trim();
@@ -182,8 +175,6 @@ require('footer.php');
 			var email  = $('#checkfield4').val().trim();
 			var password  = $('#checkfield5').val();
 			var term  = $('#checkfield6').prop('checked');
-
-				//term is not working
 
 			if(fname == '' || lname == '' || phone == '' || email == '' || password == '' || reason == '' || term == false){
 
@@ -217,7 +208,6 @@ require('footer.php');
 			}
 
 		})
-
 		$('.checkfield').change(function(){
 
 			$(this).removeAttr('style', 'border-style : none');
