@@ -68,10 +68,10 @@
 		<div class = "col-md-2 offset-1 footertextcolor">			
 			<ul class="list-group list-group-flush">
 			  <li class="list-group-item footerbgcolor" style="color:purple"><b>Follow Us</b></li>
-			  <li class="list-group-item footerbgcolor" ><a href = "https://web.facebook.com/people/Ekene-Obika/100009253601860?_rdc=1&_rdr" class = "footerbgcolor">Facebook</a></li>
-			  <li class="list-group-item footerbgcolor" ><a href = "https://twitter.com/realmistertech" class = "footerbgcolor">Twitter</a></li>
-			  <li class="list-group-item footerbgcolor" ><a href = "#" class = "footerbgcolor">Instagram</a></li>
-			  <li class="list-group-item footerbgcolor" ><a href = "contactgiftrunner.php" class = "footerbgcolor">Contact Us</a></li>
+			  <li class="list-group-item footerbgcolor" ><a href = "https://web.facebook.com/people/Ekene-Obika/100009253601860" class = "footerbgcolor" target="_blank">Facebook</a></li>
+			  <li class="list-group-item footerbgcolor" ><a href = "https://twitter.com/ekeneobika" class = "footerbgcolor" target="_blank">Twitter</a></li>
+			  <li class="list-group-item footerbgcolor" ><a href = "#" class = "footerbgcolor" target="_blank">Instagram</a></li>
+			  <li class="list-group-item footerbgcolor" ><a href = "contactgiftrunner.php" class = "footerbgcolor" target = ‘_self’>Contact Us</a></li>
 			</ul>
 
 		</div>

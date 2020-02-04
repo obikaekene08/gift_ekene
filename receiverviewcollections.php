@@ -27,7 +27,7 @@ foreach($viewcollections as $key => $v) { $revent_id = $v['r_event_id']; $r_even
 						<div class = "col-md-3 col-6">
 							<div class="card text-center">
 							  <div class="card-body">
-							  	<img src="<?php if($v['r_event_pic'] != ''){ echo $v['r_event_pic'];}else{echo 'images/avatar.png';}?>" class="card-img-top" alt="...">
+							  	<img src="<?php if($v['r_event_pic'] != ''){ echo $v['r_event_pic'];}else{echo 'images/avatar.png';}?>" class="card-img-top" height = "180px" alt="...">
 							    <h5 class="card-title mt-2"><?php echo $v['r_event_title'];?></h5>
 							    <p class="card-text"><b>Event Creation Date: </b><br><?php $d = strtotime($v['r_event_creation_time']); echo date("F j, Y",$d); ?></p>
 							    <p class="card-text"><b>Items Selected: </b><?php if($v['counter'] != ''){echo $v['counter']; }else{echo 0;};?> </p>

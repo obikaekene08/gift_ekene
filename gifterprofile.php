@@ -24,7 +24,7 @@ $item_table = $obj->getseveral('vendor_item');
 ?>
 
 	<a href="receiverprofile.php" class="btn btn-outline-danger mr-2 my-2 offset-md-9">Receive Gifts</a>
-	<a href="index.php" class="btn btn-danger my-2">Logout</a>
+	<a href="logout.php" class="btn btn-danger my-2">Logout</a>
     <div class = "row">
     	<div class = "col-10 offset-1">
 		    <div class="alert alert-primary" role="alert" col-8 offset-2>

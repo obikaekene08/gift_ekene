@@ -15,8 +15,29 @@ if(!isset($_SESSION['user'])){
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+	<meta name="keywords" content="gift, wedding gift, registry, receive gifts, collect gifts on wedding day, give a gift">
+	<meta name="description" content="Gift Mummy is an Online Platform that enables you easily give or receive gifts from anyone. We have a large collection of possible gifts items and make great suggestions for you too! We package and deliver timely.">
+	<meta name="author" content="Ekene Samson Obika">
 
-	<title>Gift Runner</title>
+	<!-- Twitter Card data -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="www.giftmummy.com">
+	<meta name="twitter:title" content="Gift Mummmy">
+	<meta name="twitter:description" content="Gift Mummy is an Online Platform that enables you easily give or receive gifts from anyone. We have a large collection of possible gifts items and make great suggestions for you too! We package and deliver timely.">
+	<meta name="twitter:creator" content="@ekeneobika">
+	<!-- Twitter Summary card images must be at least 120x120px -->
+	<meta name="twitter:image" content="images/snippedLogo.png">
+
+	<!-- Open Graph data -->
+	<meta property="og:title" content="Gift Mummy" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="http://www.giftmummy.com/" />
+	<meta property="og:image" content="images/snippedLogo.png" />
+	<meta property="og:description" content="Gift Mummy is an Online Platform that enables you easily give or receive gifts from anyone. We have a large collection of possible gifts items and make great suggestions for you too! We package and deliver timely." />
+	<meta property="og:site_name" content="Gift Mummy" />
+	<meta property="fb:admins" content="100009253601860" />
+
+	<title>Gift Mummy</title>
 	<link rel="stylesheet" href="css/bootstrap.css" type=text/css>
 	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 	<link href = "giftstyle.css" rel = "stylesheet" type = "text/css">

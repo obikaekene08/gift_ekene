@@ -18,6 +18,8 @@ $details = $obj->getdetails($_SESSION['user'],'gifters');
 
 ?>
 
+
+
 	<a href="receiverprofile.php" class="btn btn-outline-danger mr-2 my-2 offset-md-9">Receive Gifts</a>
 	<a href="index.php" class="btn btn-danger my-2">Logout</a>
     <div class = "row">
@@ -33,6 +35,27 @@ $details = $obj->getdetails($_SESSION['user'],'gifters');
     <!-- Content Row -->
     <div class="row">
       <!-- Sidebar Column -->
+
+      <?php 
+/* Use static function as a counter */
+  
+class solution { 
+      
+    static $count; 
+      
+    public static function getCount() { 
+        return self::$count++; 
+    } 
+} 
+  
+solution::$count = 1; 
+  
+for($i = 0; $i < 5; $i++) { 
+    echo 'The next value is: '.  
+    solution::getCount() . "\n"; 
+} 
+  
+?> 
       
       <div class="col-lg-3 mb-4">
 	  <div>

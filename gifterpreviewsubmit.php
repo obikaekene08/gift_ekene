@@ -44,7 +44,7 @@ if(!empty($selected_items)){
   <div class="card-body text-center">
     <form action = "" class = "mt-0 pt-0">
     <h5 class="text-center pt-0 mt-0" id = "itname">Selected</h5>
-    <img src="images/noimage3.jpg" class="card-img-top" alt="...">
+    <img src="images/noimage3.jpg" class="card-img-top" height = "180px" alt="...">
     <h5 class="card-title mt-2" id = "itname"><?php if($v['v_item_name'] != '') {echo $v['v_item_name'];}else{ echo "No Item Name";}?></h5>
     <p class="card-text"><b>Unit Price: </b><span id = "itprice"> <?php echo "&#8358;".number_format($v['v_item_price'],2);?></span></p>
     <p class="card-text"><b>Stock: </b><span class="card-text" id = "itstk"> <?php echo $v['item_qty'];?></span></p>

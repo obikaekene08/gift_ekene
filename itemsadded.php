@@ -1,7 +1,7 @@
 <div class = "col-md-3 col-6">
 <div class="card text-center alert-secondary">
   <div class="card-body">
-  	<img src="images/noimage3.jpg" class="card-img-top" alt="...">
+  	<img src="images/noimage3.jpg" class="card-img-top" alt="..." height = "180px">
     <p class="card-text mb-0 pb-0">Category Name: ??</p>
     <h5 class="card-title mt-2">Item Name: ????</h5>
     <p class="card-text"><b>Unit Price:</b> &#8358;????</p>
@@ -30,7 +30,7 @@ foreach ($itemadder as $key => $v) {
 <div class = "col-md-3 col-6 mt-2">
 <div class="card text-center alert-success">
   <div class="card-body">
-    <img src="<?php if($v['item_pic'] != ""){ echo $v['item_pic']; }else{echo 'images/noimage3.jpg';} ?>" class="card-img-top responsive img-fluid" alt="...">
+    <img src="<?php if($v['item_pic'] != ""){ echo $v['item_pic']; }else{echo 'images/noimage3.jpg';} ?>" class="card-img-top" height = "180px" alt="...">
     <p class="card-text mb-0 pb-0"><?php echo $v['category_name'];?></p>
     <h5 class="card-title mt-0 pt-0"><?php if($v['v_item_name'] != '') {echo $v['v_item_name'];}else{ echo "No Item Name";}?></h5>
     <p class="card-text"><b>Unit Price: </b> <?php echo "&#8358;".number_format($v['v_item_price'],2) ;?></p>
@@ -59,3 +59,14 @@ foreach ($itemadder as $key => $v) {
 }
 
 ?>
+
+<script>
+//Empties the input fields of the Add Item Modal after each submission
+$('#firstAddItemBtn').click(function(){
+
+$('#itemprice').val('');
+$('#itemcolor').val('');
+$('#itemqty').val('');
+
+})
+</script>

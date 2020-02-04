@@ -22,7 +22,7 @@ $vendor_id  = $_SESSION['user'];
       <div class="modal-body" id = "divsib">
       	<div class = "row">
       		<div class = "col-5">
-        		<img src="<?php if($itemPic != ""){ echo $itemPic; }else{echo 'images/noimage3.jpg';} ?>" class="card-img-top" alt="...">      					
+        		<img src="<?php if($itemPic != ""){ echo $itemPic; }else{echo 'images/noimage3.jpg';} ?>" class="card-img-top" height = "180px" alt="...">      					
       					<div class="form-group row mt-2">
 						    <label for="exampleFormControlFile1" class="col-sm-12 col-form-label">Select Image<span style = "color:red">*</span></label>
 						    <div class="col-sm-12">

@@ -48,7 +48,7 @@ $swift = $details3['swift'];
 
 	<div class = "row">
 		<div class = "col-10 offset-1">
-		    <div class="alert alert-primary" role="alert" col-8 offset-2>
+		    <div class="alert alert-primary pt-3" role="alert" >
 			  <h3>Hi <?php echo ucfirst($details['v_fname']).","?> <small>Welcome To Your DashBoard</small></h3>
 			</div>
 		</div>
@@ -69,9 +69,9 @@ $swift = $details3['swift'];
 	</div>
 
 	<div class = "row" id = "">
-		<div class = "col-10 offset-1 my-1 mbline">
+		<div class = "col-10 offset-1 my-1">
 
-				<ul class="nav nav-pills m-2 offset-2 alert-danger" id="pills-tab" role="tablist">
+				<ul class="nav nav-pills px-2 py-1 mx-0 alert-danger" id="pills-tab" role="tablist" style = "border-radius: 5px">
 					  <li class="nav-item">
 					    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Home</a>
 					  </li>
@@ -257,10 +257,10 @@ $swift = $details3['swift'];
 									<div class = "col">
 										<div class="input-group mb-3">
 											  <div class="input-group-prepend">
-											    <label class="input-group-text" for="inputGroupSelect01">Choose Category</label>
+											    <label class="input-group-text" for="selectCategory">Choose Category</label>
 											  </div>
-											  <input class="form-control" id="selectcategory" list='data1' name = "category" value = "">
-											    <datalist id ="data1">
+											  <input class="form-control" id="selectcategory" list='selectData' name = "category" value = "">
+											    <datalist id ="selectData">
 											    	<?php foreach($cat_table AS $k => $v){ ?>
 										      	<option value="<?php echo $v['category_name']?>" label= "<?php echo $v['category_synonyms']?>"/>
 										      		<?php }?>										      	
@@ -270,10 +270,10 @@ $swift = $details3['swift'];
 									<div class = "col">
 										<div class="input-group mb-3">
 											  <div class="input-group-prepend">
-											    <label class="input-group-text" for="inputGroupSelect01">Choose Make</label>
+											    <label class="input-group-text" for="selectMake">Choose Make</label>
 											  </div>
-											  <input class="form-control" list='data2' name = "category" id = "input2">
-											    <datalist id ="data2">
+											  <input class="form-control" list='makeData' name = "selectMake" id = "selectMake">
+											    <datalist id ="makeData">
 											    											      										      											      	
 										      </datalist>									
 											</div>
@@ -1287,38 +1287,6 @@ function editItem(editbtn){
 	
 }
 
- function editform(savebtn){
- // var btnid = $(savebtn).parent('#editbtndiv').siblings('#divsib').find('#itemId').val();
- // var edititembtn = "edititembtn"+btnid;
-
-  
- 
- }
-
-
-	
-	// var itemName = $(savebtn).parent('#editbtndiv').siblings('#divsib').find('#itemname').val();
-	// var catName = $(savebtn).parent('#editbtndiv').siblings('#divsib').find('#catname').val();
-	// var itemPrice = $(savebtn).parent('#editbtndiv').siblings('#divsib').find('#itemprice').val();
-	// var itemColor = $(savebtn).parent('#editbtndiv').siblings('#divsib').find('#itemcolor').val();
-	// var itemQty = $(savebtn).parent('#editbtndiv').siblings('#divsib').find('#itemqty').val();
-	// var itemId = $(savebtn).parent('#editbtndiv').siblings('#divsib').find('#itemid').html();	
-
-	// $.ajax({
-
-	// 	url: "vendorupdateitem.php",
-	// 	type: "POST",
-	// 	data: {"itemName": itemName, "catName": catName, "itemPrice": itemPrice, "itemId": itemId, "itemColor": itemColor, "itemQty": itemQty},
-	// 	dataType: "text",
-	// 	success(msg){
-
-	// 	},
-	// 	error(errmsg){
-
-	// 	}
-
-	// })
-
 
 function editItemCard(editcardbtn){
 
@@ -1398,7 +1366,7 @@ $.ajax({
 				
 				});
 
-			$("#data2").html(make_string);
+			$("#makeData").html(make_string);
 
 							
 		},
@@ -1411,19 +1379,31 @@ $.ajax({
 })
 
 
+$('#selectcategory').focus(function(){
 
-$('#input2').change(function(){
+$('#selectcategory').val('');
+
+})
+
+
+
+$('#selectMake').change(function(){
 
 var categoryName = $('#selectcategory').val();
 $('#itemcategory').val(categoryName);
 
-var selectItemName = $('#input2').val();
+var selectItemName = $('#selectMake').val();
 $('#itemname').val(selectItemName);
 
 
 })
 
-// $('#additembtn').click(function(){
+$('#selectcategory').change(function(){
+
+$('#selectMake').val('');
+
+
+})
 
 
  $("#additemform").on('submit',(function(e) {

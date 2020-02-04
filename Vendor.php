@@ -179,9 +179,9 @@ function update($collect, $K1,$v1,$table){
 	}
 
 
-	function getseveralwhere($table,$colname,$id = 0){
+	function getseveralwhere($table,$colname,$id = 0, $extra = ''){
 
-		$sql = " SELECT * FROM $table WHERE $colname = '$id' AND approved = 1";
+		$sql = " SELECT * FROM $table WHERE $colname = '$id' AND approved = 1 "." $extra ";
 
 		$result = $this->conn->query($sql);
 		echo $this->conn->error;

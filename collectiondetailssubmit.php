@@ -33,7 +33,7 @@ $getVendorName = $obj->getseveralwhere('vendors','vendor_id',$_SESSION['vendor_i
 						  <div class="card-body mt-1 pt-1">
 						  	<form action = "" class = "mt-0 pt-0">
 						    <h5 class="text-center pt-0 mt-0" id = "itname">Selected</h5>
-						  	<img src="images/noimage3.jpg" class="card-img-top" alt="...">
+						  	<img src="images/noimage3.jpg" class="card-img-top" height = "180px" alt="...">
 						    <h5 class="text-center mt-2 mb-0 pb-0" id = "itname"><?php if($v['v_item_name'] != '') {echo $v['v_item_name'];}else{ echo "No Item Name";}?></h5>
 						    <span style="display:inline-block;width:45%;box-sizing: border-box;float:left;font-size: 12px"><?php echo $getCatName[0]['category_name'];?></span><span style="width:50%;float:right;display:inline-block;box-sizing: border-box; font-size: 12px; text-align: center">By <?php echo $getVendorName[0]['v_companyname'];?></span><p style = "clear: both;" class = "pb-0 mb-0"></p>
 						    <p class="card-text text-center"><span id = "itprice"><b> <?php echo "&#8358;".number_format($v['v_item_price'],2);?></b></span></p>
