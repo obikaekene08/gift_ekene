@@ -59,7 +59,7 @@ if(!empty($seecollectiondetails)){
     $x = false;
 ?>
 
-<div class = "col-md-3 col-6 mt-2">
+<div class = "col-md-4 col-lg-3 col-sm-6 offset-sm-0 col-9 offset-1 mt-2 mediaQueryVendorCard">
 <div class="card alert-danger">
   <div class="card-body mt-1 pt-1">
   	<form action = "" class = "mt-0 pt-0">
@@ -72,12 +72,13 @@ if(!empty($seecollectiondetails)){
     <input type="number" class = " text-center" style = "width:20%;float:right" id = "itqty" readonly value = '<?php echo "" . $v2['r_item_qty']. "";?>'><b style = "float:right; margin:4px;font-size: 13px">Qty: </b><p style = "clear: both;" class = "pb-0 mb-0"></p>
     <span style = "display: none" class="card-text" id = "itid"> <?php echo $v['v_item_id'];?></span>
     <button type = "button" class="btn btn-primary col-8 offset-2 mt-2" id = "itbtn" onclick = "iteminclude(this);" style = "display: none">Include Item</button>
-    <div class = "row">
+    <div class = "row" id = "grandparent">
       <div class = "col">
-      <button type = "button" class="btn btn-primary px-2" id = "itedit" style = ""><span style="font-size: 15px">Edit Item</span></button>
+      <button type = "button" class="btn btn-primary px-2" id = "<?php echo "editrecord".$v['receiver_item_id'];?>" style = "" onclick = "editItemCard(this)"><span style="font-size: 15px">Edit Item</span></button>
+      <button type = "button" class="btn btn-primary px-2 " id = "<?php echo 'updaterecord'.$v['receiver_item_id'];?>" style = "display:none" onclick = "updateItemCard(this)"><span style="">Save</span></button>
       </div>
       <div class = "col">
-      <button type = "button" class="btn btn-primary " id = "itremove" style = ""><span style="font-size: 15px" >Remove</span></button>
+      <button type = "button" class="btn btn-primary receiverEditBtn" id = "<?php echo 'deleterecord'.$v['receiver_item_id'];?>" style = "" onclick = "deleteItemCard(this)" data-target = "#staticBackdropDeleteItem" data-toggle="modal"><span style="font-size: 15px" >Remove</span></button>
       </div>
   </div>
 	</form>
@@ -96,7 +97,7 @@ if($x == true || empty($seecollectiondetails)){
 
 ?>
 
-<div class = "col-md-3 col-6 mt-2">
+<div class = "col-md-4 col-lg-3 col-sm-6 offset-sm-0 col-9 offset-1 mt-2 mediaQueryVendorCard">
 <div class="card alert-success">
   <div class="card-body">
     <form action = "" class = "">

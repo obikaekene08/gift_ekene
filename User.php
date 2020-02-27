@@ -9,6 +9,7 @@ class User{
 		session_start();
 
 		$this->conn = new Mysqli("localhost","root","","giftdatabase");
+		// Mysqli("localhost","giftlkkz_obikaekene","masterpiece2@","giftlkkz_giftdatabase");
 	}
 
 	function insert_msg($table,$sendmsgname,$sendmsgemail,$sendmsgmsg,$sendmsgcheck){

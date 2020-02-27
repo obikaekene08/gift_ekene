@@ -28,7 +28,7 @@ $getCatName = $obj->getseveralwhere('category_table','category_id',$_SESSION['v_
 $getVendorName = $obj->getseveralwhere('vendors','vendor_id',$_SESSION['vendor_id']);
 	
 ?>
-						<div class = "col-md-3 col-6 mt-2">
+						<div class = "col-md-4 col-lg-3 col-sm-6 offset-sm-0 col-9 offset-1 mt-2 mediaQueryVendorCard">
 						<div class="card alert-danger">
 						  <div class="card-body mt-1 pt-1">
 						  	<form action = "" class = "mt-0 pt-0">
@@ -44,10 +44,10 @@ $getVendorName = $obj->getseveralwhere('vendors','vendor_id',$_SESSION['vendor_i
 						    <div class = "row" id = "grandparent">
 						      <div class = "col">
 						      <button type = "button" class="btn btn-primary px-2" id = "<?php echo "editrecord".$v['receiver_item_id'];?>" style = "" onclick = "editItemCard(this)"><span style="font-size: 15px">Edit Item</span></button>
-						      <button type = "button" class="btn btn-primary px-2" id = "<?php echo 'updaterecord'.$v['receiver_item_id'];?>" style = "display:none" onclick = "updateItemCard(this)"><span style="">Save</span></button>
+						      <button type = "button" class="btn btn-primary px-2 " id = "<?php echo 'updaterecord'.$v['receiver_item_id'];?>" style = "display:none" onclick = "updateItemCard(this)"><span style="">Save</span></button>
 						      </div>
 						      <div class = "col">
-						      <button type = "button" class="btn btn-primary " id = "<?php echo 'deleterecord'.$v['receiver_item_id'];?>" style = "" onclick = "deleteItemCard(this)" data-target = "#staticBackdropDeleteItem" data-toggle="modal"><span style="font-size: 15px" >Remove</span></button>
+						      <button type = "button" class="btn btn-primary receiverEditBtn" id = "<?php echo 'deleterecord'.$v['receiver_item_id'];?>" style = "" onclick = "deleteItemCard(this)" data-target = "#staticBackdropDeleteItem" data-toggle="modal"><span style="font-size: 15px" >Remove</span></button>
 						      </div>
 						  	</div>
 							</form>

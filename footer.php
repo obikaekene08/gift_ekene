@@ -20,8 +20,8 @@
 
 			  <div class="form-group form-check ">
 			    <input type="checkbox" class="form-check-input" id="sendmsgcheck">
-			    <label class="form-check-label" for="exampleCheck1"><small id="emailHelp" class="form-text footertextcolor">Get updated on Interesting Offers and NewsLetter.</small></label>
-			    <span id = "sendmsgresponse" class = "alert alert-success alert-dissimible offset-2" style = "display: none"><span>
+			    <label class="form-check-label" for="sendmsgcheck"><small id="emailHelp" class="form-text footertextcolor">Get updated on Interesting Offers and NewsLetter.</small></label>
+			    <span id = "sendmsgresponse" class = "alert alert-success alert-dissimible offset-md-3 mt-2" style = "display: none"><span>
 			  </div>
 			  <p class = "text-center"><button type="submit" class="btn btn-primary btn-lg" id = "submitbtn">Submit</button></p>
 			</form>
@@ -101,19 +101,17 @@
 
 $(document).ready(function(){
 
-	$('#home-tab').css('color','red');
-
 	$('#submitform').submit(function(e){
 		e.preventDefault();
-	var sendmsgname = $('#sendmsgname').val();
-	var sendmsgemail = $('#sendmsgemail').val();
-	var sendmsgmsg = $('#sendmsgmsg').val();
+	var sendmsgname = $('#sendmsgname').val().trim();
+	var sendmsgemail = $('#sendmsgemail').val().trim();
+	var sendmsgmsg = $('#sendmsgmsg').val().trim();
 
 	if($('#sendmsgcheck').prop('checked') == true){
 
 		var sendmsgcheck = 1;
 	}else{
-		var sendmsgcheck = 0
+		var sendmsgcheck = 0;
 	}
 
 	var data = {"sendmsgname":sendmsgname, "sendmsgemail" : sendmsgemail, "sendmsgmsg" : sendmsgmsg, "sendmsgcheck": sendmsgcheck };
@@ -125,6 +123,8 @@ $(document).ready(function(){
 		dataType: "text",
 		type: "POST",
 		success(msg){
+
+		if(msg == 'Message Sent Successfully'){
 		$('#sendmsgresponse').show();
 		$('#sendmsgresponse').html(msg);
 		$('#sendmsgresponse').fadeOut(3000);
@@ -132,6 +132,7 @@ $(document).ready(function(){
 		$('#sendmsgemail').val('');
 	 	$('#sendmsgmsg').val('');
 		$('#sendmsgcheck').prop('checked',false);
+		}
 
 		},
 		error(errmsg){

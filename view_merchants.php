@@ -11,9 +11,9 @@ require("header.php");
 			    <input class="form-control mr-2 col-6" type="search" placeholder="Search for products and couples" aria-label="Search">
 			    <button class="btn btn-outline-danger" type="submit">Search</button>
 
-				<a href="index.php" class="btn btn-danger mr-2 offset-1">Home Page</a>
-				<a href="giveagift.php" class="btn btn-outline-danger mr-2">Give a Gift</a>
-				<a href="receivegifts.php" class="btn btn-outline-danger">Receive Gifts</a>
+				<a href="index.php" class="btn btn-danger mr-2 offset-1 giftBtn">Home Page</a>
+				<a href="giveagift.php" class="btn btn-outline-danger mr-2 giftBtn">Give a Gift</a>
+				<a href="receivegifts.php" class="btn btn-outline-danger giftBtn">Receive Gifts</a>
 
 			  	</form>
 		</div>
@@ -29,8 +29,8 @@ require("header.php");
 			<div class = "row-12" id = "searchbox">
 				<div class = "offset-1 col-11 col-md-8 offset-md-2 my-3" style = "width:100%; margin:auto;">	
 						<form class="form-inline">
-					    <input class="form-control mr-2 col-10" type="search" placeholder="Search for Merchants and Products" aria-label="Search">
-					    <button class="btn btn-outline-danger" type="submit">Search</button>
+					    <input class="form-control mr-2 col-md-10 col-sm-9 col-12" type="search" placeholder="Search for Merchants and Products" aria-label="Search">
+					    <button class="btn btn-outline-danger giftBtn" type="submit">Search</button>
 					  	</form>
 				</div>
 			</div>

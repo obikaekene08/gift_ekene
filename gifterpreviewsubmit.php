@@ -39,7 +39,7 @@ if(!empty($selected_items)){
     $x = false;
 ?>
 
-<div class = "col-md-3 col-6 mt-2">
+<div class = "col-md-4 col-lg-3 col-sm-6 offset-sm-0 col-9 offset-1 mt-2 mediaQueryVendorCard">
 <div class="card text-center alert-success">
   <div class="card-body text-center">
     <form action = "" class = "mt-0 pt-0">
@@ -70,7 +70,7 @@ if($x == true || empty($selected_items)){
 
 ?>
 
-<div class = "col-md-3 col-6 mt-2">
+<div class = "col-md-4 col-lg-3 col-sm-6 offset-sm-0 col-9 offset-1 mt-2 mediaQueryVendorCard">
 <div class="card text-center alert-success">
   <div class="card-body text-center">
     <form action = "" class = "text-center">

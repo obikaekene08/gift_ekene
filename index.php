@@ -7,11 +7,15 @@ require("header.php");
 
 
 	<div class = "row-12" id = "searchbox">
-		<div class = "offset-1 col-11 col-md-8 offset-md-2 my-3" style = "width:100%; margin:auto;">	
-				<form class="form-inline">
+		<div class = " col-12 col-md-10 offset-md-1 my-3" style = "width:100%; margin:auto;">
+		<!-- <div class = "offset-1 col-11 col-md-8 offset-md-2 my-3" style = "width:100%; margin:auto;"> -->	
+				<!-- <form class="form-inline">
 			    <input class="form-control mr-2 col-10" type="search" placeholder="Search for products and couples" aria-label="Search">
-			    <button class="btn btn-outline-danger" type="submit">Search</button>
-			  	</form>
+			    <button class="btn btn-outline-danger" type="submit" id = "searchBtn">Search</button>
+			  	</form> -->
+			  	<div class="alert alert-warning" role="alert" style = "font-size:18px">
+				  <b>Warning:</b> This is an illustrative site. It is not to be used for real transactions yet. Only test transactions are allowed.
+				</div>
 		</div>
 
 	</div>
@@ -66,10 +70,10 @@ require("header.php");
 			  </a>
 			</div>
 
-			<div class = "col" id = "entrancetools">
+			<div class = "col-12" id = "entrancetools">
 
-			<a href="giveagift.php" class="btn btn-danger btn-lg mr-4 mb-2 btn-in">Give a Gift</a>
-			<a href="receivegifts.php" class="btn btn-outline-danger btn-lg mb-2 btn-in">Receive Gifts</a>
+			<a href="giveagift.php" class="btn btn-danger btn-lg mr-4 mb-2 btn-in mediaQueryOnEntranceBtn" id = "giveAGiftBtn">Give a Gift</a>
+			<a href="receivegifts.php" class="btn btn-outline-danger btn-lg mb-2 btn-in mediaQueryOnEntranceBtn">Receive Gifts</a>
 			
 		</div>
 
@@ -84,7 +88,7 @@ require("header.php");
 		<div id = "howto">
 			<div class = "col-10 offset-1 my-1 card mbline" >
 
-				<h4 class = "bstyle" style="background-color: grey; color: white; border-color:grey">How To Use Gift Runner</h4>
+				<h4 style="background-color:#0BB2F0; color:white; padding:10px; text-align: center">How To Use Gift Runner</h4>
 				<div class = "card mb-2" id = "howtosubdiv">
 				<div class="row mt-3">
 				  <div class="col-md-2 offset-md-1">
@@ -172,7 +176,7 @@ require("header.php");
 				</div>
 				<div class = "row pb-2" >
 					<div class = "col text-center" id = "videobtn">
-						<button class="btn btn-primary btn-lg" type="button" id = "demobtn">WATCH DEMO</button>
+						<button class="btn btn-danger btn-lg" type="button" id = "demobtn">WATCH DEMO</button>
 						<button class="btn btn-primary btn-lg mt-0" type="button" id = "donebtn" style = "display: none">I'm Done</button>
 					</div>
 				</div>
@@ -285,11 +289,11 @@ require("header.php");
 				  </div>
 				</div>
 
-			<div class = "row py-2 " >
+			<!-- <div class = "row py-2 " >
 					<div class = "col text-center">
 						<a href = "view_merchants.php" class="btn btn-primary btn-lg">See More Merchants <i class = "fa fa-angle-right"></i></a>
 					</div>
-			</div>
+			</div> -->
 
 			</div>
 
@@ -299,7 +303,7 @@ require("header.php");
 		<div class = "row-12 mt-3">
 			<div class = "col-10 offset-1 my-1 card mbline" id = "fAQsparent">
 
-				<h4 class = "bstyle" style="background-color: #bb3f3f; color: white; border-color:#bb3f3f">Some Frequently Asked Questions - FAQs</h4>
+				<h4 class = "bstyle">Some Frequently Asked Questions - FAQs</h4>
 
 				<ul class="nav nav-tabs col-12 " id="myTab" role="tablist">
 				  <li class="nav-item col-4 ">
@@ -487,7 +491,7 @@ require("header.php");
 						    <div class="card-body">
 						      <h5 class="card-title">Wedding - Featured</h5>
 						      <p class="card-text"><a href = "#">Best Wedding Gift Collections</a></p>
-						      <p class="card-text"><small class="text-muted">Last updated 20 mins ago</small></p>
+						      <p class="card-text"><small class="text-muted">Last updated 20 days ago</small></p>
 						    </div>
 						  </div>
 						  <div class="card mx-2 mt-2">
@@ -503,7 +507,7 @@ require("header.php");
 						    <div class="card-body">
 						      <h5 class="card-title">Child Dedication</h5>
 						      <p class="card-text"><a href = "#">Celebrating Your Child Dedication without Stress</a></p>
-						      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+						      <p class="card-text"><small class="text-muted">Last updated 2 weeks ago</small></p>
 						    </div>
 						  </div>
 						</div>
@@ -519,7 +523,7 @@ require("header.php");
 						    <div class="card-body">
 						      <h5 class="card-title">Wedding - Articles</h5>
 						      <p class="card-text"><a href = "#">Top Ten Gift Ideas for a Loved One's Wedding.</a></p>
-						      <p class="card-text"><small class="text-muted">Last updated 5 mins ago</small></p>
+						      <p class="card-text"><small class="text-muted">Last updated 5 days ago</small></p>
 						    </div>
 						  </div>
 						  <div class="card mx-2 mt-2">
@@ -535,7 +539,7 @@ require("header.php");
 						    <div class="card-body">
 						      <h5 class="card-title">Baby Shower - Featured</h5>
 						      <p class="card-text"><a href = "#">3 Easy Steps to Doing Your Baby Shower</a></p>
-						      <p class="card-text"><small class="text-muted">Last updated 5 months ago</small></p>
+						      <p class="card-text"><small class="text-muted">Last updated 1 month ago</small></p>
 						    </div>
 						  </div>
 						</div>
@@ -611,7 +615,14 @@ $('.nav-link-chgcolor').focus(function(){
 		$('#contact-tab').css('color','#495057');
 		$(this).siblings('.nav-link-sibling').css('color','#495057');
 		$(this).css('color','red');
-	})
+})
+
+$(document).ready(function(){
+
+$('#home-tab').css('color','red');
+
+	
+})
 
 
 

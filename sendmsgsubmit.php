@@ -4,9 +4,9 @@ require('User.php');
 
 $obj = new User;
 
-$sendmsgname = $_POST['sendmsgname'];
-$sendmsgemail = $_POST['sendmsgemail'];
-$sendmsgmsg = $_POST['sendmsgmsg'];
+$sendmsgname = trim(htmlentities(addslashes($_POST['sendmsgname'])));
+$sendmsgemail = trim(htmlentities(addslashes($_POST['sendmsgemail'])));
+$sendmsgmsg = trim(htmlentities(addslashes($_POST['sendmsgmsg'])));
 $sendmsgcheck = $_POST['sendmsgcheck'];
 $table = 'send_us_message';
 

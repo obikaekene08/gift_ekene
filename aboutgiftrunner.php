@@ -25,21 +25,21 @@ require('header.php');
 	<div class = "row-12 mt-3">
 			<div class = "col-10 offset-1 my-1 card mbline" id = "howto">
 
-				<h2 style = "text-align:center; word-spacing: 7px " class = "bstyle mb-3">About Gift Runner</h2>
+				<h2 class = "bstyle mb-3" style = "word-spacing: 7px;">About Gift Runner</h2>
 
 				<div class="row ">
 				 
 
 				  <div class="col-md-12 mb-3">
-				  	<h5 style = "color:#0BB2F0">I want to give a gift:</h5>
+				  	<h4 style = "color:#0BB2F0">Do you want to give a gift?</h4>
 				  	<p style = "color: #434343"><b>Gift Runner</b> is an Online Platform that enables you give gifts easily to anyone. We have a large collection of possible gifts items from great stores from which you can choose, we make great suggestions for you too!
 				  	We deliver your gifts fantastically packaged and timely so the receiver is really happy with you.</p>
 
-				  	<h5 style = "color:#0BB2F0">I want to accept gifts:</h5>
+				  	<h4 style = "color:#0BB2F0">Do you want to accept gifts?</h4>
 				  	<p style = "color: #434343"><b>Gift Runner</b> also allows persons who have events to collect gifts easily from their gifters without stress. We save your gifters the stress of thinking of a gift you would want, instead we let you pre-select wanted gift items and your gifters pay for them.
 				  	We make the process seamless from your selection of gifts to receiving the gifts given to you by your gifters</p>
 
-				  	<h5 style = "color:#0BB2F0">I want to do other things:</h5>
+				  	<h4 style = "color:#0BB2F0">Do you want to do other things?</h4>
 				  	<p style = "color: #434343"><b>Gift Runner</b> is also provides other services like enrolling of vendors (with great collections), use of coupons, and gift cards, and charity collections etc</p>
 				    
 				  </div>
@@ -60,7 +60,7 @@ require('header.php');
 	<div class = "row-12 mt-3">
 			<div class = "col-10 offset-1 my-1 card mbline" id = "">
 
-				<h4 style = "text-align: center;">Some FAQs - Frequently Asked Questions</h4>
+				<h4 class = "bstyle">Some FAQs - Frequently Asked Questions</h4>
 
 				<div class="accordion" id="accordionExample">
 				  <div class="card">

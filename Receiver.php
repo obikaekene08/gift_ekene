@@ -80,6 +80,43 @@ class Receiver extends User{
 
 	}
 
+	function changepassword($passwordname, $table, $col,$id,$newpass, $oldpass){
+
+		$sql = " SELECT $passwordname FROM $table WHERE $col = '$id' ";
+
+		$result = $this->conn->query($sql);
+
+		$row = $result->fetch_assoc();
+
+		$encrypted_pass = md5($oldpass);
+
+		if($encrypted_pass == $row[$passwordname]){
+
+		$encrypted_newpass = md5($newpass);
+
+		$sql2 = " UPDATE $table SET $passwordname = '$encrypted_newpass' WHERE $col = '$id' ";
+
+		$result2 = $this->conn->query($sql2);
+
+		$result3 = $this->conn->affected_rows;
+
+		if($result3 > 0){
+
+			return "Password was Successfully Changed";
+		}else{
+
+			return "Oops... Something went wrong, ensure new and old password are not the same";
+		}
+
+
+		}else{
+
+			return "Old Password is not correct";
+		}
+
+
+	}
+
 	function getdetails($id, $table){
 
 		$sql = " SELECT * FROM $table WHERE receiver_id = '$id' ";

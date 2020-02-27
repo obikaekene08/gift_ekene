@@ -82,10 +82,10 @@ $details3 = $obj->getdetails3($_SESSION['$receiver_id'],$_SESSION['$r_event_id']
 
 				<h5 class ="text-center">Beautiful Message From The Celebrant: </h5>
 				<p class = "card card-body alert-warning"><?php echo ucwords($details3['r_message']);?></p>				
-			  	<div class = "offset-8 mb-2">
+			  	<div class = "offset-7 mb-2">
 				      <label for="colqty">Qty in Collection:</label>				      
 				      <div id = "colqty" style = "width:40%; font-weight: bold; border:2px solid red; display:inline; margin: 2px; padding:4px; " > </div>
-				      <a href="giftercheckout.php" class = "btn btn-info col-4 offset-2">Check Out</a>
+				      <a href="giftercheckout.php" class = "btn btn-info col-md-5 col-12 offset-md-2">Check Out</a>
 				  </div>
 
 			  </div>

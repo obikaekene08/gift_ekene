@@ -9,8 +9,8 @@ require("Receiver.php");
 // print_r($_POST);
 // echo "</pre>";
 
-$username = $_POST['email'];
-$pwd = $_POST['pwd'];
+$username = trim(htmlentities(addslashes($_POST['email'])));
+$pwd = htmlentities(addslashes($_POST['pwd']));
 
 
 $obj = new Receiver;

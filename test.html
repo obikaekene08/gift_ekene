@@ -5,8 +5,97 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Test</title>
 	<link rel="stylesheet" href="">
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" >
+	<link rel="stylesheet" href="css/bootstrap.css" type=text/css>
+	<link rel="stylesheet" href="fontawesome/css/all.css" type ="text/css">
+
+	<link rel="apple-touch-icon" sizes="57x57" href="images/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="images/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="images/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="images/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="images/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="images/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="images/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="images/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="imagesfavicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+	<link rel="manifest" href="images/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+
+
+	<style>
+		/**{
+			font-family: arial, corbel, sans-serif;
+		}
+*/
+		
+		*{
+			font-family:  Lato, georgia, 'times new roman', serif;
+			font-size: 16px;
+			
+		}
+		h1{
+			font-family: Courier New, verdana, sans-serif;
+			font-size: 5vw;
+		}
+
+		p{
+			font-style:italic;
+			font-weight: normal;
+			font-size: 20px;
+			font-family: verdana, sans-serif;
+		}
+
+		[type=password]{
+			border: 1px solid red;
+		}
+		[value='Sign Up']{
+			border: 1px solid blue;
+		}
+		#test{
+			color:red;
+		}
+		.red{
+			color:red;
+		}
+		.outer{
+			height: 100px;
+			background-color:grey;
+			border:1px solid grey; 
+			width:100px; margin:auto; 
+			border-radius:50%; 
+			margin-bottom:5px;
+		}
+		.inner{
+			height: 70px;
+			width:70px;
+			margin:auto;
+			margin-top:13px;
+			border-radius:50%
+		}
+		div ul li{
+			display: inline-block;
+			margin-right:10px;
+		}
+		#flexContainer{
+			display:flex; /*must be on the container div of the flex items*/
+			flex-wrap: wrap;/* or nowrap*/
+			flex-direction:column; /*or row*/
+		}
+		p::first-line{
+			color: DodgerBlue;
+		}
+		.theme p, h3{
+			color:white;
+		}
+	</style>
 </head>
-<body>
+<body >
 	<ul style = "list-style-type: none">
 		<li>Alex</li>
 		<li>Peju</li>
@@ -92,6 +181,347 @@
 	<legend>Section 1</legend>
 </fieldset>
 
+<p>This is so <span style = "color:red">interesting!</span></p>
+<h4>This is so <span style = "color:red">interesting!</span></h4>
+<div>This is so <span style = "color:red">interesting!</span></div>
+
+<div style = "background-color:green; text-align: center; width:50%; margin:auto">
+	<form style="padding:8px; width:50%; margin:auto" action = "test.html" method = "POST">
+		<hr>
+		<p style = "font-size: 2rem; font-style: italic;color: white; padding: 5px; margin:2px">Welcome To Your Login</p>
+		<input type = "email" placeholder = "Enter Your Email Here" style = "margin-bottom: 5px; width: 100%;padding:4px"><br>
+		<input type = "password" placeholder = "Enter Your Password Here" style = "margin-bottom: 5px; width: 100%;padding:4px"><br>
+		<input type = "button" value = "Login" style = "margin-bottom:s5px; width: 30%;padding:4px">
+		<hr>
+	</form>
+</div>
+
+<div style="border: 1px solid blue; overflow: auto; width:50%;">
+	<h3 style="border: 1px solid blue; float:left; margin-bottom:0px; width:5%;">A</h3><p style = "border: 1px solid blue;margin-left:0px; width:78%">Using the same principle as the image/text wrap, achieve a long character as is found in Novels and Newspaper.Using the same principle as the image/text wrap, achieve a long character as is found in Novels and Newspaper.Using the same principle as the image/text wrap, achieve a long character as is found in Novels and Newspaper.Using the same principle as the image/text wrap, achieve a long character as is found in Novels and Newspaper.Using the same principle as the image/text wrap, achieve a long character as is found in Novels and Newspaper.</p><p style =  "clear:both"></p>
+	<img src = "images/avatar.png" style = "float:left; height:50px; margin:5px"><p style = "border: 1px solid blue;margin-left:0px; width:78%">Using the same principle as the image/text wrap, achieve a long character as is found in Novels and Newspaper.Using the same principle as the image/text wrap, achieve a long character as is found in Novels and Newspaper.Using the same principle as the image/text wrap, achieve a long character as is found in Novels and Newspaper.Using the same principle as the image/text wrap, achieve a long character as is found in Novels and Newspaper.Using the same principle as the image/text wrap, achieve a long character as is found in Novels and Newspaper.</p>
+</div>
+
+<div>
+	<div style = "border: 1px solid blue;float: left;width:33%">
+		A
+	</div>
+	<div style = "border: 1px solid blue;float: left;width:33%">
+		B
+	</div>
+	<div style = "border: 1px solid blue;float: left;width:33%">
+		C
+	</div>
+</div>
+<p>
+	Monday
+</p>
+<div style = "width:40%; border: 1px solid blue; overflow:auto; padding: 10px">
+
+	<div style = "width:100%; border: 1px solid blue; margin:auto; margin-bottom:5px">
+		<h2 style = "float:left;width: 30%; margin-left:5px">My Website</h2>
+		<ul style = "float: right; width:40%; text-decoration: none">
+			<li>Sign Up</li>
+			<li>Login</li>
+		</ul>
+		<p style = "clear:both"></p>	
+	</div>
+
+	<div style = "width:100%; border: 1px solid blue; margin:auto;margin-bottom:5px">
+		<h3 style = "text-align:center">Menu</h3>
+	</div>
+	<div style = "width:100%; border: 1px solid blue; margin:auto;margin-bottom:5px">
+		<img src = "images/avatar.png" style = "float:left; width: 40%; margin:5px">
+		<div style = "float:right; width: 48%; text-align: center">
+			<h4 style = "margin-bottom:20px">TagLine</h4>
+			<p style = "margin-top:30px">Content of TagLine</p>
+		</div>
+		<p style = "clear:both"></p>
+	</div>
+	<div style = "overflow: auto; box-sizing:border-box;">
+		<div style = "border: 1px solid blue; width: 50%;float:left; height:103px; box-sizing:border-box;">
+			<p style = "text-align: center; line-height: 50px">Box Content 1</p>
+		</div>
+		<div style = "width: 50%;float:right; overflow:auto;box-sizing:border-box">
+			<div style = "border:1px solid blue; height:48px; margin:5px;margin-right:0px; margin-top:0px">
+				<p style = "text-align: center">Box Content 2</p>
+			</div>
+			<div style = "border:1px solid blue; height:48px;  margin:5px;margin-right:0px;">
+				<p style = "text-align: center">Box Content 3</p>
+			</div>
+			
+		</div>
+		
+	</div>
+	<div style = "width:100%; border: 1px solid blue; margin:auto;margin-bottom:5px">
+		<h3 style = "text-align:center">Footer</h3>
+	</div>
+</div>
+
+<audio controls>
+	<source src = "eagle.wav" type = audio/wav>
+	<source src = "eagle.mp3" type = audio/mp3>
+	Your browser does not support the audio element.
+</audio>
 	
+<video width = "320px" height = "240px" controls autoplay>
+	<source src = "video/cybertruck.mp4" type = video/mp4>
+	<source src = "video/cybertruck.ogg" type = video/ogg>
+	Your browser does not support the audio element.
+</video>
+
+<p style = "cursor:pointer; color:red">Home</p>
+<p style = "cursor:pointer; color:red">Contact</p>
+<p style = "cursor:pointer; color:red">About</p>
+
+<input type='text' size='30' name='user'>
+<input type= 'password' size='30' name='pwd'>
+<input type='button' value='Sign Up'>
+
+<span> This is my favorite color</span>
+<span id='test'>I really love this one </span>
+
+<div style = "width:40%;margin:auto;">
+	<p class = "red">Required</p>
+
+	<fieldset >
+		<legend>Shipping Address</legend>
+		<label style = "width: 10%"><span class = "red">*</span>Name</label>
+		<input type='text' style = "margin-bottom:5px"><br>
+		<label><span class = "red">*</span>Address</label>
+		<input type = 'address'>
+	</fieldset>
+</div>
+
+<!-- <div>
+	<p><b>Arthur Rimbaud</b></p>
+	<ul style = "list-style: url('images/gift-box.png')inside;">
+		<li>Ophelia</li>
+		<li>To Music</li>
+		<li>A Dream For Winter/li>
+		<li>Vowels</li>
+		<li>The Drunken Boat</li>
+	</ul>
+</div> -->
+
+<h1 style="background-color:DodgerBlue;">Hello World</h1>
+<p style="background-color:Tomato;">This is a paragraph<p>
+
+<h1 style="color:Tomato;">Hello World</h1>
+<p style="color:DodgerBlue;">Lorem ipsum...</p>
+<p style="color:MediumSeaGreen;">Ut wisi enim...</p>
+
+<!-- rgb style and Hex style -->
+<h1 style="background-color:rgb(255, 99, 71);">...</h1>
+<h1 style="background-color:#ff6347;">...</h1>
+
+
+<div style = "width:20%; margin: auto; border:1px solid blue; overflow: auto;">
+	<div class = "outer" style = " margin-top:5px">
+		<div class = "inner" style = "background-color:red; border:1px solid red;">
+		
+		</div>
+	</div>
+	<div class = "outer">
+		<div class = "inner"  style = "background-color:yellow; border:1px solid yellow">
+		
+		</div>
+	</div>
+	<div  class = "outer">
+		<div class = "inner" style = "background-color:green; border:1px solid green;">
+		
+		</div>
+	</div>
+
+</div>
+
+<div id = "flexContainer">
+	<div style = "width:20%; border: 1px solid grey">A</div>
+	<div style = "width:20%; border: 1px solid grey">B</div>
+	<div style = "width:20%; border: 1px solid grey">C</div>
+	<div style = "width:20%; border: 1px solid grey">D</div>
+	<div style = "width:20%; border: 1px solid grey">E</div>
+	<div style = "width:20%; border: 1px solid grey">E</div>
+	<div style = "width:20%; border: 1px solid grey">E</div>		
+	</div>
+</div>
+
+<div class = "embed-responsive embed-responsive-16by9">
+	<video controls class="embed-responsive-item">
+		<source src = "video/cybertruck.mp4" type = video/mp4>
+	</video>
+</div>
+
+<!-- <div class = "embed-responsive embed-responsive-16by9">
+	<iframe id="player" class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+</div> -->
+
+<p id = "pp" style = "color:red;">Hello guys, I am a P tag</p>
+
+<button class = "btn btn-primary" type = "button" id = "registerBtn" onclick = "var word = document.getElementById('pp').innerHTML; alert(word);">Register Now<span class = "fa fa-thumbs-up ml-2" ></span></button>
+
+<a href="" class = "btn btn-info">Terms and Conditions</a>
+
+<br>
+<div>
+<div style = "height: 50px; overflow:auto">
+<img src = "images/gift-box.png" id = "image" height = "50px">
+</div>
+
+<input type = "button" Value = "Check Dimensions" onclick = "var width = document.getElementById('image').width; var height = document.getElementById('image').height; alert(width+' x '+height);">
+</div>
+
+<div>
+	<h3 style = "color:red">Login Here</h3>
+	<form method = "POST" action = "test.html" onsubmit = "validator('event');">
+		<input type="text" placeholder="Enter Your Username Here" style = "margin-bottom:5px; width:30%" id = "username"><br>
+		<input type = "password" placeholder="Enter Your Password Here" style = "margin-bottom:5px; width:30%" id = "pwd">
+		<input type = "button" value = "Show Password" onclick = " 
+		var type = document.getElementById('pwd').type;
+		if(type == 'password'){
+			document.getElementById('pwd').type = 'text';
+		}else{
+			document.getElementById('pwd').type = 'password'
+		}
+		">
+		<button type = "submit">Login</button>
+	</form>
+</div>
+
+<div>
+	<img src = "images/avatar2.jpg" height = "50px" id = "imageForChange" alt = 'Image Unavailable' onclick = "
+		var source = document.getElementById('imageForChange').src;
+		
+		// alert(source);
+
+		if(source == 'http://localhost/gift_ekene/images/avatar2.jpg'){
+			document.getElementById('imageForChange').src = 'images/avatar.png';
+			document.getElementById('styleTest').style = 'color:blue';
+		}else{
+			document.getElementById('imageForChange').src = 'images/avatar2.jpg';
+			document.getElementById('styleTest').style.color = 'red';
+		}
+	">
+	<h4 style = "font-family: arial; color:red" id = "styleTest">This is to test getElementById on Style attribute</h4>
+</div>
+
+<div style = "background-color: purple; width:60%; margin:auto; padding:5px" class = "theme" id = "themediv">
+	<div style = "float: right; width:30%">
+	<button type =  "button" onclick = " document.getElementById('themediv').style.backgroundColor = 'purple';" style = "margin-right:10px">Setting1</button>
+	<button type =  "button" onclick = " document.getElementById('themediv').style.backgroundColor = 'skyBlue';
+	">Setting2</button>
+	<button type =  "button" onclick = " 
+	var choose = window.prompt('Choose your favorite Color?'); 
+	var chooseClean = choose.trim().toLowerCase();
+	if(!choose){
+		alert('You didn\'t supply a valid color ');
+		document.getElementById('themediv').style.backgroundColor = 'red';
+	}else{
+		document.getElementById('themediv').style.backgroundColor = chooseClean;
+	}
+	voteCheck();
+	
+	">Select Color</button>
+	</div><p style = "clear:both"></p>
+	<h3>Royalty</h3>
+	<p>Online Style is cool</p>
+
+	<h3>Royalty</h3>
+	<p>Online Style is cool</p>
+
+	<button type = "button" id = "likeBtn" onclick = " adderFn()">Like</button>
+</div>
+
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/popper.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+<script>
+	// var name = window.prompt('Please enter your name');
+	// alert("Hi "+name);
+
+	// document.getElementById('registerBtn').click();
+
+	// function voteCheck(){
+	// 	var age = window.prompt('Please enter your age');
+	// var ageClean = age.trim();
+	// var country = window.prompt('Please enter your country');
+	// var countryClean = country.trim();
+
+	// if(ageClean >= 18 || countryClean.toLowerCase() == 'nigeria'){
+	// 	// document.write("You can vote");
+	// 	alert("You can vote");
+	// }else{
+	// 	// document.write("You are not eligible to vote");
+	// 	alert("You are not eligible to vote");
+	// }
+	// }
+
+	// adder = 0;
+
+	// function adderFn(){
+		
+	// 	adder = Number(adder + 1);
+	// 	if(adder == 1){
+	// 	document.getElementById('likeBtn').innerHTML = adder + ' Like';
+	// }else{
+	// 	document.getElementById('likeBtn').innerHTML = adder + ' Likes';
+	// }
+	// 	}
+
+	// //not working
+	// function validator(e){
+	// 	alert('okay');
+
+	// 	var username = document.getElementById('username').value;
+	// 	var password = document.getElementById('pwd').value;
+
+	// 	if(username == '' && password = ''){
+	// 		e.preventDefault();
+	// 		alert('Fill in your username and password');
+	// 	}else if(username == ''){
+	// 		e.preventDefault();
+	// 		alert('Fill in your username')
+	// 	}else if(password = ''){
+	// 		e.preventDefault();
+	// 		alert('Fill in your password')
+	// 	}else{
+	// 		alert ("You are good to go");
+	// 	}
+		
+	// }
+
+
+
+	var arraynum = ["Ekene","Samson","Chidi","Sugar","Tiger"];
+
+	var count = 0;
+	
+	while(count < arraynum.length){
+
+		if(arraynum[count] == "Chidi"){
+			count++;
+			continue;
+		}
+
+		document.write(arraynum[count]+"<br>");
+
+		count++;
+	}
+
+	document.write(arraynum.join("-"));
+
+	var col = document.getElementsByTagName('p');
+	
+
+	count = 0;
+	while(count < col.length){
+		col[count].style.color = 'green';
+		count++;
+	}
+
+
+</script>
+
 </body>
 </html>

@@ -34,7 +34,7 @@ $details = $obj->getdetails($_SESSION['user'],'gifters');
     <div class="row">
       <!-- Sidebar Column -->
       
-      <div class="col-lg-3 mb-4">
+      <div class="col-md-3 mb-4">
 	  <div>
 	  <img src="<?php if($details['g_pic_name'] != ""){ echo $details['g_pic_name']; }else{echo 'images/avatar.png';} ?>" class="card-img" alt="...">
 	  	 
@@ -49,7 +49,7 @@ $details = $obj->getdetails($_SESSION['user'],'gifters');
         </div>
       </div>
       <!-- Content Column -->
-   <div class="col-lg-9 mb-4">
+   <div class="col-md-9 mb-4">
        
 	   <form class = "card card-body">
 	    <h4 class = "ml-0 pl-0 mb-3">Change Password</h4>

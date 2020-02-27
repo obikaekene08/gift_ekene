@@ -6,11 +6,11 @@ require("Vendor.php");
 
 $obj = new Vendor;
 $v_id  = $_SESSION['user'];
-$v_cat_name = $_POST['valcat'];
-$v_item_name = $_POST['itemname'];
-$v_item_price = $_POST['itemprice'];
-$item_color = $_POST['itemcolor'];
-$item_qty = $_POST['itemqty'];
+$v_cat_name = trim(htmlentities(addslashes($_POST['valcat'])));
+$v_item_name = trim(htmlentities(addslashes($_POST['itemname'])));
+$v_item_price = trim(htmlentities(addslashes($_POST['itemprice'])));
+$item_color = trim(htmlentities(addslashes($_POST['itemcolor'])));
+$item_qty = trim(htmlentities(addslashes($_POST['itemqty'])));
 
 // print_r($_FILES);
 

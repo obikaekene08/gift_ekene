@@ -39,7 +39,7 @@ $item_table = $obj->getseveral('vendor_item');
     <div class="row">
       <!-- Sidebar Column -->
       
-      <div class="col-lg-3 mb-4">
+      <div class="col-md-3 mb-4">
 	  <div>
 	  <img src="<?php if($details['g_pic_name'] != ""){ echo $details['g_pic_name']; }else{echo 'images/avatar.png';} ?>" class="card-img" alt="...">
 	  <form method = "POST" action = "gifter_image_upload.php" enctype = "multipart/form-data" id = "uploadform">
@@ -81,7 +81,7 @@ $item_table = $obj->getseveral('vendor_item');
         </div>
       </div>
       <!-- Content Column -->
-      <div class="col-lg-9 mb-4">
+      <div class="col-md-9 mb-4">
        
 	  	<div class = "row-12 mt-3">
 			<div class = "col-12 my-1 card mbline" id = "">
@@ -106,7 +106,7 @@ $item_table = $obj->getseveral('vendor_item');
 						<div class = "row" id = "searchboxname">
 							<div class = "offset-1 col-11 col-md-10 offset-md-1 mb-3" style = "width:100%; margin:auto;">	
 									<form class="form-inline">
-								    <input class="form-control mr-2 col-10" type="search" id="searchRname" placeholder="Search for Recepient Name or Phone Number" aria-label="Search">
+								    <input class="form-control mr-2 col-lg-10 col-12" type="search" id="searchRname" placeholder="Search for Recepient Name or Phone Number" aria-label="Search">
 								    <button class="btn btn-outline-danger" type="button" id = "searchRnamebtn">Search</button>
 								    </form>
 								    <h5 class = "text-center mt-4" id = "or">OR</h5>
@@ -118,7 +118,7 @@ $item_table = $obj->getseveral('vendor_item');
 						<div class = "row" id = "searchboxlink">
 							<div class = "offset-1 col-11 col-md-10 offset-md-1 mb-3" style = "width:100%; margin:auto;">	
 									<form class="form-inline">
-								    <input class="form-control mr-2 col-10" id = "searchRLink" type="search" placeholder="Search with Recepient ID or Link" aria-label="Search">
+								    <input class="form-control mr-2 col-lg-10 col-12 " id = "searchRLink" type="search" placeholder="Search with Recepient ID or Link" aria-label="Search">
 								    <button class="btn btn-outline-primary" type="button" id = "searchRLinkbtn">Search</button>
 								  	</form>
 							</div>
@@ -152,7 +152,7 @@ $item_table = $obj->getseveral('vendor_item');
 				       <div class = "row" id = "searchboxMerchant">
 							<div class = "offset-1 col-11 col-md-10 offset-md-1 mb-3" style = "width:100%; margin:auto;">	
 									<form class="form-inline">
-								    <input class="form-control mr-2 col-10" type="search" id="searchMerchant" placeholder="Search for Products or Merchant" aria-label="Search">
+								    <input class="form-control mr-2 col-lg-10 col-12" type="search" id="searchMerchant" placeholder="Search for Products or Merchant" aria-label="Search">
 								    <button class="btn btn-outline-primary" type="button" id = "searchMerchantbtn">Search</button>
 								    </form>
 								    <h5 class = "text-center mt-4" id= "or2">OR</h5>

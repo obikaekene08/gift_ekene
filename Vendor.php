@@ -111,7 +111,7 @@ function update($collect, $K1,$v1,$table){
 
 		 $this->conn->query($sql2);
 		 
-		 echo $this->conn->error;
+		 // echo $this->conn->error;
 
 		 $result = $this->conn->affected_rows;
 

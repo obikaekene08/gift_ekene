@@ -136,11 +136,11 @@
 		}
 
 		h2.bstyle, h4.bstyle{
-			text-align: left;
+			text-align: center;
+			background-color:#0BB2F0;
+			color:white;
+			padding:10px;
 			width: 100%;
-			margin: auto;
-			padding: 5px 7px;
-			border: 1px solid grey;
 			border-bottom-left-radius: 10px;
 			border-bottom-right-radius: 10px;
 		}

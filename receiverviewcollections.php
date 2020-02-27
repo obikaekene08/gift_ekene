@@ -24,7 +24,7 @@ foreach($viewcollections as $key => $v) { $revent_id = $v['r_event_id']; $r_even
 
 				
 
-						<div class = "col-md-3 col-6">
+						<div class = "col-md-4 col-lg-3 col-sm-6 offset-sm-0 col-9 offset-1 mt-2 mediaQueryVendorCard">
 							<div class="card text-center">
 							  <div class="card-body">
 							  	<img src="<?php if($v['r_event_pic'] != ''){ echo $v['r_event_pic'];}else{echo 'images/avatar.png';}?>" class="card-img-top" height = "180px" alt="...">

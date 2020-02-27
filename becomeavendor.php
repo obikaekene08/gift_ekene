@@ -23,19 +23,19 @@ require("header.php");
 			<div class = "col-10 offset-1 my-1 card card-body mbline" id = "howto">
 
 				
-				<div class="alert alert-secondary col-10 offset-1" role="alert">
+				<div class="alert alert-secondary col-sm-10 offset-sm-1 col-12" role="alert">
   				<h2 style = "text-align:center;" id = "subtitle"><?php if(isset($_GET['m'])){ echo "Vendor Sign In";}else{echo "Become A Vendor";} ?></h2>
 				</div>
 
-				<div class="row m-4 p-4">
-				  <div class="col-4 offset-1">
+				<div class="row m-sm-4 p-sm-4 m-md-0 p-md-0">
+				  <div class="col-md-4 offset-md-1 col-12">
 				    <div class="list-group" id="list-tab" role="tablist">
 				      <a class="list-group-item list-group-item-action <?php if(!isset($_SESSION['loginstatus']) && !isset($_GET['m'])){ echo active;}?> btn btn-primary" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home"><h3>SIGN UP</h3></a>
 				      <a class="list-group-item list-group-item-action btn btn-primary <?php if(isset($_SESSION['loginstatus']) || isset($_GET['m'])){ echo active;}?>" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile"><h3>LOGIN</h3></a>				      
 				      
 				    </div>
 				  </div>
-				  <div class="col-6">
+				  <div class="col-md-6 col-12">
 				    <div class="tab-content" id="nav-tabContent">
 				      <div class="tab-pane fade <?php if(!isset($_SESSION['loginstatus']) && !isset($_GET['m'])){ echo "show active";}?>" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
 				      	<form method ="POST" id="form" action='vendorsubmitsignup.php' onsubmit = "prevent(event)">

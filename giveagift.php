@@ -25,33 +25,34 @@ require("header.php");
 			<div class = "col-10 offset-1 my-1 card card-body mbline" id = "howto">
 
 				
-				<div class="alert alert-secondary col-10 offset-1" role="alert">
+				<div class="alert alert-secondary col-sm-10 offset-sm-1 col-12" role="alert">
   				<h2 style = "text-align:center;">Give A Gift</h2>
 				</div>
 
-				<div class="row m-4 p-4">
-				  <div class="col-4 offset-1">
+				<div class="row m-sm-4 p-sm-4 m-md-0 p-md-0">
+				  <div class="col-md-4 offset-md-1 col-12">
 				    <div class="list-group" id="list-tab" role="tablist">
 				      <a class="list-group-item list-group-item-action <?php if(!isset($_SESSION['loginstatus'])){ echo active;}?> btn btn-primary" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home"><h3>SIGN UP</h3></a>
 				      <a class="list-group-item list-group-item-action <?php if(isset($_SESSION['loginstatus'])){ echo active;}?> btn btn-primary" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile"><h3>LOGIN</h3></a>
 				      <a class="list-group-item list-group-item-action btn btn-primary" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages"><h4 class = "pl-0">CONTINUE WITHOUT LOGIN</h4></a>
 				    </div>
 				  </div>
-				  <div class="col-6">
+				  <div class="col-md-6 col-12">
 				    <div class="tab-content" id="nav-tabContent">
 				      <div class="tab-pane fade <?php if(!isset($_SESSION['loginstatus'])){ echo "show active";}?>" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+				      	
 				      	<form method="POST" id="formSignup" action='giftersubmitsignup.php'>
 				        <div class = "row">
 				          <div class="control-group form-group col-md-6 col-12">
 				            <div class="controls">
 				              <label>First Name:</label>
-				              <input type="text" class="form-control checkfield" id="checkfield1" name='fname' required>
+				              <input type="text" class="form-control" id="fname" name='fname' required>
 				            </div>
 				          </div>
 						  <div class="control-group form-group col-md-6 col-12">
 				            <div class="controls">
 				              <label>Last Name:</label>
-				              <input type="text" class="form-control checkfield" id="checkfield2" name='lname'required>
+				              <input type="text" class="form-control" id="lname" name='lname'required>
 				             
 				            </div>
 				          </div>
@@ -60,27 +61,27 @@ require("header.php");
 				          <div class="control-group form-group">
 				            <div class="controls">
 				              <label>Phone Number:</label>
-				              <input type="tel" class="form-control checkfield" id="checkfield3" name="phone" required>
+				              <input type="tel" class="form-control" id="phone" name="phone" required>
 				            </div>
 				          </div>
 				          <div class="control-group form-group">
 				            <div class="controls">
 				              <label>Email Address:</label>
-				              <input type="email" class="form-control checkfield" name='email' id="checkfield4" required>
+				              <input type="email" class="form-control" name='email' id="email" required>
 				            </div>
 				          </div>
 				          <div class="control-group form-group">
 				            <div class="controls">				  
 				              <label>Password:</label>
 				              <div class= "row">
-				              <input type="password" class="form-control checkfield col-10 ml-3" name='pwd' id="checkfield5" required>
+				              <input type="password" class="form-control col-10 ml-3" name='pwd' id="pwd" required>
 				              <button type = "button" class = "col-1 pl-2" id = "seepassword"><i class = "fa fa-eye"></i></button>
 				              </div>
 				            </div>
 				          </div>				          
-							<div class="form-group form-check mt-3 checkfield" id = "mrcheck">
-						    <input type="checkbox" class="form-check-input" id="checkfield6" required>
-						    <label class="form-check-label" for="checkfield6" style = "font-size:13px">By Starting Your Registration, you are agreeing to Gift Runner's <a href="">Terms of Use</a> and <a href="">Privacy Statement</a></label>
+							<div class="form-group form-check mt-3" id = "mrcheck">
+						    <input type="checkbox" class="form-check-input" id="checkBox" required>
+						    <label class="form-check-label" for="checkBox" style = "font-size:13px">By Starting Your Registration, you are agreeing to Gift Runner's <a href="">Terms of Use</a> and <a href="">Privacy Statement</a></label>
 						  </div>
 				          <button type="submit" class="btn btn-primary btn-block btn-lg" id="signupbtn">Sign Up</button>
 				        </form>
@@ -91,13 +92,13 @@ require("header.php");
 				        <div class="control-group form-group">
 				            <div class="controls">
 				              <label>Email Address:</label>
-				              <input type="email" class="form-control" name='email' id="email" required>
+				              <input type="email" class="form-control" name='email' id="loginEmail" required>
 				            </div>
 				          </div>
 				          <div class="control-group form-group">
 				            <div class="controls">
 				              <label>Password:</label>
-				              <input type="password" class="form-control" name='pwd' id="pwd" required>
+				              <input type="password" class="form-control" name='pwd' id="LoginPwd" required>
 				            </div>
 				          </div>
 				             
@@ -152,73 +153,19 @@ require('footer.php');
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="giftjava.js"></script>
 <script type ="text/javascript">
+
+$('#seepassword').click(function(){
+
+	var x = $('#pwd').prop('type');
 	
 
-		$('#signupbtn').click(function prevent(event){
-			
-			var fname  = $('#checkfield1').val().trim();
-			var lname  = $('#checkfield2').val().trim();
-			var phone  = $('#checkfield3').val().trim();
-			var email  = $('#checkfield4').val().trim();
-			var password  = $('#checkfield5').val();
-			var term  = $('#checkfield6').prop('checked');
+	if(x == 'password'){
+		$('#pwd').prop('type','text');
+	}else{
+		$('#pwd').prop('type','password');
+	}
 
-			if(fname == '' || lname == '' || phone == '' || email == '' || password == '' || reason == '' || term == false){
-
-
-				event.preventDefault();
-
-				if(fname == ''){
-				 	
-
-				 	$('#checkfield1').css('border-color', 'red');
-
-				 }
-				 if(lname == ''){
-				 	$('#checkfield2').css('border-color', 'red');
-				 }
-				 if(phone == ''){
-				 	$('#checkfield3').css('border-color', 'red');
-				 }
-				 if(email == ''){
-				 	$('#checkfield4').css('border-color', 'red');
-				 }
-				 if(password == ''){
-				 	$('#checkfield5').css('border-color', 'red');
-				 }
-				 if(term == false){
-				 	$('#mrcheck').css({'border-style': 'outset', 'border-color': 'red'});
-
-				 }
-				 
-
-			}
-
-		})
-
-		$('.checkfield').change(function(){
-
-			$(this).removeAttr('style', 'border-style : none');
-
-		})
-		$('#mrmheck').change(function(){
-
-			$('#mrcheck').removeAttr({'border-style': 'solid', 'border-color': 'red'});
-
-		})
-
-		$('#seepassword').click(function(){
-
-				var x = $('#checkfield5').prop('type');
-				
-
-				if(x == 'password'){
-					$('#checkfield5').prop('type','text');
-				}else{
-					$('#checkfield5').prop('type','password');
-				}
-
-		})
+})
 
 </script>
 

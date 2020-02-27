@@ -9,7 +9,14 @@ require("Receiver.php");
 $obj = new Receiver;
 $user = $_SESSION['user'];
 
-$obj->update($_POST,'receiver_id',$user,'receivers');
+$post = [];
+
+foreach($_POST as $k => $v){
+
+	$post[$k] = trim(htmlentities(addslashes($_POST[$k])));
+}
+
+$obj->update($post,'receiver_id',$user,'receivers');
 
 
 // header("location:complete_registration.php");

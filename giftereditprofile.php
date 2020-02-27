@@ -34,7 +34,7 @@ $details = $obj->getdetails($_SESSION['user'],'gifters');
     <div class="row">
       <!-- Sidebar Column -->
       
-      <div class="col-lg-3 mb-4">
+      <div class="col-md-3 mb-4">
 	  <div>
 	  <img src="<?php if($details['g_pic_name'] != ""){ echo $details['g_pic_name']; }else{echo 'images/avatar.png';} ?>" class="card-img" alt="...">
 	  <form method = "POST" action = "gifter_image_upload.php" enctype = "multipart/form-data" id = "uploadform">
@@ -76,7 +76,7 @@ $details = $obj->getdetails($_SESSION['user'],'gifters');
         </div>
       </div>
       <!-- Content Column -->
-   <div class="col-lg-9 mb-4">
+   <div class="col-md-9 mb-4">
        
 	   <form class = "card card-body">
 	    <h4 class = "ml-0 pl-0">Contact Details</h4>

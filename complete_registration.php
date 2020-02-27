@@ -52,11 +52,11 @@ $swift = $details3['swift'];
 ?>
 
 	<div class = "row" id = "searchbox_view_merchant">
-		<div class = "col-10 offset-1 mt-2 mbline" style = "text-align: right;">	
+		<div class = "col-10 offset-1 mt-2 text-right">	
 
-				<button type="button" class="btn btn-outline-danger mr-3">Home Page</button>
-				<button type="button" class="btn btn-danger mr-3">View Terms and Conditions</button>
-				<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#staticBackdrop">Ask a Question</button>
+				<button type="button" class="btn btn-outline-danger mt-2 mr-md-3">Home Page</button>
+				<button type="button" class="btn btn-danger mr-md-3 mt-md-0 mt-2">View Terms and Conditions</button>
+				<button type="button" class="btn btn-outline-danger mt-md-0 mt-2" data-toggle="modal" data-target="#staticBackdrop">Ask a Question</button>
 
 			  	
 		</div>
@@ -64,9 +64,6 @@ $swift = $details3['swift'];
 	</div>
 
 
-
-
-	
 
 	<div class = "row mt-3">
 			<div class = "col-10 offset-1 my-1 card mbline" id = "">
@@ -112,63 +109,63 @@ $swift = $details3['swift'];
 				          <h5 class = "accordstyle">1. Contact Details</h5>
 				        </button>
 				      </h2>
-				      <p class = "offset-5 col-1 pt-3" style="text-align: center"><i class ="fa fa-angle-right"></i></p>
+				      <p class = "offset-md-5 offset-3 col-1 pt-3" style="text-align: center"><i class ="fa fa-angle-right"></i></p>
 				  		</div>
 				    </div>
 
 				    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
 				      <div class="card-body mx-2 ml-4">
 				       
-						
+						<form>
 						<div class = "form-group row">
 							<h5 >Details of Authorized Contact Person </h5>							
 						</div>
 
 						<div class="form-group row">
-						    <label for="staticEmail" class="col-sm-2 col-form-label">First Name</label>
-						    <div class="col-sm-4">
+						    <label for="staticEmail" class="col-md-2 col-form-label">First Name</label>
+						    <div class="col-md-4 col-12">
 						      <input type="text" class="form-control" id="fname" name = "v_fname" value="<?php echo $fname ?>">
 						    </div>
 
-						    <label for="staticEmail" class="col-sm-2 col-form-label">Last Name</label>
-						    <div class="col-sm-4">
+						    <label for="staticEmail" class="col-md-2 col-12 col-form-label">Last Name</label>
+						    <div class="col-md-4 col-12">
 						      <input type="text" class="form-control" id="lname" name = "v_lname" value="<?php echo $lname ?>">
 						    </div>
 						 </div>
 						  <div class="form-group row">
-						    <label for="staticEmail" class="col-sm-2 col-form-label">Brand Name</label>
-						    <div class="col-sm-10">
+						    <label for="staticEmail" class="col-md-2 col-form-label">Brand Name</label>
+						    <div class="col-md-10">
 						      <input type="text" class="form-control" id="bname" name = "v_companyname" value="<?php echo $bname ?>">
 						    </div>
 						  </div>
 						  
 						  <div class="form-group row">
-						    <label for="staticEmail" class="col-sm-2 col-form-label">Phone Number</label>
-						    <div class="col-sm-10">
+						    <label for="staticEmail" class="col-md-2 col-form-label">Phone Number</label>
+						    <div class="col-md-10">
 						      <input type="text" class="form-control" id="vphone" name = "v_phone" value="<?php echo $phone ?>">
 						    </div>
 						  </div>
 						   <div class="form-group row">
-						    <label for="staticEmail" class="col-sm-2 col-form-label">Email Address</label>
-						    <div class="col-sm-10">
+						    <label for="staticEmail" class="col-md-2 col-form-label">Email Address</label>
+						    <div class="col-md-10">
 						      <input type="text" class="form-control" id="vemail" name = "v_email" value="<?php echo $email ?>">
 						    </div>
 						  </div>
 						  <div class="form-group row">
-						    <label for="staticEmail" class="col-sm-2 col-form-label">Office Address</label>
-						    <div class="col-sm-10">
+						    <label for="staticEmail" class="col-md-2 col-form-label">Office Address</label>
+						    <div class="col-md-10">
 						      <input type="text" class="form-control" id="vaddress" name = "v_address" value="<?php echo $address ?>">
 						    </div>
 						  </div>
 						  <div class="form-group row">
-						  <div class=" my-0 col-3 offset-7">
+						  <div class="my-0 col-3 offset-md-3">
 						  	<div class=" my-0 " role="alert" id = "contactsaved"></div>
 						  </div>
-						  <div class = "col-2">					  	  
+						  <div class = "col-md-4 offset-md-2 col-6">					  	  
 						  <p align="right"><button type="button" class="btn btn-success btn-lg" id = "contactbtn">Save Details</button></p>
 						</div>
 						</div>
-						
+						</form>
 						
 				      </div>
 				    </div>
@@ -183,38 +180,40 @@ $swift = $details3['swift'];
 				          <h5 class = "accordstyle">2. Business Information</h5>
 				        </button>
 				      </h2>
-				      <p class = "offset-5 col-1 pt-3" style="text-align: center"><i class ="fa fa-angle-right"></i></p>
+				      <p class = "offset-md-5 offset-3 col-1 pt-3" style="text-align: center"><i class ="fa fa-angle-right"></i></p>
 				  		</div>
 				    </div>
 
 				    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 				      <div class="card-body mx-2 ml-4">
-				       						
+				       	<form>				
 						<div>
 							<h5 class = "form-group row">Company Details</h5>
 						</div>
 						<div class="form-group row">
-						    <label for="staticEmail" class="col-sm-2 col-form-label">Business Legal Name</label>
-						    <div class="col-sm-10">
+						    <label for="staticEmail" class="col-md-2 col-form-label">Business Legal Name</label>
+						    <div class="col-md-10">
 						      <input type="text" class="form-control" id="company_name" name = "company_name" value="<?php echo $cname ?>">
 						    </div>
 						  </div>
-						
+
 						  <div class="form-group row">
-						    <label for="staticEmail" class="col-sm-2 col-form-label">Director's Name</label>
-						    <div class="col-sm-10">
+						    <label for="staticEmail" class="col-md-2 col-form-label">Director's Name</label>
+						    <div class="col-md-10">
 						      <input type="text" class="form-control" id="director_name"  name = "director_name" value="<?php echo $dname ?>">
 						    </div>
 						  </div>
+
 						  <div class="form-group row">
-						    <label for="staticEmail" class="col-sm-2 col-form-label">Business Email</label>
-						    <div class="col-sm-10">
+						    <label for="staticEmail" class="col-md-2 col-form-label">Business Email</label>
+						    <div class="col-md-10">
 						      <input type="text" class="form-control" id="company_email"  name = "company_email" value="<?php echo $cemail ?>">
 						    </div>
 						  </div>
+
 						  <div class="form-group row">
-						    <label for="inputPassword" class="col-sm-2 col-form-label">Business Type</label>
-						    <div class="col-sm-10">
+						    <label for="inputPassword" class="col-md-2 col-form-label">Business Type</label>
+						    <div class="col-md-10">
 						      <select class="form-control" id="company_type"  name = "company_type">
 						      	<option value="<?php echo $ctype ?>"><?php if(isset($_SESSION['user'])){ echo $ctype;}else {echo "Select Business Type";} ?></option>
 						      	<option value="BN">Business Name</option>
@@ -223,20 +222,24 @@ $swift = $details3['swift'];
 						      </select>
 						    </div>
 						  </div>
+
 						  <div class="form-group row">
-						    <label for="staticEmail" class="col-sm-2 col-form-label">Business Reg. Number</label>
-						    <div class="col-sm-10">
+						    <label for="staticEmail" class="col-md-2 col-form-label">Business Reg. Number</label>
+						    <div class="col-md-10">
 						      <input type="text" class="form-control" id="rc_number"  name = "rc_number" value="<?php echo $rc ?>">
 						    </div>
 						  </div>
+
 						  <div class="form-group row">
-						  <div class=" my-0 col-3 offset-7">
+						  <div class="my-0 col-3 offset-md-3">
 						  	<div class=" my-0 " role="alert" id = "bizinfosaved"></div>
 						  </div>
-						  <div class = "col-2">					  	  
+						  <div class = "col-md-4 offset-md-2 col-6">					  	  
 						  <p align="right"><button type="button" class="btn btn-success btn-lg" id = "bizinfobtn">Save Details</button></p>
 						</div>
 						</div>
+
+						</form>
 						
 				      </div>
 				    </div>
@@ -252,78 +255,84 @@ $swift = $details3['swift'];
 				          <h5 class = "accordstyle">3. Bank Information</h5>
 				        </button>
 				      </h2>
-				      <p class = "offset-5 col-1 pt-3" style="text-align: center"><i class ="fa fa-angle-right"></i></p>
+				      <p class = "offset-md-5 offset-3 col-1 pt-3" style="text-align: center"><i class ="fa fa-angle-right"></i></p>
 				  		</div>
 				    </div>
 
 				    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
 				      <div class="card-body mx-2 ml-4">
-				       
-						
+
+				       <form>		
 						<div>
 							<h5 class = "form-group row">Business Bank Details</h5>
 						</div>
+
 						<div class="form-group row">
-						    <label for="inputPassword" class="col-sm-2 col-form-label">Bank Name<span style = "color:red">*</span></label>
-						    <div class="col-sm-10">
+						    <label for="inputPassword" class="col-md-2 col-form-label">Bank Name<span style = "color:red">*</span></label>
+						    <div class="col-md-10">
 						      <select class="form-control" name = "bank_name" id="bank_name">
 						      	<option value="<?php echo $ctype ?>"><?php if(isset($_SESSION['user'])){ echo $bkname;}else {echo "Select Bank Name";} ?></option>
 						      	<option value="Access Bank">Access Bank</option>
-						      	<option value="First Bank">First Bank</option>
 						      	<option value="Fidelity Bank">Fidelity Bank</option>
+						      	<option value="First Bank">FCMB</option>
+						      	<option value="Fidelity Bank">Fidelity Bank</option>
+						      	<option value="Fidelity Bank">GTB</option>
+						      	<option value="Fidelity Bank">Keystone Bank</option>
+						      	<option value="Fidelity Bank">Stanbic IBTC Bank</option>
+						      	<option value="Fidelity Bank">Sterling Bank</option>
+						      	<option value="Fidelity Bank">UBA</option>
+						      	<option value="Fidelity Bank">Union Bank</option>
+						      	<option value="Fidelity Bank">Zenith Bank</option>
 						      </select>
 						    </div>
 						  </div>
-						  
+
 						<div class="form-group row">
-						    <label for="staticEmail" class="col-sm-2 col-form-label">Account Number<span style = "color:red">*</span></label>
-						    <div class="col-sm-10">
+						    <label for="staticEmail" class="col-md-2 col-form-label">Account Number<span style = "color:red">*</span></label>
+						    <div class="col-md-10">
 						      <input type="text" class="form-control" id="account_number" name = "account_number" value="<?php echo $acname ?>">
 						    </div>
 						</div>
 
-
 						<div class="form-group row">
-						    <label for="staticEmail" class="col-sm-2 col-form-label">Account Name<span style = "color:red">*</span></label>
-						    <div class="col-sm-10">
+						    <label for="staticEmail" class="col-md-2 col-form-label">Account Name<span style = "color:red">*</span></label>
+						    <div class="col-md-10">
 						      <input type="text" class="form-control" id="account_name" name = "account_name" value="<?php echo $acname ?>">
 						    </div>
 						  </div>
 
 						<div class="form-group row">
-						    <label for="staticEmail" class="col-sm-2 col-form-label">BVN Number<span style = "color:red">*</span></label>
-						    <div class="col-sm-10">
+						    <label for="staticEmail" class="col-md-2 col-form-label">BVN Number<span style = "color:red">*</span></label>
+						    <div class="col-md-10">
 						      <input type="text" class="form-control" id="bvn" name = "bvn" value="<?php echo $bvn ?>">
 						    </div>
 						 </div>
 
 						 <div class="form-group row">
-						    <label for="staticEmail" class="col-sm-2 col-form-label">IBAN</label>
-						    <div class="col-sm-10">
+						    <label for="staticEmail" class="col-md-2 col-form-label">IBAN</label>
+						    <div class="col-md-10">
 						      <input type="text" class="form-control" id="iban" name = "iban" value="<?php echo $iban ?>" placeholder = "Optional">
 						    </div>
 						 </div>
 
 						 <div class="form-group row">
-						    <label for="staticEmail" class="col-sm-2 col-form-label">SWIFT</label>
-						    <div class="col-sm-10">
+						    <label for="staticEmail" class="col-md-2 col-form-label">SWIFT</label>
+						    <div class="col-md-10">
 						      <input type="text" class="form-control" id="swift" name ="swift" value="<?php echo $swift ?>" placeholder = "Optional">
 						    </div>
 						 </div>
 
 											 
 						  <div class="form-group row">
-						  <div class=" my-0 col-3 offset-7">
-						  	<div class=" my-0 " role="alert" id = "bankinfosaved"></div>
-						  </div>
-						  <div class = "col-2">					  	  
-						  <p align="right"><button type="button" class="btn btn-success btn-lg" id = "bankinfobtn">Save Details</button></p>
+							  <div class="my-0 col-3 offset-md-3">
+							  	<div class=" my-0 " role="alert" id = "bankinfosaved"></div>
+							  </div>
+							  <div class = "col-md-4 offset-md-2 col-6">					  	  
+							  	<p align="right"><button type="button" class="btn btn-success btn-lg" id = "bankinfobtn">Save Details</button></p>
+							</div>
 						</div>
-						</div>
-						
 
-
-
+						</form>
 				      </div>
 				    </div>
 				  </div>
@@ -331,7 +340,7 @@ $swift = $details3['swift'];
 				</div>
 
 				<p class = "text-center">
-				<a class="btn btn-success btn-lg" href="vendor_dashboard.php">
+				<a class="btn btn-success btn-lg" href="vendor_dashboard.php" id = "continueToDashboardBtn">
 				   Skip And Continue to My Dashboard
 				</a>
 				</p>
@@ -382,7 +391,7 @@ require('footer.php');
 			  </div>
 			<p>You can Call or Send an Email :</p>
 			<p>Phone: +2347065692733</p>
-			<p>Email: info@giftrunner.com</p>
+			<p>Email: info@giftmummy.com</p>
 		</div>
 
       <div class="modal-footer">
@@ -404,12 +413,12 @@ $(document).ready(function(){
 //for contact button
 $('#contactbtn').click(function(){
 
-	var fname = $('#fname').val();	
-	var lname = $('#lname').val();
-	var bname = $('#bname').val();
-	var vaddress = $('#vaddress').val();
-	var vphone = $('#vphone').val();
-	var vemail = $('#vemail').val();
+	var fname = $('#fname').val().trim();	
+	var lname = $('#lname').val().trim();
+	var bname = $('#bname').val().trim();
+	var vaddress = $('#vaddress').val().trim();
+	var vphone = $('#vphone').val().trim();
+	var vemail = $('#vemail').val().trim();
 
 	$.ajax({
 
@@ -421,17 +430,15 @@ $('#contactbtn').click(function(){
 		success(msg){
 
 		var rec = JSON.parse(msg);
+
 		
+		if(msg != ''){
 		$('#updatedname').html(rec.v_fname);
 		$('#contactsaved').fadeIn('slow');
 		$('#contactsaved').addClass('alert alert-success');
 		$('#contactsaved').html('Successfully Saved');
 		$('#contactsaved').fadeOut('slow');
-		
-
-
-
-		
+		}		
 			
 		},
 		error(errmsg){
@@ -448,11 +455,11 @@ $('#contactbtn').click(function(){
 $('#bizinfobtn').click(function(){
 
 	
-	var director_name = $('#director_name').val();
-	var company_name = $('#company_name').val();
-	var company_type = $('#company_type').val();
-	var company_email = $('#company_email').val();
-	var rc_number = $('#rc_number').val();
+	var director_name = $('#director_name').val().trim();
+	var company_name = $('#company_name').val().trim();
+	var company_type = $('#company_type').val().trim();
+	var company_email = $('#company_email').val().trim();
+	var rc_number = $('#rc_number').val().trim();
 	
 	$.ajax({
 
@@ -463,12 +470,12 @@ $('#bizinfobtn').click(function(){
 		dataType: "text",
 		success(msg){
 		
-				
+		if(msg != ''){
 		$('#bizinfosaved').fadeIn('slow');
 		$('#bizinfosaved').addClass('alert alert-success');
 		$('#bizinfosaved').html('Successfully Saved');
 		$('#bizinfosaved').fadeOut('slow');
-		
+		}
 					
 		},
 		error(errmsg){
@@ -483,12 +490,12 @@ $('#bizinfobtn').click(function(){
 $('#bankinfobtn').click(function(){
 
 	
-	var bank_name = $('#bank_name').val();
-	var account_number = $('#account_number').val();
-	var account_name = $('#account_name').val();
-	var bvn = $('#bvn').val();
-	var iban = $('#iban').val();
-	var swift = $('#swift').val();
+	var bank_name = $('#bank_name').val().trim();
+	var account_number = $('#account_number').val().trim();
+	var account_name = $('#account_name').val().trim();
+	var bvn = $('#bvn').val().trim();
+	var iban = $('#iban').val().trim();
+	var swift = $('#swift').val().trim();
 
 	$.ajax({
 
@@ -499,14 +506,15 @@ $('#bankinfobtn').click(function(){
 		dataType: "text",
 		success(msg){
 
-			
+			if(msg != ''){
 		$('#bankinfosaved').fadeIn('slow');
 		$('#bankinfosaved').addClass('alert alert-success');
 		$('#bankinfosaved').html('Successfully Saved');
 		$('#bankinfosaved').fadeOut('slow');
-		
 
-			
+		$('#continueToDashboardBtn').html('Continue to Dashboard');
+		}
+					
 		},
 		error(errmsg){
 			console.log(errmsg);
