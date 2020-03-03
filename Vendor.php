@@ -6,11 +6,30 @@ class Vendor extends User{
 
 	function signup($fname,$lname,$phone,$email,$pwd){
 
+		//the first if is for automatic signup when using function signupwithemail below
 		if(isset($_SESSION['user'])){
 			$encrypted_pass = $pwd;
 		}else{
 			$encrypted_pass = md5($pwd);
 		}
+		//end
+
+		//this is to check if email already exists
+		$checkifemailexists = $this->getdetailswithemail($email,'vendors');
+
+		if(!empty($checkifemailexists)){
+
+			$_SESSION['emailalreadyexists'] = "emailalreadyexists";
+			$_SESSION['fname'] = $fname;
+			$_SESSION['lname'] = $lname;
+			$_SESSION['phone'] = $phone;
+			$_SESSION['email'] = $email;
+
+			header("location: becomeavendor.php");
+
+			return;
+		}
+		//end
 
 		$sql = " INSERT INTO vendors SET v_fname = '$fname', v_lname = '$lname', v_phone = '$phone', v_email = '$email', v_password = '$encrypted_pass' ";
 
@@ -24,6 +43,7 @@ class Vendor extends User{
 
 			$this->conn->query(" UPDATE vendors SET  v_user_id = '$reg_id' WHERE vendor_id = '$id' ");
 
+			
 			if(isset($_SESSION['user'])){
 
 			$_SESSION['user'] = $id;

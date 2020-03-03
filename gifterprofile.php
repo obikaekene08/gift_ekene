@@ -39,7 +39,7 @@ if(!isset($_SESSION['user'])){
 	}
 
 	$details = $obj->getdetails($_SESSION['user'],'gifters');
-
+	
 	$cat_table = $obj->getseveral('category_table');
 
 	$merch_table = $obj->getseveral('vendors');
@@ -53,7 +53,7 @@ if(!isset($_SESSION['user'])){
 	// 		create one using the sign up details, that means go back to the original table(vendor table) and get details and assign to gifter or receiver table
 
 	// 	How to make the emails unique?
-	// 	during sign up, check if email exists in referenced table first, if not go ahead, if so, send back message using session
+	// 	during sign up, check if email exists in referenced table first, if not go ahead, if so, send back message using session 
 }
 
 

@@ -10,11 +10,31 @@ class Gifter extends User{
 
 	function signup($fname,$lname,$phone,$email,$pwd){
 
+		//the first if is for automatic signup when using function signupwithemail below
 		if(isset($_SESSION['user'])){
 			$encrypted_pass = $pwd;
 		}else{
 			$encrypted_pass = md5($pwd);
 		}
+		//end
+
+
+		//this is to check if email already exists
+		$checkifemailexists = $this->getdetailswithemail($email,'gifters');
+
+		if(!empty($checkifemailexists)){
+
+			$_SESSION['emailalreadyexists'] = "emailalreadyexists";
+			$_SESSION['fname'] = $fname;
+			$_SESSION['lname'] = $lname;
+			$_SESSION['phone'] = $phone;
+			$_SESSION['email'] = $email;
+
+			header("location: giveagift.php");
+
+			return;
+		}
+		//end
 		
 		$sql = " INSERT INTO gifters SET g_fname = '$fname', g_lname = '$lname', g_phone = '$phone', g_email = '$email', g_password = '$encrypted_pass' ";
 
@@ -72,6 +92,7 @@ class Gifter extends User{
 		$reg_id = "GIFTER/".date("Y.m.d")."/".$id;
 
 		$this->conn->query(" UPDATE gifters SET  g_user_id = '$reg_id' WHERE gifter_id = '$id' ");
+
 
 		if(isset($_SESSION['user'])){
 

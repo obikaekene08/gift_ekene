@@ -6,11 +6,30 @@ class Receiver extends User{
 
 	function signup($fname,$lname,$phone,$email,$pwd){
 
+		//the first if is for automatic signup when using function signupwithemail below
 		if(isset($_SESSION['user'])){
 			$encrypted_pass = $pwd;
 		}else{
 			$encrypted_pass = md5($pwd);
 		}
+		//end
+
+		//this is to check if email already exists
+		$checkifemailexists = $this->getdetailswithemail($email,'receivers');
+
+		if(!empty($checkifemailexists)){
+
+			$_SESSION['emailalreadyexists'] = "emailalreadyexists";
+			$_SESSION['fname'] = $fname;
+			$_SESSION['lname'] = $lname;
+			$_SESSION['phone'] = $phone;
+			$_SESSION['email'] = $email;
+
+			header("location: receivegifts.php");
+
+			return;
+		}
+		//end
 
 		$sql = " INSERT INTO receivers SET r_fname = '$fname', r_lname = '$lname', r_phone = '$phone', r_email = '$email', r_password = '$encrypted_pass' ";
 
@@ -24,8 +43,14 @@ class Receiver extends User{
 
 			$this->conn->query(" UPDATE receivers SET  r_user_id = '$reg_id' WHERE receiver_id = '$id' ");
 
-		
-			if(isset($_SESSION['user'])){
+
+			if(isset($_SESSION['user'])){ //this is for other sign up to access other functions like gifting or vendoring
+
+			$_SESSION['user'] = $id;
+
+			$_SESSION['route'] = 'receive';
+
+			}else{ //this is for original sign up
 
 			$_SESSION['user'] = $id;
 
@@ -37,11 +62,6 @@ class Receiver extends User{
 			$_SESSION['useremail'] = $emailfetch['r_email'];
 			//end
 
-			}else{
-
-			$_SESSION['user'] = $id;
-
-			$_SESSION['route'] = 'receive';
 
 			header("location: receiverprofile.php");
 

@@ -48,6 +48,13 @@ $obj->login($username,$pwd);
 	
 }
 
+if($_SESSION['loginstatus'] == "failed"){
+
+	header("location:signup.php");
+}
+
+
+
 }else{
 
 	header("location:signup.php");
