@@ -1,12 +1,16 @@
 <?php
 
-require("User.php");
+require_once("User.php");
 
 class Receiver extends User{
 
 	function signup($fname,$lname,$phone,$email,$pwd){
 
-		$encrypted_pass = md5($pwd);
+		if(isset($_SESSION['user'])){
+			$encrypted_pass = $pwd;
+		}else{
+			$encrypted_pass = md5($pwd);
+		}
 
 		$sql = " INSERT INTO receivers SET r_fname = '$fname', r_lname = '$lname', r_phone = '$phone', r_email = '$email', r_password = '$encrypted_pass' ";
 
@@ -20,9 +24,29 @@ class Receiver extends User{
 
 			$this->conn->query(" UPDATE receivers SET  r_user_id = '$reg_id' WHERE receiver_id = '$id' ");
 
+		
+			if(isset($_SESSION['user'])){
+
 			$_SESSION['user'] = $id;
 
+			$_SESSION['route'] = 'receive';
+
+			//this is to fetch email and assign to session
+			$emailfetch = $this->getdetails($_SESSION['user'],'receivers');
+
+			$_SESSION['useremail'] = $emailfetch['r_email'];
+			//end
+
+			}else{
+
+			$_SESSION['user'] = $id;
+
+			$_SESSION['route'] = 'receive';
+
 			header("location: receiverprofile.php");
+
+			}
+
 		}else{
 
 			$_SESSION['error'] = "failedsignup";
@@ -32,6 +56,57 @@ class Receiver extends User{
 
 
 	}
+
+
+	function signupwithoutlogin($email){
+
+
+		$sql = " INSERT INTO receivers SET r_email = '$email' ";
+
+		$this->conn->query($sql);
+
+		$id = $this->conn->insert_id;
+
+		if($id > 0){
+			
+			$reg_id = "RECE/".date("Y.m.d")."/".$id;
+
+			$this->conn->query(" UPDATE receivers SET  r_user_id = '$reg_id' WHERE receiver_id = '$id' ");
+
+		
+			if(isset($_SESSION['user'])){
+
+			$_SESSION['user'] = $id;
+
+			$_SESSION['route'] = 'receive';
+
+			}else{
+
+			$_SESSION['user'] = $id;
+
+			$_SESSION['route'] = 'receive';
+
+			//this is to fetch email and assign to session
+			$emailfetch = $this->getdetails($_SESSION['user'],'receivers');
+
+			$_SESSION['useremail'] = $emailfetch['r_email'];
+			//end
+
+
+			header("location: receiverprofile.php");
+
+			}
+
+		}else{
+
+			$_SESSION['error'] = "failedsignup";
+
+			header("location: receivegifts.php");
+		}
+
+
+	}
+
 
 	function login($username,$pwd){
 
@@ -49,32 +124,32 @@ class Receiver extends User{
 
 			$_SESSION['user'] = $row['receiver_id'];
 
-			
+			$_SESSION['route'] = 'receive';
 
-			if(isset($_SESSION['modallogin']) && $_SESSION['modallogin'] == 'modallogin'){
-				$_SESSION['loginstatus'] = "success";
-				// header("location: vendor_dashboard.php");
+			//this is to fetch email and assign to session
+			$emailfetch = $this->getdetails($_SESSION['user'],'receivers');
 
-		}else{
+			$_SESSION['useremail'] = $emailfetch['r_email'];
+			//end
+
 			$_SESSION['loginstatus'] = "success";
 
-		header("location: receiverprofile.php");
+			header("location: receiverprofile.php");
 
-			}
-
-
+		
 		}else{
 
-			if(isset($_SESSION['modallogin']) && $_SESSION['modallogin'] == 'modallogin'){
+		if(isset($_SESSION['centrallogin']) && ($_SESSION['centrallogin'] == 'centrallogin')){
+
 				$_SESSION['loginstatus'] = "failed";
 
-		}else{
+			}else{
+
 			$_SESSION['loginstatus'] = "failed";
 
-		header("location:receivegifts.php");
+			header("location:receivegifts.php");
 
 			}
-
 			
 		}
 
@@ -130,6 +205,67 @@ class Receiver extends User{
 			return $row;
 			
 		}
+	}
+
+	function getdetailswithemail($email, $table){
+
+		if($table == 'vendors'){
+
+			$emailcol = 'v_email';
+
+		}else if($table == 'receivers'){
+
+			$emailcol = 'r_email';
+
+		}else if($table == 'gifters'){
+			$emailcol = 'g_email';
+		}
+
+		$sql = " SELECT * FROM $table WHERE $emailcol = '$email' ";
+
+		$result = $this->conn->query($sql);
+
+		if($result->num_rows>0){
+
+			$row = $result->fetch_assoc();
+			
+			return $row;
+			
+		}
+	}
+
+	function signupemail($email,$table){
+
+		$emaildetails = $this->getdetailswithemail($email,$table);
+
+		if($table == 'vendors'){
+
+		$fname = $emaildetails['v_fname'];
+		$lname = $emaildetails['v_lname'];
+		$phone = $emaildetails['v_phone'];
+		$email = $emaildetails['v_email'];
+		$pwd = $emaildetails['v_password'];
+		$pic = $emaildetails['v_pic_name'];
+		$address = $emaildetails['v_address'];
+
+		}else if($table == 'gifters'){
+
+		$fname = $emaildetails['g_fname'];
+		$lname = $emaildetails['g_lname'];
+		$phone = $emaildetails['g_phone'];
+		$email = $emaildetails['g_email'];
+		$pwd = $emaildetails['g_password'];
+		$pic = $emaildetails['g_pic_name'];
+		$address = $emaildetails['g_location'];
+
+		}
+
+		$this->signup($fname,$lname,$phone,$email,$pwd);
+
+		$this->updateupload('receivers', 'r_pic_name',$pic,'receiver_id',$_SESSION['user']);
+		$this->updateupload('receivers', 'r_delivery_address',$address,'receiver_id',$_SESSION['user']);
+		
+		
 	}
 
 	function getdetailswhere($id, $table,$colname){

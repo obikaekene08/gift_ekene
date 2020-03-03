@@ -336,7 +336,7 @@ color:#745E87;
 			        </a>
 			        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 			          <a class="dropdown-item" href="index.php #merchantsection">See Our Vendors</a>
-			          <a class="dropdown-item" href="becomeavendor.php">Become a Vendor</a>
+			          <a class="dropdown-item" href="becomeavendor.php?">Become a Vendor</a>
 			          <a class="dropdown-item" href="becomeavendor.php?m=signin">Vendor Sign in</a>
 			        </div>
 			      </li>

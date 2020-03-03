@@ -1,12 +1,16 @@
 <?php
 
-require("User.php");
+require_once("User.php");
 
 class Vendor extends User{
 
 	function signup($fname,$lname,$phone,$email,$pwd){
 
-		$encrypted_pass = md5($pwd);
+		if(isset($_SESSION['user'])){
+			$encrypted_pass = $pwd;
+		}else{
+			$encrypted_pass = md5($pwd);
+		}
 
 		$sql = " INSERT INTO vendors SET v_fname = '$fname', v_lname = '$lname', v_phone = '$phone', v_email = '$email', v_password = '$encrypted_pass' ";
 
@@ -20,9 +24,29 @@ class Vendor extends User{
 
 			$this->conn->query(" UPDATE vendors SET  v_user_id = '$reg_id' WHERE vendor_id = '$id' ");
 
+			if(isset($_SESSION['user'])){
+
 			$_SESSION['user'] = $id;
 
+			$_SESSION['route'] = 'vendor';
+
+			}else{
+
+			$_SESSION['user'] = $id;
+
+			$_SESSION['route'] = 'vendor';
+
+			//this is to fetch email and assign to session
+			$emailfetch = $this->getdetails($_SESSION['user'],'vendors');
+
+			$_SESSION['useremail'] = $emailfetch['v_email'];
+			//end
+
 			header("location: complete_registration.php");
+
+			}
+
+
 		}else{
 
 			$_SESSION['error'] = "failedsignup";
@@ -47,34 +71,35 @@ class Vendor extends User{
 
 			$row = $result->fetch_assoc();
 
-			$_SESSION['user'] = $row['vendor_id'];			
+			$_SESSION['user'] = $row['vendor_id'];
 
-			
+			$_SESSION['route'] = 'vendor';
 
-			if(isset($_SESSION['modallogin']) && $_SESSION['modallogin'] == 'modallogin'){
-				$_SESSION['loginstatus'] = "success";
-				// header("location: vendor_dashboard.php");
+			//this is to fetch email and assign to session
+			$emailfetch = $this->getdetails($_SESSION['user'],'vendors');
 
-		}else{
+			$_SESSION['useremail'] = $emailfetch['v_email'];
+			// end
+
 			$_SESSION['loginstatus'] = "success";
 
-		header("location: vendor_dashboard.php");
-
-			}
+			header("location: vendor_dashboard.php");
 
 
 		}else{
 
-			if(isset($_SESSION['modallogin']) && $_SESSION['modallogin'] == 'modallogin'){
+
+			if(isset($_SESSION['centrallogin']) && ($_SESSION['centrallogin'] == 'centrallogin')){
+
 				$_SESSION['loginstatus'] = "failed";
 
-		}else{
+			}else{
+
 			$_SESSION['loginstatus'] = "failed";
 
-		header("location:signup.php");
+			header("location:signup.php");
 
 			}
-
 			
 		}
 
@@ -94,6 +119,71 @@ class Vendor extends User{
 			
 		}
 	}
+
+	function getdetailswithemail($email, $table){
+
+		if($table == 'vendors'){
+
+			$emailcol = 'v_email';
+
+		}else if($table == 'receivers'){
+
+			$emailcol = 'r_email';
+
+		}else if($table == 'gifters'){
+			$emailcol = 'g_email';
+		}
+
+		$sql = " SELECT * FROM $table WHERE $emailcol = '$email' ";
+
+		$result = $this->conn->query($sql);
+
+		if($result->num_rows>0){
+
+			$row = $result->fetch_assoc();
+			
+			return $row;
+			
+		}
+	}
+
+	function signupemail($email,$table){
+
+		$emaildetails = $this->getdetailswithemail($email,$table);
+
+		print_r($emaildetails);
+
+		if($table == 'receivers'){
+
+		$fname = $emaildetails['r_fname'];
+		$lname = $emaildetails['r_lname'];
+		$phone = $emaildetails['r_phone'];
+		$email = $emaildetails['r_email'];
+		$pwd = $emaildetails['r_password'];
+		$pic = $emaildetails['r_pic_name'];
+		$address = $emaildetails['r_delivery_address'];
+
+		}else if($table == 'gifters'){
+
+		$fname = $emaildetails['g_fname'];
+		$lname = $emaildetails['g_lname'];
+		$phone = $emaildetails['g_phone'];
+		$email = $emaildetails['g_email'];
+		$pwd = $emaildetails['g_password'];
+		$pic = $emaildetails['g_pic_name'];
+		$address = $emaildetails['g_location'];
+
+		}
+
+		$this->signup($fname,$lname,$phone,$email,$pwd);
+
+		$this->updateupload('vendors', 'v_pic_name',$pic,'vendor_id',$_SESSION['user']);
+		$this->updateupload('vendors', 'v_address',$address,'vendor_id',$_SESSION['user']);
+		
+		
+	}
+
+
 
 function update($collect, $K1,$v1,$table){
 

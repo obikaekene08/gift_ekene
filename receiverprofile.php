@@ -8,23 +8,54 @@ if(!isset($_SESSION['user'])){
 
 	header("location:receivegifts.php");
 
+}else{
+
+	require("header2.php");
+
+
+	$emaildetails = $obj->getdetailswithemail($_SESSION['useremail'],'receivers');
+
+	if(!empty($emaildetails)){
+
+		$_SESSION['user'] = $emaildetails['receiver_id']; //reassign the saved id if any as the session[user]
+
+	}else{
+
+		if(isset($_SESSION['route']) && ($_SESSION['route'] == 'vendor')){
+
+			$emailtable = 'vendors';
+
+		}else if (isset($_SESSION['route']) && ($_SESSION['route'] == 'gift')){
+
+			$emailtable = 'gifters';
+
+		}else if(isset($_SESSION['route']) && ($_SESSION['route'] == 'receive')){
+
+			$emailtable = 'receivers';
+		}
+
+		$emailsignup = $obj->signupemail($_SESSION['useremail'],$emailtable);
+
+	}
+
+	$details = $obj->getdetails($_SESSION['user'],'receivers');
+
+
+
 }
 
-require("header2.php");
-
-$details = $obj->getdetails($_SESSION['user'],'receivers');
 
 
 ?>
 
-	<button type="button" class="btn btn-outline-danger mr-2 my-2 offset-md-9">Give a Gift</button>
+	<a href="gifterprofile.php" class="btn btn-outline-danger mr-2 my-2 offset-md-9">Give a Gift</a>
 	<a href="logout.php" class="btn btn-danger my-2">Logout</a>
    
 	<div class="container">
 	 <div class = "row">
     	<div class = "col-12">
 		    <div class="alert alert-primary" role="alert" col-8 offset-2>
-			  <h3>Hi <?php echo ucfirst($details['r_fname']).","?> <small> Welcome To Your Profile Page</small></h3>
+			  <h3>Hi <?php if($details['r_fname'] == ''){ echo "There".",";}else{echo ucfirst($details['r_fname']).",";}?> <small> Welcome To Your Profile Page</small></h3>
 			</div>
 		</div>
 	</div>

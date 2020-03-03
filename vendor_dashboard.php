@@ -7,49 +7,79 @@ if(!isset($_SESSION['user'])){
 
 	header("location:signup.php");
 
+}else{
+
+	require("header.php");
+
+	$emaildetails = $obj->getdetailswithemail($_SESSION['useremail'],'vendors');
+
+	if(!empty($emaildetails)){
+
+		$_SESSION['user'] = $emaildetails['vendor_id']; //reassign the saved id if any as the session[user]
+
+	}else{
+
+		if(isset($_SESSION['route']) && ($_SESSION['route'] == 'receive')){
+
+			$emailtable = 'receivers';
+
+		}else if (isset($_SESSION['route']) && ($_SESSION['route'] == 'gift')){
+
+			$emailtable = 'gifters';
+
+		}else if (isset($_SESSION['route']) && ($_SESSION['route'] == 'vendor')){
+
+			$emailtable = 'vendors';
+
+		}
+
+		$emailsignup = $obj->signupemail($_SESSION['useremail'],$emailtable);
+
+	}
+
+	$details = $obj->getdetails($_SESSION['user'],'vendors');
+
+	$cat_table = $obj->getseveral('category_table');
+
+	$fetch_catname = $obj->getseveralwhereNoGroup('vendor_item','category_table','vendor_item.v_cat_id','category_id','vendor_id',$_SESSION['user'],'ORDER BY', 'category_name ASC');
+
+	$fname = $details['v_fname'];
+	$lname = $details['v_lname'];
+	$bname = $details['v_companyname'];
+	$address = $details ['v_address'];
+	$email = $details['v_email'];
+	$phone = $details['v_phone'];
+
+
+
+	$details2  = $obj->getdetails($_SESSION['user'], 'vendor_business_info');
+
+	$cname = $details2['company_name'];
+	$dname = $details2['director_name'];
+	$cemail = $details2['company_email'];
+	$ctype = $details2['company_type'];
+	$rc = $details2['rc_number'];
+
+
+	$details3  = $obj->getdetails($_SESSION['user'], 'vendor_bank_info');
+
+	$bkname = $details3['bank_name'];
+	$acnum = $details3['account_number'];
+	$acname = $details3['account_name'];
+	$bvn = $details3['bvn'];
+	$iban = $details3['iban'];
+	$swift = $details3['swift'];
+
+
+
 }
-
-require("header.php");
-$details = $obj->getdetails($_SESSION['user'],'vendors');
-
-$cat_table = $obj->getseveral('category_table');
-
-$fetch_catname = $obj->getseveralwhereNoGroup('vendor_item','category_table','vendor_item.v_cat_id','category_id','vendor_id',$_SESSION['user'],'ORDER BY', 'category_name ASC');
-
-$fname = $details['v_fname'];
-$lname = $details['v_lname'];
-$bname = $details['v_companyname'];
-$address = $details ['v_address'];
-$email = $details['v_email'];
-$phone = $details['v_phone'];
-
-
-$details2  = $obj->getdetails($_SESSION['user'], 'vendor_business_info');
-
-$cname = $details2['company_name'];
-$dname = $details2['director_name'];
-$cemail = $details2['company_email'];
-$ctype = $details2['company_type'];
-$rc = $details2['rc_number'];
-
-
-$details3  = $obj->getdetails($_SESSION['user'], 'vendor_bank_info');
-
-$bkname = $details3['bank_name'];
-$acnum = $details3['account_number'];
-$acname = $details3['account_name'];
-$bvn = $details3['bvn'];
-$iban = $details3['iban'];
-$swift = $details3['swift'];
-
-
 
 ?>
 
 	<div class = "row">
 		<div class = "col-10 offset-1">
 		    <div class="alert alert-primary pt-3" role="alert" >
-			  <h3>Hi <?php echo ucfirst($details['v_fname']).","?> <small>Welcome To Your DashBoard</small></h3>
+			  <h3>Hi <?php echo ucfirst($details['v_fname']).",";?> <small>Welcome To Your DashBoard</small></h3>
 			</div>
 		</div>
 	</div>
@@ -60,8 +90,8 @@ $swift = $details3['swift'];
 			    <button class="btn btn-outline-danger giftBtn mr-sm-0 mr-2" type="submit">Search</button>
 
 				
-				<a href="giveagift.php" class="btn btn-danger mr-2 offset-md-2 giftBtn">Give a Gift</a>
-				<a href="receivegifts.php" class="btn btn-outline-danger giftBtn">Receive Gifts</a>
+				<a href="gifterprofile.php" class="btn btn-danger mr-2 offset-md-2 giftBtn">Give a Gift</a>
+				<a href="receiverprofile.php" class="btn btn-outline-danger giftBtn">Receive Gifts</a>
 
 			  	</form>
 		</div>

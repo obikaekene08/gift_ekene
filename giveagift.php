@@ -107,11 +107,12 @@ require("header.php");
 
 				      </div>
 				      <div class="tab-pane fade pt-4" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
-				      	<form method="POST" id="formNoLogin" action='selectgift.php' class= "mt-4">
+				      	<form method="POST" id="formNoLogin" action='continuewithoutlogin.php' class= "mt-4">
 				        <div class="control-group form-group">
 				            <div class="controls">
 				              <input type="email" class="form-control" name='email' id="email" placeholder= "Only Enter Your Email Address To Continue" required>
 				            </div>
+				             <input type="text" class="form-control" name='route' id="route" value = "giveagift" style = "display: none">
 				          </div>			             
 				          <button type="submit" class="btn btn-primary btn-block btn-lg" id="sendMessageButton">Continue</button>
 				        </form>

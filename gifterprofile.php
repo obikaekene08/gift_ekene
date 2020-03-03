@@ -8,17 +8,54 @@ if(!isset($_SESSION['user'])){
 
 	header("location:giveagift.php");
 
+}else{
+
+	require("header2.php");
+
+
+	$emaildetails = $obj->getdetailswithemail($_SESSION['useremail'],'gifters');
+
+	if(!empty($emaildetails)){
+
+		$_SESSION['user'] = $emaildetails['gifter_id'];
+
+	}else{
+
+		if(isset($_SESSION['route']) && ($_SESSION['route'] == 'vendor')){
+
+			$emailtable = 'vendors';
+
+		}else if (isset($_SESSION['route']) && ($_SESSION['route'] == 'receive')){
+
+			$emailtable = 'receivers';
+
+		}else if(isset($_SESSION['route']) && ($_SESSION['route'] == 'gift')){
+
+			$emailtable = 'gifters';
+		}
+
+		$emailsignup = $obj->signupemail($_SESSION['useremail'],$emailtable);
+
+	}
+
+	$details = $obj->getdetails($_SESSION['user'],'gifters');
+
+	$cat_table = $obj->getseveral('category_table');
+
+	$merch_table = $obj->getseveral('vendors');
+
+	$item_table = $obj->getseveral('vendor_item');
+
+	// check if sessioned mail is in gifter table;
+	// if there login,
+
+	// 	if not
+	// 		create one using the sign up details, that means go back to the original table(vendor table) and get details and assign to gifter or receiver table
+
+	// 	How to make the emails unique?
+	// 	during sign up, check if email exists in referenced table first, if not go ahead, if so, send back message using session
 }
 
-require("header2.php");
-
-$details = $obj->getdetails($_SESSION['user'],'gifters');
-
-$cat_table = $obj->getseveral('category_table');
-
-$merch_table = $obj->getseveral('vendors');
-
-$item_table = $obj->getseveral('vendor_item');
 
 
 ?>
@@ -28,7 +65,7 @@ $item_table = $obj->getseveral('vendor_item');
     <div class = "row">
     	<div class = "col-10 offset-1">
 		    <div class="alert alert-primary" role="alert" col-8 offset-2>
-			  <h3>Hi <?php echo ucfirst($details['g_fname']).","?> <small> Welcome To Your Profile Page</small></h3>
+			  <h3>Hi <?php if($details['g_fname'] == ''){ echo "There".",";}else{echo ucfirst($details['g_fname']).",";}?> <small> Welcome To Your Profile Page</small></h3>
 			</div>
 		</div>
 	</div>

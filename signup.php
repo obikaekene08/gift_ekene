@@ -26,7 +26,7 @@ require("header.php");
 
 				
 				<div class="alert alert-secondary col-sm-10 offset-sm-1 col-12" role="alert">
-  				<h2 style = "text-align:center;" id = "subtitle"><?php if(isset($_SESSION['loginstatus']) || isset($_GET['login'])){echo "Vendor Login Only";}else{echo "Sign Up Form";}?></h2>
+  				<h2 style = "text-align:center;" id = "subtitle"><?php if(isset($_SESSION['loginstatus']) || isset($_GET['login'])){echo "Login";}else{echo "Sign Up Form";}?></h2>
 				</div>
 
 				<div class="row m-sm-4 p-sm-4 m-md-0 p-md-0">
@@ -103,7 +103,7 @@ require("header.php");
 				      </div>
 				      <div class="tab-pane fade <?php if(isset($_SESSION['loginstatus']) || isset($_GET['login'])){ echo "show active";}?>" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
 				      	
-				      	<form method="POST" id="contactForm" action='vendorsubmitlogin.php'>
+				      	<form method="POST" id="contactForm" action='centralloginsubmit.php'>
 				      		<?php if(isset($_SESSION['loginstatus']) && $_SESSION['loginstatus'] == 'failed'){ ?>
 				      	<div class="control-group form-group">
 				            <div class="controls">
@@ -244,7 +244,7 @@ $('#list-home-list').click(function(){
 
 $('#list-profile-list').click(function(){
 
-	$('#subtitle').html('Vendor Login Only');
+	$('#subtitle').html('Login');
 })
 
 </script>
