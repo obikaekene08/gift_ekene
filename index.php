@@ -306,13 +306,13 @@ require("header.php");
 				<h4 class = "bstyle">Some Frequently Asked Questions - FAQs</h4>
 
 				<ul class="nav nav-tabs col-12 " id="myTab" role="tablist">
-				  <li class="nav-item col-4 ">
+				  <li class="nav-item col-md-4 col-12 ">
 				    <a class="nav-link active nav-link-chgcolor nav-link-sibling" id="home-tab" data-toggle="tab" href="#faqReceivers" role="tab" aria-controls="home" aria-selected="true"><b>FAQs For Vendors</b></a>
 				  </li>
-				  <li class="nav-item col-4">
+				  <li class="nav-item col-md-4 col-12">
 				    <a class="nav-link nav-link-chgcolor" id="profile-tab" data-toggle="tab" href="#faqGifters" role="tab" aria-controls="profile" aria-selected="false"><b>FAQs For Giving Gifts</b></a>
 				  </li>
-				  <li class="nav-item col-4">
+				  <li class="nav-item col-md-4 col-12">
 				    <a class="nav-link nav-link-chgcolor" id="contact-tab" data-toggle="tab" href="#faqVendors" role="tab" aria-controls="contact" aria-selected="false"><b>FAQs For Receiving Gifts</b></a>
 				  </li>
 				</ul>

@@ -22,7 +22,7 @@ $merch_table = $obj->getseveral('vendors');
 
 $item_table = $obj->getseveral('vendor_item');
 
-$event_id = $_SESSION['$r_event_id'];
+$event_id = $_SESSION['r_event_id'];
 
 
 ?>
@@ -65,7 +65,7 @@ $event_id = $_SESSION['$r_event_id'];
 		<label for="inputPassword" class=" col-form-label col-sm-2">Choose Event Title: <span style = "color:red">*</span></label>
 	    <div class="col-sm-5">
 		    <select class = "form-control" id = "eventtitle">		    	
-	      	<option value="<?php if(isset($_SESSION['$r_event_id']) && isset($_SESSION['$r_event_title'])){ echo $event_id; } else {echo "Select an event";}?>" ><?php if(isset($_SESSION['$r_event_id']) && isset($_SESSION['$r_event_title'])){ echo $_SESSION['$r_event_title']; } else {echo "Select an event";} ?> </option>
+	      	<option value="<?php if(isset($_SESSION['r_event_id']) && isset($_SESSION['r_event_title'])){ echo $event_id; } else {echo "Select an event";}?>" ><?php if(isset($_SESSION['r_event_id']) && isset($_SESSION['r_event_title'])){ echo $_SESSION['r_event_title']; } else {echo "Select an event";} ?> </option>
 	      		<?php foreach($event_table AS $k => $v){ ?>
 	      			<option value="<?php echo $v['r_event_id'];?>" ><?php echo $v['r_event_title']; ?> </option>
 	      		<?php } ?>										      	
@@ -216,7 +216,7 @@ require("removemodal.php");
 <script type = "text/javascript">
 
 function fetchitems(){
-
+	
 var r_event_id = $('#eventtitle').val();
 var price = $('#price').val();
 var selectcategory = $('#selectcategory').val();
@@ -265,6 +265,7 @@ $(itbtn).siblings('#itremove').show();
 function editItemCard(editbtn){
 
 var itemid = $(editbtn).parents('#grandparent').siblings('#itid').html();
+alert(itemid);
 var editbtnid = "editrecord"+itemid;
 var updatebtnid = "updaterecord"+itemid;
 
@@ -403,7 +404,7 @@ var colqty = $('#eventtitle').val();
 
 fetchitems();
 
- 
+})
 
 $('#searchbysort').click(function(){
 
@@ -418,14 +419,6 @@ fetchitems();
 
 })
 
-
-
-
-
-
-
-
-
 $('#search').click(function(){
 var r_event_id = $('#eventtitle').val();
 var searchval = $('#searchval').val();
@@ -436,9 +429,6 @@ $('#bodyofitem').load("receiverselectitemMainSearch.php", data);
 
 })
 
-
-
-})
 
 
 </script>

@@ -64,19 +64,19 @@ $details = $obj->getdetails($_SESSION['user'],'receivers');
 
 		<div class = "row mx-1">
 			<div class = "col-12 card card-body pt-1 pb-0 mb-0">
-				  <h2 class ="pb-0 text-center"><?php echo ucwords($_SESSION['$r_event_title']);?>: </h2>
+				  <h2 class ="pb-0 text-center"><?php echo ucwords($_SESSION['r_event_title']);?>: </h2>
 				  <h4 class ="mb-2 text-center">By <?php echo ucfirst($details['r_fname'])." ".ucfirst($details['r_lname']) ?></h4>
 				  <div class = "text-center">
-				  <img src="<?php if($_SESSION['$r_event_pic'] != ""){ echo $_SESSION['$r_event_pic']; }else{echo 'images/noimage3.jpg';} ?>" class="card-img-top img-fluid" style = "height: 300px" alt="...">
+				  <img src="<?php if($_SESSION['r_event_pic'] != ""){ echo $_SESSION['r_event_pic']; }else{echo 'images/noimage3.jpg';} ?>" class="card-img-top img-fluid" style = "height: 300px" alt="...">
 				</div>
 				<div class = "mt-2" style = "display:flex; flex-wrap: nowrap;">
-					<h6 class = "text-center" style = " width: 50%"><b>Due Date:</b><?php $d = strtotime($_SESSION['$r_event_duedate']); if($_SESSION['$r_event_duedate'] != ''){echo date("F j, Y",$d);}else{echo "None";} ?></h6>
-					<h6 class = "text-center" style = "width: 50%"><b>Event Date:</b><?php $d = strtotime($_SESSION['$r_event_date']); if($_SESSION['$r_event_date'] != ''){echo date("F j, Y",$d);}else{echo "None";} ?></h6>
+					<h6 class = "text-center" style = " width: 50%"><b>Due Date: </b><?php $d = strtotime($_SESSION['r_event_duedate']); if($_SESSION['r_event_duedate'] != ''){echo date("F j, Y",$d);}else{echo "None";} ?></h6>
+					<h6 class = "text-center" style = "width: 50%"><b>Event Date: </b><?php $d = strtotime($_SESSION['r_event_date']); if($_SESSION['r_event_date'] != ''){echo date("F j, Y",$d);}else{echo "None";} ?></h6>
 				</div>
 				
 
 				<h5 class ="text-center">Beautiful Message From The Celebrant: </h5>
-				<p class = "card card-body alert-warning"><?php echo ucwords($_SESSION['$r_message']);?></p>				
+				<p class = "card card-body alert-warning"><?php echo ucwords($_SESSION['r_message']);?></p>				
 			  
 			  </div>
 			</div>

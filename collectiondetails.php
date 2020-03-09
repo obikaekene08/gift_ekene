@@ -14,12 +14,12 @@ require("header2.php");
 $details = $obj->getdetails($_SESSION['user'],'receivers');
 
 if(isset($_GET['eventid']) && isset($_GET['eventtitle'])){
-$_SESSION['$r_event_id'] = $_GET['eventid'];
-$_SESSION['$r_event_title'] = $_GET['eventtitle'];
-$_SESSION['$r_message'] = $_GET['r_message'];
-$_SESSION['$r_event_date'] = $_GET['eventdate'];
-$_SESSION['$r_event_duedate'] = $_GET['eventduedate'];
-$_SESSION['$r_event_pic'] = $_GET['eventpic'];
+$_SESSION['r_event_id'] = $_GET['eventid'];
+$_SESSION['r_event_title'] = $_GET['eventtitle'];
+$_SESSION['r_message'] = $_GET['r_message'];
+$_SESSION['r_event_date'] = $_GET['eventdate'];
+$_SESSION['r_event_duedate'] = $_GET['eventduedate'];
+$_SESSION['r_event_pic'] = $_GET['eventpic'];
 
 }
 ?>
@@ -79,7 +79,7 @@ $_SESSION['$r_event_pic'] = $_GET['eventpic'];
 		<div class = "row mx-1">
 			<div class = "col-12 card card-body pt-1">
 				  
-				  <h4 class ="mb-3 mt-0 actionbtns"><?php echo ucwords($_SESSION['$r_event_title']);?> Collection Details:</h4>
+				  <h4 class ="mb-3 mt-0 actionbtns"><?php echo ucwords($_SESSION['r_event_title']);?> Collection Details:</h4>
 				  <div class = "row actionbtns">
 				  	<div class = "col-2">
 					<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample" disabled>
@@ -139,7 +139,7 @@ $_SESSION['$r_event_pic'] = $_GET['eventpic'];
 
 			<div class = "row mt-2 mx-1">
 				<div class = "col-12 card card-body pt-1">
-					<h4 class ="mb-3 mt-0" id = "itemsSelectedBodyTitle">Items Selected in <?php echo ucwords($_SESSION['$r_event_title']);?>: </h4>
+					<h4 class ="mb-3 mt-0" id = "itemsSelectedBodyTitle">Items Selected in <?php echo ucwords($_SESSION['r_event_title']);?>: </h4>
 					<div class = "row" id = "bodyofitem">
 
 						
