@@ -17,6 +17,8 @@ $_SESSION['centrallogin'] = 'centrallogin';
 
 $obj->login($username,$pwd);
 
+unset($_SESSION['centrallogin']);
+
 }
 
 //attempt receiver login
@@ -30,7 +32,11 @@ $pwd = htmlentities(addslashes($_POST['pwd']));
 
 $obj = new Receiver;
 
+$_SESSION['centrallogin'] = 'centrallogin';
+
 $obj->login($username,$pwd);
+
+unset($_SESSION['centrallogin']);
 
 }
 
@@ -44,7 +50,11 @@ $pwd = htmlentities(addslashes($_POST['pwd']));
 
 $obj = new Gifter;
 
+$_SESSION['centrallogin'] = 'centrallogin';
+
 $obj->login($username,$pwd);
+
+unset($_SESSION['centrallogin']);
 	
 }
 

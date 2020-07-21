@@ -2,7 +2,7 @@
 
 if($_FILES){
 
-require("vendor.php");
+require("Vendor.php");
 
 $obj = new Vendor;
 

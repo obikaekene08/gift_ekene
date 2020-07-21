@@ -142,7 +142,7 @@ require("header.php");
 				        <div class="control-group form-group">
 				            <div class="controls">
 				              <label>Email Address:</label>
-				              <input type="email" class="form-control" name='email' id="loginEmail" required>
+				              <input type="email" class="form-control" name='email' id="loginEmail" value = "<?php if(isset($_SESSION['loginemail'])){echo $_SESSION['loginemail'];}else{echo "";} unset($_SESSION['loginemail']);?>" required>
 				            </div>
 				          </div>
 				          <div class="control-group form-group">

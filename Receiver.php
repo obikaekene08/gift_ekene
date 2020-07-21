@@ -162,10 +162,12 @@ class Receiver extends User{
 		if(isset($_SESSION['centrallogin']) && ($_SESSION['centrallogin'] == 'centrallogin')){
 
 				$_SESSION['loginstatus'] = "failed";
+				$_SESSION['loginemail'] = $username;
 
 			}else{
 
 			$_SESSION['loginstatus'] = "failed";
+			$_SESSION['loginemail'] = $username;
 
 			header("location:receivegifts.php");
 
@@ -506,9 +508,8 @@ function doupload($filearray,$imagefolder,$imagetable,$imagecol,$imagecoluserid,
 
 			$details = $this->getdetailswhere($id,'receiver_events','r_event_id');
 			
-			
-			$_SESSION['$r_event_id'] = $details['r_event_id'];
-			$_SESSION['$r_event_title'] = $details['r_event_title'];
+			$_SESSION['r_event_id'] = $details['r_event_id'];
+			$_SESSION['r_event_title'] = $details['r_event_title'];
 
 			return $id;
 		

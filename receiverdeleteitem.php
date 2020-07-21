@@ -1,12 +1,11 @@
 <?php
 
 
-
 require("Receiver.php");
 
  $obj = new Receiver;
 
-$itemId = $_POST['itemid'];
+$itemId = trim(htmlentities(addslashes($_POST['itemid'])));
 
 ?>
 

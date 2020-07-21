@@ -4,9 +4,9 @@ require("Receiver.php");
 
 $obj = new Receiver;
 
-$searchval = $_POST['searchval'];
+$searchval = trim(htmlentities(addslashes($_POST['searchval'])));
 
-$r_event_id = $_POST['r_event_id'];
+$r_event_id = trim(htmlentities(addslashes($_POST['r_event_id'])));
 
 $search_item = $obj->searchMain($searchval);
 

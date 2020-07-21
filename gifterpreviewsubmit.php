@@ -33,7 +33,6 @@ if(!empty($selected_items)){
 	foreach($selected_items as $key2 => $v2) {
 
 
-
   if($v['receiver_item_id'] == $v2['receiver_item_id']){
 
     $x = false;
@@ -49,8 +48,8 @@ if(!empty($selected_items)){
     <p class="card-text"><b>Unit Price: </b><span id = "itprice"> <?php echo "&#8358;".number_format($v['v_item_price'],2);?></span></p>
     <p class="card-text"><b>Stock: </b><span class="card-text" id = "itstk"> <?php echo $v['item_qty'];?></span></p>
     <b>Qty: </b><span class = "text-center" style = "width:20%;" id = "itqty"><?php echo $v['r_item_qty'];?></span>
-    <span style = "display: none" class="card-text" id = "receiver_itid"> <?php echo $v['receiver_item_id'];?></span>
-    <span style = "display: none" class="card-text" id = "g_selection_id"> <?php echo $v2['g_selection_id'];?></span><br>     
+    <span style = "display: none" class="card-text" id = "receiver_itid"><?php echo $v['receiver_item_id'];?></span>
+    <span style = "display: none" class="card-text" id = "g_selection_id"><?php echo $v2['g_selection_id'];?></span><br>     
     <button type = "button" class="btn btn-primary col-8 mt-2" id = "itbtn" onclick = "iteminclude(this);" style = "display: none">Shop Item</button>                
     <button type = "button" class="btn btn-danger col-8 mt-2" id = "itremove" onclick = "deleteItemCard(this); $('#colqty').load('gifterloadcartqty.php');" >Remove Item</button>
   </form>
@@ -79,7 +78,7 @@ if($x == true || empty($selected_items)){
     <p class="card-text"><b>Unit Price: </b><span id = "itprice"> <?php echo "&#8358;".number_format($v['v_item_price'],2);?></span></p>
     <p class="card-text"><b>Stock: </b><span class="card-text" id = "itstk"> <?php echo $v['item_qty'];?></span></p>
     <b>Qty: </b><span class = "text-center" style = "width:20%;" id = "itqty"><?php echo $v['r_item_qty'];?></span>
-    <span style = "display: none" class="card-text" id = "receiver_itid"> <?php echo $v['receiver_item_id'];?></span><br>     
+    <span style = "display: none" class="card-text" id = "receiver_itid"><?php echo $v['receiver_item_id'];?></span><br>     
     <button type = "button" class="btn btn-primary col-8 mt-2" id = "itbtn" onclick = "iteminclude(this); $('#bodyofitem').load('gifterpreviewsubmit.php');" style = "">Shop Item</button>                
     <button type = "button" class="btn btn-danger col-8 mt-2" id = "itremove" style = "display: none">Remove Item</button>
   </form>

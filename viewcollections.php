@@ -17,8 +17,8 @@ $details = $obj->getdetails($_SESSION['user'],'receivers');
 ?>
 
 
-	<button type="button" class="btn btn-outline-danger mr-2 my-2 offset-md-9">Give a Gift</button>
-	<button type="button" class="btn btn-danger my-2">Logout</button>
+	<a href="gifterprofile.php" class="btn btn-outline-danger mr-2 my-2 offset-md-9">Give a Gift</a>
+	<a href="logout.php" class="btn btn-danger my-2">Logout</a>
    
 	<div class="container-fluid">
    

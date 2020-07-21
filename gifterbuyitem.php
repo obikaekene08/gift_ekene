@@ -2,18 +2,15 @@
 <?php
 
 
-
 require("Gifter.php");
 
  $obj = new Gifter;
 
-
+$gifter_id = $_SESSION['user'];
 $itqty = $_POST['itqty'];
 $itid = $_POST['itid'];
 
-$item_array = $obj->cartitem($itqty,$itid);
-
-
+$item_array = $obj->cartitem($gifter_id,$itqty,$itid);
 
 if(!empty($item_array)){
 $total = 0;

@@ -5,7 +5,7 @@ require("Receiver.php");
 $obj = new Receiver;
 
 $receiver_id = $_SESSION['user'];
-$r_event_id = $_SESSION['$r_event_id'];
+$r_event_id = $_SESSION['r_event_id'];
 
 
 $seecollectiondetails = $obj->getseveralwhereNoGroup('receiver_item','vendor_item','receiver_item.v_item_id','vendor_item.v_item_id','receiver_item.r_event_id',$r_event_id);

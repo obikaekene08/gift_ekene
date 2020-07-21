@@ -265,7 +265,7 @@ $(itbtn).siblings('#itremove').show();
 function editItemCard(editbtn){
 
 var itemid = $(editbtn).parents('#grandparent').siblings('#itid').html();
-alert(itemid);
+
 var editbtnid = "editrecord"+itemid;
 var updatebtnid = "updaterecord"+itemid;
 

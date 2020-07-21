@@ -16,10 +16,13 @@ $details = $obj->getdetails($_SESSION['user'],'receivers');
 if(isset($_GET['eventid']) && isset($_GET['eventtitle'])){
 $_SESSION['r_event_id'] = $_GET['eventid'];
 $_SESSION['r_event_title'] = $_GET['eventtitle'];
-$_SESSION['r_message'] = $_GET['r_message'];
-$_SESSION['r_event_date'] = $_GET['eventdate'];
-$_SESSION['r_event_duedate'] = $_GET['eventduedate'];
-$_SESSION['r_event_pic'] = $_GET['eventpic'];
+
+$getEventDetails = $obj->getdetailswhere($_SESSION['r_event_id'],'receiver_events','r_event_id');
+
+$_SESSION['r_message'] = $getEventDetails['r_message'];
+$_SESSION['r_event_date'] = $getEventDetails['r_event_date'];
+$_SESSION['r_event_duedate'] = $getEventDetails['r_event_duedate'];
+$_SESSION['r_event_pic'] = $getEventDetails['r_event_pic'];
 
 }
 ?>

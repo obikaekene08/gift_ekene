@@ -24,6 +24,7 @@
 			    <span id = "sendmsgresponse" class = "alert alert-success alert-dissimible offset-md-3 mt-2" style = "display: none"><span>
 			  </div>
 			  <p class = "text-center"><button type="submit" class="btn btn-primary btn-lg" id = "submitbtn">Submit</button></p>
+
 			</form>
 
 
@@ -37,8 +38,8 @@
 		<div class = "col-md-2 mx-2 footertextcolor">
 			<ul class="list-group list-group-flush">
 			  <li class="list-group-item footerbgcolor" style="color:blue"><b>Useful Links</b></li>
-			  <li class="list-group-item footerbgcolor" ><a href = "index.php #fAQsparent" class = "footerbgcolor">FAQs</a></li>
-			  <li class="list-group-item footerbgcolor" ><a href = "index.php #searchbox" class = "footerbgcolor">Find a Couple</a></li>
+			  <li class="list-group-item footerbgcolor" ><a href = "index.php#fAQsparent" class = "footerbgcolor">FAQs</a></li>
+			  <li class="list-group-item footerbgcolor" ><a href = "index.php#searchbox" class = "footerbgcolor">Find a Couple</a></li>
 			  <li class="list-group-item footerbgcolor" ><a href = "#" class = "footerbgcolor">Order Status</a></li>
 			  <li class="list-group-item footerbgcolor" ><a href = "#" class = "footerbgcolor">Return Policy</a></li>			  
 			</ul>
@@ -47,9 +48,9 @@
 		<div class = "col-md-2 mr-5 footertextcolor">
 			<ul class="list-group list-group-flush" >
 			  <li class="list-group-item footerbgcolor" style="color:purple"><b>Other Links</b></li>
-			  <li class="list-group-item footerbgcolor" ><a href = "index.php #howtoparent" class = "footerbgcolor">How it Works</a></li>
-			  <li class="list-group-item footerbgcolor" ><a href = "index.php #testimonial" class = "footerbgcolor">Testimonials</a></li>
-			  <li class="list-group-item footerbgcolor" ><a href = "index.php #merchantsection" class = "footerbgcolor">See Our Merchants</a></li>
+			  <li class="list-group-item footerbgcolor" ><a href = "index.php#howtoparent" class = "footerbgcolor">How it Works</a></li>
+			  <li class="list-group-item footerbgcolor" ><a href = "index.php#testimonial" class = "footerbgcolor">Testimonials</a></li>
+			  <li class="list-group-item footerbgcolor" ><a href = "index.php#merchantsection" class = "footerbgcolor">See Our Merchants</a></li>
 			  <li class="list-group-item footerbgcolor" ><a href = "#" class = "footerbgcolor">Terms and Conditions</a></li>			  
 			</ul>
 		</div>

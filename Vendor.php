@@ -95,7 +95,7 @@ class Vendor extends User{
 
 			$_SESSION['route'] = 'vendor';
 
-			//this is to fetch email and assign to session
+			//this is to fetch email and assign to session to enable login to other functions like Gifting and Receiving
 			$emailfetch = $this->getdetails($_SESSION['user'],'vendors');
 
 			$_SESSION['useremail'] = $emailfetch['v_email'];
@@ -112,10 +112,12 @@ class Vendor extends User{
 			if(isset($_SESSION['centrallogin']) && ($_SESSION['centrallogin'] == 'centrallogin')){
 
 				$_SESSION['loginstatus'] = "failed";
+				$_SESSION['loginemail'] = $username;
 
 			}else{
 
 			$_SESSION['loginstatus'] = "failed";
+			$_SESSION['loginemail'] = $username;
 
 			header("location:signup.php");
 

@@ -4,9 +4,10 @@ if($_POST){
 
 require("Receiver.php");
 
-echo "<pre>";
-print_r($_POST);
-echo "</pre>";
+// echo "<pre>";
+// print_r($_POST);
+// echo "</pre>";
+
 $obj = new Receiver;
 
 $receiver_id  = $_SESSION['user'];

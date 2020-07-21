@@ -16,7 +16,6 @@ $obj = new Vendor;
 
 $obj->login($username,$pwd);
 
-
 }else{
 
 	header("location:signup.php");

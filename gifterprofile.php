@@ -295,89 +295,9 @@ if(!isset($_SESSION['user'])){
 
 require('footer.php');
 
+require("removemodal.php");
+
 ?>
-
-
-	
-
-
-<!-- Modal Create Collection -->
-<div class="modal fade" id="modalcreatecollection" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="receiverprofile_submit" method="POST" enctype="multipart/form-data">
-        				<div class = "row">
-				    	<div class = "col-12">
-						    <div class="alert alert-primary" role="alert">
-							  <h6><small>Please note that the information with <span style = "color:red">*</span> will be displayed to your gifters<br><span style = "color:black">Please Check on "View Collections" tab to see Preview</span></small></h6>
-							</div>
-						</div>
-						</div>
-        				<div class = "card-body">
-        				
-        				<div class="form-group row">
-						    <label for="inputPassword" class="col-sm-3 col-form-label">Event Type</label>
-						    <div class="col-sm-9">
-						      <select class="form-control" id="">
-						      	<option value="">--Select Event Type--</option>
-						      	<option value="">Wedding</option>
-						      	<option value="">Child Dedication</option>
-						      	<option value="">Christmas</option>
-						      </select>
-						    </div>
-						  </div>
-
-						  <div class="form-group row">
-						    <label for="staticEmail" class="col-sm-3 col-form-label">Event Title<span style = "color:red">*</span></label>
-						    <div class="col-sm-9">
-						      <input type="text" class="form-control" id="staticEmail" value="">
-						    </div>
-						  </div>
-
-        				<img src="images/jumia.png" class="card-img-top" alt="...">
-      	
-      					<div class="form-group row mt-2">
-						    <label for="exampleFormControlFile1" class="col-sm-2 col-form-label" >Select Image<span style = "color:red">*</span></label>
-						    <div class="col-sm-10">
-						    <div class = "row">
-						    <input type="file" class="form-control-file col-7 mr-0 pr-0" id="exampleFormControlFile1">
-						    <button type = "submit" class="btn-sm btn btn-warning col-4" >Upload Pic</button>
-							</div>
-							</div>
-						 </div>
-						
-						  <div class="control-group form-group">
-				            <div class="controls">
-				              <label><b>Message For Your Gifters(Brief):</b></label>
-				              <textarea rows="4" cols="50" name='profile' class="form-control" id="profile"  maxlength="300" style="resize:none"></textarea>
-				            </div>
-				          </div>
-				         </div>		  
-
-      </form>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Start Collection</button>
-      </div>
-    </div>
-  </div>
-</div>
-	
-
-
-
-
-
-
 
 
 <script type="text/javascript" src="js/jquery.js"></script>
@@ -427,25 +347,24 @@ $('#searchMerchant').blur(function(){
 	$('#or2').fadeIn();
 	$('#searchCategory').fadeIn();
 })
-$('#searchCategorybody').mouseenter(function(){
+// $('#searchCategorybody').mouseenter(function(){
 
-	$('#or2').fadeOut();
-	$('#searchboxMerchant').fadeOut();
-})
+// 	$('#or2').fadeOut();
+// 	$('#searchboxMerchant').fadeOut();
+// })
 
-$('#searchCategorybody').mouseleave(function(){
+// $('#searchCategorybody').mouseleave(function(){
 
-	$('#or2').fadeIn();
-	$('#searchboxMerchant').fadeIn();
-})
+// 	$('#or2').fadeIn();
+// 	$('#searchboxMerchant').fadeIn();
+// })
 
 $('#searchRnamebtn').click(function(){
 
 var searchval = $('#searchRname').val();
 var data = {"searchval": searchval};
 
-$('#searchresult').load("gifterSearchRname.php", data);
-
+$('#searchresult').load("gifterSearchRname.php", data)
 
 })
 
@@ -460,6 +379,8 @@ $('#searchresult').load("gifterSearchRname.php", data);
 })
 
 $('#searchMerchantbtn').click(function(){
+
+x = 1;
 
 var searchval = $('#searchMerchant').val();
 var data = {"searchval": searchval};
@@ -478,7 +399,7 @@ $('#colqty').load('loadcartqty.php?');
 function iteminclude(itbtn){
 	
 var itqty = $(itbtn).siblings('#itqty').val();
-var itid = $(itbtn).siblings('#itid').html();
+var itid = $(itbtn).siblings('#itid').html().trim();
 
 $.ajax({
 
@@ -504,7 +425,11 @@ $(itbtn).hide();
 $(itbtn).siblings('#itedit').show();
 $(itbtn).siblings('#itremove').show();
 
+
+
 }
+
+
 
 function fetchitems(){
 
@@ -513,19 +438,124 @@ var price = $('#price').val();
 var selectcategory = $('#selectcategory').val();
 var merchant = $('#merchant').val();
 var brand = $('#brand').val();
-var data = {"price": price, "selectcategory":selectcategory, "merchant":merchant, "brand":brand, "p_cart_id": p_cart_id};
+var data = {"price": price, "selectcategory":selectcategory, "merchant":merchant, "brand":brand};
 
-$('#bodyofitem').load("gifterselectitem.php", data);
+$('#searchresult2').load("gifterselectitem.php", data);
 
+}
 
+function refreshsearchMerchantBtn(){
+
+var searchval = $('#searchMerchant').val();
+var data = {"searchval": searchval};
+
+$('#searchresult2').load("gifterSearchMerchant.php", data);
 
 }
 
 $('#searchCategorybtn').click(function(){
 
+x = 2;
+
 fetchitems();
 
 })
+
+
+function editItemCard(editbtn){
+
+var itemid = $(editbtn).parents('#grandparent').siblings('#g_itid').html().trim();
+var editbtnid = "editrecord"+itemid;
+var updatebtnid = "updaterecord"+itemid;
+
+$('#'+editbtnid).hide();
+$('#'+updatebtnid).show();
+
+$(editbtn).parents('#grandparent').siblings('#itqty').attr('readonly',false);
+
+}
+
+
+function updateItemCard(updatebtn){
+
+var itemid = $(updatebtn).parents('#grandparent').siblings('#g_itid').html().trim();
+var editbtnid = "editrecord"+itemid;
+var updatebtnid = "updaterecord"+itemid;
+
+$('#'+updatebtnid).hide();
+$('#'+editbtnid).show();
+
+
+$(updatebtn).parents('#grandparent').siblings('#itqty').attr('readonly',true);
+var itemqty = $(updatebtn).parents('#grandparent').siblings('#itqty').val();
+
+updatedata(itemid,itemqty);
+
+}
+
+function deleteItemCard(deletebtn){
+
+var itemid = $(deletebtn).parents('#grandparent').siblings('#g_itid').html();
+
+deletedata(itemid);
+
+}
+
+function updatedata(itemid,itemqty){
+
+	$.ajax({
+
+	url: "gifterupdateitem.php",
+	data:{"itemid": itemid, "itemqty": itemqty},
+	type: "POST",
+	dataType: "text",
+	success(msg){
+
+	$('#colqty').html(msg);
+
+	},
+	error(errmsg){
+
+	}
+})
+}
+
+function deletedata(itemid){
+
+	var data = {"itemid":itemid};
+
+	$('#bodyOfDeleteItem').load("gifterdeleteitemnoreceiver.php",data);
+	
+}
+
+function finalDeleteItem(finalDeletebtn,x){
+
+	var itemid = $(finalDeletebtn).siblings('#itemid').html().trim();
+
+	$.ajax({
+
+	url: "gifterremoveitemnoreceiver.php",
+	data:{"itemid":itemid},
+	type: "POST",
+	dataType: "text",
+	success(msg){
+
+	$('#colqty').html(msg);
+
+	},
+	error(errmsg){
+
+	}
+	})
+	
+	if(x == 1){
+		refreshsearchMerchantBtn();
+	}else if(x == 2){
+		fetchitems();
+	}else{
+
+	}
+}
 
 
 </script>

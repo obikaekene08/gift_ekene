@@ -1318,9 +1318,9 @@ require('footer.php');
 			  <div class="form-group">
 			    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder = "Ask Your Question Here"></textarea>
 			  </div>
-			<p>You can Call or Send an Email :</p>
+			<p>You can call us or send us an email :</p>
 			<p>Phone: +2347065692733</p>
-			<p>Email: info@giftrunner.com</p>
+			<p>Email: info@giftmummy.com</p>
 		</div>
 
       <div class="modal-footer">

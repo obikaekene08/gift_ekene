@@ -141,6 +141,10 @@ color:#745E87;
  	margin-top:8px;
  }
 
+  #sendmsgresponse{
+ 	display:inline-block;
+ }
+
 }
 
 /* 
@@ -179,7 +183,10 @@ color:#745E87;
  #searchRnamebtn, #searchRLinkbtn,#searchMerchantbtn {
  	margin-top:8px;
  }
-  
+
+  #sendmsgresponse{
+ 	display:inline-block;
+ }
   
   
 }
@@ -213,9 +220,9 @@ color:#745E87;
  	margin-top:8px;
  }
 
-
-  
- 
+ #sendmsgresponse{
+ 	display:inline-block;
+ }
   
 }
 
@@ -251,6 +258,14 @@ color:#745E87;
   #searchRnamebtn, #searchRLinkbtn,#searchMerchantbtn {
  	margin-top:8px;
  }
+
+ #sendmsgresponse{
+ 	display:inline-block;
+ 	font-size: 13px;
+ 	width:90%;
+ 	margin:auto;
+ 	padding:4px;
+ }
   
   }
 
@@ -280,7 +295,26 @@ color:#745E87;
   #searchRnamebtn, #searchRLinkbtn,#searchMerchantbtn {
  	margin-top:8px;
  }
+
+ #sendmsgresponse{
+ 	display:inline-block;
+ 	font-size: 13px;
+ 	width:90%;
+ 	margin:auto;
+ 	padding:4px;
+ }  
   
+}
+
+@media (min-width: 100px) and (max-width: 319px) {
+  
+ #sendmsgresponse{
+ 	display:inline-block;
+ 	font-size: 13px;
+ 	width:90%;
+ 	margin:auto;
+ 	padding:4px;
+ }
   
 }
 
@@ -328,14 +362,14 @@ color:#745E87;
 			        <a class="nav-link" href="receivegifts.php">CREATE A REGISTRY</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="index.php #testimonial">TESTIMONIALS</a>
+			        <a class="nav-link" href="index.php#testimonial">TESTIMONIALS</a>
 			      </li>
 			      <li class="nav-item dropdown">
 			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			          VENDORS
 			        </a>
 			        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-			          <a class="dropdown-item" href="index.php #merchantsection">See Our Vendors</a>
+			          <a class="dropdown-item" href="index.php#merchantsection">See Our Vendors</a>
 			          <a class="dropdown-item" href="becomeavendor.php?">Become a Vendor</a>
 			          <a class="dropdown-item" href="becomeavendor.php?m=signin">Vendor Sign in</a>
 			        </div>
@@ -346,9 +380,9 @@ color:#745E87;
 			          FAQs
 			        </a>
 			        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-			          <a class="dropdown-item" href="index.php #fAQsparent">FAQ for Givers</a>
-			          <a class="dropdown-item" href="index.php #fAQsparent">FAQ for Receivers</a>
-			          <a class="dropdown-item" href="index.php #fAQsparent">FAQ for Vendors</a>
+			          <a class="dropdown-item" href="index.php#fAQsparent">FAQ for Givers</a>
+			          <a class="dropdown-item" href="index.php#fAQsparent">FAQ for Receivers</a>
+			          <a class="dropdown-item" href="index.php#fAQsparent">FAQ for Vendors</a>
 			        </div>
 			      </li>
 

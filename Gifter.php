@@ -163,10 +163,12 @@ class Gifter extends User{
 			if(isset($_SESSION['centrallogin']) && ($_SESSION['centrallogin'] == 'centrallogin')){
 
 				$_SESSION['loginstatus'] = "failed";
+				$_SESSION['loginemail'] = $username;
 
 			}else{
 
 			$_SESSION['loginstatus'] = "failed";
+			$_SESSION['loginemail'] = $username;
 
 			header("location:giveagift.php");
 
@@ -569,7 +571,7 @@ function update($collect, $K1,$v1,$table){
 
 	function searchMerchant($searchval){
 
-		$sql = " SELECT * FROM vendor_item JOIN vendors ON vendor_item.vendor_id = vendors.vendor_id JOIN category_table ON category_table.category_id = vendor_item.v_cat_id WHERE v_item_name LIKE '%$searchval%' OR v_companyname LIKE '%$searchval%' OR category_id  LIKE '%$searchval%' ";		
+		$sql = " SELECT * FROM vendor_item JOIN vendors ON vendor_item.vendor_id = vendors.vendor_id JOIN category_table ON category_table.category_id = vendor_item.v_cat_id WHERE v_item_name LIKE '%$searchval%' OR v_companyname LIKE '%$searchval%' OR category_name  LIKE '%$searchval%' ";		
 
 		$result = $this->conn->query($sql);
 		echo $this->conn->error;
@@ -607,6 +609,44 @@ function update($collect, $K1,$v1,$table){
 
 		$y = $this->getseveralwheretwocolumns($table,'gifter_id',$gifter_id,'r_event_id',$r_event_id);
 		
+		return $y;
+	
+	}
+
+	function cartitem($gifter_id, $itqty,$itid){
+
+		// $r = $this->getseveralwhere('receiver_events','r_event_title',$eventtitle);
+
+		// echo $this->conn->error;
+
+		// $r_event_id = $r[0]['r_event_id']; //remember to collect back itemid and use it for includeitem		
+
+		$sql = " INSERT INTO purchase_item SET gifter_id = '$gifter_id', v_item_id = '$itid', g_item_qty = '$itqty' ";
+
+		$r = $this->conn->query($sql);
+
+		echo $this->conn->error;
+
+		$y = $this->getseveralwhere('purchase_item','gifter_id', $gifter_id);
+
+			return $y;
+	
+	}
+
+	function updateitem($item_id, $item_qty){
+
+		$gifter_id = $_SESSION['user'];
+
+		$sql = " UPDATE purchase_item SET g_item_qty = '$item_qty' WHERE g_item_id = '$item_id' AND approved = 1";
+
+		$r = $this->conn->query($sql);
+
+		echo $this->conn->error;
+
+		$sid = $this->conn->affected_rows;
+
+		$y = $this->getseveralwhere('purchase_item','gifter_id', $gifter_id);
+
 		return $y;
 	
 	}
@@ -744,15 +784,19 @@ function getseveralwheregroup($table,$table2,$colname,$colname2,$id = 0, $col1,$
 
 	function removeitem($table,$colname,$id = 0){
 
+		$gifter_id = $_SESSION['user'];
+
 		$sql = " DELETE FROM $table WHERE $colname = '$id' ";
 		
 		$result = $this->conn->query($sql);
 		echo $this->conn->error;
 
-
 		$sid = $this->conn->affected_rows;
 
-		
+		$y = $this->getseveralwhere('purchase_item','gifter_id', $gifter_id);
+
+		return $y;
+
 	}
 
 	
